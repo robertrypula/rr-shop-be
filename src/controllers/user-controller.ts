@@ -1,6 +1,6 @@
+import { validate, ValidationError } from 'class-validator';
 import { Request, Response } from 'express';
 import { getRepository, Repository } from 'typeorm';
-import { validate, ValidationError } from "class-validator";
 
 import { User } from '../entity/user';
 
@@ -28,9 +28,9 @@ export class UserController {
   }
 
   public async newUser(req: Request, res: Response): Promise<void> {
+    const user = new User();
+    const { username, password, role } = req.body;
     let errors: ValidationError[];
-    let user = new User();
-    let { username, password, role } = req.body;
 
     user.username = username;
     user.password = password;

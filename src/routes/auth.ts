@@ -1,4 +1,5 @@
 import { Request, Response, Router } from 'express';
+
 import { AuthController } from '../controllers/auth-controller';
 import { checkJwt } from '../middlewares/check-jwt';
 

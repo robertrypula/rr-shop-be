@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+
 import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
 import * as express from 'express';
@@ -6,6 +7,8 @@ import * as helmet from 'helmet';
 import { Connection, createConnection } from 'typeorm';
 
 import { routes } from './routes';
+
+/*tslint:disable:no-console*/
 
 createConnection()
   .then(async (connection: Connection) => {

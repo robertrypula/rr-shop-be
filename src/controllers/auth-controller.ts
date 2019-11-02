@@ -1,18 +1,18 @@
+import { validate, ValidationError } from 'class-validator';
 import { Request, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
 import { getRepository } from 'typeorm';
-import { validate, ValidationError } from "class-validator";
 
-import { User } from '../entity/user';
 import { jwtSecret } from '../config/config';
+import { User } from '../entity/user';
 import { JwtPayload } from '../model';
 
 export class AuthController {
   public constructor(protected userRepository = getRepository(User)) {}
 
   public async login(req: Request, res: Response): Promise<void> {
+    const { username, password } = req.body;
     let user: User;
-    let { username, password } = req.body;
 
     if (!(username && password)) {
       res.status(400).send();

@@ -1,6 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, Unique, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-import { Length, IsNotEmpty } from 'class-validator';
 import { compareSync, hashSync } from 'bcryptjs';
+import { IsNotEmpty, Length } from 'class-validator';
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, Unique, UpdateDateColumn } from 'typeorm';
 
 @Entity()
 @Unique(['username'])

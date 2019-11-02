@@ -6,7 +6,7 @@
   "author": "Robert Rypuła",
   "license": "MIT",
   "scripts": {
-    "build": "yarn clean && yarn lint && yarn prettier:check && tsc && node ./dist/index.js",
+    "build": "yarn clean && yarn lint && yarn prettier:check && tsc",
     "clean": "rimraf dist && rimraf coverage",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run",

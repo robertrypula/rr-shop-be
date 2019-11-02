@@ -1,11 +1,11 @@
-import { Request, Response, NextFunction } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { sign, verify } from 'jsonwebtoken';
 
+import { jwtSecret } from '../config/config';
 import { JwtPayload } from '../model';
-import { jwtSecret } from "../config/config";
 
 export const checkJwt = (req: Request, res: Response, next: NextFunction): Promise<void> => {
-  const token = req.headers['auth'] as string;
+  const token = req.headers.auth as string;
   let jwtPayload: JwtPayload;
 
   try {
@@ -18,4 +18,4 @@ export const checkJwt = (req: Request, res: Response, next: NextFunction): Promi
 
   res.setHeader('token', sign({ ...jwtPayload }, jwtSecret, { expiresIn: '1h' }));
   next();
-}
+};
