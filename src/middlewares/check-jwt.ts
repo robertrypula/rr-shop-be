@@ -1,24 +1,21 @@
 import { Request, Response, NextFunction } from 'express';
-import * as jwt from 'jsonwebtoken';
-import config from '../config/config';
+import { sign, verify } from 'jsonwebtoken';
 
-export const checkJwt = (req: Request, res: Response, next: NextFunction) => {
+import { JwtPayload } from '../model';
+import { jwtSecret } from "../config/config";
+
+export const checkJwt = (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const token = req.headers['auth'] as string;
-  let jwtPayload;
+  let jwtPayload: JwtPayload;
 
   try {
-    jwtPayload = <any>jwt.verify(token, config.jwtSecret);
+    jwtPayload = verify(token, jwtSecret) as JwtPayload;
     res.locals.jwtPayload = jwtPayload;
   } catch (error) {
     res.status(401).send();
     return;
   }
 
-  const { userId, username } = jwtPayload;
-  const newToken = jwt.sign({ userId, username }, config.jwtSecret, {
-    expiresIn: '1h'
-  });
-  res.setHeader('token', newToken);
-
+  res.setHeader('token', sign({ ...jwtPayload }, jwtSecret, { expiresIn: '1h' }));
   next();
-};
+}

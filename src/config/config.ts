@@ -1,3 +1,1 @@
-export default {
-  jwtSecret: '@QEGTUI'
-};
+export const jwtSecret = '@QEGTUI';

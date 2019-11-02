@@ -1,23 +1,25 @@
 import { Request, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
 import { getRepository } from 'typeorm';
-import { validate } from 'class-validator';
+import { validate, ValidationError } from "class-validator";
 
 import { User } from '../entity/user';
-import config from '../config/config';
+import { jwtSecret } from '../config/config';
+import { JwtPayload } from '../model';
 
 export class AuthController {
-  static login = async (req: Request, res: Response) => {
+  public constructor(protected userRepository = getRepository(User)) {}
+
+  public async login(req: Request, res: Response): Promise<void> {
+    let user: User;
     let { username, password } = req.body;
 
     if (!(username && password)) {
       res.status(400).send();
     }
 
-    const userRepository = getRepository(User);
-    let user: User;
     try {
-      user = await userRepository.findOneOrFail({ where: { username } });
+      user = await this.userRepository.findOneOrFail({ where: { username } });
     } catch (error) {
       res.status(401).send();
     }
@@ -27,24 +29,21 @@ export class AuthController {
       return;
     }
 
-    const token = jwt.sign({ userId: user.id, username: user.username }, config.jwtSecret, { expiresIn: '1h' });
+    res.send(jwt.sign({ userId: user.id, username: user.username }, jwtSecret, { expiresIn: '1h' }));
+  }
 
-    res.send(token);
-  };
-
-  static changePassword = async (req: Request, res: Response) => {
-    const id = res.locals.jwtPayload.userId;
+  public async changePassword(req: Request, res: Response): Promise<void> {
+    const jwtPayload: JwtPayload = res.locals.jwtPayload;
     const { oldPassword, newPassword } = req.body;
+    let errors: ValidationError[];
+    let user: User;
 
     if (!(oldPassword && newPassword)) {
       res.status(400).send();
     }
 
-    const userRepository = getRepository(User);
-    let user: User;
-
     try {
-      user = await userRepository.findOneOrFail(id);
+      user = await this.userRepository.findOneOrFail(jwtPayload.userId);
     } catch (id) {
       res.status(401).send();
     }
@@ -56,16 +55,15 @@ export class AuthController {
 
     user.password = newPassword;
 
-    const errors = await validate(user);
-
+    errors = await validate(user);
     if (errors.length > 0) {
       res.status(400).send(errors);
       return;
     }
 
     user.hashPassword();
-    await userRepository.save(user);
+    await this.userRepository.save(user);
 
     res.status(204).send();
-  };
+  }
 }
