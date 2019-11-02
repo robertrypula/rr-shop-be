@@ -112,7 +112,7 @@ export class UserController {
       res.status(404).send('User not found');
       return;
     }
-    userRepository.delete(id);
+    await userRepository.delete(id);
 
     // after all send a 204 (no content, but accepted) response
     res.status(204).send();

@@ -70,7 +70,7 @@ export class AuthController {
     }
     // hash the new password and save
     user.hashPassword();
-    userRepository.save(user);
+    await userRepository.save(user);
 
     res.status(204).send();
   };
