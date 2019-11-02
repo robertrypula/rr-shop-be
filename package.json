@@ -6,14 +6,18 @@
   "author": "Robert Rypuła",
   "license": "MIT",
   "scripts": {
+    "build": "yarn clean && tsc && node ./dist/index.js",
+    "clean": "rimraf dist && rimraf coverage",
+    "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run",
     "prettier:check": "prettier src/**/*.{html,js,scss,ts} *.{js,json,yml} --check",
     "prettier:write": "prettier src/**/*.{html,js,scss,ts} *.{js,json,yml} --write",
-    "start": "ts-node src/index.ts",
+    "start": "set debug=* && ts-node-dev --respawn --transpileOnly ./src/index.ts",
     "u:i": "yarn upgrade-interactive --latest"
   },
   "devDependencies": {
     "@types/node": "^8.0.29",
     "prettier": "1.18.2",
+    "rimraf": "^3.0.0",
     "ts-node": "3.3.0",
     "typescript": "3.3.3333"
   },
