@@ -7,7 +7,7 @@ import { checkRole } from '../middlewares/check-role';
 export const userRouter = Router();
 
 const jwtAdmin = [checkJwt, checkRole(['ADMIN'])];
-const execute = (action: keyof UserController) => (req: Request, res: Response): Promise<void> =>
+const execute = (action: keyof UserController) => (req: Request, res: Response): Promise<void> | void =>
   new UserController()[action](req, res);
 
 userRouter.get('/', jwtAdmin, execute('listAll'));

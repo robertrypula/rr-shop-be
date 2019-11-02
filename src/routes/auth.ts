@@ -5,7 +5,7 @@ import { checkJwt } from '../middlewares/check-jwt';
 
 export const authRouter = Router();
 
-const execute = (action: keyof AuthController) => (req: Request, res: Response): Promise<void> =>
+const execute = (action: keyof AuthController) => (req: Request, res: Response): Promise<void> | void =>
   new AuthController()[action](req, res);
 
 authRouter.post('/login', execute('login'));
