@@ -12,7 +12,7 @@
     "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run",
     "prettier:check": "prettier src/**/*.{html,js,scss,ts} *.{js,json,yml} --check",
     "prettier:write": "prettier src/**/*.{html,js,scss,ts} *.{js,json,yml} --write",
-    "start": "set debug=* && ts-node-dev --respawn --transpileOnly ./src/index.ts",
+    "start": "yarn clean && set debug=* && ts-node-dev --respawn --transpileOnly ./src/index.ts",
     "u:i": "yarn upgrade-interactive --latest"
   },
   "devDependencies": {

@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
 import { getRepository } from 'typeorm';
 
-import { jwtSecret } from '../config/config';
+import { jwtSecret } from '../config';
 import { User } from '../entity/user';
 import { JwtPayload } from '../model';
 

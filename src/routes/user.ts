@@ -12,6 +12,6 @@ const execute = (action: keyof UserController) => (req: Request, res: Response):
 
 userRouter.get('/', jwtAdmin, execute('listAll'));
 userRouter.get('/:id([0-9]+)', jwtAdmin, execute('getOneById'));
-userRouter.post('/', jwtAdmin, execute('newUser'));
-userRouter.patch('/:id([0-9]+)', jwtAdmin, execute('editUser'));
 userRouter.delete('/:id([0-9]+)', jwtAdmin, execute('deleteUser'));
+userRouter.patch('/:id([0-9]+)', jwtAdmin, execute('editUser'));
+userRouter.post('/', jwtAdmin, execute('newUser'));
