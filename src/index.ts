@@ -6,18 +6,14 @@ import * as helmet from 'helmet';
 import * as cors from 'cors';
 import { routes } from './routes';
 
-// connects to the Database -> then starts the express
 createConnection()
   .then(async connection => {
-    // create a new express application instance
     const app = express();
 
-    // call middlewares
     app.use(cors());
     app.use(helmet());
     app.use(bodyParser.json());
 
-    // set all routes from routes folder
     app.use('/', routes);
 
     app.listen(3000, () => {
