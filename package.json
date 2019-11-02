@@ -15,11 +15,11 @@
     "u:i": "yarn upgrade-interactive --latest"
   },
   "devDependencies": {
-    "@types/node": "^8.0.29",
+    "@types/node": "^12.12.5",
     "prettier": "1.18.2",
     "rimraf": "^3.0.0",
-    "ts-node": "^3.3.0",
-    "typescript": "^3.3.3333"
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.4"
   },
   "dependencies": {
     "@types/bcryptjs": "^2.4.2",
@@ -28,14 +28,14 @@
     "@types/helmet": "^0.0.45",
     "@types/jsonwebtoken": "^8.3.5",
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.1",
+    "body-parser": "^1.19.0",
     "class-validator": "^0.11.0",
     "cors": "^2.8.5",
-    "express": "^4.15.4",
+    "express": "^4.17.1",
     "helmet": "^3.21.2",
     "jsonwebtoken": "^8.5.1",
-    "reflect-metadata": "^0.1.10",
-    "sqlite3": "^4.0.3",
+    "reflect-metadata": "^0.1.13",
+    "sqlite3": "^4.1.0",
     "ts-node-dev": "^1.0.0-pre.43",
     "typeorm": "^0.2.20"
   }

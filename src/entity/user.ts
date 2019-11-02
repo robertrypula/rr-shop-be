@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, Unique, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { Length, IsNotEmpty } from 'class-validator';
-import * as bcrypt from 'bcryptjs';
+import { compareSync, hashSync } from 'bcryptjs';
 
 @Entity()
 @Unique(['username'])
@@ -29,10 +29,10 @@ export class User {
   public updatedAt: Date;
 
   public hashPassword(): void {
-    this.password = bcrypt.hashSync(this.password, 8);
+    this.password = hashSync(this.password, 8);
   }
 
   public checkIfUnencryptedPasswordIsValid(unencryptedPassword: string): boolean {
-    return bcrypt.compareSync(unencryptedPassword, this.password);
+    return compareSync(unencryptedPassword, this.password);
   }
 }

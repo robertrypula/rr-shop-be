@@ -13,7 +13,6 @@ createConnection()
     app.use(cors());
     app.use(helmet());
     app.use(bodyParser.json());
-
     app.use('/', routes);
 
     app.listen(3000, () => {
