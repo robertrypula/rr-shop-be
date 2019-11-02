@@ -1,7 +1,3 @@
-# Awesome Project Build with TypeORM
+# RrShopBe
 
-Steps to run this project:
-
-1. Run `npm i` command
-2. Setup database settings inside `ormconfig.json` file
-3. Run `npm start` command
+This is backend part of rr-shop project
