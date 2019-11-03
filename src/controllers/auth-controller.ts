@@ -16,12 +16,14 @@ export class AuthController {
 
     if (!(username && password)) {
       res.status(400).send();
+      return;
     }
 
     try {
       user = await this.userRepository.findOneOrFail({ where: { username } });
     } catch (error) {
       res.status(401).send();
+      return;
     }
 
     if (!user.checkIfUnencryptedPasswordIsValid(password)) {

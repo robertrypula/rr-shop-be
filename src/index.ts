@@ -6,11 +6,21 @@ import * as express from 'express';
 import * as helmet from 'helmet';
 import { Connection, createConnection } from 'typeorm';
 
+import { entities } from './entity';
+import { migrations } from './migration';
 import { routes } from './routes';
 
 /*tslint:disable:no-console*/
 
-createConnection()
+createConnection({
+  database: 'database.sqlite',
+  entities,
+  logging: true,
+  migrations,
+  migrationsRun: true,
+  synchronize: true,
+  type: 'sqlite'
+})
   .then(async (connection: Connection) => {
     const app = express();
 

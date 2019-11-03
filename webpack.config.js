@@ -1,5 +1,6 @@
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const path = require('path');
+const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 
 const packageJson = require('./package.json');
@@ -71,6 +72,21 @@ function fillDev(config) {
 
 function fillProd(config, env) {
   config.mode = 'production';
+  config.optimization = {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        extractComments: false,
+        terserOptions: {
+          keep_classnames: true,
+          keep_fnames: true,
+          output: {
+            comments: false
+          }
+        }
+      })
+    ]
+  };
   env.ANALYZER && config.plugins.push(new BundleAnalyzerPlugin());
 }
 
