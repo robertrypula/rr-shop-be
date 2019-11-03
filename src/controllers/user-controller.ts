@@ -5,11 +5,11 @@ import { getRepository, Repository } from 'typeorm';
 import { User } from '../entity/user';
 
 export class UserController {
-  public constructor(protected userRepository: Repository<User> = getRepository(User)) {}
+  public constructor(protected repository: Repository<User> = getRepository(User)) {}
 
   public async listAll(req: Request, res: Response): Promise<void> {
     res.send(
-      await this.userRepository.find({
+      await this.repository.find({
         select: ['id', 'username', 'role']
       })
     );
@@ -18,7 +18,7 @@ export class UserController {
   public async getOneById(req: Request, res: Response): Promise<void> {
     try {
       res.send(
-        await this.userRepository.findOneOrFail(req.params.id, {
+        await this.repository.findOneOrFail(req.params.id, {
           select: ['id', 'username', 'role']
         })
       );
@@ -45,7 +45,7 @@ export class UserController {
     user.hashPassword();
 
     try {
-      await this.userRepository.save(user);
+      await this.repository.save(user);
     } catch (e) {
       res.status(409).send('username already in use');
       return;
@@ -60,7 +60,7 @@ export class UserController {
     let user: User;
 
     try {
-      user = await this.userRepository.findOneOrFail(req.params.id);
+      user = await this.repository.findOneOrFail(req.params.id);
     } catch (error) {
       res.status(404).send('User not found');
       return;
@@ -76,7 +76,7 @@ export class UserController {
     }
 
     try {
-      await this.userRepository.save(user);
+      await this.repository.save(user);
     } catch (e) {
       res.status(409).send('username already in use');
       return;
@@ -88,12 +88,12 @@ export class UserController {
     const id: number = parseInt(req.params.id, 10);
 
     try {
-      await this.userRepository.findOneOrFail(id);
+      await this.repository.findOneOrFail(id);
     } catch (error) {
       res.status(404).send('User not found');
       return;
     }
-    await this.userRepository.delete(id);
+    await this.repository.delete(id);
 
     res.status(204).send();
   }

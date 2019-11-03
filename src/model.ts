@@ -4,3 +4,8 @@ export type JwtPayload = {
   iat?: number;
   exp?: number;
 };
+
+// @ts-ignore
+export type CategoryFixture = [string, CategoryFixture[]];
+
+export type ProductFixture = [string, string, number, number];

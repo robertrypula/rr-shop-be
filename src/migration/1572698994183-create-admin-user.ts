@@ -8,13 +8,13 @@ export class CreateAdminUser1572698994183 implements MigrationInterface {
 
     user.username = 'admin';
     user.password = 'admin';
-    user.hashPassword();
     user.role = 'ADMIN';
+    user.hashPassword();
 
     await getRepository(User).save(user);
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
-    // TODO not needed (?)
+    // empty
   }
 }

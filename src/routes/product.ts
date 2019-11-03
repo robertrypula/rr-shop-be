@@ -7,4 +7,4 @@ export const productRouter = Router();
 const execute = (action: keyof ProductController) => (req: Request, res: Response): Promise<void> | void =>
   new ProductController()[action](req, res);
 
-productRouter.get('/', execute('listAll'));
+productRouter.get('/', execute('all'));

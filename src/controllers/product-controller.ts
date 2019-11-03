@@ -1,18 +1,16 @@
 import { Request, Response } from 'express';
+import { getRepository, Repository } from 'typeorm';
+
+import { Product } from '../entity/product';
 
 export class ProductController {
-  public listAll(req: Request, res: Response): void {
-    res.send([
-      {
-        id: 1,
-        name: 'Product 1',
-        price: 149.99
-      },
-      {
-        id: 2,
-        name: 'Product 2',
-        price: 9.99
-      }
-    ]);
+  public constructor(protected repository: Repository<Product> = getRepository(Product)) {}
+
+  public async all(req: Request, res: Response): Promise<void> {
+    res.send(
+      await this.repository.find({
+        relations: ['categories']
+      })
+    );
   }
 }

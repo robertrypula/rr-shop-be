@@ -8,7 +8,7 @@ import { User } from '../entity/user';
 import { JwtPayload } from '../model';
 
 export class AuthController {
-  public constructor(protected userRepository = getRepository(User)) {}
+  public constructor(protected repository = getRepository(User)) {}
 
   public async login(req: Request, res: Response): Promise<void> {
     const { username, password } = req.body;
@@ -20,7 +20,7 @@ export class AuthController {
     }
 
     try {
-      user = await this.userRepository.findOneOrFail({ where: { username } });
+      user = await this.repository.findOneOrFail({ where: { username } });
     } catch (error) {
       res.status(401).send();
       return;
@@ -45,7 +45,7 @@ export class AuthController {
     }
 
     try {
-      user = await this.userRepository.findOneOrFail(jwtPayload.userId);
+      user = await this.repository.findOneOrFail(jwtPayload.userId);
     } catch (id) {
       res.status(401).send();
     }
@@ -64,7 +64,7 @@ export class AuthController {
     }
 
     user.hashPassword();
-    await this.userRepository.save(user);
+    await this.repository.save(user);
 
     res.status(204).send();
   }
