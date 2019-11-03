@@ -18,7 +18,7 @@ export const checkJwt = (req: Request, res: Response, next: NextFunction): Promi
 
   res.setHeader(
     'token',
-    sign({ userId: jwtPayload.userId, username: jwtPayload.username }, jwtSecret, { expiresIn: '1h' })
+    sign({ userId: jwtPayload.userId, username: jwtPayload.username }, jwtSecret, { expiresIn: '5m' })
   );
   next();
 };

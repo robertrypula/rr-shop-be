@@ -31,7 +31,7 @@ export class AuthController {
       return;
     }
 
-    res.send(jwt.sign({ userId: user.id, username: user.username }, jwtSecret, { expiresIn: '1h' }));
+    res.send(jwt.sign({ userId: user.id, username: user.username }, jwtSecret, { expiresIn: '5m' }));
   }
 
   public async changePassword(req: Request, res: Response): Promise<void> {
