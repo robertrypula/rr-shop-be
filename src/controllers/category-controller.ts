@@ -9,6 +9,14 @@ export class CategoryController {
   public async all(req: Request, res: Response): Promise<void> {
     res.send(await this.repository.find({ select: ['id', 'name', 'parentId'] }));
 
+    const categories: Category[] = await this.repository
+      .createQueryBuilder('category')
+      .select(['category.id', 'category.name', 'parentId'])
+      .leftJoin('category.children', 'children')
+      .getMany();
+
+    res.send(categories);
+
     // const categories: Category[] = await this.repository
     //   .createQueryBuilder('category')
     //   .select(['category.id', 'category.name', 'children.id'])
