@@ -14,6 +14,7 @@ import { routes } from './routes';
 
 createConnection({
   database: 'database.sqlite',
+  dropSchema: true,
   entities,
   logging: true,
   migrations,
