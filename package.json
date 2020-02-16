@@ -4,7 +4,6 @@
   "description": "",
   "keywords": [],
   "author": "Robert Rypuła",
-  "license": "MIT",
   "scripts": {
     "build": "yarn clean && yarn lint && yarn prettier:check && webpack --env.PRODUCTION",
     "build:analyzer": "yarn clean && webpack --env.PRODUCTION --env.ANALYZER",
