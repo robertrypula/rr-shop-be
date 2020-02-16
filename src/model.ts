@@ -21,4 +21,4 @@ export type JwtPayload = {
   exp?: number;
 };
 
-export type ProductFixture = [string, string, number, number];
+export type ProductFixture = [[string, string, number, number, string], number[], string[], string];

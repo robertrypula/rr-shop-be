@@ -18,6 +18,9 @@ export class Product {
   public name: string;
 
   @Column()
+  public slug: string;
+
+  @Column()
   public description: string;
 
   @Column()
@@ -25,6 +28,9 @@ export class Product {
 
   @Column()
   public quantity: number;
+
+  @Column()
+  public barCode: string;
 
   @ManyToMany(type => Category)
   @JoinTable()
@@ -37,4 +43,6 @@ export class Product {
   @Column()
   @UpdateDateColumn()
   public updatedAt: Date;
+
+  public categoryIds: number[];
 }
