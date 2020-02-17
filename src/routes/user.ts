@@ -10,8 +10,8 @@ const jwtAdmin = [checkJwt, checkRole(['ADMIN'])];
 const execute = (action: keyof UserController) => (req: Request, res: Response): Promise<void> | void =>
   new UserController()[action](req, res);
 
-userRouter.get('/', jwtAdmin, execute('listAll'));
-userRouter.get('/:id([0-9]+)', jwtAdmin, execute('getOneById'));
+userRouter.get('/', jwtAdmin, execute('getUsers'));
+userRouter.get('/:id([0-9]+)', jwtAdmin, execute('getUser'));
 userRouter.delete('/:id([0-9]+)', jwtAdmin, execute('deleteUser'));
 userRouter.patch('/:id([0-9]+)', jwtAdmin, execute('editUser'));
 userRouter.post('/', jwtAdmin, execute('newUser'));

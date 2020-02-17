@@ -14,7 +14,7 @@ import { Product } from '../entity/product';
 export class ProductController {
   public constructor(protected repository: Repository<Product> = getRepository(Product)) {}
 
-  public async all(req: Request, res: Response): Promise<void> {
+  public async getProducts(req: Request, res: Response): Promise<void> {
     const categoryIds: number[] = this.getCategoryIds(req);
     const isSimple: boolean = this.getIsSimple(req);
     let queryBuilder: SelectQueryBuilder<Product>;
@@ -29,6 +29,18 @@ export class ProductController {
     }
 
     res.send(products);
+  }
+
+  public async getProduct(req: Request, res: Response): Promise<void> {
+    const columns: string[] = ['id', 'name', 'slug', 'price', 'description'];
+    const product: Product = await this.repository
+      .createQueryBuilder('product')
+      .select([...columns.map(c => `product.${c}`), 'category.id'])
+      .leftJoin('product.categories', 'category')
+      .where('product.id = :id', { id: this.getId(req) })
+      .getOne();
+
+    product ? res.send(product) : res.status(404).send({});
   }
 
   protected getQueryBuilderFilteredByCategoryIds(
@@ -59,16 +71,18 @@ export class ProductController {
   }
 
   protected getProductColumnsSelection(isSimple: boolean): string[] {
-    return isSimple ? [] : ['name', 'slug', 'price'].map(column => `product.${column}`);
+    return isSimple ? [] : ['name', 'slug', 'price'].map(c => `product.${c}`);
+  }
+
+  protected clearProductRelations(product: Product): void {
+    if (product.categories) {
+      product.categoryIds = product.categories.map((category: Category) => category.id);
+      delete product.categories;
+    }
   }
 
   protected cleanProductsRelations(products: Product[]): void {
-    products.forEach((product: Product): void => {
-      if (product.categories) {
-        product.categoryIds = product.categories.map((category: Category) => category.id);
-        delete product.categories;
-      }
-    });
+    products.forEach((product: Product): void => this.clearProductRelations(product));
   }
 
   protected getCategoryIds(req: Request): number[] {
@@ -77,6 +91,10 @@ export class ProductController {
         ? []
         : req.query.categoryIds.split(',').map((categoryId: string): number => +categoryId)
       : null;
+  }
+
+  protected getId(req: Request): number {
+    return req.params.id ? +req.params.id : null;
   }
 
   protected getIsSimple(req: Request): boolean {

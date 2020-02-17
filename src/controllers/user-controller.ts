@@ -7,7 +7,7 @@ import { User } from '../entity/user';
 export class UserController {
   public constructor(protected repository: Repository<User> = getRepository(User)) {}
 
-  public async listAll(req: Request, res: Response): Promise<void> {
+  public async getUsers(req: Request, res: Response): Promise<void> {
     res.send(
       await this.repository.find({
         select: ['id', 'username', 'role']
@@ -15,7 +15,7 @@ export class UserController {
     );
   }
 
-  public async getOneById(req: Request, res: Response): Promise<void> {
+  public async getUser(req: Request, res: Response): Promise<void> {
     try {
       res.send(
         await this.repository.findOneOrFail(req.params.id, {
