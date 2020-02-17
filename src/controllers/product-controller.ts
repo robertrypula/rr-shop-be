@@ -15,41 +15,71 @@ export class ProductController {
   public constructor(protected repository: Repository<Product> = getRepository(Product)) {}
 
   public async all(req: Request, res: Response): Promise<void> {
-    const isSimple: boolean = req.query.simple && req.query.simple === 'true';
-    const categoryIds: number[] =
-      typeof req.query.categoryIds !== 'undefined'
-        ? req.query.categoryIds === ''
-          ? []
-          : req.query.categoryIds.split(',').map((categoryId: string): number => +categoryId)
-        : null;
+    const categoryIds: number[] = this.getCategoryIds(req);
+    const isSimple: boolean = this.getIsSimple(req);
+    let queryBuilder: SelectQueryBuilder<Product>;
+    let products: Product[] = [];
 
-    if (categoryIds && categoryIds.length === 0) {
-      res.send([]);
-      return;
+    if (!categoryIds || categoryIds.length !== 0) {
+      queryBuilder = categoryIds
+        ? this.getQueryBuilderFilteredByCategoryIds(isSimple, categoryIds)
+        : this.getQueryBuilder(isSimple);
+      products = await queryBuilder.getMany();
+      this.cleanProductsRelations(products);
     }
 
-    const queryBuilder: SelectQueryBuilder<Product> = this.repository
+    res.send(products);
+  }
+
+  protected getQueryBuilderFilteredByCategoryIds(
+    isSimple: boolean,
+    categoryIds: number[]
+  ): SelectQueryBuilder<Product> {
+    return this.repository
       .createQueryBuilder('product')
-      .select([
-        `product.id`,
-        ...(isSimple ? [] : ['name', 'slug', 'price'].map(column => `product.${column}`)),
-        'category.id'
-      ])
-      .leftJoin('product.categories', 'category', '');
-    let products: Product[];
+      .select([`product.id`, ...this.getProductColumnsSelection(isSimple), 'category.id'])
+      .leftJoin('product.categories', 'category')
+      .where(qb => {
+        const subQuery = qb
+          .subQuery()
+          .select('product.id')
+          .from(Product, 'product')
+          .leftJoin('product.categories', 'category')
+          .where('category.id IN (:...categoryIds)', { categoryIds })
+          .getQuery();
+        return 'product.id IN ' + subQuery;
+      });
+  }
 
-    if (categoryIds) {
-      queryBuilder.where('category.id IN (:...categoryIds)', { categoryIds });
-    }
+  protected getQueryBuilder(isSimple: boolean): SelectQueryBuilder<Product> {
+    return this.repository
+      .createQueryBuilder('product')
+      .select([`product.id`, ...this.getProductColumnsSelection(isSimple), 'category.id'])
+      .leftJoin('product.categories', 'category');
+  }
 
-    products = await queryBuilder.getMany();
+  protected getProductColumnsSelection(isSimple: boolean): string[] {
+    return isSimple ? [] : ['name', 'slug', 'price'].map(column => `product.${column}`);
+  }
+
+  protected cleanProductsRelations(products: Product[]): void {
     products.forEach((product: Product): void => {
       if (product.categories) {
         product.categoryIds = product.categories.map((category: Category) => category.id);
         delete product.categories;
       }
     });
+  }
 
-    res.send(products);
+  protected getCategoryIds(req: Request): number[] {
+    return typeof req.query.categoryIds !== 'undefined'
+      ? req.query.categoryIds === ''
+        ? []
+        : req.query.categoryIds.split(',').map((categoryId: string): number => +categoryId)
+      : null;
+  }
+
+  protected getIsSimple(req: Request): boolean {
+    return req.query.isSimple && req.query.isSimple === 'true';
   }
 }
