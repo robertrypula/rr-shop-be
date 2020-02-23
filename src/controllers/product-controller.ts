@@ -40,6 +40,8 @@ export class ProductController {
       .where('product.id = :id', { id: this.getId(req) })
       .getOne();
 
+    product && this.clearProductRelations(product);
+
     product ? res.send(product) : res.status(404).send({});
   }
 
