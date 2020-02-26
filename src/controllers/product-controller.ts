@@ -49,9 +49,14 @@ export class ProductController {
     isSimple: boolean,
     categoryIds: number[]
   ): SelectQueryBuilder<Product> {
-    return this.repository
+    let queryBuilder: SelectQueryBuilder<Product> = this.repository
       .createQueryBuilder('product')
-      .select([`product.id`, ...this.getProductColumnsSelection(isSimple), 'category.id'])
+      .select([
+        `product.id`,
+        ...this.getProductColumnsSelection(isSimple),
+        'category.id',
+        ...this.getImageColumnsSelection(isSimple)
+      ])
       .leftJoin('product.categories', 'category')
       .where(qb => {
         const subQuery = qb
@@ -63,13 +68,34 @@ export class ProductController {
           .getQuery();
         return 'product.id IN ' + subQuery;
       });
+
+    if (!isSimple) {
+      queryBuilder = queryBuilder.leftJoin('product.images', 'image');
+    }
+
+    return queryBuilder;
   }
 
   protected getQueryBuilder(isSimple: boolean): SelectQueryBuilder<Product> {
-    return this.repository
+    let queryBuilder: SelectQueryBuilder<Product> = this.repository
       .createQueryBuilder('product')
-      .select([`product.id`, ...this.getProductColumnsSelection(isSimple), 'category.id'])
+      .select([
+        `product.id`,
+        ...this.getProductColumnsSelection(isSimple),
+        'category.id',
+        ...this.getImageColumnsSelection(isSimple)
+      ])
       .leftJoin('product.categories', 'category');
+
+    if (!isSimple) {
+      queryBuilder = queryBuilder.leftJoin('product.images', 'image');
+    }
+
+    return queryBuilder;
+  }
+
+  protected getImageColumnsSelection(isSimple: boolean): string[] {
+    return isSimple ? [] : ['id', 'filename', 'order'].map(c => `image.${c}`);
   }
 
   protected getProductColumnsSelection(isSimple: boolean): string[] {

@@ -4,10 +4,12 @@ import {
   Entity,
   JoinTable,
   ManyToMany,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from 'typeorm';
 import { Category } from './category';
+import { Image } from './image';
 
 @Entity()
 export class Product {
@@ -35,6 +37,9 @@ export class Product {
   @ManyToMany(type => Category)
   @JoinTable()
   public categories: Category[];
+
+  @OneToMany(type => Image, (image: Image) => image.product, { cascade: ['insert'] })
+  public images: Image[];
 
   @Column()
   @CreateDateColumn()

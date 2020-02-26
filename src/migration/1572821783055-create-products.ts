@@ -1,6 +1,7 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
 import { Category } from '../entity/category';
+import { Image } from '../entity/image';
 import { Product } from '../entity/product';
 import { productFixtures } from '../fixtures/products';
 import { ProductFixture } from '../model';
@@ -26,7 +27,14 @@ export class CreateProducts1572821783055 implements MigrationInterface {
         category && product.categories.push(category);
       });
 
-      // product.image TODO
+      product.images = [];
+      productFixture[2].forEach((filename: string, index: number): void => {
+        const image: Image = new Image();
+
+        image.filename = filename;
+        image.order = index + 1;
+        product.images.push(image);
+      });
 
       product.description = productFixture[3].replace(/\s\s+/g, ' ');
 
