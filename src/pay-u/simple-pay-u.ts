@@ -9,7 +9,7 @@ import * as md5 from 'md5';
 import { resolve } from 'path';
 import { post } from 'request-promise-native';
 import * as sha1 from 'sha1';
-import { Environment, Headers, Settings, SignatureBag, SimpleOrder } from './models';
+import { Environment, Headers, Settings, SignatureBag, OrderRequestBody, Order } from './models';
 
 export class SimplePayU {
   protected baseUrl: string;
@@ -36,20 +36,20 @@ export class SimplePayU {
     return result;
   }
 
-  public async createOrder(order: any): Promise<any> {
+  public async createOrder(order: Order): Promise<any> {
     // TODO update type
-    const auth: string = await this.authorize();
-    const body: SimpleOrder = {
+    const accessToken: string = await this.getAccessToken();
+    const body: OrderRequestBody = {
       continueUrl: this.settings.continueUrl,
       currencyCode: this.settings.currencyCode,
       merchantPosId: this.settings.merchantPosId,
       notifyUrl: this.settings.notifyUrl,
       buyer: {
-        email: order.client.email,
-        firstName: order.client.firstName,
-        language: order.client.language,
-        lastName: order.client.lastName,
-        phone: order.client.phone
+        email: order.buyer.email,
+        firstName: order.buyer.firstName,
+        language: order.buyer.language,
+        lastName: order.buyer.lastName,
+        phone: order.buyer.phone
       },
       customerIp: order.customerIp,
       description: order.extOrderId,
@@ -59,7 +59,7 @@ export class SimplePayU {
       validityTime: order.validityTime
     };
     const headers: Headers = {
-      authorization: `Bearer ${auth}`,
+      authorization: `Bearer ${accessToken}`,
       'content-type': 'application/json'
     };
 
@@ -70,19 +70,20 @@ export class SimplePayU {
     console.log('-----');
 
     try {
-      return await post({
+      const response = await post({
         url: this.baseUrl + '/api/v2_1/orders/',
         headers,
         body,
         simple: false,
         json: true
       });
+      return response;
     } catch (error) {
-      return null;
+      throw new Error('');
     }
   }
 
-  protected async authorize(): Promise<string> {
+  protected async getAccessToken(): Promise<string> {
     try {
       const auth = JSON.parse(
         await post({

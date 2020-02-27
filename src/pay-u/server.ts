@@ -35,7 +35,7 @@ router.get('/pay-u', async (req, res) => {
   try {
     simplePayU
       .createOrder({
-        client: {
+        buyer: {
           email: 'robert.rypula@gmai#@l.com',
           phone: '+48 000 111 222',
           firstName: 'Robert',

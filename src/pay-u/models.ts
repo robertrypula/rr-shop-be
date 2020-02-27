@@ -33,7 +33,7 @@ export interface SignatureBag {
   signature: string;
 }
 
-export interface SimpleOrder {
+export interface OrderRequestBody {
   continueUrl: string;
   currencyCode: string;
   merchantPosId: string;
@@ -49,6 +49,26 @@ export interface SimpleOrder {
   description: string;
   extOrderId: string;
   products: [{ name: string; unitPrice: number; quantity: number }];
+  totalAmount: number;
+  validityTime: number;
+}
+
+export interface OrderSuccessResponse {
+  extOrderId: string;
+  orderId: string;
+  redirectUri: string;
+}
+
+export interface Order {
+  buyer: {
+    email: string;
+    firstName: string;
+    language: string;
+    lastName: string;
+    phone: string;
+  };
+  customerIp: string;
+  extOrderId: string;
   totalAmount: number;
   validityTime: number;
 }
