@@ -31,12 +31,12 @@ const getExtOrderId = () => {
   return `WA-${getRandomNumbers()}-${getRandomNumbers()}`;
 };
 
-router.get('/', async (req, res) => {
+router.get('/pay-u', async (req, res) => {
   try {
     simplePayU
-      .order({
+      .createOrder({
         client: {
-          email: 'robert.rypula@gmail.com',
+          email: 'robert.rypula@gmai#@l.com',
           phone: '+48 000 111 222',
           firstName: 'Robert',
           lastName: 'Rypuła',
@@ -44,7 +44,7 @@ router.get('/', async (req, res) => {
         },
         customerIp: req.ip,
         extOrderId: getExtOrderId(),
-        totalAmount: 123,
+        totalAmount: 2343,
         validityTime: 2 * 3600
       })
       .then(response => {
@@ -58,19 +58,17 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/notify', bodyParser.text({ type: '*/*' }), async (req, res) => {
-  let notification;
+router.get('/pay-u/notify', bodyParser.text({ type: '*/*' }), async (req, res) => {
+  const notification = simplePayU.handleNotification(req.headers, req.body);
 
-  try {
-    notification = simplePayU.handleNotification(req.headers, req.body);
-  } catch (error) {
-    res.status(400).send({ error: 'Wrong signature' });
-    return;
+  if (notification) {
+    res.status(200);
+  } else {
+    res
+      .status(400)
+      .contentType('application/json')
+      .send({ error: 'Wrong signature' });
   }
-  console.log(notification);
-  // getOrder(notification.extOrderId).changeStatus(notification.status).save();
-
-  res.status(200);
 });
 
 const app = express();
