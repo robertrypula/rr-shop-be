@@ -1,25 +1,24 @@
 export enum Environment {
-  Sandbox = 'Sandbox',
-  Production = 'Production'
+  Production = 'Production',
+  Sandbox = 'Sandbox'
 }
 
 export enum Status {
+  CANCELED = 'CANCELED',
+  COMPLETED = 'COMPLETED',
   NEW = 'NEW',
   PENDING = 'PENDING',
-  WAITING_FOR_CONFIRMATION = 'WAITING_FOR_CONFIRMATION',
-  COMPLETED = 'COMPLETED',
-  CANCELED = 'CANCELED',
-  REJECTED = 'REJECTED'
+  REJECTED = 'REJECTED',
+  WAITING_FOR_CONFIRMATION = 'WAITING_FOR_CONFIRMATION'
 }
 
 export interface Settings {
-  posId: string;
-  posDesc: string;
-  posCurrency: string;
   clientId: string;
   clientSecret: string;
-  signatureKey: string;
-  environment: Environment;
-  notifyUrl: string;
   continueUrl: string;
+  currencyCode: string;
+  environment: Environment;
+  merchantPosId: string;
+  notifyUrl: string;
+  secondKey: string;
 }
