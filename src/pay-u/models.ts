@@ -1,8 +1,3 @@
-export enum Environment {
-  Production = 'Production',
-  Sandbox = 'Sandbox'
-}
-
 export enum Status {
   CANCELED = 'CANCELED',
   COMPLETED = 'COMPLETED',
@@ -10,6 +5,28 @@ export enum Status {
   PENDING = 'PENDING',
   REJECTED = 'REJECTED',
   WAITING_FOR_CONFIRMATION = 'WAITING_FOR_CONFIRMATION'
+}
+
+// -----------------------------------------------------------------------------
+// Auth
+
+export enum GrantType {
+  ClientCredentials = 'client_credentials'
+}
+
+export interface AuthorizeSuccess {
+  accessToken: string;
+  tokenType: string;
+  expiresIn: number;
+  grantType: GrantType;
+}
+
+// -----------------------------------------------------------------------------
+// Generic
+
+export enum Environment {
+  Production = 'Production',
+  Sandbox = 'Sandbox'
 }
 
 export interface Headers {
@@ -27,13 +44,19 @@ export interface Settings {
   secondKey: string;
 }
 
+// -----------------------------------------------------------------------------
+// Notification
+
 export interface SignatureBag {
   algorithm: string;
   sender: string;
   signature: string;
 }
 
-export interface OrderRequestBody {
+// -----------------------------------------------------------------------------
+// Order
+
+export interface OrderRequest {
   continueUrl: string;
   currencyCode: string;
   merchantPosId: string;
@@ -53,13 +76,13 @@ export interface OrderRequestBody {
   validityTime: number;
 }
 
-export interface OrderSuccessResponse {
+export interface OrderSuccess {
   extOrderId: string;
   orderId: string;
   redirectUri: string;
 }
 
-export interface Order {
+export interface OrderBag {
   buyer: {
     email: string;
     firstName: string;

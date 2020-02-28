@@ -24,7 +24,7 @@ const simplePayU = new SimplePayU({
 });
 
 const getRandomNumbers = () => {
-  return (Math.random() * 9999).toString().substr(1, 3);
+  return (Math.random() * 9999 + 1000).toString().substr(1, 3);
 };
 
 const getExtOrderId = () => {
@@ -33,33 +33,33 @@ const getExtOrderId = () => {
 
 router.get('/pay-u', async (req, res) => {
   try {
-    simplePayU
-      .createOrder({
-        buyer: {
-          email: 'robert.rypula@gmai#@l.com',
-          phone: '+48 000 111 222',
-          firstName: 'Robert',
-          lastName: 'Rypuła',
-          language: 'pl'
-        },
-        customerIp: req.ip,
-        extOrderId: getExtOrderId(),
-        totalAmount: 2343,
-        validityTime: 2 * 3600
-      })
-      .then(response => {
-        res.send(`
-          <pre>${JSON.stringify(response, null, 2)}</pre>
-          <a href="${response.redirectUri}">place order</a>
-        `);
-      });
+    const orderResponse = await simplePayU.createOrder({
+      buyer: {
+        email: 'robert.rypula@gmai#@l.com',
+        phone: '+48 000 111 222',
+        firstName: 'Robert',
+        lastName: 'Rypuła',
+        language: 'pl'
+      },
+      customerIp: req.ip,
+      extOrderId: getExtOrderId(),
+      totalAmount: 2343,
+      validityTime: 2 * 3600
+    });
+
+    console.log('SUCESS', orderResponse);
+    res.send(`
+     <pre>${JSON.stringify(orderResponse, null, 2)}</pre>
+     <a href="${orderResponse.redirectUri}">place order</a>
+    `);
   } catch (error) {
-    console.log(error);
+    console.log('---ERROR', error);
+    res.send(``);
   }
 });
 
 router.get('/pay-u/notify', bodyParser.text({ type: '*/*' }), async (req, res) => {
-  const notification = simplePayU.handleNotification(req.headers, req.body);
+  const notification = simplePayU.getNotification(req.headers, req.body);
 
   if (notification) {
     res.status(200);
