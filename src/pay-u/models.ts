@@ -47,6 +47,10 @@ export interface Settings {
 // -----------------------------------------------------------------------------
 // Notification
 
+export interface Notification {
+  [key: string]: string;
+}
+
 export interface SignatureBag {
   algorithm: string;
   sender: string;
@@ -56,7 +60,7 @@ export interface SignatureBag {
 // -----------------------------------------------------------------------------
 // Order
 
-export enum OrderStatusCode {
+export enum OrderResponseStatusCode {
   Success = 'SUCCESS'
 }
 
@@ -99,24 +103,3 @@ export interface OrderBag {
   totalAmount: number;
   validityTime: number;
 }
-
-/*
-{
-  "status": {
-    "statusCode": "ERROR_VALUE_INVALID",
-    "severity": "ERROR",
-    "code": "8020",
-    "codeLiteral": "INVALID_TOTAL_AMOUNT",
-    "statusDesc": "Invalid field value"
-  }
-}
-
-{
-  "status": {
-    "statusCode": "SUCCESS"
-  },
-  "redirectUri": "https://merch-prod.snd.payu.com/pay/?orderId=",
-  "orderId": "MGFNQDMX1R200227GUEST000P01",
-  "extOrderId": "WA-489-726"
-}
- */

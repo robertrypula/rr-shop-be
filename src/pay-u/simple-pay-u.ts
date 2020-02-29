@@ -1,50 +1,32 @@
-// PayU code heavily simplified and migrated to TypeScript from vanilla JavaScript implementation:
-// https://github.com/adambuczek/node-payu
-
-// TODO fix disabled tslint issues
-/*tslint:disable:no-console*/
-/*tslint:disable:object-literal-sort-keys*/
-
-import { resolve } from 'path';
 import { post } from 'request-promise-native';
-import { toAuthorizeSuccess, toOrderRequest, toOrderSuccess } from './mappers';
-import {
-  AuthorizeSuccess,
-  Environment,
-  GrantType,
-  Headers,
-  OrderBag,
-  OrderRequest,
-  OrderSuccess,
-  Settings
-} from './models';
-import { isSignatureValid } from './utils';
+
+import { API_AUTHORIZE, API_ORDERS, BASE_URL_PRODUCTION, BASE_URL_SANDBOX } from './constants';
+import { toAuthorizeSuccess, toNotification, toOrderRequest, toOrderSuccess } from './mappers';
+import * as fromModels from './models';
+
+// Inspired by vanilla JavaScript implementation: https://github.com/adambuczek/node-payu
 
 export class SimplePayU {
   protected baseUrl: string;
-  protected settings: Settings;
+  protected settings: fromModels.Settings;
 
-  public constructor(settings: Settings) {
-    // https://github.com/webpack/webpack/issues/1599#issuecomment-186841345
-    console.log(__dirname);
-    console.log(resolve(__dirname, 'test/file.txt'));
+  public constructor(settings: fromModels.Settings) {
     this.settings = { ...settings };
-    this.baseUrl =
-      settings.environment === Environment.Production ? 'https://secure.payu.com' : 'https://secure.snd.payu.com';
+    this.baseUrl = settings.environment === fromModels.Environment.Production ? BASE_URL_PRODUCTION : BASE_URL_SANDBOX;
   }
 
-  public async authorize(): Promise<AuthorizeSuccess> {
+  public async authorize(): Promise<fromModels.AuthorizeSuccess> {
     try {
       return toAuthorizeSuccess(
         await post({
-          url: this.baseUrl + '/pl/standard/user/oauth/authorize',
-          headers: { 'content-type': 'application/x-www-form-urlencoded' },
           body: [
-            `grant_type=${GrantType.ClientCredentials}`,
+            `grant_type=${fromModels.GrantType.ClientCredentials}`,
             `client_id=${this.settings.clientId}`,
             `client_secret=${this.settings.clientSecret}`
           ].join('&'),
-          simple: false
+          headers: { 'content-type': 'application/x-www-form-urlencoded' },
+          simple: false,
+          url: this.baseUrl + API_AUTHORIZE
         })
       );
     } catch (error) {
@@ -52,22 +34,17 @@ export class SimplePayU {
     }
   }
 
-  public async createOrder(orderBag: OrderBag): Promise<OrderSuccess> {
+  public async createOrder(orderBag: fromModels.OrderBag): Promise<fromModels.OrderSuccess> {
     try {
-      const authorizeSuccess: AuthorizeSuccess = await this.authorize();
-      const orderRequest: OrderRequest = toOrderRequest(orderBag, this.settings);
-
-      console.log('-----');
-      console.log(orderBag);
-      console.log(orderRequest);
-      console.log('-----');
+      const authorizedHeaders: fromModels.Headers = await this.getAuthorizedHeader();
+      const orderRequest: fromModels.OrderRequest = toOrderRequest(orderBag, this.settings);
 
       return toOrderSuccess(
         await post({
-          url: this.baseUrl + '/api/v2_1/orders/',
-          headers: { authorization: `Bearer ${authorizeSuccess.accessToken}`, 'content-type': 'application/json' },
           body: JSON.stringify(orderRequest),
-          simple: false
+          headers: { ...authorizedHeaders, 'content-type': 'application/json' },
+          simple: false,
+          url: this.baseUrl + API_ORDERS
         })
       );
     } catch (error) {
@@ -75,11 +52,21 @@ export class SimplePayU {
     }
   }
 
-  public getNotification(headers: Headers, body) {
+  public getNotification(headers: fromModels.Headers, responseBody: string): fromModels.Notification {
     try {
-      return isSignatureValid(headers, body, this.settings.secondKey) ? JSON.parse(body) : null;
+      return toNotification(headers, responseBody, this.settings.secondKey);
     } catch (error) {
-      return null;
+      throw `Cannot get notification due to: [${error}]`;
+    }
+  }
+
+  protected async getAuthorizedHeader(): Promise<fromModels.Headers> {
+    try {
+      const authorizeSuccess: fromModels.AuthorizeSuccess = await this.authorize();
+
+      return { authorization: `Bearer ${authorizeSuccess.accessToken}` };
+    } catch (error) {
+      throw `Cannot get authorized header due to: [${error}]`;
     }
   }
 }
