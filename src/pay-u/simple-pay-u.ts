@@ -43,11 +43,12 @@ export class SimplePayU {
             `grant_type=${GrantType.ClientCredentials}`,
             `client_id=${this.settings.clientId}`,
             `client_secret=${this.settings.clientSecret}`
-          ].join('&')
+          ].join('&'),
+          simple: false
         })
       );
     } catch (error) {
-      throw new Error(`Cannot get access token due to: ${error}`);
+      throw `Cannot get access token due to: [${error}]`;
     }
   }
 
@@ -70,7 +71,7 @@ export class SimplePayU {
         })
       );
     } catch (error) {
-      throw new Error(`Cannot create order due to: ${error}`);
+      throw `Cannot create order due to: [${error}]`;
     }
   }
 

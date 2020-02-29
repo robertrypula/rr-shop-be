@@ -1,10 +1,10 @@
-import { AuthorizeSuccess, GrantType, OrderBag, OrderRequest, OrderSuccess, Settings } from './models';
+import { AuthorizeSuccess, GrantType, OrderBag, OrderRequest, OrderStatusCode, OrderSuccess, Settings } from './models';
 
 export const toAuthorizeSuccess = (response: any): AuthorizeSuccess => {
   const o: any = JSON.parse(response);
 
   if (!o.access_token || !o.expires_in || !o.grant_type || !o.token_type) {
-    throw new Error('Missing values in the authorize response');
+    throw `Missing values in the authorize response`;
   }
 
   return {
@@ -40,8 +40,8 @@ export const toOrderRequest = (orderBag: OrderBag, settings: Settings): OrderReq
 export const toOrderSuccess = (response: any): OrderSuccess => {
   const o: any = JSON.parse(response);
 
-  if (o.status.statusCode !== 'SUCCESS' || !o.extOrderId || !o.orderId || !o.redirectUri) {
-    throw new Error('Missing or wrong values in the order response');
+  if (o.status.statusCode !== OrderStatusCode.Success || !o.extOrderId || !o.orderId || !o.redirectUri) {
+    throw `Missing or wrong values in the order response`;
   }
 
   return {

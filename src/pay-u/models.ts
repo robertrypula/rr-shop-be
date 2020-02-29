@@ -56,6 +56,10 @@ export interface SignatureBag {
 // -----------------------------------------------------------------------------
 // Order
 
+export enum OrderStatusCode {
+  Success = 'SUCCESS'
+}
+
 export interface OrderRequest {
   continueUrl: string;
   currencyCode: string;

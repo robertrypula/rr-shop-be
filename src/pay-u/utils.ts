@@ -13,7 +13,7 @@ export const isSignatureValid = (headers: Headers, body: string, secondKey: stri
     // return signatureBag.signature === sha1(body + secondKey);
   }
 
-  throw new Error(`Unsupported hashing algorithm: ${algorithm}`);
+  throw `Unsupported hashing algorithm: ${algorithm}`;
 };
 
 export const getSignatureBag = (headers: Headers): SignatureBag => {
