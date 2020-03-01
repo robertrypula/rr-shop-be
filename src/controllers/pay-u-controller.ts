@@ -7,7 +7,7 @@ import { fileLogger } from '../logs/file-logger';
 import { SecretConfig } from '../model';
 import { Headers, Notification } from '../pay-u/models';
 import { SimplePayU } from '../pay-u/simple-pay-u';
-import { getRandomInt, reStringifyPretty } from '../utils';
+import { getRandomInt, reStringifyPretty, stringifyPretty } from '../utils';
 
 export class PayUController {
   public constructor(protected repository: Repository<Category> = getRepository(Category)) {}
@@ -52,21 +52,22 @@ export class PayUController {
     }
 
     try {
-      fileLogger(
-        [
-          req.body,
-          reStringifyPretty(req.body),
-          JSON.stringify(req.headers, null, 2),
-          JSON.stringify(notification, null, 2),
-          notificationError
-        ].join('\n\n----\n\n'),
-        'payUNotify'
-      );
+      this.logNotifyToFile(req, notification, notificationError);
     } catch (error) {
       logError = error;
     }
 
     res.contentType('application/json').send(JSON.stringify({ notification, notificationError, logError }));
+  }
+
+  protected logNotifyToFile(req: Request, notification: Notification, notificationError: string): void {
+    fileLogger(
+      [
+        ...[req.body, reStringifyPretty(req.body), stringifyPretty(req.headers)],
+        ...[stringifyPretty(notification), notificationError]
+      ].join('\n\n----\n\n'),
+      'payUNotify'
+    );
   }
 
   protected getSimplePayU(): SimplePayU {
