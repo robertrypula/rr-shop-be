@@ -25,7 +25,7 @@ export class PayUController {
         },
         customerIp: req.ip,
         extOrderId: this.getExtOrderId(),
-        totalAmount: 2343,
+        totalAmount: 50,
         validityTime: 2 * 3600
       });
 
