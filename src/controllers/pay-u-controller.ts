@@ -39,7 +39,21 @@ export class PayUController {
   }
 
   public async notify(req: Request, res: Response): Promise<void> {
-    fileLogger(req.body, 'payUNotify');
+    let bodyFormatted: string;
+
+    // console.log(typeof req.body);
+    // console.log(`[${req.body}]`);
+
+    try {
+      bodyFormatted = JSON.stringify(JSON.parse(req.body), null, 2);
+    } catch (e) {
+      // nothing
+    }
+
+    fileLogger(
+      [req.body, bodyFormatted, JSON.stringify(req.headers, null, 2)].join('\n\n--------------------\n\n'),
+      'payUNotify'
+    );
 
     try {
       const simplePayU: SimplePayU = this.getSimplePayU();

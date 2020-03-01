@@ -1,6 +1,5 @@
 import 'reflect-metadata';
 
-import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
 import * as express from 'express';
 import * as helmet from 'helmet';
@@ -35,7 +34,6 @@ createConnection({
   .then(async (connection: Connection) => {
     const app = express();
 
-    app.use(bodyParser.json());
     app.use(cors());
     app.use(helmet());
 
