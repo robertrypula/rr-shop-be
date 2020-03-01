@@ -42,9 +42,6 @@ export const toNotification = (headers: Headers, responseBody: any, secondKey: s
     throw `Wrong signature`;
   }
 
-  // tslint:disable-next-line:no-console
-  console.log(o);
-
   return {};
 };
 

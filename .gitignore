@@ -3,5 +3,9 @@
 coverage/
 dist/
 node_modules/
+
 database.sqlite
 src/secret-config.json
+
+src/logs/*
+!src/logs/file-logger.ts

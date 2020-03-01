@@ -3,9 +3,11 @@ import { getRepository, Repository } from 'typeorm';
 
 import { getSecretConfig, payUConfig } from '../config';
 import { Category } from '../entity/category';
+import { fileLogger } from '../logs/file-logger';
 import { SecretConfig } from '../model';
 import { Headers } from '../pay-u/models';
 import { SimplePayU } from '../pay-u/simple-pay-u';
+import { getRandomInt } from '../utils';
 
 export class PayUController {
   public constructor(protected repository: Repository<Category> = getRepository(Category)) {}
@@ -37,6 +39,8 @@ export class PayUController {
   }
 
   public async notify(req: Request, res: Response): Promise<void> {
+    fileLogger(req.body, 'payUNotify');
+
     try {
       const simplePayU: SimplePayU = this.getSimplePayU();
       const notification = simplePayU.getNotification(req.headers as Headers, req.body);
@@ -63,10 +67,6 @@ export class PayUController {
   }
 
   protected getExtOrderId(): string {
-    return `WA-${this.getRandomNumbers()}-${this.getRandomNumbers()}`;
-  }
-
-  protected getRandomNumbers(): string {
-    return (Math.random() * 9999 + 1000).toString().substr(1, 3);
+    return `WA-${getRandomInt(100, 999)}-${getRandomInt(100, 999)}`;
   }
 }
