@@ -4,6 +4,7 @@ import {
   GrantType,
   Headers,
   Notification,
+  NotificationOrderStatus,
   OrderBag,
   OrderRequest,
   OrderResponseStatusCode,
@@ -44,7 +45,23 @@ export const toNotification = (headers: Headers, responseBody: any, secondKey: s
     throw `Wrong signature`;
   }
 
-  return {};
+  if (!o.order || !o.order.extOrderId) {
+    throw `Missing 'order.extOrderId'`;
+  }
+
+  if (
+    !o.order ||
+    ![NotificationOrderStatus.CANCELED, NotificationOrderStatus.COMPLETED, NotificationOrderStatus.PENDING].includes(
+      o.order.status
+    )
+  ) {
+    throw `Missing or wrong 'order.status'`;
+  }
+
+  return {
+    extOrderId: o.order.extOrderId,
+    status: o.order.status
+  };
 };
 
 export const toOrderRequest = (orderBag: OrderBag, settings: Settings): OrderRequest => {

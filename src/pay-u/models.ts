@@ -1,12 +1,3 @@
-export enum Status {
-  CANCELED = 'CANCELED',
-  COMPLETED = 'COMPLETED',
-  NEW = 'NEW',
-  PENDING = 'PENDING',
-  REJECTED = 'REJECTED',
-  WAITING_FOR_CONFIRMATION = 'WAITING_FOR_CONFIRMATION'
-}
-
 // -----------------------------------------------------------------------------
 // Auth
 
@@ -47,8 +38,15 @@ export interface Settings {
 // -----------------------------------------------------------------------------
 // Notification
 
+export enum NotificationOrderStatus {
+  CANCELED = 'CANCELED',
+  COMPLETED = 'COMPLETED',
+  PENDING = 'PENDING'
+}
+
 export interface Notification {
-  [key: string]: string;
+  extOrderId: string;
+  status: NotificationOrderStatus;
 }
 
 export interface SignatureBag {
