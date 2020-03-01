@@ -44,6 +44,10 @@ function getConfig(env) {
     module: {
       rules: [{ test: /\.ts$/, use: 'ts-loader', exclude: /node_modules/ }]
     },
+    node: {
+      __dirname: false,
+      __filename: false
+    },
     output: {
       filename: '[name].js',
       library: libraryName,

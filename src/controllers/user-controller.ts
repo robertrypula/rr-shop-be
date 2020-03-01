@@ -28,7 +28,7 @@ export class UserController {
   }
 
   public async newUser(req: Request, res: Response): Promise<void> {
-    const user = new User();
+    const user: User = new User();
     const { username, password, role } = req.body;
     let errors: ValidationError[];
 

@@ -3,9 +3,9 @@ import { Request, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
 import { getRepository } from 'typeorm';
 
-import { jwtSecret } from '../config';
+import { getSecretConfig, jwtConfig } from '../config';
 import { User } from '../entity/user';
-import { JwtPayload } from '../model';
+import { JwtPayload, SecretConfig } from '../model';
 
 export class AuthController {
   public constructor(protected repository = getRepository(User)) {}
@@ -13,6 +13,7 @@ export class AuthController {
   public async login(req: Request, res: Response): Promise<void> {
     const { username, password } = req.body;
     let user: User;
+    let secretConfig: SecretConfig;
 
     if (!(username && password)) {
       res.status(400).send();
@@ -31,7 +32,18 @@ export class AuthController {
       return;
     }
 
-    res.send(jwt.sign({ userId: user.id, username: user.username }, jwtSecret, { expiresIn: '5m' }));
+    try {
+      secretConfig = getSecretConfig();
+    } catch (error) {
+      res.status(500).send();
+      return;
+    }
+
+    res.send(
+      jwt.sign({ userId: user.id, username: user.username }, secretConfig.jwt.secret, {
+        expiresIn: jwtConfig.expiresIn
+      })
+    );
   }
 
   public async changePassword(req: Request, res: Response): Promise<void> {

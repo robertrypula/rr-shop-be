@@ -12,11 +12,21 @@ import { routes } from './routes';
 
 /*tslint:disable:no-console*/
 
+declare const PRODUCTION: boolean;
+declare const DEVELOPMENT: boolean;
+
+try {
+  console.log(typeof PRODUCTION, PRODUCTION);
+  console.log(typeof DEVELOPMENT, DEVELOPMENT);
+} catch (e) {
+  console.log(e);
+}
+
 createConnection({
   database: 'database.sqlite',
   dropSchema: true,
   entities,
-  logging: true,
+  logging: false,
   migrations,
   migrationsRun: true,
   synchronize: true,
