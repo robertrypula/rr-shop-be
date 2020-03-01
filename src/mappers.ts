@@ -18,8 +18,7 @@ export const toSecretConfig = (fileContent: string): SecretConfig => {
 
   if (
     !o.payU.environment ||
-    o.payU.environment !== Environment.Sandbox ||
-    o.payU.environment !== Environment.Production
+    !(o.payU.environment === Environment.Sandbox || o.payU.environment === Environment.Production)
   ) {
     throw `Missing or wrong 'payU.environment' field`;
   }
