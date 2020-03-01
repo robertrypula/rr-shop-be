@@ -17,9 +17,5 @@ export const isSignatureValid = (headers: Headers, responseBody: string, secondK
     throw `Unsupported hashing algorithm '${algorithm}'`;
   }
 
-  console.log(responseBody + secondKey);
-  console.log(hash);
-  console.log(signatureBag.signature);
-
   return hash && hash === signatureBag.signature;
 };
