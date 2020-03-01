@@ -53,7 +53,6 @@ export interface Notification {
 
 export interface SignatureBag {
   algorithm: string;
-  sender: string;
   signature: string;
 }
 

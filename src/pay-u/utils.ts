@@ -1,10 +1,10 @@
 import * as md5 from 'md5';
 
-import { OPEN_PAY_U_SIGNATURE_HEADER } from './constants';
+import { toSignatureBag } from './mappers';
 import { Headers, SignatureBag } from './models';
 
 export const isSignatureValid = (headers: Headers, responseBody: string, secondKey: string): boolean => {
-  const signatureBag: SignatureBag = getSignatureBag(headers);
+  const signatureBag: SignatureBag = toSignatureBag(headers);
   const algorithm: string = signatureBag.algorithm.toLowerCase();
   let hash: string;
 
@@ -17,23 +17,9 @@ export const isSignatureValid = (headers: Headers, responseBody: string, secondK
     throw `Unsupported hashing algorithm '${algorithm}'`;
   }
 
+  console.log(responseBody + secondKey);
+  console.log(hash);
+  console.log(signatureBag.signature);
+
   return hash && hash === signatureBag.signature;
-};
-
-export const getSignatureBag = (headers: Headers): SignatureBag => {
-  const unpacked: Headers = (headers[OPEN_PAY_U_SIGNATURE_HEADER] || '')
-    .split(';')
-    .reduce((a: Headers, part: string): Headers => {
-      const split: string[] = part.split('=');
-
-      a[split[0]] = split[1];
-
-      return a;
-    }, {});
-
-  return {
-    algorithm: unpacked.algrithm ? unpacked.algrithm : '',
-    sender: unpacked.sender ? unpacked.sender : '',
-    signature: unpacked.signature ? unpacked.signature : ''
-  };
 };

@@ -20,6 +20,14 @@ export const getFormattedDate = (date: Date): string => {
   return `${year}.${month}.${day}_${hour}.${minute}.${second}.${milliseconds}`;
 };
 
+export const reStringifyPretty = (json: string): string => {
+  try {
+    return JSON.stringify(JSON.parse(json), null, 2);
+  } catch (e) {
+    return '';
+  }
+};
+
 export const getRandomInt = (min: number, max: number): number => {
   // https://stackoverflow.com/a/1527820
   min = Math.ceil(min);

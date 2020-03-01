@@ -1,3 +1,4 @@
+import { OPEN_PAY_U_SIGNATURE_HEADER } from './constants';
 import {
   AuthorizeSuccess,
   GrantType,
@@ -7,7 +8,8 @@ import {
   OrderRequest,
   OrderResponseStatusCode,
   OrderSuccess,
-  Settings
+  Settings,
+  SignatureBag
 } from './models';
 import { isSignatureValid } from './utils';
 
@@ -87,5 +89,30 @@ export const toOrderSuccess = (responseBody: any): OrderSuccess => {
     extOrderId: o.extOrderId,
     orderId: o.orderId,
     redirectUri: o.redirectUri
+  };
+};
+
+export const toSignatureBag = (headers: Headers): SignatureBag => {
+  let o: any;
+
+  if (!headers || !headers[OPEN_PAY_U_SIGNATURE_HEADER]) {
+    throw `Missing '${OPEN_PAY_U_SIGNATURE_HEADER}' header`;
+  }
+
+  o = headers[OPEN_PAY_U_SIGNATURE_HEADER].split(';').reduce((a: Headers, part: string): Headers => {
+    const split: string[] = part.split('=');
+
+    a[split[0]] = split[1];
+
+    return a;
+  }, {});
+
+  if (!o.algorithm || !o.signature) {
+    throw `Missing 'algorithm' and/or 'signature' fields in header '${headers[OPEN_PAY_U_SIGNATURE_HEADER]}'`;
+  }
+
+  return {
+    algorithm: o.algorithm,
+    signature: o.signature
   };
 };

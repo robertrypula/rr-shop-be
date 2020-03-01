@@ -5,9 +5,9 @@ import { getSecretConfig, payUConfig } from '../config';
 import { Category } from '../entity/category';
 import { fileLogger } from '../logs/file-logger';
 import { SecretConfig } from '../model';
-import { Headers } from '../pay-u/models';
+import { Headers, Notification } from '../pay-u/models';
 import { SimplePayU } from '../pay-u/simple-pay-u';
-import { getRandomInt } from '../utils';
+import { getRandomInt, reStringifyPretty } from '../utils';
 
 export class PayUController {
   public constructor(protected repository: Repository<Category> = getRepository(Category)) {}
@@ -39,30 +39,29 @@ export class PayUController {
   }
 
   public async notify(req: Request, res: Response): Promise<void> {
-    let bodyFormatted: string;
-
-    // console.log(typeof req.body);
-    // console.log(`[${req.body}]`);
-
-    try {
-      bodyFormatted = JSON.stringify(JSON.parse(req.body), null, 2);
-    } catch (e) {
-      // nothing
-    }
-
-    fileLogger(
-      [req.body, bodyFormatted, JSON.stringify(req.headers, null, 2)].join('\n\n--------------------\n\n'),
-      'payUNotify'
-    );
+    let notification: Notification;
+    let errorToLog: string = null;
 
     try {
       const simplePayU: SimplePayU = this.getSimplePayU();
-      const notification = simplePayU.getNotification(req.headers as Headers, req.body);
 
+      notification = simplePayU.getNotification(req.headers as Headers, req.body);
       res.send(`<pre>${JSON.stringify(notification, null, 2)}</pre>`);
     } catch (error) {
+      errorToLog = error;
       res.send(error);
     }
+
+    fileLogger(
+      [
+        req.body,
+        reStringifyPretty(req.body),
+        JSON.stringify(req.headers, null, 2),
+        JSON.stringify(notification, null, 2),
+        errorToLog
+      ].join('\n\n----\n\n'),
+      'payUNotify'
+    );
   }
 
   protected getSimplePayU(): SimplePayU {
