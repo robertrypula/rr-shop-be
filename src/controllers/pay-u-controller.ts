@@ -17,10 +17,10 @@ export class PayUController {
       const simplePayU: SimplePayU = this.getSimplePayU();
       const orderResponse = await simplePayU.createOrder({
         buyer: {
-          email: 'robert.rypula@gmai#@l.com',
-          firstName: 'Robert',
+          email: 'robert.rypula@gmail.com',
+          firstName: 'ółżźć℥',
           language: 'pl',
-          lastName: 'Rypuła',
+          lastName: 'Rypuła ⦻',
           phone: '+48 000 111 222'
         },
         customerIp: req.ip,
@@ -40,28 +40,33 @@ export class PayUController {
 
   public async notify(req: Request, res: Response): Promise<void> {
     let notification: Notification;
-    let errorToLog: string = null;
+    let notificationError: string;
+    let logError: string;
 
     try {
       const simplePayU: SimplePayU = this.getSimplePayU();
 
       notification = simplePayU.getNotification(req.headers as Headers, req.body);
-      res.send(`<pre>${JSON.stringify(notification, null, 2)}</pre>`);
     } catch (error) {
-      errorToLog = error;
-      res.send(error);
+      notificationError = error;
     }
 
-    fileLogger(
-      [
-        req.body,
-        reStringifyPretty(req.body),
-        JSON.stringify(req.headers, null, 2),
-        JSON.stringify(notification, null, 2),
-        errorToLog
-      ].join('\n\n----\n\n'),
-      'payUNotify'
-    );
+    try {
+      fileLogger(
+        [
+          req.body,
+          reStringifyPretty(req.body),
+          JSON.stringify(req.headers, null, 2),
+          JSON.stringify(notification, null, 2),
+          notificationError
+        ].join('\n\n----\n\n'),
+        'payUNotify'
+      );
+    } catch (error) {
+      logError = error;
+    }
+
+    res.contentType('application/json').send(JSON.stringify({ notification, notificationError, logError }));
   }
 
   protected getSimplePayU(): SimplePayU {
