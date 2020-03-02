@@ -3,6 +3,8 @@ import { getRepository, Repository } from 'typeorm';
 
 import { getSecretConfig, payUConfig } from '../config';
 import { Category } from '../entity/category';
+import { sendEmailAdvanced } from '../gmail/advanced';
+import { sendEmailSimple } from '../gmail/simple';
 import { fileLogger } from '../logs/file-logger';
 import { SecretConfig } from '../model';
 import { Headers, Notification } from '../pay-u/models';
@@ -14,23 +16,42 @@ export class PayUController {
 
   public async createOrder(req: Request, res: Response): Promise<void> {
     try {
+      const email = 'robert.rypula@gmail.com';
+      const extOrderId: string = this.getExtOrderId();
       const simplePayU: SimplePayU = this.getSimplePayU();
       const orderResponse = await simplePayU.createOrder({
         buyer: {
-          email: 'robert.rypula@gmail.com',
+          email,
           firstName: 'ółżźć℥',
           language: 'pl',
           lastName: 'Rypuła ⦻',
           phone: '+48 000 111 222'
         },
         customerIp: req.ip,
-        extOrderId: this.getExtOrderId(),
+        extOrderId,
         totalAmount: 50,
         validityTime: 2 * 3600
       });
 
+      let mailResponseS;
+      let mailResponseA;
+
+      try {
+        mailResponseS = await sendEmailSimple(email, `${extOrderId} S`, `Zamówienie zostało złożone!!`);
+      } catch (error) {
+        mailResponseS = error;
+      }
+
+      try {
+        mailResponseA = await sendEmailAdvanced(email, `${extOrderId} A`, `Zamówienie zostało złożone!!`);
+      } catch (error) {
+        mailResponseA = error;
+      }
+
       res.send(`
        <pre>${JSON.stringify(orderResponse, null, 2)}</pre>
+       <pre>${JSON.stringify(mailResponseS, null, 2)}</pre>
+       <pre>${JSON.stringify(mailResponseA, null, 2)}</pre>
        <a href="${orderResponse.redirectUri}">place order</a>
       `);
     } catch (error) {

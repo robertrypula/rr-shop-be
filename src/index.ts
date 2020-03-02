@@ -1,3 +1,5 @@
+// import { sendEmailAdvanced } from './gmail/advanced';
+
 import 'reflect-metadata';
 
 import * as cors from 'cors';
@@ -9,7 +11,7 @@ import { entities } from './entity';
 import { migrations } from './migration';
 import { routes } from './routes';
 
-/*tslint:disable:no-console*/
+// tslint:disable:no-console
 
 declare const PRODUCTION: boolean;
 declare const DEVELOPMENT: boolean;
