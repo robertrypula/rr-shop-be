@@ -66,8 +66,7 @@ export function getAccessToken(callback: (err: any, token?: Credentials | null) 
 
 // Paste your credentials here as this object.
 export const tokens: Credentials = {
-  access_token:
-    '.......',
+  access_token: '.......',
   expiry_date: 1583189086079,
   token_type: 'Bearer'
 };

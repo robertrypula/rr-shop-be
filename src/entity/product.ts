@@ -22,7 +22,7 @@ export class Product {
   @Column()
   public slug: string;
 
-  @Column()
+  @Column({ type: 'text' })
   public description: string;
 
   @Column()

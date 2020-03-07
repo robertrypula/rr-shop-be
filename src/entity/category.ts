@@ -11,7 +11,7 @@ export class Category {
   @Column({ nullable: true, default: null })
   public slug: string;
 
-  @Column({ nullable: true, default: null })
+  @Column({ nullable: true, default: null, type: 'text' })
   public content: string;
 
   @Column({ nullable: true, default: null })

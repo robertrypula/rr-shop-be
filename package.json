@@ -25,6 +25,7 @@
     "@types/node": "^12.12.5",
     "@types/request-promise-native": "^1.0.17",
     "md5": "^2.2.1",
+    "mysql": "^2.18.1",
     "prettier": "1.18.2",
     "reflect-metadata": "^0.1.13",
     "request-promise-native": "^1.0.8",

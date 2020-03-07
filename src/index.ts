@@ -13,25 +13,29 @@ import { routes } from './routes';
 
 // tslint:disable:no-console
 
-declare const PRODUCTION: boolean;
-declare const DEVELOPMENT: boolean;
-
-try {
-  console.log(typeof PRODUCTION, PRODUCTION);
-  console.log(typeof DEVELOPMENT, DEVELOPMENT);
-} catch (e) {
-  console.log(e);
-}
-
 createConnection({
-  database: 'database.sqlite',
-  dropSchema: true,
-  entities,
-  logging: false,
-  migrations,
-  migrationsRun: true,
-  synchronize: true,
-  type: 'sqlite'
+  ...{
+    database: 'database.sqlite',
+    type: 'sqlite'
+
+    // https://stackoverflow.com/questions/11407349/how-to-export-and-import-a-sql-file-from-command-line-with-options
+    // database: 'waleriana',
+    // host: 'localhost',
+    // password: 'mysql',
+    // port: 3306,
+    // type: 'mysql',
+    // username: 'root'
+  },
+  ...{
+    dropSchema: true,
+    logging: false,
+    synchronize: true
+  },
+  ...{
+    entities,
+    migrations,
+    migrationsRun: true
+  }
 })
   .then(async (connection: Connection) => {
     const app = express();
