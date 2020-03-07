@@ -1,9 +1,16 @@
 import { ProductFixture } from '../model';
+import { BARDZO_DOBRZE, DELIVERIES, DOBRZE, HERBATY, PAYMENTS } from './categories';
 
 export const productFixtures: ProductFixture[] = [
+  [['Odbiór osobisty', '', 0.0, 1000000, ''], [DELIVERIES], [], ``],
+  [['Kurier DHL', '', 12.0, 1000000, ''], [DELIVERIES], [], ``],
+  [['Poczta Polska', '', 15.0, 1000000, ''], [DELIVERIES], [], ``],
+  [['Płatność kartą przy odbiorze', '', 0.0, 1000000, ''], [PAYMENTS], [], ``],
+  [['Płatność elektroniczna PayU', '', 0, 1000000, ''], [PAYMENTS], [], ``],
+  [['Przelew bankowy', '', 0, 1000000, ''], [PAYMENTS], [], ``],
   [
     ['Propolis', 'propolis', 14.99, 432, 'b-r'],
-    [2],
+    [HERBATY],
     ['propolis-front.jpg'],
     `
       <p>
@@ -15,7 +22,7 @@ export const productFixtures: ProductFixture[] = [
   ],
   [
     ['Balsam jerozolimski', 'balsam-jerozolimski', 25.0, 32, 'b-r'],
-    [2],
+    [HERBATY],
     ['balsam-jerozolimski-front.jpg'],
     `
       <p>
@@ -31,7 +38,7 @@ export const productFixtures: ProductFixture[] = [
   ],
   [
     ['Krwiściąg', 'krwisciag', 9.99, 34, 'b-r'],
-    [2, 11],
+    [HERBATY, DOBRZE],
     ['krwisciag-front.jpg', 'krwisciag-back.jpg', 'krwisciag-liscie.jpg'],
     `
       <p>
@@ -43,7 +50,7 @@ export const productFixtures: ProductFixture[] = [
   ],
   [
     ['Dziewanna', 'dziewanna', 7.5, 2, 'b-r'],
-    [2, 12],
+    [HERBATY, BARDZO_DOBRZE],
     ['dziewanna-front.jpg', 'dziewanna-liscie.jpg'],
     `
       <p>

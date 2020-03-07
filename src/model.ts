@@ -1,9 +1,11 @@
 import { Environment } from './pay-u/models';
 
 export enum StructuralNode {
+  Delivery = 'Delivery',
   Footer = 'Footer',
   FooterMap = 'FooterMap',
   Header = 'Header',
+  Payment = 'Payment',
   ShopCategories = 'ShopCategories'
 }
 
@@ -46,4 +48,4 @@ export interface SecretConfig {
   };
 }
 
-export type ProductFixture = [[string, string, number, number, string], number[], string[], string];
+export type ProductFixture = [[string, string, number, number, string], string[], string[], string];

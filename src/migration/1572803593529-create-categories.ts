@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
 import { Category } from '../entity/category';
-import { categoryFixtures } from '../fixtures/categories';
+import { categoryFixtures, categoryNameToIdMap } from '../fixtures/categories';
 import { CategoryFixture } from '../model';
 
 export class CreateCategories1572803593529 implements MigrationInterface {
@@ -29,6 +29,10 @@ export class CreateCategories1572803593529 implements MigrationInterface {
       node.isUnAccessible && (category.isUnAccessible = node.isUnAccessible);
       category.parent = parent;
       await queryRunner.manager.save(category);
+
+      if (categoryNameToIdMap[category.name] === null) {
+        categoryNameToIdMap[category.name] = category.id;
+      }
 
       if (node.children && node.children.length) {
         await this.insertCategories(queryRunner, node.children, category);

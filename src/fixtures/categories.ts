@@ -1,12 +1,28 @@
 import { CategoryFixture, StructuralNode } from '../model';
 
+export const DELIVERIES = 'Deliveries';
+export const PAYMENTS = 'Payments';
+export const HERBATY = 'Herbaty';
+export const DOBRZE = 'Dobrze';
+export const BARDZO_DOBRZE = 'Bardzo dobrze';
+
+export const categoryNameToIdMap: { [key: string]: number } = {
+  [DELIVERIES]: null,
+  [PAYMENTS]: null,
+  [HERBATY]: null,
+  [DOBRZE]: null,
+  [BARDZO_DOBRZE]: null
+};
+
 // tslint:disable:object-literal-sort-keys
 export const categoryFixtures: CategoryFixture[] = [
+  { name: DELIVERIES, structuralNode: StructuralNode.Delivery },
+  { name: PAYMENTS, structuralNode: StructuralNode.Payment },
   {
     name: 'Shop categories',
     structuralNode: StructuralNode.ShopCategories,
     children: [
-      { name: 'Herbaty', slug: 'herbaty' },
+      { name: HERBATY, slug: 'herbaty' },
       {
         name: 'Kawy',
         slug: 'kawy',
@@ -23,7 +39,7 @@ export const categoryFixtures: CategoryFixture[] = [
           {
             name: 'Pakowane',
             slug: 'pakowane',
-            children: [{ name: 'Dobrze', slug: 'dobrze' }, { name: 'Bardzo dobrze', slug: 'bardzo-dobrze' }]
+            children: [{ name: DOBRZE, slug: 'dobrze' }, { name: BARDZO_DOBRZE, slug: 'bardzo-dobrze' }]
           },
           { name: 'Odmładzające', slug: 'odmladzajace' }
         ]

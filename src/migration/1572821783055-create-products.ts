@@ -8,7 +8,7 @@ import { ProductFixture } from '../model';
 
 export class CreateProducts1572821783055 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<any> {
-    const categories: Category[] = await queryRunner.manager.getRepository(Category).find({ select: ['id'] });
+    const categories: Category[] = await queryRunner.manager.getRepository(Category).find({ select: ['id', 'name'] });
 
     for (let i = 0; i < productFixtures.length; i++) {
       const productFixture: ProductFixture = productFixtures[i];
@@ -21,8 +21,8 @@ export class CreateProducts1572821783055 implements MigrationInterface {
       product.barCode = productFixture[0][4];
 
       product.categories = [];
-      productFixture[1].forEach(categoryId => {
-        const category = categories.find(value => value.id === categoryId);
+      productFixture[1].forEach((categoryName: string): void => {
+        const category = categories.find(value => value.name === categoryName);
 
         category && product.categories.push(category);
       });
