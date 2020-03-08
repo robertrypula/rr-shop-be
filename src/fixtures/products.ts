@@ -6,8 +6,8 @@ export const productFixtures: ProductFixture[] = [
   [['Kurier DHL', '', 12.0, 1000000, ''], [DELIVERIES], [], ``],
   [['Poczta Polska', '', 15.0, 1000000, ''], [DELIVERIES], [], ``],
   [['Płatność kartą przy odbiorze', '', 0.0, 1000000, ''], [PAYMENTS], [], ``],
-  [['Płatność elektroniczna PayU', '', 0, 1000000, ''], [PAYMENTS], [], ``],
-  [['Przelew bankowy', '', 0, 1000000, ''], [PAYMENTS], [], ``],
+  [['Płatność elektroniczna PayU', '', 0.99, 1000000, ''], [PAYMENTS], [], ``],
+  [['Przelew bankowy', '', 0.1, 1000000, ''], [PAYMENTS], [], ``],
   [
     ['Propolis', 'propolis', 14.99, 432, 'b-r'],
     [HERBATY],
