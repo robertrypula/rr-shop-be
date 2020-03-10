@@ -1,4 +1,12 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn
+} from 'typeorm';
 
 @Entity()
 export class Category {
@@ -28,4 +36,12 @@ export class Category {
 
   @ManyToOne(type => Category)
   public parent: Category;
+
+  @Column()
+  @CreateDateColumn()
+  public createdAt: Date;
+
+  @Column()
+  @UpdateDateColumn()
+  public updatedAt: Date;
 }

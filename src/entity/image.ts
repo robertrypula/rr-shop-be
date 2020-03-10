@@ -14,12 +14,4 @@ export class Image {
 
   @ManyToOne(type => Product)
   public product: Product;
-
-  @Column()
-  @CreateDateColumn()
-  public createdAt: Date;
-
-  @Column()
-  @UpdateDateColumn()
-  public updatedAt: Date;
 }

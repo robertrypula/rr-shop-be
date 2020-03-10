@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 import { Category } from './category';
 import { Image } from './image';
+import { OrderItem } from './order-item';
 
 @Entity()
 export class Product {
@@ -26,10 +27,13 @@ export class Product {
   public description: string;
 
   @Column()
+  public vat: number;
+
+  @Column()
   public price: number;
 
   @Column()
-  public quantity: number;
+  public quantity: number; // https://github.com/typeorm/typeorm/issues/680
 
   @Column()
   public barCode: string;
@@ -40,6 +44,9 @@ export class Product {
 
   @OneToMany(type => Image, (image: Image) => image.product, { cascade: ['insert'] })
   public images: Image[];
+
+  @OneToMany(type => OrderItem, (orderItem: OrderItem) => orderItem.product)
+  public orderItems: OrderItem[];
 
   @Column()
   @CreateDateColumn()
