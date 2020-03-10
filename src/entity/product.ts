@@ -26,7 +26,7 @@ export class Product {
   @Column({ type: 'text' })
   public description: string;
 
-  @Column()
+  @Column({ nullable: true, default: null })
   public vat: number;
 
   @Column()
