@@ -6,4 +6,5 @@ export const orderRouter = Router();
 const execute = (action: keyof OrderController) => (req: Request, res: Response): Promise<void> | void =>
   new OrderController()[action](req, res);
 
-orderRouter.post('/', execute('create'));
+orderRouter.post('/', execute('createOrder'));
+orderRouter.get('/', execute('getOrder'));

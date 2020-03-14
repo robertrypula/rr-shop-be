@@ -1,5 +1,13 @@
 import { Environment } from './pay-u/models';
 
+export enum Status {
+  PaymentWait = 'PaymentWait',
+  PaymentCompleted = 'PaymentCompleted',
+  Shipped = 'Shipped',
+  Completed = 'Completed',
+  Cancelled = 'Cancelled'
+}
+
 export enum StructuralNode {
   Delivery = 'Delivery',
   Footer = 'Footer',
