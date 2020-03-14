@@ -9,13 +9,13 @@ export class OrderItem {
   public id: number;
 
   @Column()
-  public name: string;
+  public nameOriginal: string;
 
   @Column()
-  public unitPrice: number;
+  public priceUnitSelling: number;
 
   @Column()
-  public unitPriceOriginal: number;
+  public priceUnitOriginal: number;
 
   @Column()
   public quantity: number;

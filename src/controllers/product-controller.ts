@@ -32,11 +32,12 @@ export class ProductController {
   }
 
   public async getProduct(req: Request, res: Response): Promise<void> {
-    const columns: string[] = ['id', 'name', 'slug', 'price', 'description'];
+    const columns: string[] = ['id', 'name', 'slug', 'priceUnit', 'description'];
     const product: Product = await this.repository
       .createQueryBuilder('product')
-      .select([...columns.map(c => `product.${c}`), 'category.id'])
+      .select([...columns.map(c => `product.${c}`), 'category.id', ...this.getImageColumnsSelection(false)])
       .leftJoin('product.categories', 'category')
+      .leftJoin('product.images', 'image')
       .where('product.id = :id', { id: this.getId(req) })
       .getOne();
 
@@ -99,7 +100,7 @@ export class ProductController {
   }
 
   protected getProductColumnsSelection(isSimple: boolean): string[] {
-    return isSimple ? [] : ['name', 'slug', 'price'].map(c => `product.${c}`);
+    return isSimple ? [] : ['name', 'slug', 'priceUnit'].map(c => `product.${c}`);
   }
 
   protected clearProductRelations(product: Product): void {

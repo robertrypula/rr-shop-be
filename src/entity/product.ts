@@ -8,6 +8,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from 'typeorm';
+
 import { Category } from './category';
 import { Image } from './image';
 import { OrderItem } from './order-item';
@@ -26,17 +27,28 @@ export class Product {
   @Column({ type: 'text' })
   public description: string;
 
-  @Column({ nullable: true, default: null })
+  @Column()
   public vat: number;
 
   @Column()
-  public price: number;
+  public priceUnit: number;
+
+  @Column()
+  public priceUnitPurchase: number;
+
+  // TODO unit of measure
 
   @Column()
   public quantity: number; // https://github.com/typeorm/typeorm/issues/680
 
-  @Column()
+  @Column({ nullable: true, default: null })
   public barCode: string;
+
+  @Column({ type: 'text', nullable: true, default: null })
+  public notes: string;
+
+  @Column({ nullable: true, default: null })
+  public bestBefore: Date;
 
   @ManyToMany(type => Category)
   @JoinTable()
