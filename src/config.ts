@@ -5,7 +5,7 @@ import { JwtConfig, PayUConfig, SecretConfig } from './model';
 import { fileLoad } from './utils';
 
 export const jwtConfig: JwtConfig = {
-  expiresIn: '5m'
+  expiresIn: '10m'
 };
 
 export const payUConfig: PayUConfig = {

@@ -5,14 +5,16 @@ import { getSecretConfig, jwtConfig } from '../config';
 import { JwtPayload, SecretConfig } from '../model';
 
 export const checkJwt = (req: Request, res: Response, next: NextFunction): Promise<void> => {
-  const token = req.headers.auth as string;
+  let token = req.headers.authorization as string;
   let jwtPayload: JwtPayload;
   let secretConfig: SecretConfig;
+
+  token = token.replace('Bearer', '').trim();
 
   try {
     secretConfig = getSecretConfig();
   } catch (error) {
-    res.status(500).send();
+    res.status(500).send({ errorMessage: 'Internal server error: JWT token verification failed' });
     return;
   }
 
@@ -20,12 +22,12 @@ export const checkJwt = (req: Request, res: Response, next: NextFunction): Promi
     jwtPayload = verify(token, secretConfig.jwt.secret) as JwtPayload;
     res.locals.jwtPayload = jwtPayload;
   } catch (error) {
-    res.status(401).send();
+    res.status(401).send({ errorMessage: 'Token is not valid' });
     return;
   }
 
   res.setHeader(
-    'token',
+    'Authorization',
     sign({ userId: jwtPayload.userId, username: jwtPayload.username }, secretConfig.jwt.secret, {
       expiresIn: jwtConfig.expiresIn
     })

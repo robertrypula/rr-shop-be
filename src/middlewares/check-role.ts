@@ -11,13 +11,13 @@ export const checkRole = (roles: string[]) => {
     try {
       user = await userRepository.findOneOrFail(res.locals.jwtPayload.userId);
     } catch (id) {
-      res.status(401).send();
+      res.status(401).send({ errorMessage: 'Could not find user in order to check the role' });
     }
 
     if (roles.indexOf(user.role) > -1) {
       next();
     } else {
-      res.status(401).send();
+      res.status(401).send({ errorMessage: 'Wrong user role' });
     }
   };
 };
