@@ -4,7 +4,7 @@ import { Category } from '../entity/category';
 import { Image } from '../entity/image';
 import { Product } from '../entity/product';
 import { productFixtures } from '../fixtures/products';
-import { ProductFixture } from '../model';
+import { ProductFixture } from '../models/product.model';
 
 export class CreateProducts1572821783055 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<any> {

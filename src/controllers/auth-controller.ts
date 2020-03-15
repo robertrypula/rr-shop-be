@@ -5,7 +5,7 @@ import { getRepository } from 'typeorm';
 
 import { getSecretConfig, jwtConfig } from '../config';
 import { User } from '../entity/user';
-import { JwtPayload, SecretConfig } from '../model';
+import { JwtPayload, SecretConfig } from '../models/model';
 
 export class AuthController {
   public constructor(protected repository = getRepository(User)) {}

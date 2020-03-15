@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { getRepository, Repository } from 'typeorm';
 
 import { Order } from '../../entity/order';
-import { Status } from '../../model';
+import { Status } from '../../models/order.model';
 
 const data = [
   { id: 1, number: 'WA-123-546', status: Status.PaymentWait },

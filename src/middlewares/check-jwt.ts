@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { sign, verify } from 'jsonwebtoken';
 
 import { getSecretConfig, jwtConfig } from '../config';
-import { JwtPayload, SecretConfig } from '../model';
+import { JwtPayload, SecretConfig } from '../models/model';
 
 export const checkJwt = (req: Request, res: Response, next: NextFunction): Promise<void> => {
   let token = req.headers.authorization as string;

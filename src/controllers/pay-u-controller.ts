@@ -6,10 +6,11 @@ import { Category } from '../entity/category';
 import { sendEmailAdvanced } from '../gmail/advanced';
 import { sendEmailSimple } from '../gmail/simple';
 import { fileLogger } from '../logs/file-logger';
-import { SecretConfig } from '../model';
+import { SecretConfig } from '../models/model';
 import { Headers, Notification } from '../pay-u/models';
 import { SimplePayU } from '../pay-u/simple-pay-u';
-import { getRandomInt, reStringifyPretty, stringifyPretty } from '../utils';
+import { getOrderNumber } from '../utils/order.utils';
+import { reStringifyPretty, stringifyPretty } from '../utils/utils';
 
 export class PayUController {
   public constructor(protected repository: Repository<Category> = getRepository(Category)) {}
@@ -17,7 +18,7 @@ export class PayUController {
   public async createOrder(req: Request, res: Response): Promise<void> {
     try {
       const email = 'robert.rypula@gmail.com';
-      const extOrderId: string = this.getExtOrderId();
+      const extOrderId: string = getOrderNumber();
       const simplePayU: SimplePayU = this.getSimplePayU();
       const orderResponse = await simplePayU.createOrder({
         buyer: {
@@ -104,9 +105,5 @@ export class PayUController {
       notifyUrl: payUConfig.notifyUrl,
       secondKey: secretConfig.payU.secondKey
     });
-  }
-
-  protected getExtOrderId(): string {
-    return `WA-${getRandomInt(100, 999)}-${getRandomInt(100, 999)}`;
   }
 }
