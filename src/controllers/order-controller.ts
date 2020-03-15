@@ -1,14 +1,14 @@
 import { Request, Response } from 'express';
-import { Column, getRepository, Repository } from 'typeorm';
+import { getRepository, Repository } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 
+import { SelectQueryBuilder } from 'typeorm/query-builder/SelectQueryBuilder';
 import { Order } from '../entity/order';
 import { OrderItem } from '../entity/order-item';
 import { Product } from '../entity/product';
 import { Status } from '../models/order.model';
 import { OrderCreateRequestDto, OrderCreateRequestOrderItemsDto } from '../rest-api/order.dtos';
 import { getOrderNumber } from '../utils/order.utils';
-import { SelectQueryBuilder } from 'typeorm/query-builder/SelectQueryBuilder';
 
 export class OrderController {
   public constructor(

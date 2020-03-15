@@ -1,5 +1,5 @@
-import { BARDZO_DOBRZE, DELIVERIES, DOBRZE, HERBATY, PAYMENTS } from './categories';
 import { ProductFixture } from '../models/product.model';
+import { BARDZO_DOBRZE, DELIVERIES, DOBRZE, HERBATY, PAYMENTS } from './categories';
 
 export const productFixtures: ProductFixture[] = [
   [['Odbiór osobisty', '', 0.0, 1000000, ''], [DELIVERIES], [], ``],
