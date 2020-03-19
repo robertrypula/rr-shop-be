@@ -8,6 +8,7 @@ import { categoryRouter } from './category';
 import { orderRouter } from './order';
 import { payURouter } from './pay-u';
 import { productRouter } from './product';
+import { promoCodeRouter } from './promo-code';
 
 export const routes = Router();
 
@@ -20,3 +21,4 @@ routes.use('/category', categoryRouter);
 routes.use('/order', orderRouter);
 routes.use('/pay-u', payURouter);
 routes.use('/product', productRouter);
+routes.use('/promo-code', promoCodeRouter);

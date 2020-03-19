@@ -4,6 +4,7 @@ import {
   Entity,
   JoinTable,
   ManyToMany,
+  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn
@@ -12,6 +13,8 @@ import {
 import { Category } from './category';
 import { Image } from './image';
 import { OrderItem } from './order-item';
+import { Supplier } from './supplier';
+import { Supply } from './supply';
 
 @Entity()
 export class Product {
@@ -33,10 +36,8 @@ export class Product {
   @Column()
   public priceUnit: number;
 
-  @Column()
-  public priceUnitPurchase: number;
-
-  // TODO unit of measure
+  @Column({ nullable: true, default: null })
+  public pkwiu: string;
 
   @Column()
   public quantity: number; // https://github.com/typeorm/typeorm/issues/680
@@ -47,18 +48,21 @@ export class Product {
   @Column({ type: 'text', nullable: true, default: null })
   public notes: string;
 
-  @Column({ nullable: true, default: null })
-  public bestBefore: Date;
-
-  @ManyToMany(type => Category)
-  @JoinTable()
-  public categories: Category[];
+  @OneToMany(type => OrderItem, (orderItem: OrderItem) => orderItem.product)
+  public orderItems: OrderItem[];
 
   @OneToMany(type => Image, (image: Image) => image.product, { cascade: ['insert'] })
   public images: Image[];
 
-  @OneToMany(type => OrderItem, (orderItem: OrderItem) => orderItem.product)
-  public orderItems: OrderItem[];
+  @OneToMany(type => Supply, (supply: Supply) => supply.product, { cascade: ['insert'] })
+  public supplies: Supply[];
+
+  @ManyToOne(type => Supplier)
+  public supplier: Supplier;
+
+  @ManyToMany(type => Category)
+  @JoinTable()
+  public categories: Category[];
 
   @Column()
   @CreateDateColumn()

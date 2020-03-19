@@ -18,7 +18,6 @@ export class CreateProducts1572821783055 implements MigrationInterface {
       product.slug = productFixture[0][1];
       product.priceUnit = productFixture[0][2];
       product.vat = 0.0; // TODO add it to fixtues
-      product.priceUnitPurchase = 0.0; // TODO add it to fixtues
       product.quantity = productFixture[0][3];
       product.barCode = productFixture[0][4];
 
