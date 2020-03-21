@@ -1,5 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
+import { Type } from '../models/order-item.model';
 import { Order } from './order';
 import { Product } from './product';
 
@@ -11,14 +12,17 @@ export class OrderItem {
   @Column()
   public nameOriginal: string;
 
-  @Column()
+  @Column('decimal', { precision: 7, scale: 2 })
   public priceUnitSelling: number;
 
-  @Column()
+  @Column('decimal', { precision: 7, scale: 2 })
   public priceUnitOriginal: number;
 
   @Column()
   public quantity: number;
+
+  @Column('enum', { enum: Type, nullable: false })
+  public type: Type;
 
   @ManyToOne(type => Order)
   public order: Order;

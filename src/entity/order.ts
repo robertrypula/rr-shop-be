@@ -8,6 +8,7 @@ import {
   UpdateDateColumn
 } from 'typeorm';
 
+import { Status } from '../models/order.model';
 import { OrderItem } from './order-item';
 import { PromoCode } from './promo-code';
 
@@ -61,13 +62,16 @@ export class Order {
 
   // ----------
 
-  @Column()
-  public status: string;
+  @Column('enum', { enum: Status })
+  public status: Status;
 
   @Column({ nullable: true, default: null })
   public paymentUrl: string;
 
   // ----------
+
+  @Column({ type: 'text', nullable: true, default: null })
+  public notes: string;
 
   @Column()
   @CreateDateColumn()

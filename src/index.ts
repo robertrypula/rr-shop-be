@@ -15,16 +15,16 @@ import { routes } from './routes';
 
 createConnection({
   ...{
-    database: 'database.sqlite',
-    type: 'sqlite'
+    // database: 'database.sqlite',
+    // type: 'sqlite'
 
     // https://stackoverflow.com/questions/11407349/how-to-export-and-import-a-sql-file-from-command-line-with-options
-    // database: 'waleriana',
-    // host: 'localhost',
-    // password: 'mysql',
-    // port: 3306,
-    // type: 'mysql',
-    // username: 'root'
+    database: 'waleriana',
+    host: 'localhost',
+    password: 'mysql',
+    port: 3306,
+    type: 'mysql',
+    username: 'root'
   },
   ...{
     dropSchema: true,

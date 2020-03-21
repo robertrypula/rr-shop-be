@@ -33,7 +33,7 @@ export class Product {
   @Column()
   public vat: number;
 
-  @Column()
+  @Column('decimal', { precision: 7, scale: 2 })
   public priceUnit: number;
 
   @Column({ nullable: true, default: null })

@@ -36,6 +36,7 @@ export class OrderController {
         orderItem.priceUnitSelling = product.priceUnit;
         orderItem.product = product;
         orderItem.quantity = orderItemDto.quantity;
+        orderItem.type = orderItemDto.type;
 
         order.orderItems.push(orderItem);
       }

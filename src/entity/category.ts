@@ -8,6 +8,8 @@ import {
   UpdateDateColumn
 } from 'typeorm';
 
+import { StructuralNode } from '../models/category.model';
+
 @Entity()
 export class Category {
   @PrimaryGeneratedColumn()
@@ -25,8 +27,8 @@ export class Category {
   @Column({ nullable: true, default: null })
   public isUnAccessible: boolean;
 
-  @Column({ nullable: true, default: null })
-  public structuralNode: string;
+  @Column('enum', { enum: StructuralNode, nullable: true, default: undefined })
+  public structuralNode: StructuralNode;
 
   @OneToMany(type => Category, (category: Category) => category.parent)
   public children: Category[];
