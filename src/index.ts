@@ -19,10 +19,12 @@ createConnection({
     // type: 'sqlite'
 
     // https://stackoverflow.com/questions/11407349/how-to-export-and-import-a-sql-file-from-command-line-with-options
+    bigNumberStrings: true,
     database: 'waleriana',
     host: 'localhost',
     password: 'mysql',
     port: 3306,
+    supportBigNumbers: false,
     type: 'mysql',
     username: 'root'
   },
