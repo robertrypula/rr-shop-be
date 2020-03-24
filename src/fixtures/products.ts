@@ -1,15 +1,14 @@
-import { ProductFixture } from '../models/product.model';
+import { DeliveryType, PaymentType, ProductFixture } from '../models/product.model';
 import { BARDZO_DOBRZE, DELIVERIES, DOBRZE, HERBATY, PAYMENTS } from './categories';
 
 export const productFixtures: ProductFixture[] = [
-  [['Odbiór osobisty', '', 0.0, 1000000, ''], [DELIVERIES], [], ``],
-  [['Kurier DHL', '', 12.0, 1000000, ''], [DELIVERIES], [], ``],
-  [['Poczta Polska', '', 15.0, 1000000, ''], [DELIVERIES], [], ``],
-  [['Płatność kartą przy odbiorze', '', 0.0, 1000000, ''], [PAYMENTS], [], ``],
-  [['Płatność elektroniczna PayU', '', 0.99, 1000000, ''], [PAYMENTS], [], ``],
-  [['Przelew bankowy', '', 0.1, 1000000, ''], [PAYMENTS], [], ``],
+  [['Odbiór osobisty', '', 0.0, 1000000, '', DeliveryType.Own, null], [DELIVERIES], [], ``],
+  [['Paczkomaty', '', 8.99, 1000000, '', DeliveryType.Paczkomaty, null], [DELIVERIES], [], ``],
+  [['Kurier', '', 12.0, 1000000, '', DeliveryType.Courier, null], [DELIVERIES], [], ``],
+  [['Przelew bankowy', '', 0.0, 1000000, '', null, PaymentType.BankTransfer], [PAYMENTS], [], ``],
+  [['Płatność elektroniczna PayU', '', 0.5, 1000000, '', null, PaymentType.PayU], [PAYMENTS], [], ``],
   [
-    ['Propolis', 'propolis', 14.99, 432, 'b-r'],
+    ['Propolis', 'propolis', 14.99, 432, 'b-r', null, null],
     [HERBATY],
     ['propolis-front.jpg'],
     `
@@ -21,7 +20,7 @@ export const productFixtures: ProductFixture[] = [
     `
   ],
   [
-    ['Balsam jerozolimski', 'balsam-jerozolimski', 25.0, 32, 'b-r'],
+    ['Balsam jerozolimski', 'balsam-jerozolimski', 25.0, 32, 'b-r', null, null],
     [HERBATY],
     ['balsam-jerozolimski-front.jpg'],
     `
@@ -37,7 +36,7 @@ export const productFixtures: ProductFixture[] = [
     `
   ],
   [
-    ['Krwiściąg', 'krwisciag', 9.99, 34, 'b-r'],
+    ['Krwiściąg', 'krwisciag', 9.99, 34, 'b-r', null, null],
     [HERBATY, DOBRZE],
     ['krwisciag-front.jpg', 'krwisciag-back.jpg', 'krwisciag-liscie.jpg'],
     `
@@ -49,7 +48,7 @@ export const productFixtures: ProductFixture[] = [
     `
   ],
   [
-    ['Dziewanna', 'dziewanna', 7.5, 2, 'b-r'],
+    ['Dziewanna', 'dziewanna', 7.5, 2, 'b-r', null, null],
     [HERBATY, BARDZO_DOBRZE],
     ['dziewanna-front.jpg', 'dziewanna-liscie.jpg'],
     `

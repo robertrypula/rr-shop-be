@@ -25,13 +25,16 @@ export class ProductController {
         ? this.getQueryBuilderFilteredByCategoryIds(isSimple, categoryIds)
         : this.getQueryBuilder(isSimple);
       products = await queryBuilder.getMany();
-      this.cleanProductsRelations(products);
+      this.cleanProductsCategoriesRelations(products);
     }
 
     res.send(products);
   }
 
   public async getProduct(req: Request, res: Response): Promise<void> {
+    // console.log(await this.getProductsIdsByName('pgfr'));
+    //
+    // res.send({});
     const columns: string[] = ['id', 'name', 'slug', 'priceUnit', 'description'];
     const product: Product = await this.repository
       .createQueryBuilder('product')
@@ -41,9 +44,28 @@ export class ProductController {
       .where('product.id = :id', { id: this.getId(req) })
       .getOne();
 
-    product && this.clearProductRelations(product);
+    product && this.clearProductCategoriesRelations(product);
 
     product ? res.send(product) : res.status(404).send({});
+  }
+
+  protected async getProductsIdsByCategoryIds(categoryIds: number[]): Promise<number[]> {
+    const queryBuilder: SelectQueryBuilder<Product> = this.repository
+      .createQueryBuilder('product')
+      .select('product.id as id')
+      .leftJoin('product.categories', 'category')
+      .where('category.id IN (:...categoryIds)', { categoryIds });
+
+    return (await queryBuilder.getRawMany()).map((row: { id: number }): number => row.id);
+  }
+
+  protected async getProductsIdsByName(name: string): Promise<number[]> {
+    const queryBuilder: SelectQueryBuilder<Product> = this.repository
+      .createQueryBuilder('product')
+      .select('product.id as id')
+      .where('product.name like :name', { name: '%' + name + '%' });
+
+    return (await queryBuilder.getRawMany()).map((row: { id: number }): number => row.id);
   }
 
   protected getQueryBuilderFilteredByCategoryIds(
@@ -96,22 +118,22 @@ export class ProductController {
   }
 
   protected getImageColumnsSelection(isSimple: boolean): string[] {
-    return isSimple ? [] : ['id', 'filename', 'order'].map(c => `image.${c}`);
+    return isSimple ? [] : ['id', 'filename', 'sortOrder'].map(c => `image.${c}`);
   }
 
   protected getProductColumnsSelection(isSimple: boolean): string[] {
     return isSimple ? [] : ['name', 'slug', 'priceUnit'].map(c => `product.${c}`);
   }
 
-  protected clearProductRelations(product: Product): void {
+  protected clearProductCategoriesRelations(product: Product): void {
     if (product.categories) {
       product.categoryIds = product.categories.map((category: Category) => category.id);
       delete product.categories;
     }
   }
 
-  protected cleanProductsRelations(products: Product[]): void {
-    products.forEach((product: Product): void => this.clearProductRelations(product));
+  protected cleanProductsCategoriesRelations(products: Product[]): void {
+    products.forEach((product: Product): void => this.clearProductCategoriesRelations(product));
   }
 
   protected getCategoryIds(req: Request): number[] {

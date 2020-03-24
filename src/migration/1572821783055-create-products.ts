@@ -4,6 +4,7 @@ import { Category } from '../entity/category';
 import { Image } from '../entity/image';
 import { Product } from '../entity/product';
 import { productFixtures } from '../fixtures/products';
+import { Type } from '../models/order-item.model';
 import { ProductFixture } from '../models/product.model';
 
 export class CreateProducts1572821783055 implements MigrationInterface {
@@ -19,6 +20,14 @@ export class CreateProducts1572821783055 implements MigrationInterface {
       product.priceUnit = productFixture[0][2];
       product.vat = 8.0; // TODO add it to fixtues
       product.barcode = productFixture[0][4];
+      product.type =
+        !productFixture[0][5] && !productFixture[0][6]
+          ? Type.Product
+          : productFixture[0][5] && !productFixture[0][6]
+          ? Type.Delivery
+          : Type.Payment;
+      product.deliveryType = productFixture[0][5];
+      product.paymentType = productFixture[0][6];
       // TODO add quantity to 'supply'
 
       product.categories = [];
@@ -33,7 +42,7 @@ export class CreateProducts1572821783055 implements MigrationInterface {
         const image: Image = new Image();
 
         image.filename = filename;
-        image.order = index + 1;
+        image.sortOrder = index + 1;
         product.images.push(image);
       });
 

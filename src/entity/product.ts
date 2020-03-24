@@ -10,6 +10,8 @@ import {
   UpdateDateColumn
 } from 'typeorm';
 
+import { Type } from '../models/order-item.model';
+import { DeliveryType, PaymentType } from '../models/product.model';
 import { Category } from './category';
 import { Image } from './image';
 import { OrderItem } from './order-item';
@@ -33,6 +35,9 @@ export class Product {
   @Column({ type: 'text' })
   public description: string;
 
+  @Column({ default: 0 })
+  public sortOrder: number;
+
   @Column('decimal', { precision: 5, scale: 2 })
   public vat: number;
 
@@ -47,6 +52,15 @@ export class Product {
 
   @Column('text', { nullable: true, default: null })
   public notes: string;
+
+  @Column('enum', { enum: Type, nullable: false, default: Type.Product })
+  public type: Type;
+
+  @Column('enum', { enum: DeliveryType, nullable: true, default: undefined })
+  public deliveryType: DeliveryType;
+
+  @Column('enum', { enum: PaymentType, nullable: true, default: undefined })
+  public paymentType: PaymentType;
 
   @OneToMany(type => OrderItem, (orderItem: OrderItem) => orderItem.product)
   public orderItems: OrderItem[];
@@ -64,13 +78,12 @@ export class Product {
   @JoinTable()
   public categories: Category[];
 
+  public categoryIds: number[]; // https://github.com/typeorm/typeorm/blob/master/docs/decorator-reference.md#relationid
+
   @Column()
   @CreateDateColumn()
   public createdAt: Date;
-
   @Column()
   @UpdateDateColumn()
   public updatedAt: Date;
-
-  public categoryIds: number[];
 }

@@ -31,8 +31,8 @@ export class OrderController {
           select: ['id', 'name', 'priceUnit', 'vat']
         });
 
-        orderItem.nameOriginal = product.name;
-        orderItem.vatOriginal = product.vat;
+        orderItem.name = product.name;
+        orderItem.vat = product.vat;
         orderItem.priceUnitOriginal = product.priceUnit;
         orderItem.priceUnitSelling = product.priceUnit;
         orderItem.product = product;

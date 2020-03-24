@@ -27,6 +27,9 @@ export class Category {
   @Column({ nullable: true, default: null })
   public isUnAccessible: boolean;
 
+  @Column({ default: 0 })
+  public sortOrder: number;
+
   @Column('enum', { enum: StructuralNode, nullable: true, default: undefined })
   public structuralNode: StructuralNode;
 

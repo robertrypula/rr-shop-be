@@ -10,7 +10,7 @@ export class Image {
   public filename: string;
 
   @Column()
-  public order: number;
+  public sortOrder: number;
 
   @ManyToOne(type => Product)
   public product: Product;
