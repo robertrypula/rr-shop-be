@@ -24,13 +24,16 @@ export class Product {
   @Column()
   public name: string;
 
+  @Column({ nullable: true, default: null })
+  public nameCashRegister: string;
+
   @Column()
   public slug: string;
 
   @Column({ type: 'text' })
   public description: string;
 
-  @Column()
+  @Column('decimal', { precision: 5, scale: 2 })
   public vat: number;
 
   @Column('decimal', { precision: 7, scale: 2 })
@@ -39,13 +42,10 @@ export class Product {
   @Column({ nullable: true, default: null })
   public pkwiu: string;
 
-  @Column()
-  public quantity: number; // https://github.com/typeorm/typeorm/issues/680
-
   @Column({ nullable: true, default: null })
-  public barCode: string;
+  public barcode: string;
 
-  @Column({ type: 'text', nullable: true, default: null })
+  @Column('text', { nullable: true, default: null })
   public notes: string;
 
   @OneToMany(type => OrderItem, (orderItem: OrderItem) => orderItem.product)

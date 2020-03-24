@@ -7,13 +7,13 @@ export class PromoCode {
   @PrimaryGeneratedColumn()
   public id: number;
 
-  @Column()
+  @Column('varchar', { length: 100 })
   public name: string;
 
-  @Column()
+  @Column('decimal', { precision: 5, scale: 2 })
   public percentageDiscount: number;
 
-  @Column()
+  @Column('boolean')
   public isActive: boolean;
 
   @OneToMany(type => Order, (order: Order) => order.promoCode)

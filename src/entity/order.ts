@@ -17,10 +17,10 @@ export class Order {
   @PrimaryGeneratedColumn()
   public id: number;
 
-  @Column()
+  @Column('varchar', { length: 36 })
   public uuid: string;
 
-  @Column()
+  @Column('varchar', { length: 10 }) // example: WA-123-456
   public number: string;
 
   @OneToMany(type => OrderItem, (orderItem: OrderItem) => orderItem.order, { cascade: ['insert'] })
@@ -31,33 +31,31 @@ export class Order {
 
   // ----------
 
-  @Column()
+  @Column('varchar', { length: 200 })
   public email: string;
 
-  @Column()
+  @Column('varchar', { length: 60 })
   public phone: string;
 
-  // ----------
-
-  @Column()
+  @Column('varchar', { length: 100 })
   public name: string;
 
-  @Column()
+  @Column('varchar', { length: 100 })
   public surname: string;
 
-  @Column()
+  @Column('varchar', { length: 100 })
   public address: string;
 
-  @Column()
+  @Column('varchar', { length: 12 })
   public zipCode: string;
 
-  @Column()
+  @Column('varchar', { length: 100 })
   public city: string;
 
   @Column({ type: 'text', nullable: true, default: null })
   public comments: string;
 
-  @Column({ nullable: true, default: null })
+  @Column('varchar', { length: 100, nullable: true, default: null })
   public parcelLocker: string;
 
   // ----------
@@ -65,7 +63,7 @@ export class Order {
   @Column('enum', { enum: Status })
   public status: Status;
 
-  @Column({ nullable: true, default: null })
+  @Column('varchar', { length: 1024, nullable: true, default: null })
   public paymentUrl: string;
 
   // ----------

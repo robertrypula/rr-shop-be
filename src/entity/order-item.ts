@@ -12,6 +12,9 @@ export class OrderItem {
   @Column()
   public nameOriginal: string;
 
+  @Column('decimal', { precision: 5, scale: 2 })
+  public vatOriginal: number;
+
   @Column('decimal', { precision: 7, scale: 2 })
   public priceUnitSelling: number;
 
@@ -20,6 +23,9 @@ export class OrderItem {
 
   @Column()
   public quantity: number;
+
+  @Column('boolean', { default: true })
+  public sold: boolean; // false when product was destroyed by accident by shop staff but was already paid by client
 
   @Column('enum', { enum: Type, nullable: false })
   public type: Type;

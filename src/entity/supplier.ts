@@ -8,7 +8,7 @@ export class Supplier {
   public id: number;
 
   @Column()
-  public name: number;
+  public name: string;
 
   @OneToMany(type => Product, (product: Product) => product.supplier)
   public products: Product[];

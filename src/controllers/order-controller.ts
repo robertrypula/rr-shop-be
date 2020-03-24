@@ -28,10 +28,11 @@ export class OrderController {
         const orderItemDto: OrderCreateRequestOrderItemsDto = orderDto.orderItems[i];
         const orderItem: OrderItem = new OrderItem();
         const product: Product = await this.repositoryProduct.findOneOrFail(orderItemDto.productId, {
-          select: ['id', 'name', 'priceUnit', 'quantity']
+          select: ['id', 'name', 'priceUnit', 'vat']
         });
 
         orderItem.nameOriginal = product.name;
+        orderItem.vatOriginal = product.vat;
         orderItem.priceUnitOriginal = product.priceUnit;
         orderItem.priceUnitSelling = product.priceUnit;
         orderItem.product = product;
