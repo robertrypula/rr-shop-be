@@ -7,11 +7,11 @@ import {
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
+  RelationId,
   UpdateDateColumn
 } from 'typeorm';
 
-import { Type } from '../models/order-item.model';
-import { DeliveryType, PaymentType } from '../models/product.model';
+import { DeliveryType, PaymentType, Type } from '../models/product.model';
 import { Category } from './category';
 import { Image } from './image';
 import { OrderItem } from './order-item';
@@ -78,6 +78,7 @@ export class Product {
   @JoinTable()
   public categories: Category[];
 
+  @RelationId((product: Product) => product.categories)
   public categoryIds: number[]; // https://github.com/typeorm/typeorm/blob/master/docs/decorator-reference.md#relationid
 
   @Column()

@@ -1,4 +1,4 @@
-import { Type } from '../models/order-item.model';
+import { Type } from '../models/product.model';
 
 export interface OrderCreateRequestOrderItemsDto {
   priceUnitOriginal: number;

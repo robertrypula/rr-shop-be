@@ -1,7 +1,13 @@
-export enum LoadType {
+export enum FetchType {
   Minimal = 'Minimal',
   Medium = 'Medium',
   Full = 'Full'
+}
+
+export enum Type {
+  Delivery = 'Delivery',
+  Payment = 'Payment',
+  Product = 'Product'
 }
 
 export enum DeliveryType {
@@ -14,6 +20,14 @@ export enum DeliveryType {
 export enum PaymentType {
   BankTransfer = 'BankTransfer',
   PayU = 'PayU'
+}
+
+export interface ParameterBag {
+  categoryIds: number[];
+  fetchType: FetchType;
+  name: string;
+  productId: number;
+  productIds: number[];
 }
 
 export type ProductFixture = [

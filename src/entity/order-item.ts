@@ -1,7 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-import { Type } from '../models/order-item.model';
-import { DeliveryType, PaymentType } from '../models/product.model';
+import { DeliveryType, PaymentType, Type } from '../models/product.model';
 import { Order } from './order';
 import { Product } from './product';
 
