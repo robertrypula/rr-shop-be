@@ -16,16 +16,13 @@ export class OrderItem {
   public vat: number;
 
   @Column('decimal', { precision: 7, scale: 2 })
-  public priceUnitSelling: number;
+  public priceUnitSelling: number; // use 0 when product was destroyed by accident but was already paid by client
 
   @Column('decimal', { precision: 7, scale: 2 })
   public priceUnitOriginal: number;
 
-  @Column()
+  @Column() // duplicate order item with NEGATIVE quantity when product is unavailable but was already paid
   public quantity: number;
-
-  @Column('boolean', { default: true })
-  public sold: boolean; // false when product was destroyed by accident by shop staff but was already paid by client
 
   @Column('enum', { enum: Type, nullable: false })
   public type: Type;

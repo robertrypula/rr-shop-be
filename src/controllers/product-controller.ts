@@ -55,11 +55,17 @@ export class ProductController {
       case FetchType.Minimal:
         return await this.getProductsFetchTypeMinimal(productIds);
       case FetchType.Medium:
-        return await this.getProductsFetchTypeMedium(productIds);
+        return this.triggerCalculations(await this.getProductsFetchTypeMedium(productIds));
       case FetchType.Full:
       default:
-        return await this.getProductsFetchTypeFull(productIds);
+        return this.triggerCalculations(await this.getProductsFetchTypeFull(productIds));
     }
+  }
+
+  protected triggerCalculations(products: Product[]): Product[] {
+    products.forEach((product: Product): void => product.calculateQuantity(true));
+
+    return products;
   }
 
   // ---------------------------------------------------------------------------
@@ -79,10 +85,14 @@ export class ProductController {
       .createQueryBuilder('product')
       .select([
         ...['id', 'name', 'priceUnit', 'slug'].map(c => `product.${c}`),
-        ...['id', 'filename', 'sortOrder'].map(c => `image.${c}`)
+        ...['id', 'filename', 'sortOrder'].map(c => `image.${c}`),
+        ...['quantity'].map(c => `orderItems.${c}`),
+        ...['quantity'].map(c => `supplies.${c}`)
       ])
       .leftJoin('product.images', 'image')
-      .leftJoin('product.categories', 'category');
+      .leftJoin('product.categories', 'category')
+      .leftJoin('product.supplies', 'supplies')
+      .leftJoin('product.orderItems', 'orderItems');
 
     productIds !== null && queryBuilder.where('product.id IN (:...productIds)', { productIds });
 
@@ -96,9 +106,13 @@ export class ProductController {
         ...['id', 'name', 'priceUnit', 'slug', 'description', 'type', 'deliveryType', 'paymentType'].map(
           c => `product.${c}`
         ),
-        ...['id', 'filename', 'sortOrder'].map(c => `image.${c}`)
+        ...['id', 'filename', 'sortOrder'].map(c => `image.${c}`),
+        ...['quantity'].map(c => `orderItems.${c}`),
+        ...['quantity'].map(c => `supplies.${c}`)
       ])
-      .leftJoin('product.images', 'image');
+      .leftJoin('product.images', 'image')
+      .leftJoin('product.supplies', 'supplies')
+      .leftJoin('product.orderItems', 'orderItems');
 
     productIds !== null && queryBuilder.where('product.id IN (:...productIds)', { productIds });
 

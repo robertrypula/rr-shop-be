@@ -56,6 +56,8 @@ export class Product {
   @Column('enum', { enum: Type, nullable: false, default: Type.Product })
   public type: Type;
 
+  public quantity: number;
+
   @Column('enum', { enum: DeliveryType, nullable: true, default: undefined })
   public deliveryType: DeliveryType;
 
@@ -84,7 +86,20 @@ export class Product {
   @Column()
   @CreateDateColumn()
   public createdAt: Date;
+
   @Column()
   @UpdateDateColumn()
   public updatedAt: Date;
+
+  public calculateQuantity(dropRelations: boolean): void {
+    const suppliesQuantity: number = this.supplies.reduce((a: number, c: Supply): number => a + c.quantity, 0);
+    const orderItemsQuantity: number = this.orderItems.reduce((a: number, c: OrderItem): number => a + c.quantity, 0);
+
+    if (dropRelations) {
+      this.supplies = undefined;
+      this.orderItems = undefined;
+    }
+
+    this.quantity = suppliesQuantity - orderItemsQuantity;
+  }
 }
