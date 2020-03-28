@@ -20,6 +20,18 @@ export const getFormattedDate = (date: Date): string => {
   return `${year}.${month}.${day}_${hour}.${minute}.${second}.${milliseconds}`;
 };
 
+export const parsePrice = (value: string): number => {
+  return parseFloat(`${value}`.replace(/,/g, '.'));
+};
+
+export const removeMultipleSpaces = (value: string): string => {
+  return `${value}`.replace(/\s\s+/g, ' ');
+};
+
+export const removeSpaces = (value: string): string => {
+  return `${value}`.replace(/\s/g, '');
+};
+
 export const reStringifyPretty = (json: string): string => {
   try {
     return JSON.stringify(JSON.parse(json), null, 2);

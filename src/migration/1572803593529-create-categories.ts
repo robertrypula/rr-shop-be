@@ -1,8 +1,8 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
 import { Category } from '../entity/category';
-import { categoryFixtures, categoryNameToIdMap } from '../fixtures/categories';
 import { CategoryFixture } from '../models/category.model';
+import { categoryFixtures, categoryNameToIdMap } from './fixtures/categories';
 
 export class CreateCategories1572803593529 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<any> {

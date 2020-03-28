@@ -1,4 +1,4 @@
-import { DeliveryType, PaymentType, ProductFixture } from '../models/product.model';
+import { DeliveryType, PaymentType, ProductFixture } from '../../models/product.model';
 import { BARDZO_DOBRZE, DELIVERIES, DOBRZE, HERBATY, PAYMENTS } from './categories';
 
 export const productFixtures: ProductFixture[] = [

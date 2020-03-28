@@ -1,4 +1,4 @@
-import { CategoryFixture, StructuralNode } from '../models/category.model';
+import { CategoryFixture, StructuralNode } from '../../models/category.model';
 
 export const DELIVERIES = 'Deliveries';
 export const PAYMENTS = 'Payments';
