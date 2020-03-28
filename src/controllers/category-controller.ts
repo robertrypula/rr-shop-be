@@ -7,7 +7,11 @@ export class CategoryController {
   public constructor(protected repository: Repository<Category> = getRepository(Category)) {}
 
   public async all(req: Request, res: Response): Promise<void> {
-    res.send(await this.repository.find());
+    res.send(
+      await this.repository.find({
+        select: ['id', 'name', 'slug', 'content', 'isUnAccessible', 'structuralNode', 'parentId']
+      })
+    );
 
     /*
     const categories: Category[] = await this.repository
