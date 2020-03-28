@@ -6,8 +6,11 @@ export class Supply {
   @PrimaryGeneratedColumn()
   public id: number;
 
+  @Column('decimal', { precision: 5, scale: 2 })
+  public vat: number;
+
   @Column('decimal', { precision: 7, scale: 2 })
-  public priceUnitPurchase: number;
+  public priceUnitGross: number;
 
   @Column()
   public quantity: number;

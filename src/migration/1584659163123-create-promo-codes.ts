@@ -46,7 +46,7 @@ export class CreatePromoCodes1584659163123 implements MigrationInterface {
     const supply: Supply = new Supply();
 
     supply.product = product;
-    supply.priceUnitPurchase = 19.99;
+    supply.priceUnitGross = 19.99;
     supply.quantity = quantity;
 
     return await queryRunner.manager.save(supply);

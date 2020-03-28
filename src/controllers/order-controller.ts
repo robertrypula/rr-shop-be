@@ -28,11 +28,11 @@ export class OrderController {
         const orderItemDto: OrderCreateRequestOrderItemsDto = orderDto.orderItems[i];
         const orderItem: OrderItem = new OrderItem();
         const product: Product = await this.repositoryProduct.findOneOrFail(orderItemDto.productId, {
-          select: ['id', 'name', 'priceUnit', 'vat']
+          select: ['id', 'name', 'priceUnit']
         });
 
         orderItem.name = product.name;
-        orderItem.vat = product.vat;
+        orderItem.vat = 0; // should be latest VAT from supply table
         orderItem.priceUnitOriginal = product.priceUnit;
         orderItem.priceUnitSelling = product.priceUnit;
         orderItem.product = product;

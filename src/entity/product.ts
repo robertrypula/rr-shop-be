@@ -23,6 +23,9 @@ export class Product {
   @PrimaryGeneratedColumn()
   public id: number;
 
+  @Column({ nullable: true, default: null })
+  public externalId: number;
+
   @Column()
   public name: string;
 
@@ -37,9 +40,6 @@ export class Product {
 
   @Column({ default: 0 })
   public sortOrder: number;
-
-  @Column('decimal', { precision: 5, scale: 2 })
-  public vat: number;
 
   @Column('decimal', { precision: 7, scale: 2 })
   public priceUnit: number;
@@ -73,7 +73,7 @@ export class Product {
   @OneToMany(type => Supply, (supply: Supply) => supply.product, { cascade: ['insert'] })
   public supplies: Supply[];
 
-  @ManyToOne(type => Supplier)
+  @ManyToOne(type => Supplier, { cascade: ['insert'] })
   public supplier: Supplier;
 
   @ManyToMany(type => Category)
