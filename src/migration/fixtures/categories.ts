@@ -30,7 +30,7 @@ export const categoryFixtures: CategoryFixture[] = [
       },
 
       { name: 'Dla seniora', slug: 'dla-seniora' },
-      { name: 'Jakaś długa nazwa kategorii, która wychodzi poza jedną linię', slug: 'jakas' },
+      { name: 'Jakaś długa nazwa kategorii', slug: 'jakas' },
       {
         name: 'Zioła',
         slug: 'ziola',

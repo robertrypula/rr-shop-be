@@ -9,7 +9,7 @@ export class Image {
   @Column()
   public filename: string;
 
-  @Column()
+  @Column({ default: 0 })
   public sortOrder: number;
 
   @ManyToOne(type => Product)

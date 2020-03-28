@@ -15,13 +15,13 @@ export class Category {
   @PrimaryGeneratedColumn()
   public id: number;
 
-  @Column()
+  @Column('varchar', { length: 50 })
   public name: string;
 
-  @Column({ nullable: true, default: null })
+  @Column('varchar', { length: 60, nullable: true, default: null })
   public slug: string;
 
-  @Column({ nullable: true, default: null, type: 'text' })
+  @Column('text', { nullable: true, default: null })
   public content: string;
 
   @Column({ nullable: true, default: null })

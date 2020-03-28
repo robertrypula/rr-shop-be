@@ -13,10 +13,13 @@ import {
 
 import { DeliveryType, PaymentType, Type } from '../models/product.model';
 import { Category } from './category';
+import { Distributor } from './distributor';
 import { Image } from './image';
+import { Manufacturer } from './manufacturer';
 import { OrderItem } from './order-item';
-import { Supplier } from './supplier';
 import { Supply } from './supply';
+
+export const PRODUCT_NAME_LENGTH = 60;
 
 @Entity()
 export class Product {
@@ -26,13 +29,13 @@ export class Product {
   @Column({ nullable: true, default: null })
   public externalId: number;
 
-  @Column()
+  @Column('varchar', { length: PRODUCT_NAME_LENGTH })
   public name: string;
 
-  @Column({ nullable: true, default: null })
+  @Column('varchar', { length: 40, nullable: true, default: null })
   public nameCashRegister: string;
 
-  @Column()
+  @Column('varchar', { length: PRODUCT_NAME_LENGTH })
   public slug: string;
 
   @Column({ type: 'text' })
@@ -44,7 +47,7 @@ export class Product {
   @Column('decimal', { precision: 7, scale: 2 })
   public priceUnit: number;
 
-  @Column({ nullable: true, default: null })
+  @Column('varchar', { length: 20, nullable: true, default: null })
   public pkwiu: string;
 
   @Column({ nullable: true, default: null })
@@ -73,8 +76,11 @@ export class Product {
   @OneToMany(type => Supply, (supply: Supply) => supply.product, { cascade: ['insert'] })
   public supplies: Supply[];
 
-  @ManyToOne(type => Supplier, { cascade: ['insert'] })
-  public supplier: Supplier;
+  @ManyToOne(type => Distributor, { cascade: ['insert'] })
+  public distributor: Distributor;
+
+  @ManyToOne(type => Manufacturer, { cascade: ['insert'] })
+  public manufacturer: Manufacturer;
 
   @ManyToMany(type => Category)
   @JoinTable()

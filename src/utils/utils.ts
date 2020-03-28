@@ -24,11 +24,11 @@ export const parsePrice = (value: string): number => {
   return parseFloat(`${value}`.replace(/,/g, '.'));
 };
 
-export const removeMultipleSpaces = (value: string): string => {
+export const removeMultipleWhitespaceCharacters = (value: string): string => {
   return `${value}`.replace(/\s\s+/g, ' ');
 };
 
-export const removeSpaces = (value: string): string => {
+export const removeWhitespaceCharacters = (value: string): string => {
   return `${value}`.replace(/\s/g, '');
 };
 

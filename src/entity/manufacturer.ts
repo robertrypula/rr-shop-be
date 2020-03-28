@@ -3,14 +3,14 @@ import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, Up
 import { Product } from './product';
 
 @Entity()
-export class Supplier {
+export class Manufacturer {
   @PrimaryGeneratedColumn()
   public id: number;
 
-  @Column()
+  @Column('varchar', { length: 60 })
   public name: string;
 
-  @OneToMany(type => Product, (product: Product) => product.supplier)
+  @OneToMany(type => Product, (product: Product) => product.manufacturer)
   public products: Product[];
 
   @Column()

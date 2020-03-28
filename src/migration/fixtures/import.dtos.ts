@@ -1,21 +1,21 @@
 export interface MainTsvRow {
   id: number;
   name: string;
-  type: string;
+  categoryLikeType: string;
   quantity: number;
-  priceNet: number;
+  priceUnitNet: number;
   vat: number;
-  priceGross: number;
+  priceUnitGross: number;
   bestBefore: string;
-  supplier: string;
+  distributor: string;
   pkwiu: string;
-  descriptionFile: string;
-  imageFile: string;
+  descriptionFilename: string;
+  imageFilename: string;
   // TODO category
 }
 
 export interface DescriptionMdFile {
   description: string;
+  manufacturer: string;
   name: string;
-  supplier: string;
 }

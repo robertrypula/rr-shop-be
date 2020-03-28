@@ -45,9 +45,10 @@ export class CreatePromoCodes1584659163123 implements MigrationInterface {
   protected async createSupply(queryRunner: QueryRunner, product: Product, quantity: number): Promise<Supply> {
     const supply: Supply = new Supply();
 
-    supply.product = product;
     supply.priceUnitGross = 19.99;
+    supply.product = product;
     supply.quantity = quantity;
+    supply.vat = 1;
 
     return await queryRunner.manager.save(supply);
   }

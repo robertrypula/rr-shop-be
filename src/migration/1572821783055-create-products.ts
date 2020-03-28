@@ -2,8 +2,13 @@ import { join } from 'path';
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
 import { Category } from '../entity/category';
+import { Distributor } from '../entity/distributor';
+import { Image } from '../entity/image';
+import { Manufacturer } from '../entity/manufacturer';
 import { Product } from '../entity/product';
-import { fileLoad, parsePrice, removeMultipleSpaces, removeSpaces } from '../utils/utils';
+import { Type } from '../models/product.model';
+import { getCashRegisterName, getSlugFromPolishString } from '../utils/product.utils';
+import { fileLoad, parsePrice, removeMultipleWhitespaceCharacters, removeWhitespaceCharacters } from '../utils/utils';
 import { DescriptionMdFile, MainTsvRow } from './fixtures/import.dtos';
 
 // tslint:disable:object-literal-sort-keys
@@ -16,32 +21,53 @@ export class CreateProducts1572821783055 implements MigrationInterface {
 
     for (let i = 0; i < mainTsvRows.length; i++) {
       const mainTsvRow: MainTsvRow = mainTsvRows[i];
+      const descriptionMdFile: DescriptionMdFile = this.getDescriptionMdFile(mainTsvRows[i].descriptionFilename);
       const product = new Product();
-      //
-      // product.name = main;
-      // product.slug = productFixture[0][1];
-      // product.priceUnit = productFixture[0][2];
-      // // TODO add quantity to 'supply'
-      //
-      // product.categories = [];
-      // productFixture[1].forEach((categoryName: string): void => {
-      //   const category = categories.find(value => value.name === categoryName);
-      //
-      //   category && product.categories.push(category);
-      // });
-      //
-      // product.images = [];
-      // productFixture[2].forEach((filename: string, index: number): void => {
-      //   const image: Image = new Image();
-      //
-      //   image.filename = filename;
-      //   image.sortOrder = index + 1;
-      //   product.images.push(image);
-      // });
-      //
-      // product.description = productFixture[3].replace(/\s\s+/g, ' ');
-      //
-      // await queryRunner.manager.save(product);
+      const image = new Image();
+
+      product.externalId = mainTsvRow.id;
+      product.name = descriptionMdFile.name ? descriptionMdFile.name : mainTsvRow.name;
+      product.nameCashRegister = getCashRegisterName(product.name, false);
+      product.slug = getSlugFromPolishString(product.name);
+      product.description = descriptionMdFile.description;
+      // product.sortOrder
+      product.priceUnit = mainTsvRow.priceUnitGross; // TODO it still not selling price
+      product.pkwiu = mainTsvRow.pkwiu;
+      // product.barcode
+      // product.notes
+      product.type = Type.Product;
+
+      // ----
+
+      image.filename = mainTsvRow.imageFilename;
+      product.images = [image];
+
+      // ----
+
+      // mainTsvRow.quantity;
+      // mainTsvRow.bestBefore
+      // mainTsvRow.vat
+      // mainTsvRow.priceUnitGross
+
+      // ----
+
+      const distributor = new Distributor();
+      distributor.name = mainTsvRow.distributor;
+      product.distributor = distributor;
+
+      // ----
+
+      const manufacturer = new Manufacturer();
+      manufacturer.name = descriptionMdFile.manufacturer;
+      product.manufacturer = manufacturer;
+
+      // ----
+
+      product.categories = [];
+
+      // ----
+
+      await queryRunner.manager.save(product);
     }
   }
 
@@ -65,16 +91,16 @@ export class CreateProducts1572821783055 implements MigrationInterface {
         mainTsvRows.push({
           id: +rowData[0],
           name: rowData[1].trim(),
-          type: rowData[3].trim(),
+          categoryLikeType: rowData[3].trim(),
           quantity: +rowData[4],
-          priceNet: parsePrice(rowData[5]),
+          priceUnitNet: parsePrice(rowData[5]),
           vat: parsePrice(rowData[6]),
-          priceGross: parsePrice(rowData[7]),
+          priceUnitGross: parsePrice(rowData[7]),
           bestBefore: rowData[8].trim(),
-          supplier: rowData[9].trim(),
+          distributor: rowData[9].trim(),
           pkwiu: rowData[10].trim(),
-          descriptionFile: removeSpaces(rowData[11]),
-          imageFile: removeSpaces(rowData[12])
+          descriptionFilename: removeWhitespaceCharacters(rowData[11]),
+          imageFilename: removeWhitespaceCharacters(rowData[12])
         });
       }
     });
@@ -88,8 +114,8 @@ export class CreateProducts1572821783055 implements MigrationInterface {
     const [lineFirst, ...linesRest] = lines;
     let lineFirstSplit: string[] = lineFirst.split(',');
     let description = '';
+    let manufacturer = '';
     let name = '';
-    let supplier = '';
 
     if (linesRest.length > 0 && linesRest[0].trim() === '') {
       const [lineEmpty, ...linesRestInner] = linesRest;
@@ -100,7 +126,7 @@ export class CreateProducts1572821783055 implements MigrationInterface {
     }
 
     if (lineFirstSplit.length > 1) {
-      supplier = removeMultipleSpaces(lineFirstSplit[lineFirstSplit.length - 1]).trim();
+      manufacturer = removeMultipleWhitespaceCharacters(lineFirstSplit[lineFirstSplit.length - 1]).trim();
       lineFirstSplit = lineFirstSplit.splice(0, lineFirstSplit.length - 1);
       name = this.cleanProductName(lineFirstSplit.join(','));
     } else {
@@ -109,13 +135,13 @@ export class CreateProducts1572821783055 implements MigrationInterface {
 
     return {
       description,
-      name,
-      supplier
+      manufacturer,
+      name
     };
   }
 
   protected cleanProductName(name: string): string {
-    let result: string = removeMultipleSpaces(name).trim();
+    let result: string = removeMultipleWhitespaceCharacters(name).trim();
 
     if (result.indexOf('##') === 0) {
       result = result.substr(2);
