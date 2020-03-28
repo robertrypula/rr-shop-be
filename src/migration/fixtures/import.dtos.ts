@@ -11,7 +11,8 @@ export interface MainTsvRow {
   pkwiu: string;
   descriptionFilename: string;
   imageFilename: string;
-  // TODO category
+  priceUnitSelling: number;
+  categories: string[];
 }
 
 export interface DescriptionMdFile {

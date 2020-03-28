@@ -11,6 +11,7 @@ import {
 import { Status } from '../models/order.model';
 import { OrderItem } from './order-item';
 import { PromoCode } from './promo-code';
+import { Supply } from './supply';
 
 @Entity()
 export class Order {
@@ -25,6 +26,9 @@ export class Order {
 
   @OneToMany(type => OrderItem, (orderItem: OrderItem) => orderItem.order, { cascade: ['insert'] })
   public orderItems: OrderItem[];
+
+  @OneToMany(type => Supply, (supply: Supply) => supply.order)
+  public supplies: Supply[];
 
   @ManyToOne(type => PromoCode)
   public promoCode: PromoCode;

@@ -26,7 +26,11 @@ export class ProductController {
         productIds = await this.getProductsIdsByName(parameterBag.name);
       }
 
-      res.send(await this.getProductsByFetchType(productIds, parameterBag.fetchType));
+      if (productIds !== null && productIds.length === 0) {
+        res.send([]);
+      } else {
+        res.send(await this.getProductsByFetchType(productIds, parameterBag.fetchType));
+      }
     } catch (e) {
       res.status(500).send({ errorMessage: `${e}` });
     }
@@ -87,12 +91,14 @@ export class ProductController {
         ...['id', 'name', 'priceUnit', 'slug'].map(c => `product.${c}`),
         ...['id', 'filename', 'sortOrder'].map(c => `image.${c}`),
         ...['quantity'].map(c => `orderItems.${c}`),
-        ...['quantity'].map(c => `supplies.${c}`)
+        ...['id'].map(c => `supplies.${c}`)
       ])
       .leftJoin('product.images', 'image')
       .leftJoin('product.categories', 'category')
       .leftJoin('product.supplies', 'supplies')
       .leftJoin('product.orderItems', 'orderItems');
+
+    // TODO filter out CANCELLED orders - they don't count in quantity
 
     productIds !== null && queryBuilder.where('product.id IN (:...productIds)', { productIds });
 
@@ -108,11 +114,13 @@ export class ProductController {
         ),
         ...['id', 'filename', 'sortOrder'].map(c => `image.${c}`),
         ...['quantity'].map(c => `orderItems.${c}`),
-        ...['quantity'].map(c => `supplies.${c}`)
+        ...['id'].map(c => `supplies.${c}`)
       ])
       .leftJoin('product.images', 'image')
       .leftJoin('product.supplies', 'supplies')
       .leftJoin('product.orderItems', 'orderItems');
+
+    // TODO filter out CANCELLED orders - they don't count in quantity
 
     productIds !== null && queryBuilder.where('product.id IN (:...productIds)', { productIds });
 

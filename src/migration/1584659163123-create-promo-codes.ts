@@ -42,15 +42,16 @@ export class CreatePromoCodes1584659163123 implements MigrationInterface {
     // empty
   }
 
-  protected async createSupply(queryRunner: QueryRunner, product: Product, quantity: number): Promise<Supply> {
-    const supply: Supply = new Supply();
+  protected async createSupply(queryRunner: QueryRunner, product: Product, quantity: number): Promise<void> {
+    for (let i = 0; i < quantity; i++) {
+      const supply: Supply = new Supply();
 
-    supply.priceUnitGross = 19.99;
-    supply.product = product;
-    supply.quantity = quantity;
-    supply.vat = 1;
+      supply.priceUnitGross = 19.99;
+      supply.product = product;
+      supply.vat = 1;
 
-    return await queryRunner.manager.save(supply);
+      await queryRunner.manager.save(supply);
+    }
   }
 
   protected async createOrder(

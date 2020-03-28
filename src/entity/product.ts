@@ -101,7 +101,7 @@ export class Product {
     // Alternatives:
     // https://stackoverflow.com/questions/19436895/sql-how-to-to-sum-two-values-from-different-tables
     // https://stackoverflow.com/questions/28329525/multiple-left-join-with-sum
-    const suppliesQuantity: number = this.supplies.reduce((a: number, c: Supply): number => a + c.quantity, 0);
+    const suppliesQuantity: number = this.supplies.length;
     const orderItemsQuantity: number = this.orderItems.reduce((a: number, c: OrderItem): number => a + c.quantity, 0);
 
     if (dropRelations) {
@@ -109,6 +109,6 @@ export class Product {
       this.orderItems = undefined;
     }
 
-    this.quantity = suppliesQuantity - orderItemsQuantity;
+    this.quantity = suppliesQuantity - orderItemsQuantity; // TODO filter out CANCELLED orders - they don't count
   }
 }

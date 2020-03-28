@@ -9,17 +9,21 @@ import { Product } from '../entity/product';
 import { Type } from '../models/product.model';
 import { getCashRegisterName, getSlugFromPolishString } from '../utils/product.utils';
 import { fileLoad, parsePrice, removeMultipleWhitespaceCharacters, removeWhitespaceCharacters } from '../utils/utils';
+import { HERBATY } from './fixtures/categories';
 import { DescriptionMdFile, MainTsvRow } from './fixtures/import.dtos';
 
 // tslint:disable:object-literal-sort-keys
 // tslint:disable:no-console
 
 export class CreateProducts1572821783055 implements MigrationInterface {
+  protected distributorMap: { [key: string]: Distributor } = {};
+  protected manufacturerMap: { [key: string]: Manufacturer } = {};
+
   public async up(queryRunner: QueryRunner): Promise<any> {
     const categories: Category[] = await queryRunner.manager.getRepository(Category).find({ select: ['id', 'name'] });
     const mainTsvRows: MainTsvRow[] = this.getMainTsvRows();
 
-    for (let i = 0; i < mainTsvRows.length; i++) {
+    for (let i = 1; i < mainTsvRows.length; i++) {
       const mainTsvRow: MainTsvRow = mainTsvRows[i];
       const descriptionMdFile: DescriptionMdFile = this.getDescriptionMdFile(mainTsvRows[i].descriptionFilename);
       const product = new Product();
@@ -27,11 +31,12 @@ export class CreateProducts1572821783055 implements MigrationInterface {
 
       product.externalId = mainTsvRow.id;
       product.name = descriptionMdFile.name ? descriptionMdFile.name : mainTsvRow.name;
-      product.nameCashRegister = getCashRegisterName(product.name, false);
+      product.nameCashRegister = getCashRegisterName(product.name, true);
       product.slug = getSlugFromPolishString(product.name);
       product.description = descriptionMdFile.description;
       // product.sortOrder
-      product.priceUnit = mainTsvRow.priceUnitGross; // TODO it still not selling price
+      product.priceUnit =
+        mainTsvRow.priceUnitSelling > 0 && mainTsvRow.priceUnitSelling < 1000 ? mainTsvRow.priceUnitSelling : 0;
       product.pkwiu = mainTsvRow.pkwiu;
       // product.barcode
       // product.notes
@@ -50,20 +55,14 @@ export class CreateProducts1572821783055 implements MigrationInterface {
       // mainTsvRow.priceUnitGross
 
       // ----
-
-      const distributor = new Distributor();
-      distributor.name = mainTsvRow.distributor;
-      product.distributor = distributor;
-
-      // ----
-
-      const manufacturer = new Manufacturer();
-      manufacturer.name = descriptionMdFile.manufacturer;
-      product.manufacturer = manufacturer;
+      this.attachDistributor(mainTsvRow, product);
+      this.attachManufacturer(descriptionMdFile, product);
 
       // ----
 
       product.categories = [];
+      const category = categories.find(value => value.name === HERBATY);
+      category && product.categories.push(category);
 
       // ----
 
@@ -73,6 +72,38 @@ export class CreateProducts1572821783055 implements MigrationInterface {
 
   public async down(queryRunner: QueryRunner): Promise<any> {
     // empty
+  }
+
+  protected attachDistributor(mainTsvRow: MainTsvRow, product: Product): void {
+    if (mainTsvRow.distributor) {
+      let distributor: Distributor;
+
+      if (this.distributorMap[mainTsvRow.distributor]) {
+        distributor = this.distributorMap[mainTsvRow.distributor];
+      } else {
+        distributor = new Distributor();
+        distributor.name = mainTsvRow.distributor;
+        this.distributorMap[mainTsvRow.distributor] = distributor;
+      }
+
+      product.distributor = distributor;
+    }
+  }
+
+  protected attachManufacturer(descriptionMdFile: DescriptionMdFile, product: Product): void {
+    if (descriptionMdFile.manufacturer) {
+      let manufacturer: Manufacturer;
+
+      if (this.manufacturerMap[descriptionMdFile.manufacturer]) {
+        manufacturer = this.manufacturerMap[descriptionMdFile.manufacturer];
+      } else {
+        manufacturer = new Manufacturer();
+        manufacturer.name = descriptionMdFile.manufacturer;
+        this.manufacturerMap[descriptionMdFile.manufacturer] = manufacturer;
+      }
+
+      product.manufacturer = manufacturer;
+    }
   }
 
   protected getMainTsvRows(): MainTsvRow[] {
@@ -87,7 +118,7 @@ export class CreateProducts1572821783055 implements MigrationInterface {
     mainTsvLines.forEach((mainTsvLine: string): void => {
       const rowData: string[] = mainTsvLine.split('\t');
 
-      if (rowData.length > 12) {
+      if (rowData.length > 13) {
         mainTsvRows.push({
           id: +rowData[0],
           name: rowData[1].trim(),
@@ -100,7 +131,9 @@ export class CreateProducts1572821783055 implements MigrationInterface {
           distributor: rowData[9].trim(),
           pkwiu: rowData[10].trim(),
           descriptionFilename: removeWhitespaceCharacters(rowData[11]),
-          imageFilename: removeWhitespaceCharacters(rowData[12])
+          imageFilename: removeWhitespaceCharacters(rowData[12]),
+          priceUnitSelling: parsePrice(rowData[13]),
+          categories: []
         });
       }
     });
