@@ -6,7 +6,7 @@ export interface MainTsvRow {
   priceUnitNet: number;
   vat: number;
   priceUnitGross: number;
-  bestBefore: string;
+  bestBeforeDates: Date[];
   distributor: string;
   pkwiu: string;
   descriptionFilename: string;

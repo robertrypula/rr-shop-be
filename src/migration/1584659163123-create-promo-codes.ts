@@ -18,6 +18,7 @@ export class CreatePromoCodes1584659163123 implements MigrationInterface {
 
     // ---------------------------------------
 
+    /*
     const krwisciag = await queryRunner.manager.getRepository(Product).findOne(8);
     const dziewanna = await queryRunner.manager.getRepository(Product).findOne(9);
 
@@ -37,6 +38,7 @@ export class CreatePromoCodes1584659163123 implements MigrationInterface {
 
     // dziewanna: 20    -12     -> 8
     // krwisciag: 9     -8     ->  1
+    */
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {

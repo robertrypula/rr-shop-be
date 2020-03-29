@@ -6,9 +6,16 @@ import { Distributor } from '../entity/distributor';
 import { Image } from '../entity/image';
 import { Manufacturer } from '../entity/manufacturer';
 import { Product } from '../entity/product';
+import { Supply } from '../entity/supply';
 import { Type } from '../models/product.model';
 import { getCashRegisterName, getSlugFromPolishString } from '../utils/product.utils';
-import { fileLoad, parsePrice, removeMultipleWhitespaceCharacters, removeWhitespaceCharacters } from '../utils/utils';
+import {
+  extractBestBefore,
+  parsePrice,
+  removeMultipleWhitespaceCharacters,
+  removeWhitespaceCharacters
+} from '../utils/transformation.utils';
+import { fileLoad } from '../utils/utils';
 import { HERBATY } from './fixtures/categories';
 import { DescriptionMdFile, MainTsvRow } from './fixtures/import.dtos';
 
@@ -27,7 +34,6 @@ export class CreateProducts1572821783055 implements MigrationInterface {
       const mainTsvRow: MainTsvRow = mainTsvRows[i];
       const descriptionMdFile: DescriptionMdFile = this.getDescriptionMdFile(mainTsvRows[i].descriptionFilename);
       const product = new Product();
-      const image = new Image();
 
       product.externalId = mainTsvRow.id;
       product.name = descriptionMdFile.name ? descriptionMdFile.name : mainTsvRow.name;
@@ -36,25 +42,13 @@ export class CreateProducts1572821783055 implements MigrationInterface {
       product.description = descriptionMdFile.description;
       // product.sortOrder
       product.priceUnit =
-        mainTsvRow.priceUnitSelling > 0 && mainTsvRow.priceUnitSelling < 1000 ? mainTsvRow.priceUnitSelling : 0;
+        mainTsvRow.priceUnitSelling > 0 && mainTsvRow.priceUnitSelling < 10000 ? mainTsvRow.priceUnitSelling : 0;
       product.pkwiu = mainTsvRow.pkwiu;
       // product.barcode
       // product.notes
       product.type = Type.Product;
-
-      // ----
-
-      image.filename = mainTsvRow.imageFilename;
-      product.images = [image];
-
-      // ----
-
-      // mainTsvRow.quantity;
-      // mainTsvRow.bestBefore
-      // mainTsvRow.vat
-      // mainTsvRow.priceUnitGross
-
-      // ----
+      product.images = [this.createImage(mainTsvRow.imageFilename)];
+      product.supplies = this.getSupplies(mainTsvRow);
       this.attachDistributor(mainTsvRow, product);
       this.attachManufacturer(descriptionMdFile, product);
 
@@ -106,6 +100,38 @@ export class CreateProducts1572821783055 implements MigrationInterface {
     }
   }
 
+  protected getSupplies(mainTsvRow: MainTsvRow): Supply[] {
+    const result: Supply[] = [];
+
+    if (mainTsvRow.quantity !== mainTsvRow.bestBeforeDates.length) {
+      throw new Error('Mismatch in best before data and quantity data');
+    }
+
+    mainTsvRow.bestBeforeDates.forEach((bestBeforeDate: Date): void => {
+      result.push(this.createSupply(mainTsvRow, bestBeforeDate));
+    });
+
+    return result;
+  }
+
+  protected createImage(filename: string): Image {
+    const image: Image = new Image();
+
+    image.filename = filename;
+
+    return image;
+  }
+
+  protected createSupply(mainTsvRow: MainTsvRow, bestBefore: Date): Supply {
+    const supply: Supply = new Supply();
+
+    supply.priceUnitGross = mainTsvRow.priceUnitGross;
+    supply.vat = mainTsvRow.vat;
+    supply.bestBefore = bestBefore;
+
+    return supply;
+  }
+
   protected getMainTsvRows(): MainTsvRow[] {
     const mainTsvRows: MainTsvRow[] = [];
     let mainTsvLines: string[] = [];
@@ -115,28 +141,30 @@ export class CreateProducts1572821783055 implements MigrationInterface {
       // tslint:disable-next-line:no-empty
     } catch (e) {}
 
-    mainTsvLines.forEach((mainTsvLine: string): void => {
-      const rowData: string[] = mainTsvLine.split('\t');
+    for (let i = 0; i < mainTsvLines.length; i++) {
+      const rowData: string[] = mainTsvLines[i].split('\t');
 
-      if (rowData.length > 10 && `${rowData[1]}`.length > 5) {
-        mainTsvRows.push({
-          id: +rowData[0],
-          name: rowData[1].trim(),
-          categoryLikeType: rowData[3].trim(),
-          quantity: +rowData[4],
-          priceUnitNet: parsePrice(rowData[5]),
-          vat: parsePrice(rowData[6]),
-          priceUnitGross: parsePrice(rowData[7]),
-          bestBefore: rowData[8].trim(),
-          distributor: rowData[9].trim(),
-          pkwiu: rowData[10].trim(),
-          descriptionFilename: removeWhitespaceCharacters(rowData[11]),
-          imageFilename: removeWhitespaceCharacters(rowData[12]),
-          priceUnitSelling: parsePrice(rowData[13]),
-          categories: []
-        });
+      if (rowData[1] === '') {
+        break;
       }
-    });
+
+      mainTsvRows.push({
+        id: +rowData[0],
+        name: rowData[1].trim(),
+        categoryLikeType: rowData[3].trim(),
+        quantity: +rowData[4],
+        priceUnitNet: parsePrice(rowData[5]),
+        vat: parsePrice(rowData[6]),
+        priceUnitGross: parsePrice(rowData[7]),
+        bestBeforeDates: extractBestBefore(+rowData[4], rowData[8]),
+        distributor: rowData[9].trim(),
+        pkwiu: rowData[10].trim(),
+        descriptionFilename: removeWhitespaceCharacters(rowData[11]),
+        imageFilename: removeWhitespaceCharacters(rowData[12]),
+        priceUnitSelling: parsePrice(rowData[13]),
+        categories: []
+      });
+    }
 
     return mainTsvRows;
   }

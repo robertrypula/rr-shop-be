@@ -8,30 +8,6 @@ export const fileSave = (fullPath: string, content: string): void => {
   writeFileSync(fullPath, content, 'utf8');
 };
 
-export const getFormattedDate = (date: Date): string => {
-  const year: string = date.getFullYear() + '';
-  const month: string = ('00' + (date.getMonth() + 1)).slice(-2);
-  const day: string = ('00' + date.getDate()).slice(-2);
-  const hour: string = ('00' + date.getHours()).slice(-2);
-  const minute: string = ('00' + date.getMinutes()).slice(-2);
-  const second: string = ('00' + date.getSeconds()).slice(-2);
-  const milliseconds: string = ('000' + date.getMilliseconds()).slice(-3);
-
-  return `${year}.${month}.${day}_${hour}.${minute}.${second}.${milliseconds}`;
-};
-
-export const parsePrice = (value: string): number => {
-  return parseFloat(`${value}`.replace(/,/g, '.'));
-};
-
-export const removeMultipleWhitespaceCharacters = (value: string): string => {
-  return `${value}`.replace(/\s\s+/g, ' ');
-};
-
-export const removeWhitespaceCharacters = (value: string): string => {
-  return `${value}`.replace(/\s/g, '');
-};
-
 export const reStringifyPretty = (json: string): string => {
   try {
     return JSON.stringify(JSON.parse(json), null, 2);

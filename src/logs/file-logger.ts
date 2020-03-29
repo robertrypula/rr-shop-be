@@ -1,6 +1,7 @@
 import { join } from 'path';
 
-import { fileSave, getFormattedDate, getRandomInt } from '../utils/utils';
+import { getFormattedDate } from '../utils/transformation.utils';
+import { fileSave, getRandomInt } from '../utils/utils';
 
 export const fileLogger = (content: string, filenamePrefix = ''): void => {
   const filenamePrefixFormatted: string = filenamePrefix !== '' ? filenamePrefix + '_' : '';
