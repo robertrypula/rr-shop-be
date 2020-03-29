@@ -8,6 +8,10 @@ export interface JwtPayload {
 }
 
 export interface SecretConfig {
+  admin: {
+    password: string;
+    username: string;
+  };
   jwt: {
     expiresIn: string;
     secret: string;

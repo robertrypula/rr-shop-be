@@ -4,8 +4,12 @@ import { Environment } from '../pay-u/models';
 export const toSecretConfig = (fileContent: string): SecretConfig => {
   const o: any = JSON.parse(fileContent);
 
-  if (!o.jwt || !o.mySql || !o.payU || !o.typeOrm) {
-    throw `Missing 'jwt', 'mySql', 'payU' or 'typeOrm' fields`;
+  if (!o.admin || !o.jwt || !o.mySql || !o.payU || !o.typeOrm) {
+    throw `Missing 'admin', 'jwt', 'mySql', 'payU' or 'typeOrm' fields`;
+  }
+
+  if (!o.admin.username || !o.admin.password) {
+    throw `Missing field(s) inside 'admin' field`;
   }
 
   if (!o.mySql.database || !o.mySql.host || !o.mySql.password || !o.mySql.port || !o.mySql.username) {
@@ -45,6 +49,10 @@ export const toSecretConfig = (fileContent: string): SecretConfig => {
   }
 
   return {
+    admin: {
+      password: o.admin.password,
+      username: o.admin.username
+    },
     jwt: {
       expiresIn: o.jwt.expiresIn,
       secret: o.jwt.secret
