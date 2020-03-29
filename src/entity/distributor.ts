@@ -1,8 +1,8 @@
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
+import { GENERIC_NAME_LENGTH } from './length-config';
 import { Product } from './product';
 import { stringConfig } from './string-config';
-import { GENERIC_NAME_LENGTH } from './length-config';
 
 @Entity()
 export class Distributor {

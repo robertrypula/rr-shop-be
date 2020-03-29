@@ -15,11 +15,11 @@ import { DeliveryType, PaymentType, Type } from '../models/product.model';
 import { Category } from './category';
 import { Distributor } from './distributor';
 import { Image } from './image';
+import { PRODUCT_NAME_LENGTH } from './length-config';
 import { Manufacturer } from './manufacturer';
 import { OrderItem } from './order-item';
-import { Supply } from './supply';
-import { EMAIL_LENGTH, PRODUCT_NAME_LENGTH } from './length-config';
 import { stringConfig } from './string-config';
+import { Supply } from './supply';
 
 @Entity()
 export class Product {
