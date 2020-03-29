@@ -12,7 +12,15 @@ export const toSecretConfig = (fileContent: string): SecretConfig => {
     throw `Missing field(s) inside 'jwt' field`;
   }
 
-  if (!o.payU.clientId || !o.payU.clientSecret || !o.payU.merchantPosId || !o.payU.secondKey) {
+  if (
+    !o.payU.clientId ||
+    !o.payU.clientSecret ||
+    !o.payU.continueUrl ||
+    !o.payU.currencyCode ||
+    !o.payU.merchantPosId ||
+    !o.payU.notifyUrl ||
+    !o.payU.secondKey
+  ) {
     throw `Missing field(s) inside 'payU' field`;
   }
 
@@ -31,8 +39,11 @@ export const toSecretConfig = (fileContent: string): SecretConfig => {
     payU: {
       clientId: o.payU.clientId,
       clientSecret: o.payU.clientSecret,
+      continueUrl: o.payU.continueUrl,
+      currencyCode: o.payU.currencyCode,
       environment: o.payU.environment,
       merchantPosId: o.payU.merchantPosId,
+      notifyUrl: o.payU.notifyUrl,
       secondKey: o.payU.secondKey
     }
   };

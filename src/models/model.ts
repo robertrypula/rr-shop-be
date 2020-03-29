@@ -7,12 +7,6 @@ export interface JwtPayload {
   exp?: number;
 }
 
-export interface PayUConfig {
-  continueUrl: string;
-  currencyCode: string;
-  notifyUrl: string;
-}
-
 export interface SecretConfig {
   jwt: {
     expiresIn: string;
@@ -21,8 +15,11 @@ export interface SecretConfig {
   payU: {
     clientId: string;
     clientSecret: string;
+    continueUrl: string;
+    currencyCode: string;
     environment: Environment.Sandbox;
     merchantPosId: string;
+    notifyUrl: string;
     secondKey: string;
   };
 }

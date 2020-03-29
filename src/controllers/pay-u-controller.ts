@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { getRepository, Repository } from 'typeorm';
 
-import { getSecretConfig, payUConfig } from '../config';
+import { getSecretConfig } from '../config';
 import { Category } from '../entity/category';
 import { sendEmailAdvanced } from '../gmail/advanced';
 import { sendEmailSimple } from '../gmail/simple';
@@ -98,11 +98,11 @@ export class PayUController {
     return new SimplePayU({
       clientId: secretConfig.payU.clientId,
       clientSecret: secretConfig.payU.clientSecret,
-      continueUrl: payUConfig.continueUrl,
-      currencyCode: payUConfig.currencyCode,
+      continueUrl: secretConfig.payU.continueUrl, // TODO it would be good to generate link directly to clients order
+      currencyCode: secretConfig.payU.currencyCode,
       environment: secretConfig.payU.environment,
       merchantPosId: secretConfig.payU.merchantPosId,
-      notifyUrl: payUConfig.notifyUrl,
+      notifyUrl: secretConfig.payU.notifyUrl,
       secondKey: secretConfig.payU.secondKey
     });
   }
