@@ -118,7 +118,7 @@ export class CreateProducts1572821783055 implements MigrationInterface {
     mainTsvLines.forEach((mainTsvLine: string): void => {
       const rowData: string[] = mainTsvLine.split('\t');
 
-      if (rowData.length > 13) {
+      if (rowData.length > 10 && `${rowData[1]}`.length > 5) {
         mainTsvRows.push({
           id: +rowData[0],
           name: rowData[1].trim(),
