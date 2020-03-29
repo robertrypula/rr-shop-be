@@ -34,10 +34,10 @@ createConnection({
     }
   },
   ...{
-    dropSchema: true, // TODO !!! disable on PROD !!!
-    logging: false,
-    migrationsRun: true, // probably always 'true'
-    synchronize: true // TODO !!! disable on PROD !!!
+    dropSchema: secretConfig.typeOrm.dropSchema, // TODO !!! disable on PROD !!!
+    logging: secretConfig.typeOrm.logging,
+    migrationsRun: secretConfig.typeOrm.migrationsRun, // probably always 'true'
+    synchronize: secretConfig.typeOrm.synchronize // TODO !!! disable on PROD !!!
   },
   ...{
     entities,

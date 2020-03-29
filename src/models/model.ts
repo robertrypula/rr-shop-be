@@ -29,4 +29,10 @@ export interface SecretConfig {
     notifyUrl: string;
     secondKey: string;
   };
+  typeOrm: {
+    dropSchema: boolean;
+    logging: boolean;
+    migrationsRun: boolean;
+    synchronize: boolean;
+  };
 }

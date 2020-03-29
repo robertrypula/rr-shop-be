@@ -4,8 +4,8 @@ import { Environment } from '../pay-u/models';
 export const toSecretConfig = (fileContent: string): SecretConfig => {
   const o: any = JSON.parse(fileContent);
 
-  if (!o.jwt || !o.mySql || !o.payU) {
-    throw `Missing 'jwt', 'mySql' or 'payU' fields`;
+  if (!o.jwt || !o.mySql || !o.payU || !o.typeOrm) {
+    throw `Missing 'jwt', 'mySql', 'payU' or 'typeOrm' fields`;
   }
 
   if (!o.mySql.database || !o.mySql.host || !o.mySql.password || !o.mySql.port || !o.mySql.username) {
@@ -35,6 +35,15 @@ export const toSecretConfig = (fileContent: string): SecretConfig => {
     throw `Missing or wrong 'payU.environment' field`;
   }
 
+  if (
+    typeof o.typeOrm.dropSchema !== 'boolean' ||
+    typeof o.typeOrm.logging !== 'boolean' ||
+    typeof o.typeOrm.migrationsRun !== 'boolean' ||
+    typeof o.typeOrm.synchronize !== 'boolean'
+  ) {
+    throw `Missing field(s) inside 'typeOrm' field`;
+  }
+
   return {
     jwt: {
       expiresIn: o.jwt.expiresIn,
@@ -56,6 +65,12 @@ export const toSecretConfig = (fileContent: string): SecretConfig => {
       merchantPosId: o.payU.merchantPosId,
       notifyUrl: o.payU.notifyUrl,
       secondKey: o.payU.secondKey
+    },
+    typeOrm: {
+      dropSchema: o.typeOrm.dropSchema,
+      logging: o.typeOrm.logging,
+      migrationsRun: o.typeOrm.migrationsRun,
+      synchronize: o.typeOrm.synchronize
     }
   };
 };
