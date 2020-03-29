@@ -56,15 +56,15 @@ export class Product {
   @Column('text', { nullable: true, default: null, ...stringConfig })
   public notes: string;
 
-  @Column('enum', { enum: Type, nullable: false, default: Type.Product })
+  @Column('enum', { enum: Type, nullable: false, default: Type.Product, ...stringConfig })
   public type: Type;
 
   public quantity: number;
 
-  @Column('enum', { enum: DeliveryType, nullable: true, default: undefined })
+  @Column('enum', { enum: DeliveryType, nullable: true, default: undefined, ...stringConfig })
   public deliveryType: DeliveryType;
 
-  @Column('enum', { enum: PaymentType, nullable: true, default: undefined })
+  @Column('enum', { enum: PaymentType, nullable: true, default: undefined, ...stringConfig })
   public paymentType: PaymentType;
 
   @OneToMany(type => OrderItem, (orderItem: OrderItem) => orderItem.product)

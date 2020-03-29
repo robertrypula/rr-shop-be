@@ -26,13 +26,13 @@ export class OrderItem {
   @Column() // duplicate order item with NEGATIVE quantity when product is unavailable but was already paid
   public quantity: number;
 
-  @Column('enum', { enum: Type, nullable: false })
+  @Column('enum', { enum: Type, nullable: false, ...stringConfig })
   public type: Type;
 
-  @Column('enum', { enum: DeliveryType, nullable: true, default: undefined })
+  @Column('enum', { enum: DeliveryType, nullable: true, default: undefined, ...stringConfig })
   public deliveryType: DeliveryType;
 
-  @Column('enum', { enum: PaymentType, nullable: true, default: undefined })
+  @Column('enum', { enum: PaymentType, nullable: true, default: undefined, ...stringConfig })
   public paymentType: PaymentType;
 
   @ManyToOne(type => Order)

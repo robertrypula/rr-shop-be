@@ -66,7 +66,7 @@ export class Order {
 
   // ----------
 
-  @Column('enum', { enum: Status })
+  @Column('enum', { enum: Status, ...stringConfig })
   public status: Status;
 
   @Column('varchar', { length: 1024, nullable: true, default: null, ...stringConfig })

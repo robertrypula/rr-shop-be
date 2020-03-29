@@ -32,7 +32,7 @@ export class Category {
   @Column({ default: 0 })
   public sortOrder: number;
 
-  @Column('enum', { enum: StructuralNode, nullable: true, default: undefined })
+  @Column('enum', { enum: StructuralNode, nullable: true, default: undefined, ...stringConfig })
   public structuralNode: StructuralNode;
 
   @OneToMany(type => Category, (category: Category) => category.parent)
