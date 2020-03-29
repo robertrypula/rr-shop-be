@@ -7,36 +7,41 @@ import * as express from 'express';
 import * as helmet from 'helmet';
 import { Connection, createConnection } from 'typeorm';
 
+import { getSecretConfig } from './config';
 import { entities } from './entity';
 import { migrations } from './migration';
+import { SecretConfig } from './models/model';
 import { routes } from './routes';
+
+const secretConfig: SecretConfig = getSecretConfig();
 
 // tslint:disable:no-console
 
 createConnection({
   ...{
-    // database: 'database.sqlite',
-    // type: 'sqlite'
-
     // https://stackoverflow.com/questions/11407349/how-to-export-and-import-a-sql-file-from-command-line-with-options
-    bigNumberStrings: true,
-    database: 'waleriana',
-    host: 'localhost',
-    password: 'mysql',
-    port: 3306,
-    supportBigNumbers: false,
-    type: 'mysql',
-    username: 'root'
+    ...{
+      bigNumberStrings: true,
+      supportBigNumbers: false,
+      type: 'mysql'
+    },
+    ...{
+      database: secretConfig.mySql.database,
+      host: secretConfig.mySql.host,
+      password: secretConfig.mySql.password,
+      port: secretConfig.mySql.port,
+      username: secretConfig.mySql.username
+    }
   },
   ...{
-    dropSchema: true,
+    dropSchema: true, // TODO !!! disable on PROD !!!
     logging: false,
-    synchronize: true
+    migrationsRun: true, // probably always 'true'
+    synchronize: true // TODO !!! disable on PROD !!!
   },
   ...{
     entities,
-    migrations,
-    migrationsRun: true
+    migrations
   }
 })
   .then(async (connection: Connection) => {

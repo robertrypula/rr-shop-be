@@ -12,6 +12,13 @@ export interface SecretConfig {
     expiresIn: string;
     secret: string;
   };
+  mySql: {
+    database: string;
+    host: string;
+    password: string;
+    port: number;
+    username: string;
+  };
   payU: {
     clientId: string;
     clientSecret: string;

@@ -4,8 +4,12 @@ import { Environment } from '../pay-u/models';
 export const toSecretConfig = (fileContent: string): SecretConfig => {
   const o: any = JSON.parse(fileContent);
 
-  if (!o.jwt || !o.payU) {
-    throw `Missing 'jwt' or 'payU' fields`;
+  if (!o.jwt || !o.mySql || !o.payU) {
+    throw `Missing 'jwt', 'mySql' or 'payU' fields`;
+  }
+
+  if (!o.mySql.database || !o.mySql.host || !o.mySql.password || !o.mySql.port || !o.mySql.username) {
+    throw `Missing field(s) inside 'mySql' field`;
   }
 
   if (!o.jwt.expiresIn || !o.jwt.secret) {
@@ -35,6 +39,13 @@ export const toSecretConfig = (fileContent: string): SecretConfig => {
     jwt: {
       expiresIn: o.jwt.expiresIn,
       secret: o.jwt.secret
+    },
+    mySql: {
+      database: o.mySql.database,
+      host: o.mySql.host,
+      password: o.mySql.password,
+      port: o.mySql.port,
+      username: o.mySql.username
     },
     payU: {
       clientId: o.payU.clientId,
