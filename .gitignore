@@ -2,6 +2,7 @@
 .vscode/
 coverage/
 dist/
+prod/
 node_modules/
 
 database.sqlite
