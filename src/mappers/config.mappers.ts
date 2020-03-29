@@ -1,5 +1,5 @@
-import { SecretConfig } from './models/model';
-import { Environment } from './pay-u/models';
+import { SecretConfig } from '../models/model';
+import { Environment } from '../pay-u/models';
 
 export const toSecretConfig = (fileContent: string): SecretConfig => {
   const o: any = JSON.parse(fileContent);
@@ -8,7 +8,7 @@ export const toSecretConfig = (fileContent: string): SecretConfig => {
     throw `Missing 'jwt' or 'payU' fields`;
   }
 
-  if (!o.jwt.secret) {
+  if (!o.jwt.expiresIn || !o.jwt.secret) {
     throw `Missing field(s) inside 'jwt' field`;
   }
 
@@ -25,6 +25,7 @@ export const toSecretConfig = (fileContent: string): SecretConfig => {
 
   return {
     jwt: {
+      expiresIn: o.jwt.expiresIn,
       secret: o.jwt.secret
     },
     payU: {

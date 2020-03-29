@@ -1,9 +1,5 @@
 import { Environment } from '../pay-u/models';
 
-export interface JwtConfig {
-  expiresIn: string;
-}
-
 export interface JwtPayload {
   userId: number;
   username: string;
@@ -18,14 +14,15 @@ export interface PayUConfig {
 }
 
 export interface SecretConfig {
+  jwt: {
+    expiresIn: string;
+    secret: string;
+  };
   payU: {
     clientId: string;
     clientSecret: string;
     environment: Environment.Sandbox;
     merchantPosId: string;
     secondKey: string;
-  };
-  jwt: {
-    secret: string;
   };
 }

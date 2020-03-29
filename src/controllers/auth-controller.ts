@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
 import { getRepository } from 'typeorm';
 
-import { getSecretConfig, jwtConfig } from '../config';
+import { getSecretConfig } from '../config';
 import { User } from '../entity/user';
 import { JwtPayload, SecretConfig } from '../models/model';
 
@@ -41,7 +41,7 @@ export class AuthController {
 
     res.send({
       token: jwt.sign({ userId: user.id, username: user.username }, secretConfig.jwt.secret, {
-        expiresIn: jwtConfig.expiresIn
+        expiresIn: secretConfig.jwt.expiresIn
       })
     });
   }

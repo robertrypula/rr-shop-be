@@ -1,12 +1,8 @@
 import { join } from 'path';
 
-import { toSecretConfig } from './mappers';
-import { JwtConfig, PayUConfig, SecretConfig } from './models/model';
+import { toSecretConfig } from './mappers/config.mappers';
+import { PayUConfig, SecretConfig } from './models/model';
 import { fileLoad } from './utils/utils';
-
-export const jwtConfig: JwtConfig = {
-  expiresIn: '10m'
-};
 
 export const payUConfig: PayUConfig = {
   continueUrl: 'http://waleriana.pl', // in case of error: ?error=501

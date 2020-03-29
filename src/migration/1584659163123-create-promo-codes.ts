@@ -17,6 +17,7 @@ export class CreatePromoCodes1584659163123 implements MigrationInterface {
     await queryRunner.manager.save(promoCode);
 
     // ---------------------------------------
+
     const krwisciag = await queryRunner.manager.getRepository(Product).findOne(8);
     const dziewanna = await queryRunner.manager.getRepository(Product).findOne(9);
 

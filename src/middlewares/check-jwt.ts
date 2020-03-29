@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { sign, verify } from 'jsonwebtoken';
 
-import { getSecretConfig, jwtConfig } from '../config';
+import { getSecretConfig } from '../config';
 import { JwtPayload, SecretConfig } from '../models/model';
 
 export const checkJwt = (req: Request, res: Response, next: NextFunction): Promise<void> => {
@@ -29,7 +29,7 @@ export const checkJwt = (req: Request, res: Response, next: NextFunction): Promi
   res.setHeader(
     'Authorization',
     sign({ userId: jwtPayload.userId, username: jwtPayload.username }, secretConfig.jwt.secret, {
-      expiresIn: jwtConfig.expiresIn
+      expiresIn: secretConfig.jwt.expiresIn
     })
   );
   next();
