@@ -18,8 +18,8 @@ import { Image } from './image';
 import { Manufacturer } from './manufacturer';
 import { OrderItem } from './order-item';
 import { Supply } from './supply';
-
-export const PRODUCT_NAME_LENGTH = 60;
+import { EMAIL_LENGTH, PRODUCT_NAME_LENGTH } from './length-config';
+import { stringConfig } from './string-config';
 
 @Entity()
 export class Product {
@@ -29,16 +29,16 @@ export class Product {
   @Column({ nullable: true, default: null })
   public externalId: number;
 
-  @Column('varchar', { length: PRODUCT_NAME_LENGTH })
+  @Column('varchar', { length: PRODUCT_NAME_LENGTH, ...stringConfig })
   public name: string;
 
-  @Column('varchar', { length: 40, nullable: true, default: null })
+  @Column('varchar', { length: 40, nullable: true, default: null, ...stringConfig })
   public nameCashRegister: string;
 
-  @Column('varchar', { length: PRODUCT_NAME_LENGTH })
+  @Column('varchar', { length: PRODUCT_NAME_LENGTH, ...stringConfig })
   public slug: string;
 
-  @Column({ type: 'text' })
+  @Column({ type: 'text', ...stringConfig })
   public description: string;
 
   @Column({ default: 0 })
@@ -47,13 +47,13 @@ export class Product {
   @Column('decimal', { precision: 7, scale: 2 })
   public priceUnit: number;
 
-  @Column('varchar', { length: 20, nullable: true, default: null })
+  @Column('varchar', { length: 20, nullable: true, default: null, ...stringConfig })
   public pkwiu: string;
 
-  @Column({ nullable: true, default: null })
+  @Column({ nullable: true, default: null, ...stringConfig })
   public barcode: string;
 
-  @Column('text', { nullable: true, default: null })
+  @Column('text', { nullable: true, default: null, ...stringConfig })
   public notes: string;
 
   @Column('enum', { enum: Type, nullable: false, default: Type.Product })

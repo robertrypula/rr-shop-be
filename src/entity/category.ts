@@ -9,19 +9,21 @@ import {
 } from 'typeorm';
 
 import { StructuralNode } from '../models/category.model';
+import { GENERIC_NAME_LENGTH } from './length-config';
+import { stringConfig } from './string-config';
 
 @Entity()
 export class Category {
   @PrimaryGeneratedColumn()
   public id: number;
 
-  @Column('varchar', { length: 50 })
+  @Column('varchar', { length: GENERIC_NAME_LENGTH, ...stringConfig })
   public name: string;
 
-  @Column('varchar', { length: 60, nullable: true, default: null })
+  @Column('varchar', { length: GENERIC_NAME_LENGTH, nullable: true, default: null, ...stringConfig })
   public slug: string;
 
-  @Column('text', { nullable: true, default: null })
+  @Column('text', { nullable: true, default: null, ...stringConfig })
   public content: string;
 
   @Column({ nullable: true, default: null })

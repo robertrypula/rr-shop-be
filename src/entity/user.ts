@@ -2,21 +2,23 @@ import { compareSync, hashSync } from 'bcryptjs';
 import { IsNotEmpty, Length } from 'class-validator';
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, Unique, UpdateDateColumn } from 'typeorm';
 
+import { stringConfig } from './string-config';
+
 @Entity()
 @Unique(['username'])
 export class User {
   @PrimaryGeneratedColumn()
   public id: number;
 
-  @Column()
+  @Column('varchar', { length: 20, ...stringConfig })
   @Length(4, 20)
   public username: string;
 
-  @Column()
+  @Column('varchar', { length: 100, ...stringConfig })
   @Length(4, 100)
   public password: string;
 
-  @Column()
+  @Column('varchar', { length: 20, ...stringConfig })
   @IsNotEmpty()
   public role: string;
 

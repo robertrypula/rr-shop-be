@@ -1,15 +1,17 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 import { DeliveryType, PaymentType, Type } from '../models/product.model';
+import { PRODUCT_NAME_LENGTH } from './length-config';
 import { Order } from './order';
-import { Product, PRODUCT_NAME_LENGTH } from './product';
+import { Product } from './product';
+import { stringConfig } from './string-config';
 
 @Entity()
 export class OrderItem {
   @PrimaryGeneratedColumn()
   public id: number;
 
-  @Column('varchar', { length: PRODUCT_NAME_LENGTH })
+  @Column('varchar', { length: PRODUCT_NAME_LENGTH, ...stringConfig })
   public name: string;
 
   @Column('decimal', { precision: 5, scale: 2 })
