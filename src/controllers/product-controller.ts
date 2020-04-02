@@ -13,6 +13,59 @@ import { FetchType, ParameterBag } from '../models/product.model';
 export class ProductController {
   public constructor(protected repository: Repository<Product> = getRepository(Product)) {}
 
+  public async getCashRegisterCvs(req: Request, res: Response): Promise<void> {
+    // TODO find more REST approach (it's not returning JSON and violates REST endpoint structure)
+    const queryBuilder: SelectQueryBuilder<Product> = this.repository
+      .createQueryBuilder('product')
+      .select([
+        ...['id', 'externalId', 'nameCashRegister', 'priceUnit'].map(c => `product.${c}`),
+        ...['id', 'vat'].map(c => `supplies.${c}`)
+      ])
+      .leftJoin('product.supplies', 'supplies');
+
+    res.contentType('text/csv; charset=utf-8').send(
+      (await queryBuilder.getMany())
+        .map((product: Product): string => {
+          const priceUnitScaled = Math.round(product.priceUnit * 100);
+          let vatNumber: number;
+          let vat = 'D';
+
+          if (product.supplies && product.supplies.length > 0) {
+            vatNumber = Math.round(product.supplies[0].vat);
+            switch (vatNumber) {
+              case 23:
+                vat = 'A';
+                break;
+              case 8:
+                vat = 'B';
+                break;
+              case 5:
+                vat = 'C';
+                break;
+            }
+          }
+
+          return [
+            product.externalId,
+            product.nameCashRegister,
+            vat,
+            '1',
+            '2',
+            '1',
+            'N',
+            '0000000000000',
+            priceUnitScaled,
+            'N',
+            'N',
+            'N',
+            'N',
+            '0'
+          ].join(';');
+        })
+        .join('\n')
+    );
+  }
+
   public async getProducts(req: Request, res: Response): Promise<void> {
     const parameterBag: ParameterBag = this.getParameterBag(req);
     let productIds: number[] = null;
