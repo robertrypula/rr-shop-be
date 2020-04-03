@@ -29,10 +29,3 @@ export interface ParameterBag {
   productId: number;
   productIds: number[];
 }
-
-export type ProductFixture = [
-  [string, string, number, number, string, DeliveryType, PaymentType],
-  string[],
-  string[],
-  string
-];

@@ -9,12 +9,3 @@ export enum StructuralNode {
   Recommended = 'Recommended',
   ShopCategories = 'ShopCategories'
 }
-
-export interface CategoryFixture {
-  name: string;
-  slug?: string;
-  content?: string;
-  isUnAccessible?: boolean;
-  structuralNode?: StructuralNode;
-  children?: CategoryFixture[];
-}

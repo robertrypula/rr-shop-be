@@ -22,11 +22,25 @@ import { DescriptionMdFile, MainTsvRow } from './fixtures/import.dtos';
 // tslint:disable:object-literal-sort-keys
 // tslint:disable:no-console
 
+//
+// export const productFixtures: ProductFixture[] = [
+//   [['Odbiór osobisty', '', 0.0, 1000000, '', DeliveryType.Own, null], [DELIVERIES], [], ``],
+//   [['Paczkomaty', '', 8.99, 1000000, '', DeliveryType.Paczkomaty, null], [DELIVERIES], [], ``],
+//   [['Kurier', '', 12.0, 1000000, '', DeliveryType.Courier, null], [DELIVERIES], [], ``],
+//   [['Przelew bankowy', '', 0.0, 1000000, '', null, PaymentType.BankTransfer], [PAYMENTS], [], ``],
+//   [['Płatność elektroniczna PayU', '', 0.5, 1000000, '', null, PaymentType.PayU], [PAYMENTS], [], ``]
+// ];
+
+
 export class CreateProducts1572821783055 implements MigrationInterface {
   protected distributorMap: { [key: string]: Distributor } = {};
   protected manufacturerMap: { [key: string]: Manufacturer } = {};
 
   public async up(queryRunner: QueryRunner): Promise<any> {
+    return new Promise(resolve => {
+      resolve();
+    });
+    /*
     const categories: Category[] = await queryRunner.manager.getRepository(Category).find({ select: ['id', 'name'] });
     const mainTsvRows: MainTsvRow[] = this.getMainTsvRows();
 
@@ -62,6 +76,7 @@ export class CreateProducts1572821783055 implements MigrationInterface {
 
       await queryRunner.manager.save(product);
     }
+    */
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {

@@ -1,42 +1,87 @@
+import { join } from 'path';
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
 import { Category } from '../entity/category';
-import { CategoryFixture } from '../models/category.model';
-import { categoryFixtures, categoryNameToIdMap } from './fixtures/categories';
+import { StructuralNode } from '../models/category.model';
+import { getSlugFromPolishString } from '../utils/product.utils';
+import { removeMultipleWhitespaceCharacters } from '../utils/transformation.utils';
+import { fileLoad } from '../utils/utils';
+import { CategoryTsvRow } from './fixtures/import.dtos';
+
+// tslint:disable:object-literal-sort-keys
 
 export class CreateCategories1572803593529 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<any> {
-    await this.insertCategories(queryRunner, categoryFixtures, null);
+    const categoryTsvRows: CategoryTsvRow[] = this.getCategoryTsvRows();
+    const categoryMap: { [level: number]: Category } = {};
+
+    for (let i = 1; i < categoryTsvRows.length; i++) {
+      const categoryTsvRow: CategoryTsvRow = categoryTsvRows[i];
+      const content: string = this.getContent(categoryTsvRows[i].contentFilename);
+      const category = new Category();
+      const level = categoryTsvRow.tree.length;
+
+      category.structuralNode = categoryTsvRow.structuralNode;
+      category.isUnAccessible = categoryTsvRow.isUnAccessible;
+      category.name = categoryTsvRow.tree[categoryTsvRow.tree.length - 1];
+      category.slug = getSlugFromPolishString(categoryTsvRow.tree[categoryTsvRow.tree.length - 1]);
+      category.content = content;
+      category.parent = level > 0 ? categoryMap[level - 1] : null;
+
+      await queryRunner.manager.save(category);
+      categoryMap[level] = category;
+    }
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
     // empty
   }
 
-  protected async insertCategories(
-    queryRunner: QueryRunner,
-    outerNode: CategoryFixture[],
-    parent: Category
-  ): Promise<void> {
-    for (let i = 0; i < outerNode.length; i++) {
-      const node: CategoryFixture = outerNode[i];
-      const category = new Category();
+  protected getCategoryTsvRows(): CategoryTsvRow[] {
+    const categoryTsvRows: CategoryTsvRow[] = [];
+    let categoryTsvLines: string[] = [];
 
-      category.name = node.name;
-      category.slug = node.slug;
-      node.content && (category.content = node.content.replace(/\s\s+/g, ' '));
-      node.structuralNode && (category.structuralNode = node.structuralNode);
-      node.isUnAccessible && (category.isUnAccessible = node.isUnAccessible);
-      category.parent = parent;
-      await queryRunner.manager.save(category);
+    try {
+      categoryTsvLines = fileLoad(join(__dirname, '/fixtures/categories.tsv')).split('\n');
+      // tslint:disable-next-line:no-empty
+    } catch (e) {}
 
-      if (categoryNameToIdMap[category.name] === null) {
-        categoryNameToIdMap[category.name] = category.id;
-      }
+    for (let i = 0; i < categoryTsvLines.length; i++) {
+      const rowData: string[] = categoryTsvLines[i].split('\t');
 
-      if (node.children && node.children.length) {
-        await this.insertCategories(queryRunner, node.children, category);
+      categoryTsvRows.push({
+        structuralNode: rowData[0] === '' ? null : (rowData[0] as StructuralNode),
+        isUnAccessible: rowData[1] === '1',
+        contentFilename: rowData[2],
+        tree: this.getTree(rowData)
+      });
+    }
+
+    return categoryTsvRows;
+  }
+
+  protected getTree(rowData: string[]): string[] {
+    const result: string[] = [];
+
+    for (let i = 3; i < rowData.length; i++) {
+      result.push(removeMultipleWhitespaceCharacters(rowData[i]).trim());
+      if (rowData[i].length > 2) {
+        break;
       }
     }
+
+    return result;
+  }
+
+  protected getContent(filename: string): string {
+    let content: string = null;
+
+    try {
+      content = fileLoad(join(__dirname, `/fixtures/category-contents/${filename}`));
+    } catch (e) {
+      console.log(`${e}`);
+    }
+
+    return content;
   }
 }
