@@ -11,4 +11,5 @@ src/secret-config.json
 src/logs/*
 !src/logs/file-logger.ts
 
+src/migration/fixtures/categories.tsv
 src/migration/fixtures/main.tsv
