@@ -4,7 +4,7 @@ import { SelectQueryBuilder } from 'typeorm/query-builder/SelectQueryBuilder';
 
 import { Product } from '../entity/product';
 import { FetchType, ParameterBag } from '../models/product.model';
-import { removeDuplicates } from '../utils/transformation.utils';
+import { ProductService } from '../services/product.service';
 
 /*
   Where in:
@@ -13,10 +13,14 @@ import { removeDuplicates } from '../utils/transformation.utils';
 */
 
 export class ProductController {
-  public constructor(protected repository: Repository<Product> = getRepository(Product)) {}
+  public constructor(
+    protected repository: Repository<Product> = getRepository(Product),
+    protected productService: ProductService = new ProductService(repository)
+  ) {}
 
   public async getCashRegisterCvs(req: Request, res: Response): Promise<void> {
     // TODO find more REST approach (it's not returning JSON and violates REST endpoint structure)
+    // TODO move it to product.service.ts
     const queryBuilder: SelectQueryBuilder<Product> = this.repository
       .createQueryBuilder('product')
       .select([
@@ -64,14 +68,14 @@ export class ProductController {
 
     try {
       if (parameterBag.categoryIds) {
-        productIds = await this.getProductsIdsByCategoryIds(parameterBag.categoryIds);
+        productIds = await this.productService.getProductsIdsByCategoryIds(parameterBag.categoryIds);
       } else if (parameterBag.productIds) {
         productIds = parameterBag.productIds;
       } else if (parameterBag.name) {
-        productIds = await this.getProductsIdsByName(parameterBag.name);
+        productIds = await this.productService.getProductsIdsByName(parameterBag.name);
       }
 
-      res.send(await this.getProductsByFetchType(productIds, parameterBag.fetchType));
+      res.send(await this.productService.getProductsByFetchType(productIds, parameterBag.fetchType));
     } catch (e) {
       res.status(500).send({ errorMessage: `${e}` });
     }
@@ -81,7 +85,10 @@ export class ProductController {
     const parameterBag: ParameterBag = this.getParameterBag(req);
 
     try {
-      const product: Product[] = await this.getProductsByFetchType([parameterBag.productId], parameterBag.fetchType);
+      const product: Product[] = await this.productService.getProductsByFetchType(
+        [parameterBag.productId],
+        parameterBag.fetchType
+      );
 
       if (product.length === 1) {
         res.send(product[0]);
@@ -91,110 +98,6 @@ export class ProductController {
     } catch (e) {
       res.status(500).send({ errorMessage: `${e}` });
     }
-  }
-
-  // ---------------------------------------------------------------------------
-
-  protected async getProductsByFetchType(productIds: number[], fetchType: FetchType): Promise<Product[]> {
-    if (productIds !== null) {
-      productIds = removeDuplicates(productIds.map(i => i + '')).map(i => +i);
-
-      if (productIds.length === 0) {
-        return [];
-      }
-    }
-
-    switch (fetchType) {
-      case FetchType.Minimal:
-        return await this.getProductsFetchTypeMinimal(productIds);
-      case FetchType.Medium:
-        return this.triggerCalculations(await this.getProductsFetchTypeMedium(productIds));
-      case FetchType.Full:
-      default:
-        return this.triggerCalculations(await this.getProductsFetchTypeFull(productIds));
-    }
-  }
-
-  protected triggerCalculations(products: Product[]): Product[] {
-    products.forEach((product: Product): void => product.calculateQuantity(true));
-
-    return products;
-  }
-
-  // ---------------------------------------------------------------------------
-
-  protected async getProductsFetchTypeMinimal(productIds: number[]): Promise<Product[]> {
-    const queryBuilder: SelectQueryBuilder<Product> = this.repository
-      .createQueryBuilder('product')
-      .select(['product.id']);
-
-    productIds !== null && queryBuilder.where('product.id IN (:...productIds)', { productIds });
-
-    return await queryBuilder.getMany();
-  }
-
-  protected async getProductsFetchTypeMedium(productIds: number[]): Promise<Product[]> {
-    const queryBuilder: SelectQueryBuilder<Product> = this.repository
-      .createQueryBuilder('product')
-      .select([
-        ...['id', 'name', 'priceUnit', 'slug'].map(c => `product.${c}`),
-        ...['id', 'filename', 'sortOrder'].map(c => `image.${c}`)
-        // ...['quantity'].map(c => `orderItems.${c}`)
-      ])
-      .leftJoin('product.images', 'image');
-    // .leftJoin('product.orderItems', 'orderItems');
-
-    // TODO filter out CANCELLED orders - they don't count in quantity
-
-    productIds !== null && queryBuilder.where('product.id IN (:...productIds)', { productIds });
-
-    return await queryBuilder.getMany();
-  }
-
-  protected async getProductsFetchTypeFull(productIds: number[]): Promise<Product[]> {
-    if (!productIds || productIds.length !== 1) {
-      throw new Error('Fetching more than one full products is not supported');
-    }
-
-    const queryBuilder: SelectQueryBuilder<Product> = this.repository
-      .createQueryBuilder('product')
-      .select([
-        ...['id', 'name', 'priceUnit', 'slug', 'description', 'type', 'deliveryType', 'paymentType'].map(
-          c => `product.${c}`
-        ),
-        ...['id', 'filename', 'sortOrder'].map(c => `image.${c}`),
-        ...['quantity'].map(c => `orderItems.${c}`),
-        ...['id'].map(c => `supplies.${c}`)
-      ])
-      .leftJoin('product.images', 'image')
-      .leftJoin('product.supplies', 'supplies')
-      .leftJoin('product.orderItems', 'orderItems');
-
-    // TODO filter out CANCELLED orders - they don't count in quantity
-    queryBuilder.where('product.id IN (:...productIds)', { productIds });
-
-    return await queryBuilder.getMany();
-  }
-
-  // ---------------------------------------------------------------------------
-
-  protected async getProductsIdsByCategoryIds(categoryIds: number[]): Promise<number[]> {
-    const queryBuilder: SelectQueryBuilder<Product> = this.repository
-      .createQueryBuilder('product')
-      .select('product.id as id')
-      .leftJoin('product.categories', 'category')
-      .where('category.id IN (:...categoryIds)', { categoryIds });
-
-    return (await queryBuilder.getRawMany()).map((row: { id: number }): number => row.id);
-  }
-
-  protected async getProductsIdsByName(name: string): Promise<number[]> {
-    const queryBuilder: SelectQueryBuilder<Product> = this.repository
-      .createQueryBuilder('product')
-      .select('product.id as id')
-      .where('product.name like :name', { name: '%' + name + '%' });
-
-    return (await queryBuilder.getRawMany()).map((row: { id: number }): number => row.id);
   }
 
   // ---------------------------------------------------------------------------
