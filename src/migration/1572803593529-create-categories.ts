@@ -6,9 +6,10 @@ import { StructuralNode } from '../models/category.model';
 import { getSlugFromPolishString } from '../utils/product.utils';
 import { removeMultipleWhitespaceCharacters } from '../utils/transformation.utils';
 import { fileLoad } from '../utils/utils';
-import { CategoryTsvRow } from './fixtures/import.dtos';
+import { CategoryTsvRow } from './fixtures/dtos';
 
 // tslint:disable:object-literal-sort-keys
+// tslint:disable:no-console
 
 export class CreateCategories1572803593529 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<any> {

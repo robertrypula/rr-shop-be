@@ -7,7 +7,7 @@ import { Image } from '../entity/image';
 import { Manufacturer } from '../entity/manufacturer';
 import { Product } from '../entity/product';
 import { Supply } from '../entity/supply';
-import { Type } from '../models/product.model';
+import { DeliveryType, PaymentType, Type } from '../models/product.model';
 import { getCashRegisterName, getSlugFromPolishString } from '../utils/product.utils';
 import {
   extractBestBefore,
@@ -16,8 +16,7 @@ import {
   removeWhitespaceCharacters
 } from '../utils/transformation.utils';
 import { fileLoad } from '../utils/utils';
-import { HERBATY } from './fixtures/categories';
-import { DescriptionMdFile, MainTsvRow } from './fixtures/import.dtos';
+import { DescriptionMdFile, MainTsvRow } from './fixtures/dtos';
 
 // tslint:disable:object-literal-sort-keys
 // tslint:disable:no-console
@@ -31,20 +30,16 @@ import { DescriptionMdFile, MainTsvRow } from './fixtures/import.dtos';
 //   [['Płatność elektroniczna PayU', '', 0.5, 1000000, '', null, PaymentType.PayU], [PAYMENTS], [], ``]
 // ];
 
-
 export class CreateProducts1572821783055 implements MigrationInterface {
   protected distributorMap: { [key: string]: Distributor } = {};
   protected manufacturerMap: { [key: string]: Manufacturer } = {};
 
   public async up(queryRunner: QueryRunner): Promise<any> {
-    return new Promise(resolve => {
-      resolve();
-    });
-    /*
     const categories: Category[] = await queryRunner.manager.getRepository(Category).find({ select: ['id', 'name'] });
     const mainTsvRows: MainTsvRow[] = this.getMainTsvRows();
 
-    for (let i = 1; i < mainTsvRows.length; i++) {
+    for (let i = 1; i < 10; i++) {
+      // mainTsvRows.length
       const mainTsvRow: MainTsvRow = mainTsvRows[i];
       const descriptionMdFile: DescriptionMdFile = this.getDescriptionMdFile(mainTsvRows[i].descriptionFilename);
       const product = new Product();
@@ -68,15 +63,14 @@ export class CreateProducts1572821783055 implements MigrationInterface {
 
       // ----
 
-      product.categories = [];
-      const category = categories.find(value => value.name === HERBATY);
-      category && product.categories.push(category);
+      // product.categories = [];
+      // const category = categories.find(value => value.name === HERBATY);
+      // category && product.categories.push(category);
 
       // ----
 
       await queryRunner.manager.save(product);
     }
-    */
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
@@ -159,24 +153,26 @@ export class CreateProducts1572821783055 implements MigrationInterface {
     for (let i = 0; i < mainTsvLines.length; i++) {
       const rowData: string[] = mainTsvLines[i].split('\t');
 
-      if (rowData[1] === '') {
+      if (rowData[2] === 'END') {
         break;
       }
 
       mainTsvRows.push({
-        id: +rowData[0],
-        name: rowData[1].trim(),
-        categoryLikeType: rowData[3].trim(),
-        quantity: +rowData[4],
-        priceUnitNet: parsePrice(rowData[5]),
-        vat: parsePrice(rowData[6]),
-        priceUnitGross: parsePrice(rowData[7]),
-        bestBeforeDates: extractBestBefore(+rowData[4], rowData[8]),
-        distributor: rowData[9].trim(),
-        pkwiu: rowData[10].trim(),
-        descriptionFilename: removeWhitespaceCharacters(rowData[11]),
-        imageFilename: removeWhitespaceCharacters(rowData[12]).replace('.jpg', '.png'),
-        priceUnitSelling: parsePrice(rowData[13]),
+        deliveryType: this.getDeliveryType(rowData[0]),
+        paymentType: this.getPaymentType(rowData[1]),
+        id: +rowData[2],
+        name: rowData[3].trim(),
+        categoryLikeType: rowData[5].trim(),
+        quantity: +rowData[6],
+        priceUnitNet: parsePrice(rowData[7]),
+        vat: parsePrice(rowData[8]),
+        priceUnitGross: parsePrice(rowData[9]),
+        bestBeforeDates: extractBestBefore(+rowData[6], rowData[10]),
+        distributor: rowData[11].trim(),
+        pkwiu: rowData[12].trim(),
+        descriptionFilename: removeWhitespaceCharacters(rowData[13]),
+        imageFilename: removeWhitespaceCharacters(rowData[14]).replace('.jpg', '.png'),
+        priceUnitSelling: parsePrice(rowData[15]),
         categories: []
       });
     }
@@ -224,6 +220,30 @@ export class CreateProducts1572821783055 implements MigrationInterface {
     }
 
     return result;
+  }
+
+  protected getDeliveryType(value: string): DeliveryType {
+    switch (value) {
+      case 'Courier':
+        return DeliveryType.Courier;
+      case 'Own':
+        return DeliveryType.Own;
+      case 'Paczkomaty':
+        return DeliveryType.Paczkomaty;
+    }
+
+    return null;
+  }
+
+  protected getPaymentType(value: string): PaymentType {
+    switch (value) {
+      case 'BankTransfer':
+        return PaymentType.BankTransfer;
+      case 'PayU':
+        return PaymentType.PayU;
+    }
+
+    return null;
   }
 
   protected loadDescriptionFile(filename: string): string {

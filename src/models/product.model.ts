@@ -13,8 +13,7 @@ export enum Type {
 export enum DeliveryType {
   Courier = 'Courier',
   Own = 'Own',
-  Paczkomaty = 'Paczkomaty',
-  Post = 'Post'
+  Paczkomaty = 'Paczkomaty'
 }
 
 export enum PaymentType {

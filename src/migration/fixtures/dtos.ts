@@ -1,4 +1,5 @@
 import { StructuralNode } from '../../models/category.model';
+import { DeliveryType, PaymentType } from '../../models/product.model';
 
 export interface CategoryTsvRow {
   structuralNode: StructuralNode;
@@ -14,6 +15,8 @@ export interface DescriptionMdFile {
 }
 
 export interface MainTsvRow {
+  deliveryType: DeliveryType;
+  paymentType: PaymentType;
   id: number;
   name: string;
   categoryLikeType: string;
