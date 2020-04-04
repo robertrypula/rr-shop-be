@@ -143,12 +143,12 @@ export class ProductController {
       .select([
         ...['id', 'name', 'priceUnit', 'slug'].map(c => `product.${c}`),
         ...['id', 'filename', 'sortOrder'].map(c => `image.${c}`),
-        ...['quantity'].map(c => `orderItems.${c}`),
-        ...['id'].map(c => `supplies.${c}`)
+        ...['quantity'].map(c => `orderItems.${c}`)
+        // , ...['id'].map(c => `supplies.${c}`)
       ])
       .leftJoin('product.images', 'image')
       .leftJoin('product.categories', 'category')
-      .leftJoin('product.supplies', 'supplies')
+      // .leftJoin('product.supplies', 'supplies')
       .leftJoin('product.orderItems', 'orderItems');
 
     // TODO filter out CANCELLED orders - they don't count in quantity
