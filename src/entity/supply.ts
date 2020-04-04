@@ -20,7 +20,7 @@ export class Supply {
   public product: Product;
 
   @ManyToOne(type => Order)
-  public order: Order;
+  public order: Order; // do NOT use to calculate quantity, it's to track best before dates
 
   @Column()
   @CreateDateColumn()
