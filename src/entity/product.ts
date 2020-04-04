@@ -11,6 +11,7 @@ import {
   UpdateDateColumn
 } from 'typeorm';
 
+import { Status } from '../models/order.model';
 import { DeliveryType, PaymentType, Type } from '../models/product.model';
 import { Category } from './category';
 import { Distributor } from './distributor';
@@ -108,14 +109,16 @@ export class Product {
     // https://stackoverflow.com/questions/28329525/multiple-left-join-with-sum
     const suppliesQuantity: number = this.supplies ? this.supplies.length : 0;
     const orderItemsQuantity: number = this.orderItems
-      ? this.orderItems.reduce((a: number, c: OrderItem): number => a + c.quantity, 0)
+      ? this.orderItems.reduce((a: number, c: OrderItem): number => {
+          return a + (c.order.status !== Status.Cancelled ? c.quantity : 0);
+        }, 0)
       : 0;
 
     if (dropRelations) {
-      this.supplies = undefined;
-      this.orderItems = undefined;
+      // this.supplies = undefined;
+      // this.orderItems = undefined;
     }
 
-    this.quantity = suppliesQuantity - orderItemsQuantity; // TODO filter out CANCELLED orders - they don't count
+    this.quantity = suppliesQuantity - orderItemsQuantity;
   }
 }

@@ -1,3 +1,5 @@
+import { OrderItem } from '../entity/order-item';
+
 export enum FetchType {
   Minimal = 'Minimal',
   Medium = 'Medium',
@@ -27,6 +29,10 @@ export interface ParameterBag {
   name: string;
   productId: number;
   productIds: number[];
+}
+
+export interface ProductsOrderItems {
+  [productId: number]: OrderItem[];
 }
 
 export interface ProductsSuppliesCount {

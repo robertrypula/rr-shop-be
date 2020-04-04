@@ -3,11 +3,21 @@ import { SelectQueryBuilder } from 'typeorm/query-builder/SelectQueryBuilder';
 
 import { Product } from '../entity/product';
 import { Supply } from '../entity/supply';
-import { FetchType, ProductsSuppliesCount } from '../models/product.model';
+import { FetchType, ProductsOrderItems, ProductsSuppliesCount } from '../models/product.model';
 import { removeDuplicates } from '../utils/transformation.utils';
 
 export class ProductService {
   public constructor(protected repository: Repository<Product> = getRepository(Product)) {}
+
+  public async attachOrderItemsStubs(products: Product[], productIds: number[]): Promise<void> {
+    const productsOrderItems: ProductsOrderItems = await this.getProductsOrderItems(productIds);
+
+    products.forEach((product: Product): void => {
+      if (typeof productsOrderItems[product.id] !== 'undefined') {
+        product.orderItems = productsOrderItems[product.id];
+      }
+    });
+  }
 
   public async attachSuppliesStubs(products: Product[], productIds: number[]): Promise<void> {
     const productsSuppliesCount: ProductsSuppliesCount = await this.getProductsSuppliesCount(productIds);
@@ -75,8 +85,8 @@ export class ProductService {
     productIds !== null && queryBuilder.where('product.id IN (:...productIds)', { productIds });
     products = await queryBuilder.getMany();
 
+    await this.attachOrderItemsStubs(products, productIds);
     await this.attachSuppliesStubs(products, productIds);
-    // TODO filter out CANCELLED orders - they don't count in quantity
 
     return products;
   }
@@ -128,6 +138,23 @@ export class ProductService {
   }
 
   // ---------------------------------------------------------------------------
+
+  public async getProductsOrderItems(productIds: number[]): Promise<ProductsOrderItems> {
+    const productsOrderItems: ProductsOrderItems = {};
+    const queryBuilder: SelectQueryBuilder<Product> = this.repository
+      .createQueryBuilder('product')
+      .select(['product.id', 'orderItems.quantity', 'order.status'])
+      .leftJoin('product.orderItems', 'orderItems')
+      .leftJoin('orderItems.order', 'order');
+
+    productIds !== null && queryBuilder.where('product.id IN (:...productIds)', { productIds });
+
+    (await queryBuilder.getMany()).forEach((product: Product): void => {
+      productsOrderItems[product.id] = product.orderItems;
+    });
+
+    return productsOrderItems;
+  }
 
   public async getProductsSuppliesCount(productIds: number[]): Promise<ProductsSuppliesCount> {
     const productsSuppliesCount: ProductsSuppliesCount = {};
