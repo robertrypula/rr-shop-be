@@ -92,28 +92,24 @@ export class ProductService {
   }
 
   public async getProductsFetchTypeFull(productIds: number[]): Promise<Product[]> {
-    if (!productIds || productIds.length !== 1) {
-      throw new Error('Fetching more than one full products is not supported');
-    }
-
     const queryBuilder: SelectQueryBuilder<Product> = this.repository
       .createQueryBuilder('product')
       .select([
         ...['id', 'name', 'priceUnit', 'slug', 'description', 'type', 'deliveryType', 'paymentType'].map(
           c => `product.${c}`
         ),
-        ...['id', 'filename', 'sortOrder'].map(c => `image.${c}`),
-        ...['quantity'].map(c => `orderItems.${c}`),
-        ...['id'].map(c => `supplies.${c}`)
+        ...['id', 'filename', 'sortOrder'].map(c => `image.${c}`)
       ])
-      .leftJoin('product.images', 'image')
-      .leftJoin('product.supplies', 'supplies')
-      .leftJoin('product.orderItems', 'orderItems');
+      .leftJoin('product.images', 'image');
+    let products: Product[];
 
-    // TODO filter out CANCELLED orders - they don't count in quantity
-    queryBuilder.where('product.id IN (:...productIds)', { productIds });
+    productIds !== null && queryBuilder.where('product.id IN (:...productIds)', { productIds });
+    products = await queryBuilder.getMany();
 
-    return await queryBuilder.getMany();
+    await this.attachOrderItemsStubs(products, productIds);
+    await this.attachSuppliesStubs(products, productIds);
+
+    return products;
   }
 
   // ---------------------------------------------------------------------------
