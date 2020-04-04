@@ -21,11 +21,13 @@ export class CreateCategories1572803593529 implements MigrationInterface {
       const content: string = this.getContent(categoryTsvRows[i].contentFilename);
       const category = new Category();
       const level = categoryTsvRow.tree.length;
+      const name = categoryTsvRow.tree[categoryTsvRow.tree.length - 1];
 
       category.structuralNode = categoryTsvRow.structuralNode;
-      category.isUnAccessible = categoryTsvRow.isUnAccessible;
-      category.name = categoryTsvRow.tree[categoryTsvRow.tree.length - 1];
-      category.slug = getSlugFromPolishString(categoryTsvRow.tree[categoryTsvRow.tree.length - 1]);
+      category.isUnAccessible = categoryTsvRow.isUnAccessible === true ? true : undefined;
+      category.isWithoutProducts = categoryTsvRow.isWithoutProducts === true ? true : undefined;
+      category.name = name;
+      category.slug = getSlugFromPolishString(name);
       category.content = content;
       category.parent = level > 0 ? categoryMap[level - 1] : null;
 
@@ -53,20 +55,22 @@ export class CreateCategories1572803593529 implements MigrationInterface {
       categoryTsvRows.push({
         structuralNode: rowData[0] === '' ? null : (rowData[0] as StructuralNode),
         isUnAccessible: rowData[1] === '1',
-        contentFilename: rowData[2],
-        tree: this.getTree(rowData)
+        isWithoutProducts: rowData[2] === '1',
+        contentFilename: rowData[3],
+        tree: this.getTree(4, rowData)
       });
     }
 
     return categoryTsvRows;
   }
 
-  protected getTree(rowData: string[]): string[] {
+  protected getTree(startIndex: number, rowData: string[]): string[] {
     const result: string[] = [];
 
-    for (let i = 3; i < rowData.length; i++) {
-      result.push(removeMultipleWhitespaceCharacters(rowData[i]).trim());
-      if (rowData[i].length > 2) {
+    for (let i = startIndex; i < rowData.length; i++) {
+      const value = removeMultipleWhitespaceCharacters(rowData[i]).trim();
+      result.push(value);
+      if (value.length > 2) {
         break;
       }
     }
@@ -80,7 +84,7 @@ export class CreateCategories1572803593529 implements MigrationInterface {
     try {
       content = fileLoad(join(__dirname, `/fixtures/category-contents/${filename}`));
     } catch (e) {
-      console.log(`${e}`);
+      // console.log(`${e}`);
     }
 
     return content;

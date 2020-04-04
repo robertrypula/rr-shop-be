@@ -4,6 +4,7 @@ import { DeliveryType, PaymentType } from '../../models/product.model';
 export interface CategoryTsvRow {
   structuralNode: StructuralNode;
   isUnAccessible: boolean;
+  isWithoutProducts: boolean;
   contentFilename: string;
   tree: string[];
 }

@@ -16,7 +16,7 @@ import {
   removeMultipleWhitespaceCharacters,
   removeWhitespaceCharacters
 } from '../utils/transformation.utils';
-import { fileLoad, getDuplicates } from '../utils/utils';
+import { fileLoad, getDuplicates, getIdRangeName } from '../utils/utils';
 import { DescriptionMdFile, MainTsvRow } from './fixtures/dtos';
 
 // tslint:disable:object-literal-sort-keys
@@ -64,6 +64,8 @@ export class CreateProducts1572821783055 implements MigrationInterface {
       // ----
 
       product.categories = [];
+      mainTsvRow.categories.push(getIdRangeName(mainTsvRow.id, 16, 3));
+      mainTsvRow.categories.push(getIdRangeName(mainTsvRow.id, 64, 3));
       mainTsvRow.categories.forEach((category: string): void => {
         const categoryFromDb: Category = categories.find(value => value.name === category);
         categoryFromDb && product.categories.push(categoryFromDb);
@@ -268,7 +270,7 @@ export class CreateProducts1572821783055 implements MigrationInterface {
     try {
       descriptionFile = fileLoad(join(__dirname, `/fixtures/product-descriptions/${filename}`));
     } catch (e) {
-      console.log(`${e}`);
+      // console.log(`${e}`);
     }
 
     return descriptionFile;

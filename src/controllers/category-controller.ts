@@ -9,7 +9,7 @@ export class CategoryController {
   public async all(req: Request, res: Response): Promise<void> {
     res.send(
       await this.repository.find({
-        select: ['id', 'name', 'slug', 'content', 'isUnAccessible', 'structuralNode', 'parentId']
+        select: ['id', 'name', 'slug', 'content', 'isUnAccessible', 'isWithoutProducts', 'structuralNode', 'parentId']
       })
     );
 

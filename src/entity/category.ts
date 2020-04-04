@@ -29,6 +29,9 @@ export class Category {
   @Column({ nullable: true, default: null })
   public isUnAccessible: boolean;
 
+  @Column({ nullable: true, default: null })
+  public isWithoutProducts: boolean;
+
   @Column({ default: 0 })
   public sortOrder: number;
 

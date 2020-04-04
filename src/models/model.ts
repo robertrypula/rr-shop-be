@@ -40,3 +40,8 @@ export interface SecretConfig {
     synchronize: boolean;
   };
 }
+
+export interface TestCase<T, U> {
+  input: T;
+  output: U;
+}

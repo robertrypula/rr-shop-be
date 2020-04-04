@@ -31,8 +31,10 @@ export const getDuplicates = (array: string[]): string[] => {
   return duplicates;
 };
 
-export const getIdRangeName = (id: number, range): string => {
-  return ''; // TODO implement
+export const getIdRangeName = (id: number, range: number, maxLength: number): string => {
+  const start: number = Math.floor((id - 1) / range);
+
+  return `${start * range + 1}`.padStart(maxLength, '0') + '-' + `${(start + 1) * range}`.padStart(maxLength, '0');
 };
 
 export const getRandomInt = (min: number, max: number): number => {
