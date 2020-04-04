@@ -3,6 +3,8 @@ import { getRepository, Repository } from 'typeorm';
 import { SelectQueryBuilder } from 'typeorm/query-builder/SelectQueryBuilder';
 import { Product } from '../entity/product';
 import { FetchType, ParameterBag } from '../models/product.model';
+import { getDuplicates } from '../utils/utils';
+import { removeDuplicates } from '../utils/transformation.utils';
 
 /*
   Where in:
@@ -79,11 +81,7 @@ export class ProductController {
         productIds = await this.getProductsIdsByName(parameterBag.name);
       }
 
-      if (productIds !== null && productIds.length === 0) {
-        res.send([]);
-      } else {
-        res.send(await this.getProductsByFetchType(productIds, parameterBag.fetchType));
-      }
+      res.send(await this.getProductsByFetchType(productIds, parameterBag.fetchType));
     } catch (e) {
       res.status(500).send({ errorMessage: `${e}` });
     }
@@ -108,6 +106,14 @@ export class ProductController {
   // ---------------------------------------------------------------------------
 
   protected async getProductsByFetchType(productIds: number[], fetchType: FetchType): Promise<Product[]> {
+    if (productIds !== null) {
+      productIds = removeDuplicates(productIds.map(i => i + '')).map(i => +i);
+
+      if (productIds.length === 0) {
+        return [];
+      }
+    }
+
     switch (fetchType) {
       case FetchType.Minimal:
         return await this.getProductsFetchTypeMinimal(productIds);
@@ -143,22 +149,28 @@ export class ProductController {
       .select([
         ...['id', 'name', 'priceUnit', 'slug'].map(c => `product.${c}`),
         ...['id', 'filename', 'sortOrder'].map(c => `image.${c}`),
-        ...['quantity'].map(c => `orderItems.${c}`)
-        // , ...['id'].map(c => `supplies.${c}`)
+        ...['quantity'].map(c => `orderItems.${c}`),
+        ...['id'].map(c => `supplies.${c}`)
       ])
       .leftJoin('product.images', 'image')
       .leftJoin('product.categories', 'category')
-      // .leftJoin('product.supplies', 'supplies')
+      .leftJoin('product.supplies', 'supplies')
       .leftJoin('product.orderItems', 'orderItems');
 
     // TODO filter out CANCELLED orders - they don't count in quantity
 
     productIds !== null && queryBuilder.where('product.id IN (:...productIds)', { productIds });
 
+    console.log(productIds);
+
     return await queryBuilder.getMany();
   }
 
   protected async getProductsFetchTypeFull(productIds: number[]): Promise<Product[]> {
+    if (!productIds || productIds.length !== 1) {
+      throw new Error('Fetching more than one full products is not supported');
+    }
+
     const queryBuilder: SelectQueryBuilder<Product> = this.repository
       .createQueryBuilder('product')
       .select([
@@ -174,8 +186,7 @@ export class ProductController {
       .leftJoin('product.orderItems', 'orderItems');
 
     // TODO filter out CANCELLED orders - they don't count in quantity
-
-    productIds !== null && queryBuilder.where('product.id IN (:...productIds)', { productIds });
+    queryBuilder.where('product.id IN (:...productIds)', { productIds });
 
     return await queryBuilder.getMany();
   }
