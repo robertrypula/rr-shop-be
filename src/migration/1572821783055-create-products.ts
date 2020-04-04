@@ -11,11 +11,12 @@ import { DeliveryType, PaymentType, Type } from '../models/product.model';
 import { getCashRegisterName, getSlugFromPolishString } from '../utils/product.utils';
 import {
   extractBestBefore,
+  getNormalizedNamesTillTheEnd,
   parsePrice,
   removeMultipleWhitespaceCharacters,
   removeWhitespaceCharacters
 } from '../utils/transformation.utils';
-import { fileLoad } from '../utils/utils';
+import { fileLoad, getDuplicates } from '../utils/utils';
 import { DescriptionMdFile, MainTsvRow } from './fixtures/dtos';
 
 // tslint:disable:object-literal-sort-keys
@@ -38,8 +39,7 @@ export class CreateProducts1572821783055 implements MigrationInterface {
     const categories: Category[] = await queryRunner.manager.getRepository(Category).find({ select: ['id', 'name'] });
     const mainTsvRows: MainTsvRow[] = this.getMainTsvRows();
 
-    for (let i = 1; i < 10; i++) {
-      // mainTsvRows.length
+    for (let i = 1; i < mainTsvRows.length; i++) {
       const mainTsvRow: MainTsvRow = mainTsvRows[i];
       const descriptionMdFile: DescriptionMdFile = this.getDescriptionMdFile(mainTsvRows[i].descriptionFilename);
       const product = new Product();
@@ -63,9 +63,11 @@ export class CreateProducts1572821783055 implements MigrationInterface {
 
       // ----
 
-      // product.categories = [];
-      // const category = categories.find(value => value.name === HERBATY);
-      // category && product.categories.push(category);
+      product.categories = [];
+      mainTsvRow.categories.forEach((category: string): void => {
+        const categoryFromDb: Category = categories.find(value => value.name === category);
+        categoryFromDb && product.categories.push(categoryFromDb);
+      });
 
       // ----
 
@@ -173,7 +175,7 @@ export class CreateProducts1572821783055 implements MigrationInterface {
         descriptionFilename: removeWhitespaceCharacters(rowData[13]),
         imageFilename: removeWhitespaceCharacters(rowData[14]).replace('.jpg', '.png'),
         priceUnitSelling: parsePrice(rowData[15]),
-        categories: []
+        categories: this.getCategories(rowData)
       });
     }
 
@@ -222,14 +224,28 @@ export class CreateProducts1572821783055 implements MigrationInterface {
     return result;
   }
 
+  protected getCategories(rowData: string[]): string[] {
+    const categories: string[] = getNormalizedNamesTillTheEnd(rowData, 16);
+    const duplicates: string[] = getDuplicates(categories);
+
+    if (duplicates.length) {
+      console.log(rowData);
+      console.log(categories);
+      console.log(duplicates);
+      throw new Error('Category list contains duplicates');
+    }
+
+    return categories;
+  }
+
   protected getDeliveryType(value: string): DeliveryType {
     switch (value) {
-      case 'Courier':
-        return DeliveryType.Courier;
+      case 'InPostCourier':
+        return DeliveryType.InPostCourier;
+      case 'InPostParcelLock':
+        return DeliveryType.InPostParcelLocker;
       case 'Own':
         return DeliveryType.Own;
-      case 'Paczkomaty':
-        return DeliveryType.Paczkomaty;
     }
 
     return null;

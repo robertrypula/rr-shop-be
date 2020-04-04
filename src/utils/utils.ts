@@ -16,6 +16,25 @@ export const reStringifyPretty = (json: string): string => {
   }
 };
 
+export const getDuplicates = (array: string[]): string[] => {
+  const map: { [key: string]: string } = {};
+  const duplicates: string[] = [];
+
+  array.forEach((item: string): void => {
+    if (typeof map[item] !== 'undefined') {
+      duplicates.push(item);
+    } else {
+      map[item] = '';
+    }
+  });
+
+  return duplicates;
+};
+
+export const getIdRangeName = (id: number, range): string => {
+  return ''; // TODO implement
+};
+
 export const getRandomInt = (min: number, max: number): number => {
   // https://stackoverflow.com/a/1527820
   min = Math.ceil(min);

@@ -11,9 +11,9 @@ export enum Type {
 }
 
 export enum DeliveryType {
-  Courier = 'Courier',
-  Own = 'Own',
-  Paczkomaty = 'Paczkomaty'
+  InPostCourier = 'InPostCourier',
+  InPostParcelLocker = 'InPostParcelLocker',
+  Own = 'Own'
 }
 
 export enum PaymentType {

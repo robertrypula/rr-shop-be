@@ -50,6 +50,21 @@ export const getFormattedDate = (
   ].join('');
 };
 
+export const getNormalizedNamesTillTheEnd = (rowData: string[], startIndex: number, lengthThreshold = 2): string[] => {
+  const result: string[] = [];
+
+  for (let i = startIndex; i < rowData.length; i++) {
+    const value: string = removeMultipleWhitespaceCharacters(rowData[i]).trim();
+
+    if (value.length < lengthThreshold) {
+      break;
+    }
+    result.push(value);
+  }
+
+  return result;
+};
+
 export const parseDate = (value: string): Date => {
   if (value.length !== 10) {
     throw new Error('Wrong date');
@@ -70,6 +85,16 @@ export const parseDate = (value: string): Date => {
 
 export const parsePrice = (value: string): number => {
   return parseFloat(`${value}`.replace(/,/g, '.'));
+};
+
+export const removeDuplicates = (array: string[]): string[] => {
+  const map: { [key: string]: string } = {};
+
+  array.forEach((item: string): void => {
+    map[item] = '';
+  });
+
+  return Object.keys(map);
 };
 
 export const removeMultipleWhitespaceCharacters = (value: string): string => {
