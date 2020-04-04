@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { getRepository, Repository } from 'typeorm';
 import { SelectQueryBuilder } from 'typeorm/query-builder/SelectQueryBuilder';
+
 import { Product } from '../entity/product';
 import { FetchType, ParameterBag } from '../models/product.model';
-import { getDuplicates } from '../utils/utils';
 import { removeDuplicates } from '../utils/transformation.utils';
 
 /*
@@ -48,20 +48,10 @@ export class ProductController {
           }
 
           return [
-            product.externalId,
-            product.nameCashRegister,
-            vat,
-            '1',
-            '2',
-            '1',
-            'N',
-            '0000000000000',
+            ...[product.externalId, product.nameCashRegister, vat],
+            ...['1', '2', '1', 'N', '0000000000000'],
             priceUnitScaled,
-            'N',
-            'N',
-            'N',
-            'N',
-            '0'
+            ...['N', 'N', 'N', 'N', '0']
           ].join(';');
         })
         .join('\n')
@@ -150,10 +140,8 @@ export class ProductController {
         ...['id', 'name', 'priceUnit', 'slug'].map(c => `product.${c}`),
         ...['id', 'filename', 'sortOrder'].map(c => `image.${c}`)
         // ...['quantity'].map(c => `orderItems.${c}`)
-        // ...['id'].map(c => `supplies.${c}`)
       ])
       .leftJoin('product.images', 'image');
-    // .leftJoin('product.supplies', 'supplies')
     // .leftJoin('product.orderItems', 'orderItems');
 
     // TODO filter out CANCELLED orders - they don't count in quantity
