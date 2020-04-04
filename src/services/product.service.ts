@@ -2,11 +2,25 @@ import { getRepository, Repository } from 'typeorm';
 import { SelectQueryBuilder } from 'typeorm/query-builder/SelectQueryBuilder';
 
 import { Product } from '../entity/product';
-import { FetchType } from '../models/product.model';
+import { Supply } from '../entity/supply';
+import { FetchType, ProductsSuppliesCount } from '../models/product.model';
 import { removeDuplicates } from '../utils/transformation.utils';
 
 export class ProductService {
   public constructor(protected repository: Repository<Product> = getRepository(Product)) {}
+
+  public async attachSuppliesStubs(products: Product[], productIds: number[]): Promise<void> {
+    const productsSuppliesCount: ProductsSuppliesCount = await this.getProductsSuppliesCount(productIds);
+
+    products.forEach((product: Product): void => {
+      if (typeof productsSuppliesCount[product.id] !== 'undefined') {
+        product.supplies = [];
+        for (let i = 0; i < productsSuppliesCount[product.id]; i++) {
+          product.supplies.push(new Supply());
+        }
+      }
+    });
+  }
 
   // ---------------------------------------------------------------------------
 
@@ -54,16 +68,17 @@ export class ProductService {
       .select([
         ...['id', 'name', 'priceUnit', 'slug'].map(c => `product.${c}`),
         ...['id', 'filename', 'sortOrder'].map(c => `image.${c}`)
-        // ...['quantity'].map(c => `orderItems.${c}`)
       ])
       .leftJoin('product.images', 'image');
-    // .leftJoin('product.orderItems', 'orderItems');
-
-    // TODO filter out CANCELLED orders - they don't count in quantity
+    let products: Product[];
 
     productIds !== null && queryBuilder.where('product.id IN (:...productIds)', { productIds });
+    products = await queryBuilder.getMany();
 
-    return await queryBuilder.getMany();
+    await this.attachSuppliesStubs(products, productIds);
+    // TODO filter out CANCELLED orders - they don't count in quantity
+
+    return products;
   }
 
   public async getProductsFetchTypeFull(productIds: number[]): Promise<Product[]> {
@@ -114,7 +129,8 @@ export class ProductService {
 
   // ---------------------------------------------------------------------------
 
-  public async getSuppliesCount(productIds: number[]): Promise<Array<{ productId: number; suppliesCount: number }>> {
+  public async getProductsSuppliesCount(productIds: number[]): Promise<ProductsSuppliesCount> {
+    const productsSuppliesCount: ProductsSuppliesCount = {};
     const queryBuilder: SelectQueryBuilder<Product> = this.repository
       .createQueryBuilder('product')
       .select('product.id', 'productId')
@@ -124,6 +140,10 @@ export class ProductService {
 
     productIds !== null && queryBuilder.where('product.id IN (:...productIds)', { productIds });
 
-    return await queryBuilder.getRawMany();
+    (await queryBuilder.getRawMany()).forEach((raw: { productId: number; suppliesCount: number }): void => {
+      productsSuppliesCount[raw.productId] = raw.suppliesCount;
+    });
+
+    return productsSuppliesCount;
   }
 }

@@ -28,3 +28,7 @@ export interface ParameterBag {
   productId: number;
   productIds: number[];
 }
+
+export interface ProductsSuppliesCount {
+  [productId: number]: number;
+}
