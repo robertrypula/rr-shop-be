@@ -1,4 +1,4 @@
-## FORMY PŁATNOŚCI
+## Formy płatności
 
 Dokonując zakupów w naszym sklepie, mogą Państwo wybrać następujące formy patności:
 1. Tradycyjny przelew bankowy - możliwy po samodzielnym zalogowaniu do swojego banku, wizycie w placówce bankowej lub na poczcie.

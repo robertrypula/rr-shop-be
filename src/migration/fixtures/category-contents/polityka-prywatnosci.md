@@ -21,10 +21,10 @@
     - podjęcia działań przed zawarciem Umowy na żądanie osoby, której dane dotyczą, lub realizacji umowy, w tym świadczenia usług drogą elektroniczną związanych z korzystaniem ze sklepu internetowego waleriana.pl, na podstawie art. 6 ust. 1 lit. b) RODO;
     - wypełnienia prawnych obowiązków ciążących na Administratorze, na podstawie art. 6 ust. 1 lit. c) RODO;
     - dochodzenia roszczeń wynikających z zawartych umów, na podstawie art. 6 ust. 1 lit. f) RODO.
-    2. Podane dane osobowe, w zależności od celu ich przetwarzania będą przetwarzane przez Administratora:
-    - przez czas wykonywania obowiązków prawnych oraz czas, w którym przepisy prawa nakazują ich przetwarzanie,
-    - przez czas, po którym przedawnią się roszczenia wynikające z umowy,
-    - do momentu wycofania zgody.
+2. Podane dane osobowe, w zależności od celu ich przetwarzania będą przetwarzane przez Administratora:
+- przez czas wykonywania obowiązków prawnych oraz czas, w którym przepisy prawa nakazują ich przetwarzanie,
+- przez czas, po którym przedawnią się roszczenia wynikające z umowy,
+- do momentu wycofania zgody.
 
 ### § 3 Odbiorcy danych w sklepie internetowym
 
