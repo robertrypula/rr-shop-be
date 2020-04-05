@@ -3,7 +3,6 @@
 ### § 1 Postanowienia wstępne
 
 1. Sklep internetowy Waleriana.pl, dostępny pod adresem internetowym [https://waleriana.pl](https://waleriana.pl), prowadzony jest przez Monikę Oziminę oraz Joanna Rypułę, które prowadzą działalność w formie spółki cywilnej pod firmą: Waleriana.pl Monika Ozimina Joanna Rypuła spółka cywilna, wpisaną do Centralnej Ewidencji i Informacji o Działalności Gospodarczej (CEIDG) prowadzonej przez ministra właściwego ds. gospodarki, NIP 8992876342, REGON 385536848.
-
 2. Niniejszy regulamin skierowany jest do Konsumentów i określa zasady i tryb zawierania z Konsumentem Umowy Sprzedaży na odległość za pośrednictwem Sklepu. 
 
 ### § 2 Definicje

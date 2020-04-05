@@ -1,6 +1,7 @@
 ## Koszty dostawy
 
 Nasz sklep oferuje następujące sposoby dostawy towaru:
+
 1. Odbiór osobisty w siedzibie firmy - bezpłatnie
 
     Adres do odbioru:  

@@ -22,9 +22,9 @@
     - wypełnienia prawnych obowiązków ciążących na Administratorze, na podstawie art. 6 ust. 1 lit. c) RODO;
     - dochodzenia roszczeń wynikających z zawartych umów, na podstawie art. 6 ust. 1 lit. f) RODO.
 2. Podane dane osobowe, w zależności od celu ich przetwarzania będą przetwarzane przez Administratora:
-- przez czas wykonywania obowiązków prawnych oraz czas, w którym przepisy prawa nakazują ich przetwarzanie,
-- przez czas, po którym przedawnią się roszczenia wynikające z umowy,
-- do momentu wycofania zgody.
+    - przez czas wykonywania obowiązków prawnych oraz czas, w którym przepisy prawa nakazują ich przetwarzanie,
+    - przez czas, po którym przedawnią się roszczenia wynikające z umowy,
+    - do momentu wycofania zgody.
 
 ### § 3 Odbiorcy danych w sklepie internetowym
 
@@ -39,6 +39,7 @@
 ### § 5 Pliki cookies
 
 Zapisywane na komputerze użytkownika (klienta sklepu) pliki cookies (ciasteczka) wykorzystywane są w niżej wymienionych celach:
+
 1. Do zapamiętania zamknięcia Popupa informacyjnego o plikach cookie – 365 dni, po czym plik cookie (ciasteczko) jest usuwany 
 
 ### § 6 Inne technologie podobne do ciasteczek
