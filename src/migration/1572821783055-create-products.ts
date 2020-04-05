@@ -175,7 +175,9 @@ export class CreateProducts1572821783055 implements MigrationInterface {
         distributor: rowData[11].trim(),
         pkwiu: rowData[12].trim(),
         descriptionFilename: removeWhitespaceCharacters(rowData[13]),
-        imageFilename: removeWhitespaceCharacters(rowData[14]).replace('.jpg', '.png'),
+        imageFilename: removeWhitespaceCharacters(rowData[14])
+          .replace('.jpg', '')
+          .replace('.png', ''),
         priceUnitSelling: parsePrice(rowData[15]),
         categories: this.getCategories(rowData)
       });
