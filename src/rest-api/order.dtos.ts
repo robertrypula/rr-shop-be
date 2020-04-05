@@ -5,14 +5,33 @@ export interface OrderCreateRequestOrderItemsDto {
   priceUnitSelling: number;
   productId: number;
   quantity: number;
-  type: Type;
+}
+
+export interface OrderCreateRequestPromoCodeDto {
+  name: string;
+  percentageDiscount: number;
 }
 
 export interface OrderCreateRequestDto {
   orderItems: OrderCreateRequestOrderItemsDto[];
-  priceTotal: number;
-  priceTotalDelivery: number;
-  priceTotalPayment: number;
-  priceTotalProduct: number;
-  quantityTotalProduct: number;
+  // ---
+  email: string;
+  phone: string;
+  name: string;
+  surname: string;
+  address: string;
+  zipCode: string;
+  city: string;
+  comments: string;
+  // ---
+  promoCode: OrderCreateRequestPromoCodeDto;
+  // ---
+  priceTotalOriginalAll: number;
+  priceTotalOriginalDelivery: number;
+  priceTotalOriginalPayment: number;
+  priceTotalOriginalProduct: number;
+  priceTotalSellingAll: number;
+  priceTotalSellingDelivery: number;
+  priceTotalSellingPayment: number;
+  priceTotalSellingProduct: number;
 }

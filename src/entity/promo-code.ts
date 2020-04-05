@@ -1,6 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
-import { GENERIC_NAME_LENGTH } from './length-config';
+import { PROMO_CODE_LENGTH } from './length-config';
 import { Order } from './order';
 import { stringConfig } from './string-config';
 
@@ -9,7 +9,7 @@ export class PromoCode {
   @PrimaryGeneratedColumn()
   public id: number;
 
-  @Column('varchar', { length: GENERIC_NAME_LENGTH, ...stringConfig })
+  @Column('varchar', { length: PROMO_CODE_LENGTH, ...stringConfig })
   public name: string;
 
   @Column('decimal', { precision: 5, scale: 2 })

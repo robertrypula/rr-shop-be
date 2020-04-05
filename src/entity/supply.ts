@@ -1,6 +1,8 @@
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+
 import { Order } from './order';
 import { Product } from './product';
+import { stringConfig } from './string-config';
 
 @Entity()
 export class Supply {
@@ -21,6 +23,9 @@ export class Supply {
 
   @ManyToOne(type => Order)
   public order: Order; // do NOT use to calculate quantity, it's to track best before dates
+
+  @Column({ type: 'mediumtext', nullable: true, default: null, ...stringConfig })
+  public notes: string;
 
   @Column()
   @CreateDateColumn()

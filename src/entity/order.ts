@@ -1,7 +1,9 @@
+import { IsEmail, IsNotEmpty, IsOptional, Length, MaxLength } from 'class-validator';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  Index,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -9,7 +11,17 @@ import {
 } from 'typeorm';
 
 import { Status } from '../models/order.model';
-import { EMAIL_LENGTH } from './length-config';
+import {
+  EMAIL_LENGTH,
+  GENERIC_FORM_LENGTH,
+  ORDER_NUMBER_LENGTH,
+  PARCEL_LOCKER_LENGTH,
+  PHONE_LENGTH,
+  TEXT_AREA_LENGTH,
+  URL_LENGTH,
+  UUID_LENGTH,
+  ZIP_CODE_LENGTH
+} from './length-config';
 import { OrderItem } from './order-item';
 import { PromoCode } from './promo-code';
 import { stringConfig } from './string-config';
@@ -20,10 +32,15 @@ export class Order {
   @PrimaryGeneratedColumn()
   public id: number;
 
-  @Column('varchar', { length: 36, ...stringConfig })
+  @Index({ unique: true })
+  @Column('varchar', { length: UUID_LENGTH, ...stringConfig })
+  @Length(UUID_LENGTH, UUID_LENGTH)
   public uuid: string;
 
-  @Column('varchar', { length: 10, ...stringConfig }) // example: WA-123-456
+  @Index({ unique: true })
+  @Column('varchar', { length: ORDER_NUMBER_LENGTH, ...stringConfig }) // example: WA-123-456
+  @MaxLength(ORDER_NUMBER_LENGTH)
+  @IsNotEmpty()
   public number: string;
 
   @OneToMany(type => OrderItem, (orderItem: OrderItem) => orderItem.order, { cascade: ['insert'] })
@@ -38,30 +55,49 @@ export class Order {
   // ----------
 
   @Column('varchar', { length: EMAIL_LENGTH, ...stringConfig })
+  @IsEmail()
+  @IsNotEmpty()
+  @MaxLength(EMAIL_LENGTH)
   public email: string;
 
-  @Column('varchar', { length: 60, ...stringConfig })
+  @Column('varchar', { length: PHONE_LENGTH, ...stringConfig })
+  @MaxLength(PHONE_LENGTH)
+  @IsNotEmpty()
   public phone: string;
 
-  @Column('varchar', { length: 100, ...stringConfig })
+  @Column('varchar', { length: GENERIC_FORM_LENGTH, ...stringConfig })
+  @MaxLength(GENERIC_FORM_LENGTH)
+  @IsNotEmpty()
   public name: string;
 
-  @Column('varchar', { length: 100, ...stringConfig })
+  @Column('varchar', { length: GENERIC_FORM_LENGTH, ...stringConfig })
+  @MaxLength(GENERIC_FORM_LENGTH)
+  @IsNotEmpty()
   public surname: string;
 
-  @Column('varchar', { length: 100, ...stringConfig })
+  @Column('varchar', { length: GENERIC_FORM_LENGTH, ...stringConfig })
+  @MaxLength(GENERIC_FORM_LENGTH)
+  @IsNotEmpty()
   public address: string;
 
-  @Column('varchar', { length: 12, ...stringConfig })
+  @Column('varchar', { length: ZIP_CODE_LENGTH, ...stringConfig })
+  @MaxLength(ZIP_CODE_LENGTH)
+  @IsNotEmpty()
   public zipCode: string;
 
-  @Column('varchar', { length: 100, ...stringConfig })
+  @Column('varchar', { length: GENERIC_FORM_LENGTH, ...stringConfig })
+  @MaxLength(GENERIC_FORM_LENGTH)
+  @IsNotEmpty()
   public city: string;
 
-  @Column({ type: 'text', nullable: true, default: null, ...stringConfig })
+  @Column({ type: 'mediumtext', nullable: true, default: null, ...stringConfig })
+  @IsOptional()
+  @MaxLength(TEXT_AREA_LENGTH)
   public comments: string;
 
-  @Column('varchar', { length: 100, nullable: true, default: null, ...stringConfig })
+  @Column('varchar', { length: PARCEL_LOCKER_LENGTH, nullable: true, default: null, ...stringConfig })
+  @IsOptional()
+  @MaxLength(PARCEL_LOCKER_LENGTH)
   public parcelLocker: string;
 
   // ----------
@@ -69,12 +105,12 @@ export class Order {
   @Column('enum', { enum: Status, ...stringConfig })
   public status: Status;
 
-  @Column('varchar', { length: 1024, nullable: true, default: null, ...stringConfig })
+  @Column('varchar', { length: URL_LENGTH, nullable: true, default: null, ...stringConfig })
   public paymentUrl: string;
 
   // ----------
 
-  @Column({ type: 'text', nullable: true, default: null, ...stringConfig })
+  @Column({ type: 'mediumtext', nullable: true, default: null, ...stringConfig })
   public notes: string;
 
   @Column()

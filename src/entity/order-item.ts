@@ -40,4 +40,7 @@ export class OrderItem {
 
   @ManyToOne(type => Product)
   public product: Product;
+
+  @Column()
+  public productId: number;
 }

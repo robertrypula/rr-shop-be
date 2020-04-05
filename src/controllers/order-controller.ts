@@ -1,61 +1,26 @@
 import { Request, Response } from 'express';
 import { getRepository, Repository } from 'typeorm';
-import { v4 as uuidv4 } from 'uuid';
 
-import { SelectQueryBuilder } from 'typeorm/query-builder/SelectQueryBuilder';
 import { Order } from '../entity/order';
-import { OrderItem } from '../entity/order-item';
 import { Product } from '../entity/product';
-import { Status } from '../models/order.model';
-import { OrderCreateRequestDto, OrderCreateRequestOrderItemsDto } from '../rest-api/order.dtos';
-import { getOrderNumber } from '../utils/order.utils';
+import { OrderCreateRequestDto } from '../rest-api/order.dtos';
+import { OrderService } from '../services/order.service';
 
 export class OrderController {
   public constructor(
     protected repositoryOrder: Repository<Order> = getRepository(Order),
-    protected repositoryProduct: Repository<Product> = getRepository(Product)
+    protected repositoryProduct: Repository<Product> = getRepository(Product),
+    protected orderService: OrderService = new OrderService()
   ) {}
 
   public async createOrder(req: Request, res: Response): Promise<void> {
     const orderDto: OrderCreateRequestDto = req.body;
-    let order: Order = new Order();
+    let order: Order;
 
     try {
-      order.status = Status.PaymentWait;
-
-      order.orderItems = [];
-      for (let i = 0; i < orderDto.orderItems.length; i++) {
-        const orderItemDto: OrderCreateRequestOrderItemsDto = orderDto.orderItems[i];
-        const orderItem: OrderItem = new OrderItem();
-        const product: Product = await this.repositoryProduct.findOneOrFail(orderItemDto.productId, {
-          select: ['id', 'name', 'priceUnit']
-        });
-
-        orderItem.name = product.name;
-        orderItem.vat = 0; // should be latest VAT from supply table
-        orderItem.priceUnitOriginal = product.priceUnit;
-        orderItem.priceUnitSelling = product.priceUnit;
-        orderItem.product = product;
-        orderItem.quantity = orderItemDto.quantity;
-        orderItem.type = orderItemDto.type;
-
-        order.orderItems.push(orderItem);
-      }
-
-      order.uuid = uuidv4();
-      order.number = getOrderNumber();
-
-      order.email = '';
-      order.phone = '';
-      order.name = '';
-      order.surname = '';
-      order.address = '';
-      order.zipCode = '';
-      order.city = '';
-
-      order = await this.repositoryOrder.save(order);
+      order = await this.orderService.createOrder(orderDto);
     } catch (error) {
-      res.status(500).send(error);
+      res.status(500).send({ errorMessage: `${error}` });
       return;
     }
 
@@ -63,13 +28,7 @@ export class OrderController {
   }
 
   public async getOrder(req: Request, res: Response): Promise<void> {
-    const uuid = req.query.uuid;
-    const selectQueryBuilder: SelectQueryBuilder<Order> = this.repositoryOrder
-      .createQueryBuilder('order')
-      .select(['order.uuid', 'order.number', 'order.status', 'orderItems'])
-      .leftJoin('order.orderItems', 'orderItems')
-      .where('order.uuid = :uuid', { uuid });
-    const order: Order = await selectQueryBuilder.getOne();
+    const order: Order = await this.orderService.getOrder(req.query.uuid);
 
     order ? res.send(order) : res.status(404).send({});
   }

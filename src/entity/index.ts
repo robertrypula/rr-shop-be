@@ -1,6 +1,6 @@
 import { Category } from './category';
 import { Distributor } from './distributor';
-import { EmailQueue } from './email-queue';
+import { Email } from './email';
 import { Image } from './image';
 import { Manufacturer } from './manufacturer';
 import { Order } from './order';
@@ -13,7 +13,7 @@ import { User } from './user';
 export const entities = [
   Category,
   Distributor,
-  EmailQueue,
+  Email,
   Image,
   Manufacturer,
   Order,

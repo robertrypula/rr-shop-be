@@ -16,7 +16,7 @@ import { DeliveryType, PaymentType, Type } from '../models/product.model';
 import { Category } from './category';
 import { Distributor } from './distributor';
 import { Image } from './image';
-import { PRODUCT_NAME_LENGTH } from './length-config';
+import { BARCODE_LENGTH, PKWIU_LENGTH, PRODUCT_CASH_REGISTER_NAME_LENGTH, PRODUCT_NAME_LENGTH } from './length-config';
 import { Manufacturer } from './manufacturer';
 import { OrderItem } from './order-item';
 import { stringConfig } from './string-config';
@@ -33,13 +33,13 @@ export class Product {
   @Column('varchar', { length: PRODUCT_NAME_LENGTH, ...stringConfig })
   public name: string;
 
-  @Column('varchar', { length: 40, nullable: true, default: null, ...stringConfig })
+  @Column('varchar', { length: PRODUCT_CASH_REGISTER_NAME_LENGTH, nullable: true, default: null, ...stringConfig })
   public nameCashRegister: string;
 
   @Column('varchar', { length: PRODUCT_NAME_LENGTH, ...stringConfig })
   public slug: string;
 
-  @Column({ type: 'text', ...stringConfig })
+  @Column({ type: 'mediumtext', ...stringConfig })
   public description: string;
 
   @Column({ default: 0 })
@@ -48,13 +48,13 @@ export class Product {
   @Column('decimal', { precision: 7, scale: 2 })
   public priceUnit: number;
 
-  @Column('varchar', { length: 20, nullable: true, default: null, ...stringConfig })
+  @Column('varchar', { length: PKWIU_LENGTH, nullable: true, default: null, ...stringConfig })
   public pkwiu: string;
 
-  @Column({ nullable: true, default: null, ...stringConfig })
+  @Column('varchar', { length: BARCODE_LENGTH, nullable: true, default: null, ...stringConfig })
   public barcode: string;
 
-  @Column('text', { nullable: true, default: null, ...stringConfig })
+  @Column('mediumtext', { nullable: true, default: null, ...stringConfig })
   public notes: string;
 
   @Column('enum', { enum: Type, nullable: false, default: Type.Product, ...stringConfig })

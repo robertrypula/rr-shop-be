@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 
 import { StructuralNode } from '../models/category.model';
-import { GENERIC_NAME_LENGTH } from './length-config';
+import { GENERIC_LENGTH } from './length-config';
 import { stringConfig } from './string-config';
 
 @Entity()
@@ -17,13 +17,13 @@ export class Category {
   @PrimaryGeneratedColumn()
   public id: number;
 
-  @Column('varchar', { length: GENERIC_NAME_LENGTH, ...stringConfig })
+  @Column('varchar', { length: GENERIC_LENGTH, ...stringConfig })
   public name: string;
 
-  @Column('varchar', { length: GENERIC_NAME_LENGTH, nullable: true, default: null, ...stringConfig })
+  @Column('varchar', { length: GENERIC_LENGTH, nullable: true, default: null, ...stringConfig })
   public slug: string;
 
-  @Column('text', { nullable: true, default: null, ...stringConfig })
+  @Column('mediumtext', { nullable: true, default: null, ...stringConfig })
   public content: string;
 
   @Column({ nullable: true, default: null })

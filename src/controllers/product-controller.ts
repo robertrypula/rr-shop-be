@@ -76,8 +76,8 @@ export class ProductController {
       }
 
       res.send(await this.productService.getProductsByFetchType(productIds, parameterBag.fetchType));
-    } catch (e) {
-      res.status(500).send({ errorMessage: `${e}` });
+    } catch (error) {
+      res.status(500).send({ errorMessage: `${error}` });
     }
   }
 
@@ -95,8 +95,8 @@ export class ProductController {
       } else {
         res.status(404);
       }
-    } catch (e) {
-      res.status(500).send({ errorMessage: `${e}` });
+    } catch (error) {
+      res.status(500).send({ errorMessage: `${error}` });
     }
   }
 
