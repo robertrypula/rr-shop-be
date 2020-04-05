@@ -11,3 +11,4 @@ Nasz sklep oferuje następujące sposoby dostawy towaru:
 3. Przesyłka kurierem InPost - 15,90 zł brutto
 
    Paczki kurierskie w InPost są dostarczane przeważnie już następnego dnia po ich nadaniu.
+

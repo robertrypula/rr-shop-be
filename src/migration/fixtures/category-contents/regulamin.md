@@ -1,11 +1,12 @@
-### REGULAMIN SKLEPU INTERNETOWEGO WALERIANA.PL
-§ 1 Postanowienia wstępne
+## Regulamin sklepu internetowego Waleriana.pl
+
+### § 1 Postanowienia wstępne
 
 1. Sklep internetowy Waleriana.pl, dostępny pod adresem internetowym [https://waleriana.pl](https://waleriana.pl), prowadzony jest przez Monikę Oziminę oraz Joanna Rypułę, które prowadzą działalność w formie spółki cywilnej pod firmą: Waleriana.pl Monika Ozimina Joanna Rypuła spółka cywilna, wpisaną do Centralnej Ewidencji i Informacji o Działalności Gospodarczej (CEIDG) prowadzonej przez ministra właściwego ds. gospodarki, NIP 8992876342, REGON 385536848.
 
 2. Niniejszy regulamin skierowany jest do Konsumentów i określa zasady i tryb zawierania z Konsumentem Umowy Sprzedaży na odległość za pośrednictwem Sklepu. 
 
-§ 2 Definicje
+### § 2 Definicje
 
 1. KONSUMENT - osoba fizyczna, która dokonuje z przedsiębiorcą czynności prawnej niezwiązanej bezpośrednio z jej działalnością gospodarczą lub zawodową. 
 2. SPRZEDAWCA; USŁUGODAWCA – Monika Ozimina, Joanna Rypuła prowadzące działalność gospodarczą pod firmą Waleriana.pl Monika Ozimina Joanna Rypuła s.c. wpisana do Centralnej Ewidencji i Informacji o Działalności Gospodarczej Rzeczypospolitej Polskiej prowadzonej przez ministra właściwego do spraw gospodarki, posiadająca: adres miejsca wykonywania działalności i adres do doręczeń: ul. Tarnogajska 18 lok. 102, 50-515 Wrocław, NIP 8992876342, REGON 385536848, adres poczty elektronicznej: kontakt@waleriana.pl, numer telefonu: +48 739 907 730.
@@ -20,7 +21,7 @@
 11. PRODUKT - dostępna w Sklepie rzecz ruchoma będąca przedmiotem Umowy Sprzedaży między Klientem a Sprzedawcą.
 12. UMOWA SPRZEDAŻY - umowa sprzedaży Produktu zawierana albo zawarta między Klientem a Sprzedawcą za pośrednictwem Sklepu internetowego.
 
-§ 3 Kontakt ze Sklepem
+### § 3 Kontakt ze Sklepem
 
 1. Adres Sprzedawcy: ul. Tarnogajska 18 lok. 102; 50-515 Wrocław
 2. Adres e-mail Sprzedawcy: kontakt@waleriana.pl
@@ -29,14 +30,14 @@
 5. Klient może porozumiewać się ze Sprzedawcą za pomocą adresów i numerów telefonów podanych w niniejszym paragrafie.
 6. Klient może porozumieć się telefonicznie ze Sprzedawcą w godzinach 8:00 - 18:00.
 
-§ 4 Wymagania techniczne
+### § 4 Wymagania techniczne
 
 Do korzystania ze Sklepu, w tym przeglądania asortymentu Sklepu oraz składania zamówień na Produkty, niezbędne są:
 - urządzenie końcowe z dostępem do sieci Internet i przeglądarką internetową,
 - aktywne konto poczty elektronicznej (e-mail),
 - włączona obsługa plików cookies.
 
-§ 5 Informacje ogólne
+### § 5 Informacje ogólne
 
 1. Sprzedawca w najszerszym dopuszczalnym przez prawo zakresie nie ponosi odpowiedzialności za zakłócenia, w tym przerwy w funkcjonowaniu Sklepu spowodowane siłą wyższą, niedozwolonym działaniem osób trzecich lub niekompatybilnością Sklepu internetowego z infrastrukturą techniczną Klienta. 
 2. Przeglądanie asortymentu Sklepu nie wymaga zakładania Konta. Składanie zamówień przez Klienta na Produkty znajdujące się w asortymencie Sklepu możliwe jest przez podanie niezbędnych danych osobowych i adresowych umożliwiających realizację Zamówienia bez zakładania Konta. 
@@ -46,18 +47,18 @@ Do korzystania ze Sklepu, w tym przeglądania asortymentu Sklepu oraz składania
 6. Informacje publikowane na stronie Sklepu nie stanowią porad o charakterze medycznym. Treści tam zawarte nie mogą być traktowane jako forma diagnozy lub zalecenia w zakresie leczenia; nie zastępują także badań lekarskich, ani konsultacji z lekarzem.
 7. Przed użyciem każdego Produktu, Klient powinien zapoznać się z treścią opakowania lub ulotki dołączonej do Produktu, zawierającą informację dotyczącą stosowania i dawkowania, przeciwwskazania, informacje dotyczące działań niepożądanych.
 
-§ 6 Zasady składania Zamówienia
+### § 6 Zasady składania Zamówienia
 
 W celu złożenia Zamówienia należy: 
 
-1.	wybrać Produkt będący przedmiotem Zamówienia, a następnie kliknąć przycisk „Do koszyka”,
-2.	wypełnić Formularz zamówienia poprzez wpisanie danych odbiorcy Zamówienia oraz adresu, na który ma nastąpić dostawa Produktu, wybrać rodzaj przesyłki (sposób dostarczenia Produktu),
-3.	wybrać jeden z dostępnych sposobów płatności,
+1. wybrać Produkt będący przedmiotem Zamówienia, a następnie kliknąć przycisk „Do koszyka”,
+2. wypełnić Formularz zamówienia poprzez wpisanie danych odbiorcy Zamówienia oraz adresu, na który ma nastąpić dostawa Produktu, wybrać rodzaj przesyłki (sposób dostarczenia Produktu),
+3. wybrać jeden z dostępnych sposobów płatności,
 4. w przypadku posiadania kodu rabatowego należy go wprowadzić i aktywować,
-5.	kliknąć przycisk “Złóż zamówienie”,
+5. kliknąć przycisk “Złóż zamówienie”,
 6. w zależności od sposobu płatności, opłacić zamówienie w określonym terminie, z zastrzeżeniem § 7 pkt 4.
 
-§ 7 Oferowane metody dostawy oraz płatności:
+### § 7 Oferowane metody dostawy oraz płatności:
 
 1. Klient może skorzystać z następujących metod dostawy lub odbioru zamówionego Produktu:
     - przesyłka kurierska,
@@ -71,7 +72,7 @@ W celu złożenia Zamówienia należy:
 3. W przypadku płatności przelewem tradycyjnym, wpłaty należy dokonać na rachunek bankowy numer: 29 1140 2004 0000 3102 7976 4379. W tytule przelewu należy wpisać "Zamówienie nr........".
 4. Szczegółowe informacje na temat metod dostawy oraz akceptowalnych metod płatności znajdują się za stronach Sklepu.
 
-§ 8 Wykonanie umowy sprzedaży
+### § 8 Wykonanie umowy sprzedaży
 
 1. Zawarcie Umowy Sprzedaży między Klientem a Sprzedawcą następuje po uprzednim złożeniu przez Klienta Zamówienia za pomocą Formularza zamówienia w Sklepie internetowym zgodnie z § 6 Regulaminu.
 2. Po złożeniu Zamówienia Sprzedawca niezwłocznie potwierdza jego otrzymanie oraz jednocześnie przyjmuje Zamówienie do realizacji. Potwierdzenie otrzymania Zamówienia i jego przyjęcie do realizacji następuje poprzez przesłanie przez Sprzedawcę Klientowi stosownej wiadomości e-mail na podany w trakcie składania Zamówienia adres poczty elektronicznej Klienta, która zawiera co najmniej oświadczenia Sprzedawcy o otrzymaniu Zamówienia i o jego przyjęciu do realizacji oraz potwierdzenie zawarcia Umowy Sprzedaży. Z chwilą otrzymania przez Klienta powyższej wiadomości e-mail zostaje zawarta Umowa Sprzedaży między Klientem a Sprzedawcą.
@@ -85,7 +86,7 @@ W celu złożenia Zamówienia należy:
 8. Dostawa Produktu do Klienta jest odpłatna, chyba że Umowa Sprzedaży stanowi inaczej. Koszty dostawy Produktu (w tym opłaty za transport, dostarczenie i usługi pocztowe) są wskazywane Klientowi na stronach Sklepu internetowego w zakładce „Koszty dostawy” oraz w trakcie składania Zamówienia, w tym także w chwili wyrażenia przez Klienta woli związania się Umową Sprzedaży. 
 9. Odbiór osobisty Produktu przez Klienta jest bezpłatny. 
 
-§ 9 Prawo odstąpienia od umowy
+### § 9 Prawo odstąpienia od umowy
 
 1. Konsument może w terminie 14 dni odstąpić od Umowy Sprzedaży bez podania jakiejkolwiek przyczyny.
 2. Bieg terminu określonego w ust. 1 rozpoczyna się od dostarczenia Produktu Konsumentowi lub wskazanej przez niego osobie innej niż przewoźnik.
@@ -109,7 +110,7 @@ W celu złożenia Zamówienia należy:
     - w której cena lub wynagrodzenie zależy od wahań na rynku finansowym, nad którym Sprzedawca nie sprawuje kontroli, i które mogą wystąpić przed upływem terminu do odstąpienia od Umowy,
     - w której przedmiotem świadczenia są rzeczy, które po dostarczeniu, ze względu na swój charakter, zostają nierozłącznie połączone z innymi rzeczami.
 
-§ 10 Reklamacja i gwarancja
+### § 10 Reklamacja i gwarancja
 
 1. Umową Sprzedaży objęte są nowe Produkty.
 2. Sprzedawca jest obowiązany dostarczyć Klientowi rzecz wolną od wad.
@@ -120,7 +121,7 @@ W celu złożenia Zamówienia należy:
 7. Towary odsyłane w ramach procedury reklamacyjnej należy wysyłać na adres podany w § 3 niniejszego Regulaminu.
 8. W przypadku, gdy na Produkt została udzielona gwarancja, informacja o niej, a także jej treść, będą zawarte przy opisie Produktu w Sklepie. 
 
-§ 11 Pozasądowe sposoby rozpatrywania reklamacji i dochodzenia roszczeń
+### § 11 Pozasądowe sposoby rozpatrywania reklamacji i dochodzenia roszczeń
 
 1. Szczegółowe informacje dotyczące możliwości skorzystania przez Konsumenta z  pozasądowych sposobów rozpatrywania reklamacji i dochodzenia roszczeń oraz zasady dostępu do tych procedur dostępne są w siedzibach oraz na stronach internetowych powiatowych (miejskich) rzeczników konsumentów, organizacji społecznych, do których zadań statutowych należy ochrona konsumentów, Wojewódzkich Inspektoratów Inspekcji Handlowej oraz pod następującymi adresami internetowymi Urzędu Ochrony Konkurencji i Konsumentów: [http://www.uokik.gov.pl/spory_konsumenckie.php](http://www.uokik.gov.pl/spory_konsumenckie.php); [http://www.uokik.gov.pl/sprawy_indywidualne.php](http://www.uokik.gov.pl/sprawy_indywidualne.php) oraz [http://www.uokik.gov.pl/wazne_adresy.php](http://www.uokik.gov.pl/wazne_adresy.php).
 2. Konsument posiada następujące przykładowe możliwości skorzystania z pozasądowych sposobów rozpatrywania reklamacji i dochodzenia roszczeń:
@@ -128,7 +129,7 @@ W celu złożenia Zamówienia należy:
     - Konsument uprawniony jest do zwrócenia się do wojewódzkiego inspektora Inspekcji Handlowej, zgodnie z art. 36 ustawy z dnia 15 grudnia 2000 r. o Inspekcji Handlowej (Dz.U. z 2014 r. poz. 148 z późn. zm.), z wnioskiem o wszczęcie postępowania mediacyjnego w sprawie polubownego zakończenia sporu między Konsumentem a Sprzedawcą. 
     - Konsument może uzyskać bezpłatną pomoc w sprawie rozstrzygnięcia sporu między nim a Sprzedawcą, korzystając także z bezpłatnej pomocy powiatowego (miejskiego) rzecznika konsumentów lub organizacji społecznej, do której zadań statutowych należy ochrona konsumentów (m.in. Federacja Konsumentów, Stowarzyszenie Konsumentów Polskich).
 
-§ 13 Dane osobowe w Sklepie internetowym
+### § 13 Dane osobowe w Sklepie internetowym
 
 1. Administratorem danych osobowych Klientów zbieranych za pośrednictwem Sklepu internetowego jest Sprzedawca.
 2. Dane osobowe Klientów są zbierane przez administratora za pośrednictwem Sklepu internetowego  w celu realizacji Umowy Sprzedaży.
@@ -138,7 +139,7 @@ W celu złożenia Zamówienia należy:
 4. Klient ma prawo żądania dostępu do treści swoich danych oraz ich poprawiania.
 5. Podanie danych osobowych jest dobrowolne, aczkolwiek niepodanie wskazanych w Regulaminie danych osobowych niezbędnych do zawarcia Umowy Sprzedaży skutkuje brakiem możliwości zawarcia tejże umowy. 
 
-§ 14 Postanowienia końcowe
+### § 14 Postanowienia końcowe
 
 1. Umowy zawierane poprzez Sklep internetowy zawierane są w języku polskim.
 2. Sprzedawca zastrzega sobie prawo do dokonywania zmian Regulaminu z ważnych przyczyn to jest: zmiany przepisów prawa, zmiany sposobów płatności i dostaw - w zakresie, w jakim te zmiany wpływają na realizację postanowień niniejszego Regulaminu. O każdej zmianie Sprzedawca poinformuje Klienta z co najmniej 7 dniowym wyprzedzeniem.
