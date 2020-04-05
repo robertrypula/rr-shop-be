@@ -119,6 +119,7 @@ export class Product {
       this.orderItems = undefined;
     }
 
+    // TODO do not send quantity for Delivery and Payment products - we don't want to share sales data
     this.quantity = suppliesQuantity - orderItemsQuantity;
   }
 }

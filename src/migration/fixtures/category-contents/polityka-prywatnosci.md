@@ -1,7 +1,5 @@
-## POLITYKA PRYWATNOŚCI SKLEPU INTERNETOWEGO WALERIANA.PL
-
+### POLITYKA PRYWATNOŚCI SKLEPU INTERNETOWEGO WALERIANA.PL
 §1 POSTANOWIENIA OGÓLNE
-
 1. Niniejsza polityka prywatności Sklepu Internetowego ma charakter informacyjny, co oznacza że nie jest ona źródłem obowiązków dla Klientów Sklepu Internetowego. Polityka prywatności zawiera przede wszystkim zasady dotyczące przetwarzania danych osobowych przez Administratora w Sklepie Internetowym, w tym podstawy, cele i zakres przetwarzania danych osobowych oraz prawa osób, których dane dotyczą, a także informacje w zakresie stosowania w Sklepie Internetowym plików cookies oraz narzędzi analitycznych.
 2. Administratorem przetwarzanych w sklepie danych osobowych jest WALERIANA.PL Monika Ozimina Joanna Rypuła spółka cywilna z siedzibą przy ul. Tarnogajskiej 18 lok. 102, 50-515 Wrocław wpisana do Centralnej Ewidencji i Informacji o Działalności Gospodarczej  Rzeczypospolitej Polskiej prowadzonej przez ministra właściwego do spraw gospodarki, posiadającą: adres miejsca wykonywania działalności i adres do doręczeń: ul. Tarnogajska 18 lok. 102, 50-515 Wrocław, NIP 8992876342, REGON: 385536848, adres poczty elektronicznej: kontakt@waleriana.pl
 3. Dane osobowe w Sklepie Internetowym przetwarzane są przez Administratora zgodnie z obowiązującymi przepisami prawa, w szczególności zgodnie z rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (ogólne rozporządzenie o ochronie danych) - zwane dalej „RODO” lub „Rozporządzenie RODO”. Oficjalny tekst Rozporządzenia RODO: [http://eur-lex.europa.eu/legal-content/PL/TXT/?uri=CELEX%3A32016R0679](http://eur-lex.europa.eu/legal-content/PL/TXT/?uri=CELEX%3A32016R0679)
@@ -21,18 +19,16 @@
     - podjęcia działań przed zawarciem Umowy na żądanie osoby, której dane dotyczą, lub realizacji umowy, w tym świadczenia usług drogą elektroniczną związanych z korzystaniem ze sklepu internetowego waleriana.pl, na podstawie art. 6 ust. 1 lit. b) RODO;
     - wypełnienia prawnych obowiązków ciążących na Administratorze, na podstawie art. 6 ust. 1 lit. c) RODO;
     - dochodzenia roszczeń wynikających z zawartych umów, na podstawie art. 6 ust. 1 lit. f) RODO.
-2. Podane dane osobowe, w zależności od celu ich przetwarzania będą przetwarzane przez Administratora:
+    2. Podane dane osobowe, w zależności od celu ich przetwarzania będą przetwarzane przez Administratora:
     - przez czas wykonywania obowiązków prawnych oraz czas, w którym przepisy prawa nakazują ich przetwarzanie,
     - przez czas, po którym przedawnią się roszczenia wynikające z umowy,
     - do momentu wycofania zgody.
 
 §3 ODBIORCY DANYCH W SKLEPIE INTERNETOWYM
-
 1. Podane dane osobowe mogą być udostępniane innym podmiotom wyłączenie w celu realizacji umowy (np. operatorom pocztowym, firmie hostingowej OVH, podmiotom realizującym obsługę płatności) lub wypełnienia obowiązków wynikających z przepisów prawa.
 2. Dane osobowe nie będą przekazywane do państw spoza Europejskiego Obszaru Gospodarczego.
 
 §4 PRAWA OSOBY, KTÓREJ DANE DOTYCZĄ
-
 1. Osoba, której dane dotyczą posiada prawo dostępu do swoich danych, ich sprostowania, zaktualizowania i prawo do ograniczenia przetwarzania danych, a w zakresie, w którym przepisy prawa nie stanowią inaczej również prawo do ich usunięcia, wniesienia sprzeciwu wobec przetwarzania oraz prawo do przenoszenia danych.
 2. Osoba, której dane dotyczą posiada prawo wniesienia skargi do organu nadzorczego gdy uzna, iż przetwarzanie jego danych osobowych narusza przepisy RODO.
 
