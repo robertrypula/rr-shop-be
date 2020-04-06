@@ -81,7 +81,6 @@ export class CreatePromoCodes1584659163123 implements MigrationInterface {
       orderItem.quantity = d[1];
       orderItem.product = d[0];
       orderItem.name = 'a';
-      orderItem.vat = 3;
       orderItem.priceUnitOriginal = 3;
       orderItem.priceUnitSelling = 3;
       order.orderItems.push(orderItem);

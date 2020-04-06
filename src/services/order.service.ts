@@ -33,7 +33,6 @@ export class OrderService {
 
     order.orderItems.forEach((orderItem: OrderItem): void => {
       orderItem.name = 'dua';
-      orderItem.vat = 12.3;
     });
 
     validationErrors = await validate(order);
