@@ -20,7 +20,7 @@ export class ProductService {
   }
 
   public async attachSuppliesStubs(products: Product[], productIds: number[]): Promise<void> {
-    const productsSuppliesCount: ProductsSuppliesCount = await this.getProductsSuppliesCount(productIds);
+    const productsSuppliesCount: ProductsSuppliesCount = await this.getProductsSuppliesCount(productIds, true);
 
     products.forEach((product: Product): void => {
       if (typeof productsSuppliesCount[product.id] !== 'undefined') {
@@ -152,16 +152,20 @@ export class ProductService {
     return productsOrderItems;
   }
 
-  public async getProductsSuppliesCount(productIds: number[]): Promise<ProductsSuppliesCount> {
+  public async getProductsSuppliesCount(
+    productIds: number[],
+    countOnlyAvailable: boolean
+  ): Promise<ProductsSuppliesCount> {
     const productsSuppliesCount: ProductsSuppliesCount = {};
     const queryBuilder: SelectQueryBuilder<Product> = this.repository
       .createQueryBuilder('product')
-      .select('product.id', 'productId')
-      .addSelect('COUNT(supplies.id)', 'suppliesCount')
+      .select(['product.id as productId', 'COUNT(*) as suppliesCount'])
       .leftJoin('product.supplies', 'supplies')
-      .groupBy('product.id');
+      .where('1 = 1')
+      .groupBy('supplies.productId');
 
-    productIds !== null && queryBuilder.where('product.id IN (:...productIds)', { productIds });
+    countOnlyAvailable && queryBuilder.andWhere('supplies.isUnavailable is false');
+    productIds !== null && queryBuilder.andWhere('product.id IN (:...productIds)', { productIds });
 
     (await queryBuilder.getRawMany()).forEach((raw: { productId: number; suppliesCount: number }): void => {
       productsSuppliesCount[raw.productId] = raw.suppliesCount;

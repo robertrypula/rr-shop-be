@@ -21,8 +21,14 @@ export class Supply {
   @ManyToOne(type => Product)
   public product: Product;
 
-  @ManyToOne(type => Order)
-  public order: Order; // do NOT use to calculate quantity, it's to track best before dates
+  @Column()
+  public productId: number;
+
+  @Column('boolean', { default: false }) // use to mark that product was destroyed, lost or best before date expired
+  public isUnavailable: boolean; // do NOT use together with 'order' field
+
+  @ManyToOne(type => Order) // do NOT use together with 'isUnavailable' field
+  public order: Order; // do NOT use to calculate quantity, it's to track which best before dates product are gone
 
   @Column({ type: 'mediumtext', nullable: true, default: null, ...stringConfig })
   public notes: string;
