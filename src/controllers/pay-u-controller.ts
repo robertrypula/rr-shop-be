@@ -3,12 +3,10 @@ import { getRepository, Repository } from 'typeorm';
 
 import { getSecretConfig } from '../config';
 import { Category } from '../entity/category';
-import { sendEmailAdvanced } from '../gmail/advanced';
-import { sendEmailSimple } from '../gmail/simple';
 import { fileLogger } from '../logs/file-logger';
 import { SecretConfig } from '../models/model';
-import { Headers, Notification } from '../pay-u/models';
-import { SimplePayU } from '../pay-u/simple-pay-u';
+import { Headers, Notification } from '../simple-pay-u/models';
+import { SimplePayU } from '../simple-pay-u/simple-pay-u';
 import { getOrderNumber } from '../utils/order.utils';
 import { reStringifyPretty, stringifyPretty } from '../utils/utils';
 
@@ -34,25 +32,8 @@ export class PayUController {
         validityTime: 2 * 3600
       });
 
-      let mailResponseS;
-      let mailResponseA;
-
-      try {
-        mailResponseS = await sendEmailSimple(email, `${extOrderId} S`, `Zamówienie zostało złożone!!`);
-      } catch (error) {
-        mailResponseS = error;
-      }
-
-      try {
-        mailResponseA = await sendEmailAdvanced(email, `${extOrderId} A`, `Zamówienie zostało złożone!!`);
-      } catch (error) {
-        mailResponseA = error;
-      }
-
       res.send(`
        <pre>${JSON.stringify(orderResponse, null, 2)}</pre>
-       <pre>${JSON.stringify(mailResponseS, null, 2)}</pre>
-       <pre>${JSON.stringify(mailResponseA, null, 2)}</pre>
        <a href="${orderResponse.redirectUri}">place order</a>
       `);
     } catch (error) {

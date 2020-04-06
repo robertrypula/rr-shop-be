@@ -1,12 +1,15 @@
+import { DEFAULT } from '../email-templates/default';
 import { Order } from '../entity/order';
 import { Status } from '../models/order.model';
 
+// TODO implement html template loading
+// TODO check why it's not working with ts-node-dev package
+// https://github.com/robertrypula/audio-network-reborn/commit/d37ea6bcdfa84ca5b325da09195bd1c9de79be31
 // const DEFAULT = require('./email-templates/default.html');
 
 export class TemplateService {
   public getOrderEmailHtml(order: Order): string {
-    // TODO implement html template loading
-    return '{{ MESSAGE }}'.replace('{{ MESSAGE }}', `<pre>${JSON.stringify(order)}</pre>`);
+    return DEFAULT.replace('{{ MESSAGE }}', `<pre>${JSON.stringify(order)}</pre>`);
   }
 
   public getOrderEmailSubject(order: Order): string {
@@ -23,6 +26,8 @@ export class TemplateService {
         return `Waleriana.pl - zamówienie ${order.number} zostało zakończone, dziękujemy!`;
       case Status.Cancelled:
         return `Waleriana.pl - zamówienie ${order.number} zostało anulowane`;
+      default:
+        return `Waleriana.pl - zamówienie ${order.number}`;
     }
   }
 }

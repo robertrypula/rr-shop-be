@@ -4,7 +4,8 @@ import { API_AUTHORIZE, API_ORDERS, BASE_URL_PRODUCTION, BASE_URL_SANDBOX } from
 import { toAuthorizeSuccess, toNotification, toOrderRequest, toOrderSuccess } from './mappers';
 import * as fromModels from './models';
 
-// Inspired by vanilla JavaScript implementation: https://github.com/adambuczek/node-payu
+// Inspired by vanilla JavaScript implementation by Adam Buczek (https://github.com/adambuczek/node-payu)
+// Code migrated to TypeScript and heavily refactored by Robert Rypuła (https://github.com/robertrypula)
 
 export class SimplePayU {
   protected baseUrl: string;

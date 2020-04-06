@@ -1,4 +1,4 @@
-import { Environment } from '../pay-u/models';
+import { Environment } from '../simple-pay-u/models';
 
 export interface JwtPayload {
   userId: number;
