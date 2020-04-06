@@ -77,9 +77,11 @@ export class ProductService {
       .createQueryBuilder('product')
       .select([
         ...['id', 'name', 'priceUnit', 'slug'].map(c => `product.${c}`),
-        ...['id', 'filename', 'sortOrder'].map(c => `image.${c}`)
+        ...['id', 'filename', 'sortOrder'].map(c => `image.${c}`),
+        ...['name'].map(c => `manufacturer.${c}`)
       ])
-      .leftJoin('product.images', 'image');
+      .leftJoin('product.images', 'image')
+      .leftJoin('product.manufacturer', 'manufacturer');
     let products: Product[];
 
     productIds !== null && queryBuilder.where('product.id IN (:...productIds)', { productIds });
@@ -98,9 +100,13 @@ export class ProductService {
         ...['id', 'name', 'priceUnit', 'slug', 'description', 'type', 'deliveryType', 'paymentType'].map(
           c => `product.${c}`
         ),
-        ...['id', 'filename', 'sortOrder'].map(c => `image.${c}`)
+        ...['id', 'filename', 'sortOrder'].map(c => `image.${c}`),
+        ...['name'].map(c => `manufacturer.${c}`),
+        ...['id', 'filename', 'sortOrder'].map(c => `manufacturerImage.${c}`)
       ])
-      .leftJoin('product.images', 'image');
+      .leftJoin('product.images', 'image')
+      .leftJoin('product.manufacturer', 'manufacturer')
+      .leftJoin('manufacturer.images', 'manufacturerImage');
     let products: Product[];
 
     productIds !== null && queryBuilder.where('product.id IN (:...productIds)', { productIds });

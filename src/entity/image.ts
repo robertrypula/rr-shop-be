@@ -1,6 +1,7 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 import { GENERIC_LENGTH } from './length-config';
+import { Manufacturer } from './manufacturer';
 import { Product } from './product';
 import { stringConfig } from './string-config';
 
@@ -17,4 +18,7 @@ export class Image {
 
   @ManyToOne(type => Product)
   public product: Product;
+
+  @ManyToOne(type => Manufacturer)
+  public manufacturer: Manufacturer;
 }

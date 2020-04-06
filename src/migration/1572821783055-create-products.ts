@@ -22,15 +22,6 @@ import { DescriptionMdFile, MainTsvRow } from './fixtures/dtos';
 // tslint:disable:object-literal-sort-keys
 // tslint:disable:no-console
 
-//
-// export const productFixtures: ProductFixture[] = [
-//   [['Odbiór osobisty', '', 0.0, 1000000, '', DeliveryType.Own, null], [DELIVERIES], [], ``],
-//   [['Paczkomaty', '', 8.99, 1000000, '', DeliveryType.Paczkomaty, null], [DELIVERIES], [], ``],
-//   [['Kurier', '', 12.0, 1000000, '', DeliveryType.Courier, null], [DELIVERIES], [], ``],
-//   [['Przelew bankowy', '', 0.0, 1000000, '', null, PaymentType.BankTransfer], [PAYMENTS], [], ``],
-//   [['Płatność elektroniczna PayU', '', 0.5, 1000000, '', null, PaymentType.PayU], [PAYMENTS], [], ``]
-// ];
-
 export class CreateProducts1572821783055 implements MigrationInterface {
   protected distributorMap: { [key: string]: Distributor } = {};
   protected manufacturerMap: { [key: string]: Manufacturer } = {};
@@ -113,6 +104,7 @@ export class CreateProducts1572821783055 implements MigrationInterface {
       } else {
         manufacturer = new Manufacturer();
         manufacturer.name = descriptionMdFile.manufacturer;
+        manufacturer.images = [this.createImage(getSlugFromPolishString(manufacturer.name))];
         this.manufacturerMap[descriptionMdFile.manufacturer] = manufacturer;
       }
 
@@ -217,6 +209,9 @@ export class CreateProducts1572821783055 implements MigrationInterface {
     } else {
       name = this.cleanProductName(lineFirst);
     }
+
+    description = description.replace(/(\*\*.+\*\*)/g, '#### $1\n');
+    description = description.replace(/#### \*\*(.+)\*\*/g, '#### $1');
 
     return {
       description,
