@@ -45,7 +45,12 @@ export class CreateProducts1572821783055 implements MigrationInterface {
       const product = new Product();
 
       product.externalId = mainTsvRow.id;
-      product.name = descriptionMdFile.name ? descriptionMdFile.name : '---';
+      product.name =
+        mainTsvRow.deliveryType || mainTsvRow.paymentType
+          ? mainTsvRow.name
+          : descriptionMdFile.name
+          ? descriptionMdFile.name
+          : '---';
       product.nameCashRegister = getCashRegisterName(mainTsvRow.name, true);
       product.slug = getSlugFromPolishString(product.name);
       product.description = descriptionMdFile.description;
@@ -55,7 +60,9 @@ export class CreateProducts1572821783055 implements MigrationInterface {
       product.pkwiu = mainTsvRow.pkwiu;
       // product.barcode
       // product.notes
-      product.type = Type.Product;
+      product.type = mainTsvRow.paymentType ? Type.Payment : mainTsvRow.deliveryType ? Type.Delivery : Type.Product;
+      product.paymentType = mainTsvRow.paymentType;
+      product.deliveryType = mainTsvRow.deliveryType;
       product.images = [this.createImage(mainTsvRow.imageFilename)];
       product.supplies = this.getSupplies(mainTsvRow);
       this.attachDistributor(mainTsvRow, product);
@@ -243,10 +250,10 @@ export class CreateProducts1572821783055 implements MigrationInterface {
   }
 
   protected getDeliveryType(value: string): DeliveryType {
-    switch (value) {
+    switch (value.trim()) {
       case 'InPostCourier':
         return DeliveryType.InPostCourier;
-      case 'InPostParcelLock':
+      case 'InPostParcelLocker':
         return DeliveryType.InPostParcelLocker;
       case 'Own':
         return DeliveryType.Own;
@@ -256,7 +263,7 @@ export class CreateProducts1572821783055 implements MigrationInterface {
   }
 
   protected getPaymentType(value: string): PaymentType {
-    switch (value) {
+    switch (value.trim()) {
       case 'BankTransfer':
         return PaymentType.BankTransfer;
       case 'PayU':
