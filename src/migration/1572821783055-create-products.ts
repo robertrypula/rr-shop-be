@@ -45,8 +45,8 @@ export class CreateProducts1572821783055 implements MigrationInterface {
       const product = new Product();
 
       product.externalId = mainTsvRow.id;
-      product.name = descriptionMdFile.name ? descriptionMdFile.name : mainTsvRow.name;
-      product.nameCashRegister = getCashRegisterName(product.name, true);
+      product.name = descriptionMdFile.name ? descriptionMdFile.name : '---';
+      product.nameCashRegister = getCashRegisterName(mainTsvRow.name, true);
       product.slug = getSlugFromPolishString(product.name);
       product.description = descriptionMdFile.description;
       // product.sortOrder

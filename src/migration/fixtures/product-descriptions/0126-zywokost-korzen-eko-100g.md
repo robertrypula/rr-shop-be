@@ -2,7 +2,7 @@
 
 **Opis** Według literatury zielarskiej korzeń żywokostu przyspiesza gojenie i ziarninowanie ran oraz polecany jest przy wszelkich owrzodzeniach skóry, oparzeniach czy odmrożeniach w formie okładów. 
 
-**Skład** Korzeń żywokostu 100 %, z rolnictwa ekologicznego.
+**Skład** Korzeń żywokostu (produkt rolnictwa ekologicznego) 
 
 **Jednostka certyfikująca** PL-EKO-01
 
