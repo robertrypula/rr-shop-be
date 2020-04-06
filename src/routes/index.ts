@@ -5,6 +5,7 @@ import { checkRole } from '../middlewares/check-role';
 import { adminRoutes } from './admin';
 import { authRouter } from './auth';
 import { categoryRouter } from './category';
+import { emailRouter } from './email';
 import { orderRouter } from './order';
 import { payURouter } from './pay-u';
 import { productRouter } from './product';
@@ -18,6 +19,7 @@ routes.use('/admin', jwtAdmin, adminRoutes);
 
 routes.use('/auth', authRouter);
 routes.use('/category', categoryRouter);
+routes.use('/email', emailRouter);
 routes.use('/order', orderRouter);
 routes.use('/pay-u', payURouter);
 routes.use('/product', productRouter);

@@ -9,13 +9,13 @@ export class Email {
   public id: number;
 
   @Column('varchar', { length: EMAIL_LENGTH, ...stringConfig })
-  public emailTo: string;
+  public to: string;
 
   @Column('varchar', { length: GENERIC_LENGTH, ...stringConfig })
-  public title: string;
+  public subject: string;
 
   @Column({ type: 'mediumtext', ...stringConfig })
-  public body: string;
+  public html: string;
 
   @Column({ default: false })
   public isSent: boolean;
