@@ -27,12 +27,14 @@ export class EmailController {
       emails = await this.emailService.getEmailsForSend(limit);
     } catch (error) {
       res.status(500).send({ errorMessage: 'Error occurred while fetching emails' });
+      return;
     }
 
     try {
       await this.emailService.sendEmails(emails);
     } catch (error) {
       res.status(500).send({ errorMessage: `Error occurred while sending emails ${error}` });
+      return;
     }
 
     res.send(emails.map((email: Email): { createdAt: Date } => ({ createdAt: email.createdAt })));

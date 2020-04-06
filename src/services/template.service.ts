@@ -9,7 +9,13 @@ import { Status } from '../models/order.model';
 
 export class TemplateService {
   public getOrderEmailHtml(order: Order): string {
-    return DEFAULT.replace('{{ MESSAGE }}', `<pre>${JSON.stringify(order)}</pre>`);
+    const message: string = [
+      `<pre style="font-size: 11px; line-height: 1.1em; font-family: monospace;">`,
+      `${JSON.stringify(order, null, 2)}`,
+      `</pre>`
+    ].join('');
+
+    return DEFAULT.replace('{{ MESSAGE }}', message);
   }
 
   public getOrderEmailSubject(order: Order): string {

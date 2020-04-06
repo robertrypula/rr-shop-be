@@ -1,5 +1,7 @@
 import { createTransport } from 'nodemailer';
 const { google } = require('googleapis');
+import { createReadStream } from 'fs';
+import { join } from 'path';
 
 import { Settings } from './models';
 
@@ -7,15 +9,6 @@ import { Settings } from './models';
 
 // tslint:disable:object-literal-sort-keys
 // tslint:disable:no-console
-
-const gmailOAuth2: Settings = {
-  clientId: '',
-  clientSecret: '',
-  from: 'Waleriana.pl <kontakt@waleriana.pl>',
-  redirectUri: '',
-  refreshToken: '',
-  user: 'kontakt@waleriana.pl'
-};
 
 export class SimpleGmail {
   protected settings: Settings;
@@ -46,7 +39,20 @@ export class SimpleGmail {
         service: 'gmail'
       });
 
-      const mailOptions = { from: this.settings.from, to, subject, html, generateTextFromHTML: true };
+      const mailOptions = {
+        from: this.settings.from,
+        to,
+        subject,
+        html,
+        generateTextFromHTML: true,
+        attachments: [
+          {
+            cid: 'footer.image.001',
+            content: createReadStream(join(__dirname, '/email-signature-128.png')),
+            filename: 'email-signature-128.png'
+          }
+        ]
+      };
 
       console.log('send mail BEGIN');
       smtpTransport.sendMail(mailOptions, (error: any, response: any): void => {

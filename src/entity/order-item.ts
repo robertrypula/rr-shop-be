@@ -18,7 +18,7 @@ export class OrderItem {
   public vat: number;
 
   @Column('decimal', { precision: 7, scale: 2 })
-  public priceUnitSelling: number; // use 0 when product was destroyed by accident but was already paid by client
+  public priceUnitSelling: number;
 
   @Column('decimal', { precision: 7, scale: 2 })
   public priceUnitOriginal: number;
