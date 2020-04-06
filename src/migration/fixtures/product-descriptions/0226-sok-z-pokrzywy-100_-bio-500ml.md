@@ -5,7 +5,7 @@
 **Skład** Ekologiczny sok z pokrzywy odtworzony z ekstraktu (99,7%),
 przeciwutleniacz: kwas askorbinowy, regulator kwasowości: kwas cytrynowy.
 
-**Jednostka certyfikująca** 
+**Jednostka certyfikująca** PL-EKO-01
 
 **Producent** PolBioEco Polska Sp. z o.o.
 ul. Do Dysa 5, 20-149 Lublin

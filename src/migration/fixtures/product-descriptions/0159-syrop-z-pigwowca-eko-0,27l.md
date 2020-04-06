@@ -1,4 +1,4 @@
-##Ekologiczny syrop z pigwowca 270 ml, Dary Natury
+##Ekologiczny syrop z pigwowca 270ml, Dary Natury
 
 **Opis** Syrop z pigwowca to smakowo-witaminowy dodatek do herbat czy deserów, który po rozcieńczeniu z wodą może być spożywany również jako napój. 
 

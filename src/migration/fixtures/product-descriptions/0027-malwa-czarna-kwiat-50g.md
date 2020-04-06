@@ -1,4 +1,4 @@
-##Kwiat czarnej malwy 50g, FLos
+##Kwiat czarnej malwy 50g, Flos
 
 **Opis** Kwiat malwy według literatury zielarskiej idealnie sprawdza się w formie okładów na wszelkie problemy z oczami, jak stany zapalne, zmęczenie, pieczenie czy drobne uszkodzenia mechaniczne. Działa wspomagająco przy nieżytach przewodu pokarmowego oraz oddechowego, w tym problemach z kaszlem i krtanią.
 

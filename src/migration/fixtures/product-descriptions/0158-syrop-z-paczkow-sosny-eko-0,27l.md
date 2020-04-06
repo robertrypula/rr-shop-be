@@ -1,4 +1,4 @@
-##Ekologiczny syrop z pączków sosny 270 ml, Dary Natury
+##Ekologiczny syrop z pączków sosny 270ml, Dary Natury
 
 **Opis** Pączki sosny zawierają znaczne ilości olejku eterycznego, gorycz, żywicę, flawonoidy czy woski. Według literatury zielarskiej działają wykrztuśnie, przeciwskurczowo oraz antyseptycznie dlatego są szczególnie polecana przy nieżytach dróg oddechowych oraz wszelkich tzw. chorobach przeziębieniowych. 
 

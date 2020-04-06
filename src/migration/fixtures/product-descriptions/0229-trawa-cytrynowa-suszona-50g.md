@@ -1,7 +1,10 @@
-##Trawa cytrynowa 50g, 
+##Trawa cytrynowa 50g, Merre
 
-**Opis** Cytrusowy aromat. Według literaury zielarskiej działa antyseptycznie oraz wspomaga trawienie i krążenie. Polecana w szczegolności do dań kuchni azjatyckiej oraz aromatyzowania herbat i innych naparów. 
+**Opis** Jedna z podstawowych przypraw kuchni tajskiej. Nadaje potrawom odświeżający, cytrynowy smak, pozbawiony kwaśności cytryny. 
 
 **Skład** Trawa cytrynowa 100%
 
-**Producent** 
+**Kraj pochodzenia** Tajlandia
+
+**Importer** MERRE Sp. z o.o.
+ul. Wolska 84/86 Warszawa

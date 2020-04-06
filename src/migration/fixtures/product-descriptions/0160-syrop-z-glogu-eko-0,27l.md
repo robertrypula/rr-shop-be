@@ -1,4 +1,4 @@
-##Ekologiczny syrop z głogu 270 ml, DARY NATURY
+##Ekologiczny syrop z głogu 270ml, Dary Natury
 
 **Opis** Syrop z głogu to smakowo-witaminowy dodatek do herbat czy deserów, który po rozcieńczeniu z wodą może być spożywany również jako napój. 
 

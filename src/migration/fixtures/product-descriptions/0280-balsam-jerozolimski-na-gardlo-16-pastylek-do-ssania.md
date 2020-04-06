@@ -1,4 +1,4 @@
-##Balsam jerozolimski na gardło - 16 pastylek, Boni Fraters
+##Balsam jerozolimski na gardło - 16 pastylek, Boni Fratres
 
 **Opis** Balsam jerozolimski na gardło to suplement diety stworzony w oparciu o 400 lat doświadczenia Zakonu Bonifratrów. Zawiera ekstrakt z ziół, które według zakonnej receptury:
 - koją podrażnione gardło (czarny bez, lipa, dziewanna, rumianek, tymianek),

@@ -1,4 +1,4 @@
-##Balsam jerozolimski forte 200ml, Boni Fraters
+##Balsam jerozolimski forte 200ml, Boni Fratres
 
 **Opis** Balsam jerozolimski forte to wyjątkowa i unikalna receptura Zakonu Braci Bonifratrów, składająca się z jedenastu ziół wspomagających odporność oraz układ oddechowy w walce z infekcjami. 
 

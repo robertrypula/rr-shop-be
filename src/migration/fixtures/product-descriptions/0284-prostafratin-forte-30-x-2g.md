@@ -1,4 +1,4 @@
-##Prostafratin forte do zaparzania w saszetkach 30x2g, Boni Fraters
+##Prostafratin forte do zaparzania w saszetkach 30x2g, Boni Fratres
 
 **Opis** Prostafratin Forte to naturalna mieszanka ziołowa sporządzona zgodnie z zakonną recepturą. Dzięki zawartości wierzbownicy drobnokwiatowej wspomaga prawidłowe funkcjonowanie prostaty, a za sprawą pozostałych składników jak pokrzywa, skrzyp, perz czy pietruszka również pracę nerek. 
 

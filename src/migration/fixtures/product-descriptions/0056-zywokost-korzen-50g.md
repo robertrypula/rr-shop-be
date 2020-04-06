@@ -1,4 +1,4 @@
-##Korzeń żywokostu 50g, FLos
+##Korzeń żywokostu 50g, Flos
 
 **Opis** Według literatury zielarskiej korzeń żywokostu przyspiesza gojenie i ziarninowanie ran oraz polecany jest przy wszelkich owrzodzeniach skóry, oparzeniach czy odmrożeniach w formie okładów. 
 

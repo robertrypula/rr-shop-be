@@ -1,6 +1,8 @@
 ##Ekologiczny sok z kiszonych ogórków 3l, Dary Natury
 
-**Opis** Laureat Nagrody Nobla za badania nad zjawiskiem odporności - Ilia Miecznikow, twierdził że bakterie z rodzaju Lactobacillus (obecne w kiszonkach) opóźniają procesy starzenia a tym samym przedłużają życie.
+**Opis** Sok z kiszonych ogórków w 3 litrowym, praktycznym opakowaniu z kranikiem. Po otwarciu zachowuje świeżość przez 72 godziny i wymaga przechowywania w warunkach chłodniczych. 
+
+Laureat Nagrody Nobla za badania nad zjawiskiem odporności - Ilia Miecznikow, twierdził że bakterie z rodzaju Lactobacillus (obecne w kiszonkach) opóźniają procesy starzenia a tym samym przedłużają życie.
 Ponadto produkty na bazie fermentowanych warzyw są:
 - lekkostrawne i łatwo przyswajalne 
 - dzięki zawartości żywych kultur bakterii wytwarzających kwas mlekowy wspierają układ immunologiczny oraz korzystnie wpływają na mikroflorę jelitową

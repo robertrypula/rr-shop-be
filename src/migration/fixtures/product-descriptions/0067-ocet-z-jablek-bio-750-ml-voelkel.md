@@ -6,7 +6,7 @@ Ocet stosowany jako przyprawa w szczególności polecany jest do marynowania mi�
 
 **Skład** Ocet jabłkowy niepasteryzowany (produkt rolnictwa ekologicznego) 100%
 
-**Jednostka certyfikująca**
+**Jednostka certyfikująca** DE-EKO-007
 
 **Producent** Voelkel
 Fährstraße 1, 29478 Höhbeck Niemcy
