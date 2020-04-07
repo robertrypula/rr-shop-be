@@ -10,7 +10,7 @@ import { Connection, createConnection } from 'typeorm';
 import { getSecretConfig } from './config';
 import { entities } from './entity';
 import { migrations } from './migration';
-import { SecretConfig } from './models/model';
+import { SecretConfig } from './models/models';
 import { routes } from './routes';
 
 const secretConfig: SecretConfig = getSecretConfig();

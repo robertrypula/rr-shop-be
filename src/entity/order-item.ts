@@ -1,7 +1,7 @@
 import { IsNumber } from 'class-validator';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-import { DeliveryType, PaymentType, Type } from '../models/product.model';
+import { DeliveryType, PaymentType, Type } from '../models/product.models';
 import { PRODUCT_NAME_LENGTH } from './length-config';
 import { Order } from './order';
 import { Product } from './product';

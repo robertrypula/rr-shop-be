@@ -1,4 +1,4 @@
-import { SecretConfig } from '../models/model';
+import { SecretConfig } from '../models/models';
 import { Environment } from '../simple-pay-u/models';
 
 export const toSecretConfig = (fileContent: string): SecretConfig => {

@@ -7,7 +7,7 @@ import { Image } from '../entity/image';
 import { Manufacturer } from '../entity/manufacturer';
 import { Product } from '../entity/product';
 import { Supply } from '../entity/supply';
-import { DeliveryType, PaymentType, Type } from '../models/product.model';
+import { DeliveryType, PaymentType, Type } from '../models/product.models';
 import { getCashRegisterName, getSlugFromPolishString } from '../utils/product.utils';
 import {
   extractBestBefore,

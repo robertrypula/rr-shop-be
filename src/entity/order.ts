@@ -10,7 +10,7 @@ import {
   UpdateDateColumn
 } from 'typeorm';
 
-import { Status } from '../models/order.model';
+import { Status } from '../models/order.models';
 import {
   EMAIL_LENGTH,
   GENERIC_FORM_LENGTH,

@@ -4,7 +4,7 @@ import { getRepository, Repository } from 'typeorm';
 import { getSecretConfig } from '../config';
 import { Category } from '../entity/category';
 import { fileLogger } from '../logs/file-logger';
-import { SecretConfig } from '../models/model';
+import { SecretConfig } from '../models/models';
 import { Headers, Notification } from '../simple-pay-u/models';
 import { SimplePayU } from '../simple-pay-u/simple-pay-u';
 import { getOrderNumber } from '../utils/order.utils';

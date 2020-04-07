@@ -7,7 +7,7 @@ import { Order } from '../entity/order';
 import { OrderItem } from '../entity/order-item';
 import { Product } from '../entity/product';
 import { fromOrderCreateRequestDto } from '../mappers/order.mappers';
-import { Status } from '../models/order.model';
+import { Status } from '../models/order.models';
 import { OrderCreateRequestDto } from '../rest-api/order/order.dtos';
 import { getOrderNumber } from '../utils/order.utils';
 import { TemplateService } from './template.service';

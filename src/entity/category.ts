@@ -8,7 +8,7 @@ import {
   UpdateDateColumn
 } from 'typeorm';
 
-import { StructuralNode } from '../models/category.model';
+import { StructuralNode } from '../models/category.models';
 import { GENERIC_LENGTH } from './length-config';
 import { stringConfig } from './string-config';
 

@@ -1,5 +1,5 @@
-import { StructuralNode } from '../../models/category.model';
-import { DeliveryType, PaymentType } from '../../models/product.model';
+import { StructuralNode } from '../../models/category.models';
+import { DeliveryType, PaymentType } from '../../models/product.models';
 
 export interface CategoryTsvRow {
   structuralNode: StructuralNode;

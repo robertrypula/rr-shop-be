@@ -1,8 +1,8 @@
 import { getSecretConfig } from '../config';
 import { DEFAULT } from '../email-templates/default';
 import { Order } from '../entity/order';
-import { SecretConfig } from '../models/model';
-import { Status } from '../models/order.model';
+import { SecretConfig } from '../models/models';
+import { Status } from '../models/order.models';
 
 // TODO implement html template loading
 // TODO check why it's not working with ts-node-dev package

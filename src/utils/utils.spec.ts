@@ -1,4 +1,4 @@
-import { TestCase } from '../models/model';
+import { TestCase } from '../models/models';
 import { getIdRangeName } from './utils';
 
 describe('Utils', (): void => {

@@ -11,8 +11,8 @@ import {
   UpdateDateColumn
 } from 'typeorm';
 
-import { Status } from '../models/order.model';
-import { DeliveryType, PaymentType, Type } from '../models/product.model';
+import { Status } from '../models/order.models';
+import { DeliveryType, PaymentType, Type } from '../models/product.models';
 import { Category } from './category';
 import { Distributor } from './distributor';
 import { Image } from './image';

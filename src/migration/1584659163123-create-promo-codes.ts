@@ -4,7 +4,7 @@ import { Order } from '../entity/order';
 import { OrderItem } from '../entity/order-item';
 import { Product } from '../entity/product';
 import { PromoCode } from '../entity/promo-code';
-import { Status } from '../models/order.model';
+import { Status } from '../models/order.models';
 
 export class CreatePromoCodes1584659163123 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<any> {

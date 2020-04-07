@@ -3,7 +3,7 @@ import { SelectQueryBuilder } from 'typeorm/query-builder/SelectQueryBuilder';
 
 import { Product } from '../entity/product';
 import { Supply } from '../entity/supply';
-import { FetchType, ProductsOrderItems, ProductsSuppliesCount } from '../models/product.model';
+import { FetchType, ProductsOrderItems, ProductsSuppliesCount } from '../models/product.models';
 import { removeDuplicates } from '../utils/transformation.utils';
 
 export class ProductService {

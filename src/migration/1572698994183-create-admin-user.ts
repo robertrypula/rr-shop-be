@@ -2,7 +2,7 @@ import { getRepository, MigrationInterface, QueryRunner } from 'typeorm';
 
 import { getSecretConfig } from '../config';
 import { User } from '../entity/user';
-import { SecretConfig } from '../models/model';
+import { SecretConfig } from '../models/models';
 
 export class CreateAdminUser1572698994183 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<any> {

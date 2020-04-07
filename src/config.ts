@@ -1,7 +1,7 @@
 import { join } from 'path';
 
 import { toSecretConfig } from './mappers/config.mappers';
-import { SecretConfig } from './models/model';
+import { SecretConfig } from './models/models';
 import { fileLoad } from './utils/utils';
 
 export const EMAIL_SEND_DEFAULT_LIMIT = 2;

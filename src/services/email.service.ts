@@ -3,7 +3,7 @@ import { getRepository, Repository } from 'typeorm';
 import { getSecretConfig } from '../config';
 import { DEFAULT_ATTACHMENTS } from '../email-templates/default';
 import { Email } from '../entity/email';
-import { SecretConfig } from '../models/model';
+import { SecretConfig } from '../models/models';
 import { SimpleGmail } from '../simple-gmail/simple-gmail';
 
 export class EmailService {
