@@ -26,9 +26,7 @@ export class SimpleGmail {
 
       oAuth2Client.setCredentials({ refresh_token: this.settings.refreshToken });
 
-      console.log('access token BEGIN');
       const accessToken = oAuth2Client.getAccessToken();
-      console.log('access token END:', accessToken);
       const smtpTransport = createTransport({
         auth: {
           type: 'OAuth2',
@@ -56,10 +54,7 @@ export class SimpleGmail {
         ]
       };
 
-      console.log('send mail BEGIN');
       smtpTransport.sendMail(mailOptions, (error: any, response: any): void => {
-        console.log('inside', error);
-        console.log('inside', response);
         if (error) {
           reject(error);
         } else {
@@ -67,7 +62,6 @@ export class SimpleGmail {
         }
         smtpTransport.close();
       });
-      console.log('send mail END');
     });
   }
 }
