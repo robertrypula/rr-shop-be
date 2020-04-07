@@ -34,13 +34,10 @@ export class Order {
 
   @Index({ unique: true })
   @Column('varchar', { length: UUID_LENGTH, ...stringConfig })
-  @Length(UUID_LENGTH, UUID_LENGTH)
   public uuid: string;
 
   @Index({ unique: true })
   @Column('varchar', { length: ORDER_NUMBER_LENGTH, ...stringConfig }) // example: WA-123-456
-  @MaxLength(ORDER_NUMBER_LENGTH)
-  @IsNotEmpty()
   public number: string;
 
   @OneToMany(type => OrderItem, (orderItem: OrderItem) => orderItem.order, { cascade: ['insert'] })

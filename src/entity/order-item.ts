@@ -1,3 +1,4 @@
+import { IsNumber } from 'class-validator';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 import { DeliveryType, PaymentType, Type } from '../models/product.model';
@@ -15,10 +16,12 @@ export class OrderItem {
   public name: string;
 
   @Column('decimal', { precision: 7, scale: 2 })
-  public priceUnitSelling: number;
+  @IsNumber({ allowInfinity: false, allowNaN: false })
+  public priceUnitOriginal: number;
 
   @Column('decimal', { precision: 7, scale: 2 })
-  public priceUnitOriginal: number;
+  @IsNumber({ allowInfinity: false, allowNaN: false })
+  public priceUnitSelling: number;
 
   @Column() // duplicate order item with NEGATIVE quantity when product is unavailable but was already paid
   public quantity: number;

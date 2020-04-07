@@ -1,4 +1,3 @@
-import { validate, ValidationError } from 'class-validator';
 import { getRepository, Repository } from 'typeorm';
 import { SelectQueryBuilder } from 'typeorm/query-builder/SelectQueryBuilder';
 import { v4 as uuidv4 } from 'uuid';
@@ -7,9 +6,9 @@ import { Email } from '../entity/email';
 import { Order } from '../entity/order';
 import { OrderItem } from '../entity/order-item';
 import { Product } from '../entity/product';
+import { fromOrderCreateRequestDto } from '../mappers/order.mappers';
 import { Status } from '../models/order.model';
-import { OrderCreateRequestDto } from '../rest-api/order.dtos';
-import { fromOrderCreateRequestDto } from '../rest-api/order.mappers';
+import { OrderCreateRequestDto } from '../rest-api/order/order.dtos';
 import { getOrderNumber } from '../utils/order.utils';
 import { TemplateService } from './template.service';
 
@@ -21,9 +20,11 @@ export class OrderService {
     protected templateService: TemplateService = new TemplateService()
   ) {}
 
-  public async createOrder(orderDto: OrderCreateRequestDto): Promise<Order> {
-    const order: Order = fromOrderCreateRequestDto(orderDto);
-    let validationErrors: ValidationError[];
+  public async createOrder(orderCreateRequestDto: OrderCreateRequestDto): Promise<Order> {
+    const order: Order = fromOrderCreateRequestDto(orderCreateRequestDto);
+
+    return;
+    // ----------------------------------------
 
     order.status = Status.PaymentWait;
     order.uuid = uuidv4();
@@ -35,11 +36,6 @@ export class OrderService {
       orderItem.name = 'dua';
     });
 
-    validationErrors = await validate(order);
-    if (validationErrors.length) {
-      throw `${JSON.stringify(validationErrors.map(validationError => validationError.constraints))}`;
-    }
-
     try {
       await this.repositoryEmail.save(
         new Email()
@@ -48,14 +44,14 @@ export class OrderService {
           .setHtml(this.templateService.getOrderEmailHtml(order))
       );
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
 
     return await this.repository.save(order);
     /*
     order.orderItems = [];
-    for (let i = 0; i < orderDto.orderItems.length; i++) {
-      const orderItemDto: OrderCreateRequestOrderItemsDto = orderDto.orderItems[i];
+    for (let i = 0; i < orderCreateRequestDto.orderItems.length; i++) {
+      const orderItemDto: OrderCreateRequestOrderItemsDto = orderCreateRequestDto.orderItems[i];
       const orderItem: OrderItem = new OrderItem();
       const product: Product = await this.repositoryProduct.findOneOrFail(orderItemDto.productId, {
         select: ['id', 'name', 'priceUnit']

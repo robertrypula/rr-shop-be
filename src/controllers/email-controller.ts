@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 import { EMAIL_SEND_DEFAULT_LIMIT, EMAIL_SEND_MAX_LIMIT } from '../config';
 import { Email } from '../entity/email';
-import { EmailIsSentPatchDto } from '../rest-api/email.dtos';
+import { EmailIsSentPatchDto } from '../rest-api/email/email.dtos';
 import { EmailService } from '../services/email.service';
 
 export class EmailController {

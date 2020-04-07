@@ -2,7 +2,7 @@ import { Order } from '../entity/order';
 
 import { OrderItem } from '../entity/order-item';
 import { PromoCode } from '../entity/promo-code';
-import { OrderCreateRequestDto, OrderCreateRequestOrderItemsDto } from './order.dtos';
+import { OrderCreateRequestDto, OrderCreateRequestOrderItemsDto } from '../rest-api/order/order.dtos';
 
 export const fromOrderCreateRequestDto = (dto: OrderCreateRequestDto): Order => {
   const order: Order = new Order();
@@ -34,6 +34,7 @@ export const fromOrderCreateRequestDto = (dto: OrderCreateRequestDto): Order => 
   order.zipCode = dto.zipCode;
   order.city = dto.city;
   order.comments = dto.comments ? dto.comments : null;
+  order.parcelLocker = dto.parcelLocker ? dto.parcelLocker : null;
 
   return order;
 };
