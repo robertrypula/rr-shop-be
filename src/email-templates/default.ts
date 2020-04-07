@@ -1,3 +1,17 @@
+import { createReadStream } from 'fs';
+import { join } from 'path';
+import { Attachment } from '../simple-gmail/models';
+
+const footerImage001Cid = 'footer.image.001';
+
+export const DEFAULT_ATTACHMENTS: Attachment[] = [
+  {
+    cid: footerImage001Cid,
+    content: createReadStream(join(__dirname, '/footer-image-001.png')),
+    filename: 'footer-image-001.png'
+  }
+];
+
 export const DEFAULT: string = `
 <html lang="pl">
   <head>
@@ -32,7 +46,7 @@ export const DEFAULT: string = `
                         width="290"
                         height="94"
                         style="display: block;"
-                        src="cid:footer.image.001"
+                        src="cid:${footerImage001Cid}"
                       />
                     </td>
                   </tr>
