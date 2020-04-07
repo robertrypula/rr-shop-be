@@ -12,6 +12,14 @@ export interface SecretConfig {
     password: string;
     username: string;
   };
+  gmail: {
+    clientId: string;
+    clientSecret: string;
+    from: string;
+    refreshToken: string;
+    subjectPrefix: string;
+    user: string;
+  };
   jwt: {
     expiresIn: string;
     secret: string;

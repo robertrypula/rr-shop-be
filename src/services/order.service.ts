@@ -3,6 +3,7 @@ import { getRepository, Repository } from 'typeorm';
 import { SelectQueryBuilder } from 'typeorm/query-builder/SelectQueryBuilder';
 import { v4 as uuidv4 } from 'uuid';
 
+import { Email } from '../entity/email';
 import { Order } from '../entity/order';
 import { OrderItem } from '../entity/order-item';
 import { Product } from '../entity/product';
@@ -10,14 +11,13 @@ import { Status } from '../models/order.model';
 import { OrderCreateRequestDto } from '../rest-api/order.dtos';
 import { fromOrderCreateRequestDto } from '../rest-api/order.mappers';
 import { getOrderNumber } from '../utils/order.utils';
-import { EmailService } from './email.service';
 import { TemplateService } from './template.service';
 
 export class OrderService {
   public constructor(
     protected repository: Repository<Order> = getRepository(Order),
     protected repositoryProduct: Repository<Product> = getRepository(Product),
-    protected emailService: EmailService = new EmailService(),
+    protected repositoryEmail: Repository<Email> = getRepository(Email),
     protected templateService: TemplateService = new TemplateService()
   ) {}
 
@@ -40,11 +40,16 @@ export class OrderService {
       throw `${JSON.stringify(validationErrors.map(validationError => validationError.constraints))}`;
     }
 
-    await this.emailService.add(
-      'robert.rypula@gmail.com',
-      this.templateService.getOrderEmailSubject(order),
-      this.templateService.getOrderEmailHtml(order)
-    );
+    try {
+      await this.repositoryEmail.save(
+        new Email()
+          .setTo('robert.rypula@gmail.com')
+          .setSubject(this.templateService.getOrderEmailSubject(order))
+          .setHtml(this.templateService.getOrderEmailHtml(order))
+      );
+    } catch (e) {
+      console.log(e);
+    }
 
     return await this.repository.save(order);
     /*

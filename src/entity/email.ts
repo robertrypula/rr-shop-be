@@ -27,4 +27,22 @@ export class Email {
   @Column()
   @UpdateDateColumn()
   public updatedAt: Date;
+
+  public setTo(to: string): Email {
+    this.to = to;
+
+    return this;
+  }
+
+  public setSubject(subject: string): Email {
+    this.subject = subject;
+
+    return this;
+  }
+
+  public setHtml(html: string): Email {
+    this.html = html;
+
+    return this;
+  }
 }

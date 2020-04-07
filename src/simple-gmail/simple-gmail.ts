@@ -13,6 +13,8 @@ import { Settings } from './models';
 export class SimpleGmail {
   protected settings: Settings;
 
+  protected readonly redirectUri = 'https://developers.google.com/oauthplayground';
+
   public constructor(settings: Settings) {
     this.settings = { ...settings };
   }
@@ -20,7 +22,7 @@ export class SimpleGmail {
   public send(to: string, subject: string, html: string): Promise<any> {
     return new Promise((resolve, reject) => {
       const OAuth2 = google.auth.OAuth2;
-      const oAuth2Client = new OAuth2(this.settings.clientId, this.settings.clientSecret, this.settings.redirectUri);
+      const oAuth2Client = new OAuth2(this.settings.clientId, this.settings.clientSecret, this.redirectUri);
 
       oAuth2Client.setCredentials({ refresh_token: this.settings.refreshToken });
 

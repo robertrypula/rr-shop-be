@@ -1,5 +1,7 @@
+import { getSecretConfig } from '../config';
 import { DEFAULT } from '../email-templates/default';
 import { Order } from '../entity/order';
+import { SecretConfig } from '../models/model';
 import { Status } from '../models/order.model';
 
 // TODO implement html template loading
@@ -19,21 +21,24 @@ export class TemplateService {
   }
 
   public getOrderEmailSubject(order: Order): string {
+    const secretConfig: SecretConfig = getSecretConfig();
+    const fullPrefix = `${secretConfig.gmail.subjectPrefix}Waleriana.pl - `;
+
     switch (order.status) {
       case Status.PaymentWait:
-        return `Waleriana.pl - nowe zamówienie ${order.number}`;
+        return `${fullPrefix}nowe zamówienie ${order.number}`;
       case Status.PaymentCompleted:
-        return `Waleriana.pl - zamówienie ${order.number} zostało opłacone`;
+        return `${fullPrefix}zamówienie ${order.number} zostało opłacone`;
       case Status.Shipped:
-        return `Waleriana.pl - paczka do zamówienia ${order.number} została wysłana`;
+        return `${fullPrefix}paczka do zamówienia ${order.number} została wysłana`;
       case Status.ReadyForPickup:
-        return `Waleriana.pl - zamówienie ${order.number} gotowe do odbioru osobistego`;
+        return `${fullPrefix}zamówienie ${order.number} gotowe do odbioru osobistego`;
       case Status.Completed:
-        return `Waleriana.pl - zamówienie ${order.number} zostało zakończone, dziękujemy!`;
+        return `${fullPrefix}zamówienie ${order.number} zostało zakończone, dziękujemy!`;
       case Status.Cancelled:
-        return `Waleriana.pl - zamówienie ${order.number} zostało anulowane`;
+        return `${fullPrefix}zamówienie ${order.number} zostało anulowane`;
       default:
-        return `Waleriana.pl - zamówienie ${order.number}`;
+        return `${fullPrefix}zamówienie ${order.number}`;
     }
   }
 }

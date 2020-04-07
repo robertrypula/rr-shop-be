@@ -4,12 +4,23 @@ import { Environment } from '../simple-pay-u/models';
 export const toSecretConfig = (fileContent: string): SecretConfig => {
   const o: any = JSON.parse(fileContent);
 
-  if (!o.admin || !o.jwt || !o.mySql || !o.payU || !o.typeOrm) {
-    throw `Missing 'admin', 'jwt', 'mySql', 'payU' or 'typeOrm' fields`;
+  if (!o.admin || !o.gmail || !o.jwt || !o.mySql || !o.payU || !o.typeOrm) {
+    throw `Missing 'admin', 'gmail', 'jwt', 'mySql', 'payU' or 'typeOrm' fields`;
   }
 
   if (!o.admin.username || !o.admin.password) {
     throw `Missing field(s) inside 'admin' field`;
+  }
+
+  if (
+    !o.gmail.clientId ||
+    !o.gmail.clientSecret ||
+    !o.gmail.from ||
+    !o.gmail.refreshToken ||
+    !o.gmail.subjectPrefix ||
+    !o.gmail.user
+  ) {
+    throw `Missing field(s) inside 'gmail' field`;
   }
 
   if (!o.mySql.database || !o.mySql.host || !o.mySql.password || !o.mySql.port || !o.mySql.username) {
@@ -52,6 +63,14 @@ export const toSecretConfig = (fileContent: string): SecretConfig => {
     admin: {
       password: o.admin.password,
       username: o.admin.username
+    },
+    gmail: {
+      clientId: o.gmail.clientId,
+      clientSecret: o.gmail.clientSecret,
+      from: o.gmail.from,
+      refreshToken: o.gmail.refreshToken,
+      subjectPrefix: o.gmail.subjectPrefix,
+      user: o.gmail.user
     },
     jwt: {
       expiresIn: o.jwt.expiresIn,
