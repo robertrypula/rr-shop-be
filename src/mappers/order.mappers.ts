@@ -2,13 +2,13 @@ import { Order } from '../entity/order';
 
 import { OrderItem } from '../entity/order-item';
 import { PromoCode } from '../entity/promo-code';
-import { OrderCreateRequestDto, OrderCreateRequestOrderItemsDto } from '../rest-api/order/order.dtos';
+import { OrderCreateRequestDto, OrderCreateRequestOrderItemDto } from '../rest-api/order/order.dtos';
 
 export const fromOrderCreateRequestDto = (dto: OrderCreateRequestDto): Order => {
   const order: Order = new Order();
 
   order.orderItems = [];
-  (dto.orderItems || []).forEach((orderItemDto: OrderCreateRequestOrderItemsDto): void => {
+  (dto.orderItems || []).forEach((orderItemDto: OrderCreateRequestOrderItemDto): void => {
     const orderItem: OrderItem = new OrderItem();
 
     orderItem.priceUnitOriginal = orderItemDto.priceUnitOriginal;

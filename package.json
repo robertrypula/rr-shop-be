@@ -28,6 +28,7 @@
     "@types/nodemailer": "^6.4.0",
     "@types/request-promise-native": "^1.0.17",
     "@types/uuid": "^7.0.0",
+    "class-transformer": "^0.2.3",
     "jest": "^25.2.4",
     "md5": "^2.2.1",
     "mysql": "^2.18.1",

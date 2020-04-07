@@ -1,7 +1,8 @@
+import { plainToClass } from 'class-transformer';
 import { Request, Response } from 'express';
 
 import { Order } from '../entity/order';
-import { OrderCreateRequestDto } from '../rest-api/order/order.dtos';
+import { OrderCreateRequestDto, OrderCreateRequestOrderItemDto } from '../rest-api/order/order.dtos';
 import { validateOrderCreateRequestDto } from '../rest-api/order/order.validators';
 import { OrderService } from '../services/order.service';
 
@@ -9,13 +10,27 @@ export class OrderController {
   public constructor(protected orderService: OrderService = new OrderService()) {}
 
   public async createOrder(req: Request, res: Response): Promise<void> {
-    const orderCreateRequestDto: OrderCreateRequestDto = req.body;
+    const orderCreateRequestDto: OrderCreateRequestDto = plainToClass(OrderCreateRequestDto, req.body, {
+      excludeExtraneousValues: true
+    });
     let order: Order;
 
+    /*
+    const orderCreateRequestDto = new OrderCreateRequestDto();
+    const orderItemA = new OrderCreateRequestOrderItemDto();
+
+    orderItemA.quantity = 100;
+
+    orderCreateRequestDto.orderItems = [orderItemA];
+    orderCreateRequestDto.priceTotalOriginalAll = 4;
+    orderCreateRequestDto.city = 'Wroclaw';
+    */
+
     try {
-      // console.log(orderCreateRequestDto);
+      console.log(orderCreateRequestDto);
       const errors: string[] = await validateOrderCreateRequestDto(orderCreateRequestDto);
 
+      console.log('#1', errors);
       if (errors.length) {
         res.status(500).send({ errorDetails: errors, errorMessage: 'Validation errors' });
         return;
@@ -23,6 +38,7 @@ export class OrderController {
 
       order = await this.orderService.createOrder(orderCreateRequestDto);
     } catch (error) {
+      console.log('#2', error);
       res.status(500).send({ errorMessage: 'Could not create order', errorDetails: error });
       return;
     }
