@@ -16,6 +16,7 @@ import {
   Min,
   ValidateNested
 } from 'class-validator';
+import { DISCOUNT_PERCENTAGE_MAX } from '../../config';
 import {
   EMAIL_LENGTH,
   GENERIC_FORM_LENGTH,
@@ -65,7 +66,7 @@ export class OrderCreateRequestPromoCodeDto {
   @IsNotEmpty()
   @IsNumber()
   @IsPositive()
-  @Max(20)
+  @Max(DISCOUNT_PERCENTAGE_MAX)
   public percentageDiscount: number;
 }
 

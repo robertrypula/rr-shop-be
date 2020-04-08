@@ -1,13 +1,17 @@
 import { getRepository, Repository } from 'typeorm';
 import { SelectQueryBuilder } from 'typeorm/query-builder/SelectQueryBuilder';
 
-import { Product } from '../entity/product';
-import { Supply } from '../entity/supply';
-import { FetchType, ProductsOrderItems, ProductsSuppliesCount } from '../models/product.models';
-import { removeDuplicates } from '../utils/transformation.utils';
+import { Product } from '../../entity/product';
+import { Supply } from '../../entity/supply';
+import { FetchType, ProductsOrderItems, ProductsSuppliesCount } from '../../models/product.models';
+import { removeDuplicates } from '../../utils/transformation.utils';
+import { ProductRepositoryService } from './product-repository.service';
 
 export class ProductService {
-  public constructor(protected repository: Repository<Product> = getRepository(Product)) {}
+  public constructor(
+    protected repository: Repository<Product> = getRepository(Product),
+    protected productRepositoryService: ProductRepositoryService = new ProductRepositoryService()
+  ) {}
 
   public async attachOrderItemsStubs(products: Product[], productIds: number[]): Promise<void> {
     const productsOrderItems: ProductsOrderItems = await this.getProductsOrderItems(productIds);

@@ -1,14 +1,7 @@
 import { validate, ValidationError } from 'class-validator';
 
+import { extractConstraints } from '../../utils/transformation.utils';
 import { OrderCreateRequestDto } from './order.dtos';
-
-export const extractConstraints = (validationErrors: ValidationError[], errors: string[]): void => {
-  validationErrors.forEach((validationError: ValidationError): void => {
-    validationError.constraints &&
-      Object.values(validationError.constraints).forEach((constraint: string): number => errors.push(constraint));
-    validationError.children && extractConstraints(validationError.children, errors);
-  });
-};
 
 export const validateOrderCreateRequestDto = async (
   orderCreateRequestDto: OrderCreateRequestDto

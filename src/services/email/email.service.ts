@@ -1,25 +1,15 @@
 import { getRepository, Repository } from 'typeorm';
 
-import { getSecretConfig } from '../config';
-import { DEFAULT_ATTACHMENTS } from '../email-templates/default';
-import { Email } from '../entity/email';
-import { SecretConfig } from '../models/models';
-import { SimpleGmail } from '../simple-gmail/simple-gmail';
+import { getSecretConfig } from '../../config';
+import { DEFAULT_ATTACHMENTS } from '../../email-templates/default';
+import { Email } from '../../entity/email';
+import { SecretConfig } from '../../models/models';
+import { SimpleGmail } from '../../simple-gmail/simple-gmail';
 
 export class EmailService {
   public constructor(protected repository: Repository<Email> = getRepository(Email)) {}
 
-  public async getEmailsForSend(limit: number): Promise<Email[]> {
-    return await this.repository
-      .createQueryBuilder('email')
-      .select(['id', 'to', 'subject', 'html', 'createdAt'].map(c => `email.${c}`))
-      .orderBy('email.id', 'ASC')
-      .where('email.isSent = :isSent', { isSent: false })
-      .limit(limit)
-      .getMany();
-  }
-
-  public async sendEmails(emails: Email[]): Promise<void> {
+  public async send(emails: Email[]): Promise<void> {
     const simpleGmail: SimpleGmail = this.getSimpleGmail();
 
     for (let i = 0; i < emails.length; i++) {

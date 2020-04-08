@@ -4,7 +4,7 @@ import { SelectQueryBuilder } from 'typeorm/query-builder/SelectQueryBuilder';
 
 import { Product } from '../entity/product';
 import { FetchType, ParameterBag } from '../models/product.models';
-import { ProductService } from '../services/product.service';
+import { ProductService } from '../services/product/product.service';
 
 /*
   Where in:

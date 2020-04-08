@@ -1,14 +1,12 @@
 import { Order } from '../entity/order';
-
 import { OrderItem } from '../entity/order-item';
-import { PromoCode } from '../entity/promo-code';
 import { OrderCreateRequestDto, OrderCreateRequestOrderItemDto } from '../rest-api/order/order.dtos';
 
 export const fromOrderCreateRequestDto = (dto: OrderCreateRequestDto): Order => {
   const order: Order = new Order();
 
   order.orderItems = [];
-  (dto.orderItems || []).forEach((orderItemDto: OrderCreateRequestOrderItemDto): void => {
+  dto.orderItems.forEach((orderItemDto: OrderCreateRequestOrderItemDto): void => {
     const orderItem: OrderItem = new OrderItem();
 
     orderItem.priceUnitOriginal = orderItemDto.priceUnitOriginal;
@@ -18,13 +16,6 @@ export const fromOrderCreateRequestDto = (dto: OrderCreateRequestDto): Order => 
 
     order.orderItems.push(orderItem);
   });
-
-  if (dto.promoCode) {
-    order.promoCode = new PromoCode();
-
-    order.promoCode.name = dto.promoCode.name;
-    order.promoCode.percentageDiscount = dto.promoCode.percentageDiscount;
-  }
 
   order.email = dto.email;
   order.phone = dto.phone;

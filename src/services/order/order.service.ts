@@ -2,15 +2,15 @@ import { getRepository, Repository } from 'typeorm';
 import { SelectQueryBuilder } from 'typeorm/query-builder/SelectQueryBuilder';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Email } from '../entity/email';
-import { Order } from '../entity/order';
-import { OrderItem } from '../entity/order-item';
-import { Product } from '../entity/product';
-import { fromOrderCreateRequestDto } from '../mappers/order.mappers';
-import { Status } from '../models/order.models';
-import { OrderCreateRequestDto } from '../rest-api/order/order.dtos';
-import { getOrderNumber } from '../utils/order.utils';
-import { TemplateService } from './template.service';
+import { Email } from '../../entity/email';
+import { Order } from '../../entity/order';
+import { OrderItem } from '../../entity/order-item';
+import { Product } from '../../entity/product';
+import { fromOrderCreateRequestDto } from '../../mappers/order.mappers';
+import { Status } from '../../models/order.models';
+import { OrderCreateRequestDto } from '../../rest-api/order/order.dtos';
+import { getOrderNumber } from '../../utils/order.utils';
+import { TemplateService } from '../template.service';
 
 export class OrderService {
   public constructor(
@@ -69,20 +69,5 @@ export class OrderService {
       order.orderItems.push(orderItem);
     }
     */
-  }
-
-  public async getOrder(uuid: string): Promise<Order> {
-    const selectQueryBuilder: SelectQueryBuilder<Order> = this.repository
-      .createQueryBuilder('order')
-      .select([
-        ...['uuid', 'number', 'status'].map(c => `order.${c}`),
-        ...['name', 'priceUnitSelling', 'priceUnitOriginal', 'quantity', 'type', 'productId'].map(
-          c => `orderItems.${c}`
-        )
-      ])
-      .leftJoin('order.orderItems', 'orderItems')
-      .where('order.uuid = :uuid', { uuid });
-
-    return await selectQueryBuilder.getOne();
   }
 }

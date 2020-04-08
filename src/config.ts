@@ -7,6 +7,8 @@ import { fileLoad } from './utils/utils';
 export const EMAIL_SEND_DEFAULT_LIMIT = 2;
 export const EMAIL_SEND_MAX_LIMIT = 4;
 
+export const DISCOUNT_PERCENTAGE_MAX = 20;
+
 export const getSecretConfig = (): SecretConfig => {
   try {
     return toSecretConfig(fileLoad(join(__dirname, '/secret-config.json')));

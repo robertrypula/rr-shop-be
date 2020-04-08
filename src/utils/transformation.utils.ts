@@ -1,3 +1,13 @@
+import { ValidationError } from 'class-validator';
+
+export const extractConstraints = (validationErrors: ValidationError[], errors: string[]): void => {
+  validationErrors.forEach((validationError: ValidationError): void => {
+    validationError.constraints &&
+      Object.values(validationError.constraints).forEach((constraint: string): number => errors.push(constraint));
+    validationError.children && extractConstraints(validationError.children, errors);
+  });
+};
+
 export const extractBestBefore = (expectedQuantity: number, bestBefore: string): Date[] => {
   const result: Date[] = [];
   let date: Date;
