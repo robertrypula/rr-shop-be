@@ -15,19 +15,9 @@ export class OrderController {
     });
     let order: Order;
 
-    /*
-    const orderCreateRequestDto = new OrderCreateRequestDto();
-    const orderItemA = new OrderCreateRequestOrderItemDto();
-
-    orderItemA.quantity = 100;
-
-    orderCreateRequestDto.orderItems = [orderItemA];
-    orderCreateRequestDto.priceTotalOriginalAll = 4;
-    orderCreateRequestDto.city = 'Wroclaw';
-    */
-
     try {
       console.log(orderCreateRequestDto);
+      console.log('-----');
       const errors: string[] = await validateOrderCreateRequestDto(orderCreateRequestDto);
 
       console.log('#1', errors);

@@ -2,27 +2,21 @@ import { validate, ValidationError } from 'class-validator';
 
 import { OrderCreateRequestDto } from './order.dtos';
 
+export const extractConstraints = (validationErrors: ValidationError[], errors: string[]): void => {
+  validationErrors.forEach((validationError: ValidationError): void => {
+    validationError.constraints &&
+      Object.values(validationError.constraints).forEach((constraint: string): number => errors.push(constraint));
+    validationError.children && extractConstraints(validationError.children, errors);
+  });
+};
+
 export const validateOrderCreateRequestDto = async (
   orderCreateRequestDto: OrderCreateRequestDto
 ): Promise<string[]> => {
   const validationErrors: ValidationError[] = await validate(orderCreateRequestDto, { forbidUnknownValues: true });
-  let errors: string[] = [];
+  const errors: string[] = [];
 
-  console.log(validationErrors);
-
-  validationErrors.forEach((validationError: ValidationError): void => {
-    if (validationError.constraints) {
-      errors = [...errors, ...Object.values(validationError.constraints)];
-    }
-
-    if (validationError.children && validationError.children.length) {
-      validationError.children.forEach((validationErrorInner: ValidationError): void => {
-        if (validationErrorInner.constraints) {
-          errors = [...errors, ...Object.values(validationErrorInner.constraints)];
-        }
-      });
-    }
-  });
+  extractConstraints(validationErrors, errors);
 
   return errors;
 };

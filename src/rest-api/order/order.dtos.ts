@@ -1,25 +1,42 @@
 // tslint:disable:max-classes-per-file
 
 import { Expose, Type } from 'class-transformer';
-import { IsNotEmpty, IsNumber, IsOptional, Max, ValidateNested } from 'class-validator';
+import {
+  ArrayMinSize,
+  IsAlpha,
+  IsArray,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsPositive,
+  Max,
+  Min,
+  ValidateNested
+} from 'class-validator';
 
 // https://wanago.io/2018/12/17/typescript-express-error-handling-validation/
 
 export class OrderCreateRequestOrderItemDto {
+  @IsNotEmpty()
+  @IsNumber()
+  @Min(0)
   @Expose()
   public priceUnitOriginal: number;
 
+  @IsNotEmpty()
+  @IsNumber()
+  @Min(0)
   @Expose()
   public priceUnitSelling: number;
 
+  @IsNotEmpty()
+  @IsPositive()
   @Expose()
   public productId: number;
 
-  @Expose()
-  // @IsNumber()
-  // @IsPositive()
   @IsNotEmpty()
-  @Max(2)
+  @IsPositive()
+  @Expose()
   public quantity: number;
 }
 
@@ -32,9 +49,12 @@ export class OrderCreateRequestPromoCodeDto {
 }
 
 export class OrderCreateRequestDto {
-  @ValidateNested()
   @Expose()
   @Type(() => OrderCreateRequestOrderItemDto)
+  @ValidateNested()
+  @IsArray()
+  @IsNotEmpty()
+  @ArrayMinSize(3)
   public orderItems: OrderCreateRequestOrderItemDto[];
 
   // ---
