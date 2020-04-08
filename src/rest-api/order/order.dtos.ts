@@ -6,7 +6,8 @@ import {
   IsArray,
   IsEmail,
   IsNotEmpty,
-  IsNumber, IsObject,
+  IsNumber,
+  IsObject,
   IsOptional,
   IsPositive,
   IsString,
@@ -18,7 +19,8 @@ import {
   EMAIL_LENGTH,
   GENERIC_FORM_LENGTH,
   PARCEL_LOCKER_LENGTH,
-  PHONE_LENGTH, PROMO_CODE_LENGTH,
+  PHONE_LENGTH,
+  PROMO_CODE_LENGTH,
   TEXT_AREA_LENGTH,
   ZIP_CODE_LENGTH
 } from '../../entity/length-config';
@@ -69,66 +71,66 @@ export class OrderCreateRequestDto {
   @Expose()
   @Type(() => OrderCreateRequestOrderItemDto)
   @ValidateNested()
-  @IsArray()
   @IsNotEmpty()
+  @IsArray()
   @ArrayMinSize(3)
   public orderItems: OrderCreateRequestOrderItemDto[];
 
   // ---
 
   @Expose()
-  @IsEmail()
-  @IsString()
   @IsNotEmpty()
+  @IsString()
+  @IsEmail()
   @MaxLength(EMAIL_LENGTH)
   public email: string;
 
   @Expose()
+  @IsNotEmpty()
   @IsString()
   @MaxLength(PHONE_LENGTH)
-  @IsNotEmpty()
   public phone: string;
 
   @Expose()
+  @IsNotEmpty()
   @IsString()
   @MaxLength(GENERIC_FORM_LENGTH)
-  @IsNotEmpty()
   public name: string;
 
   @Expose()
+  @IsNotEmpty()
   @IsString()
   @MaxLength(GENERIC_FORM_LENGTH)
-  @IsNotEmpty()
   public surname: string;
 
   @Expose()
+  @IsNotEmpty()
   @IsString()
   @MaxLength(GENERIC_FORM_LENGTH)
-  @IsNotEmpty()
   public address: string;
 
   @Expose()
+  @IsNotEmpty()
   @IsString()
   @MaxLength(ZIP_CODE_LENGTH)
-  @IsNotEmpty()
   public zipCode: string;
 
   @Expose()
+  @IsNotEmpty()
   @IsString()
   @MaxLength(GENERIC_FORM_LENGTH)
-  @IsNotEmpty()
   public city: string;
 
   @Expose()
+  @IsOptional()
   @IsString()
   @MaxLength(TEXT_AREA_LENGTH)
-  @IsOptional()
   public comments: string;
 
   @Expose()
+  @IsOptional()
   @IsString()
   @MaxLength(PARCEL_LOCKER_LENGTH)
-  @IsOptional()
   public parcelLocker: string;
 
   // ---
@@ -136,34 +138,57 @@ export class OrderCreateRequestDto {
   @Expose()
   @Type(() => OrderCreateRequestPromoCodeDto)
   @ValidateNested()
-  @IsObject()
   @IsOptional()
+  @IsObject()
   public promoCode: OrderCreateRequestPromoCodeDto;
 
   // ---
 
   @Expose()
+  @IsNotEmpty()
   @IsNumber()
+  @IsPositive()
   public priceTotalOriginalAll: number;
 
   @Expose()
+  @IsNotEmpty()
+  @IsNumber()
+  @Min(0)
   public priceTotalOriginalDelivery: number;
 
   @Expose()
+  @IsNotEmpty()
+  @IsNumber()
+  @Min(0)
   public priceTotalOriginalPayment: number;
 
   @Expose()
+  @IsNotEmpty()
+  @IsNumber()
+  @IsPositive()
   public priceTotalOriginalProduct: number;
 
   @Expose()
+  @IsNotEmpty()
+  @IsNumber()
+  @IsPositive()
   public priceTotalSellingAll: number;
 
   @Expose()
+  @IsNotEmpty()
+  @IsNumber()
+  @Min(0)
   public priceTotalSellingDelivery: number;
 
   @Expose()
+  @IsNotEmpty()
+  @IsNumber()
+  @Min(0)
   public priceTotalSellingPayment: number;
 
   @Expose()
+  @IsNotEmpty()
+  @IsNumber()
+  @IsPositive()
   public priceTotalSellingProduct: number;
 }

@@ -2,9 +2,11 @@ import { plainToClass } from 'class-transformer';
 import { Request, Response } from 'express';
 
 import { Order } from '../entity/order';
-import { OrderCreateRequestDto, OrderCreateRequestOrderItemDto } from '../rest-api/order/order.dtos';
+import { OrderCreateRequestDto } from '../rest-api/order/order.dtos';
 import { validateOrderCreateRequestDto } from '../rest-api/order/order.validators';
 import { OrderService } from '../services/order.service';
+
+// tslint:disable:no-console
 
 export class OrderController {
   public constructor(protected orderService: OrderService = new OrderService()) {}
