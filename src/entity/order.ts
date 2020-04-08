@@ -1,4 +1,3 @@
-import { IsEmail, IsNotEmpty, IsOptional, Length, MaxLength } from 'class-validator';
 import {
   Column,
   CreateDateColumn,
@@ -17,7 +16,6 @@ import {
   ORDER_NUMBER_LENGTH,
   PARCEL_LOCKER_LENGTH,
   PHONE_LENGTH,
-  TEXT_AREA_LENGTH,
   URL_LENGTH,
   UUID_LENGTH,
   ZIP_CODE_LENGTH
@@ -52,49 +50,30 @@ export class Order {
   // ----------
 
   @Column('varchar', { length: EMAIL_LENGTH, ...stringConfig })
-  @IsEmail()
-  @IsNotEmpty()
-  @MaxLength(EMAIL_LENGTH)
   public email: string;
 
   @Column('varchar', { length: PHONE_LENGTH, ...stringConfig })
-  @MaxLength(PHONE_LENGTH)
-  @IsNotEmpty()
   public phone: string;
 
   @Column('varchar', { length: GENERIC_FORM_LENGTH, ...stringConfig })
-  @MaxLength(GENERIC_FORM_LENGTH)
-  @IsNotEmpty()
   public name: string;
 
   @Column('varchar', { length: GENERIC_FORM_LENGTH, ...stringConfig })
-  @MaxLength(GENERIC_FORM_LENGTH)
-  @IsNotEmpty()
   public surname: string;
 
   @Column('varchar', { length: GENERIC_FORM_LENGTH, ...stringConfig })
-  @MaxLength(GENERIC_FORM_LENGTH)
-  @IsNotEmpty()
   public address: string;
 
   @Column('varchar', { length: ZIP_CODE_LENGTH, ...stringConfig })
-  @MaxLength(ZIP_CODE_LENGTH)
-  @IsNotEmpty()
   public zipCode: string;
 
   @Column('varchar', { length: GENERIC_FORM_LENGTH, ...stringConfig })
-  @MaxLength(GENERIC_FORM_LENGTH)
-  @IsNotEmpty()
   public city: string;
 
   @Column({ type: 'mediumtext', nullable: true, default: null, ...stringConfig })
-  @IsOptional()
-  @MaxLength(TEXT_AREA_LENGTH)
   public comments: string;
 
   @Column('varchar', { length: PARCEL_LOCKER_LENGTH, nullable: true, default: null, ...stringConfig })
-  @IsOptional()
-  @MaxLength(PARCEL_LOCKER_LENGTH)
   public parcelLocker: string;
 
   // ----------

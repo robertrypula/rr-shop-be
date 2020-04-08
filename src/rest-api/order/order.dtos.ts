@@ -3,16 +3,25 @@
 import { Expose, Type } from 'class-transformer';
 import {
   ArrayMinSize,
-  IsAlpha,
   IsArray,
+  IsEmail,
   IsNotEmpty,
   IsNumber,
   IsOptional,
   IsPositive,
-  Max,
+  IsString,
+  MaxLength,
   Min,
   ValidateNested
 } from 'class-validator';
+import {
+  EMAIL_LENGTH,
+  GENERIC_FORM_LENGTH,
+  PARCEL_LOCKER_LENGTH,
+  PHONE_LENGTH,
+  TEXT_AREA_LENGTH,
+  ZIP_CODE_LENGTH
+} from '../../entity/length-config';
 
 // https://wanago.io/2018/12/17/typescript-express-error-handling-validation/
 
@@ -60,39 +69,66 @@ export class OrderCreateRequestDto {
   // ---
 
   @Expose()
+  @IsEmail()
+  @IsString()
+  @IsNotEmpty()
+  @MaxLength(EMAIL_LENGTH)
   public email: string;
 
   @Expose()
+  @IsString()
+  @MaxLength(PHONE_LENGTH)
+  @IsNotEmpty()
   public phone: string;
 
   @Expose()
+  @IsString()
+  @MaxLength(GENERIC_FORM_LENGTH)
+  @IsNotEmpty()
   public name: string;
 
   @Expose()
+  @IsString()
+  @MaxLength(GENERIC_FORM_LENGTH)
+  @IsNotEmpty()
   public surname: string;
 
   @Expose()
+  @IsString()
+  @MaxLength(GENERIC_FORM_LENGTH)
+  @IsNotEmpty()
   public address: string;
 
   @Expose()
+  @IsString()
+  @MaxLength(ZIP_CODE_LENGTH)
+  @IsNotEmpty()
   public zipCode: string;
 
   @Expose()
+  @IsString()
+  @MaxLength(GENERIC_FORM_LENGTH)
   @IsNotEmpty()
   public city: string;
 
   @Expose()
+  @IsString()
+  @MaxLength(TEXT_AREA_LENGTH)
+  @IsOptional()
   public comments: string;
 
   @Expose()
+  @IsString()
+  @MaxLength(PARCEL_LOCKER_LENGTH)
+  @IsOptional()
   public parcelLocker: string;
 
   // ---
 
-  @ValidateNested()
-  @IsOptional()
   @Expose()
   @Type(() => OrderCreateRequestPromoCodeDto)
+  @ValidateNested()
+  @IsOptional()
   public promoCode: OrderCreateRequestPromoCodeDto;
 
   // ---
