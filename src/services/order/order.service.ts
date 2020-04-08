@@ -21,9 +21,9 @@ export class OrderService {
   ) {}
 
   public async createOrder(orderCreateRequestDto: OrderCreateRequestDto): Promise<Order> {
-    const order: Order = fromOrderCreateRequestDto(orderCreateRequestDto);
+    let order: Order = fromOrderCreateRequestDto(orderCreateRequestDto);
+    let email: Email;
 
-    return;
     // ----------------------------------------
 
     order.status = Status.PaymentWait;
@@ -36,18 +36,15 @@ export class OrderService {
       orderItem.name = 'dua';
     });
 
-    try {
-      await this.repositoryEmail.save(
-        new Email()
-          .setTo('robert.rypula@gmail.com')
-          .setSubject(this.templateService.getOrderEmailSubject(order))
-          .setHtml(this.templateService.getOrderEmailHtml(order))
-      );
-    } catch (e) {
-      // console.log(e);
-    }
+    email = new Email()
+      .setTo(order.email)
+      .setSubject(this.templateService.getOrderEmailSubject(order))
+      .setHtml(this.templateService.getOrderEmailHtml(order));
 
-    return await this.repository.save(order);
+    email = await this.repositoryEmail.save(email);
+    order = await this.repository.save(order);
+
+    return order;
     /*
     order.orderItems = [];
     for (let i = 0; i < orderCreateRequestDto.orderItems.length; i++) {
