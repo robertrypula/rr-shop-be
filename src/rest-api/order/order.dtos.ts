@@ -6,7 +6,7 @@ import {
   IsArray,
   IsEmail,
   IsNotEmpty,
-  IsNumber,
+  IsNumber, IsObject,
   IsOptional,
   IsPositive,
   IsString,
@@ -18,7 +18,7 @@ import {
   EMAIL_LENGTH,
   GENERIC_FORM_LENGTH,
   PARCEL_LOCKER_LENGTH,
-  PHONE_LENGTH,
+  PHONE_LENGTH, PROMO_CODE_LENGTH,
   TEXT_AREA_LENGTH,
   ZIP_CODE_LENGTH
 } from '../../entity/length-config';
@@ -26,34 +26,42 @@ import {
 // https://wanago.io/2018/12/17/typescript-express-error-handling-validation/
 
 export class OrderCreateRequestOrderItemDto {
+  @Expose()
   @IsNotEmpty()
   @IsNumber()
   @Min(0)
-  @Expose()
   public priceUnitOriginal: number;
 
+  @Expose()
   @IsNotEmpty()
   @IsNumber()
   @Min(0)
-  @Expose()
   public priceUnitSelling: number;
 
-  @IsNotEmpty()
-  @IsPositive()
   @Expose()
+  @IsNotEmpty()
+  @IsNumber()
+  @IsPositive()
   public productId: number;
 
-  @IsNotEmpty()
-  @IsPositive()
   @Expose()
+  @IsNotEmpty()
+  @IsNumber()
+  @IsPositive()
   public quantity: number;
 }
 
 export class OrderCreateRequestPromoCodeDto {
   @Expose()
+  @IsNotEmpty()
+  @IsString()
+  @MaxLength(PROMO_CODE_LENGTH)
   public name: string;
 
   @Expose()
+  @IsNotEmpty()
+  @IsNumber()
+  @IsPositive()
   public percentageDiscount: number;
 }
 
@@ -128,6 +136,7 @@ export class OrderCreateRequestDto {
   @Expose()
   @Type(() => OrderCreateRequestPromoCodeDto)
   @ValidateNested()
+  @IsObject()
   @IsOptional()
   public promoCode: OrderCreateRequestPromoCodeDto;
 
