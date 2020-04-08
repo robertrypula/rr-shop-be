@@ -11,6 +11,7 @@ import {
   IsOptional,
   IsPositive,
   IsString,
+  Max,
   MaxLength,
   Min,
   ValidateNested
@@ -64,6 +65,7 @@ export class OrderCreateRequestPromoCodeDto {
   @IsNotEmpty()
   @IsNumber()
   @IsPositive()
+  @Max(20)
   public percentageDiscount: number;
 }
 
