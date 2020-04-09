@@ -1,7 +1,8 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 import { EMAIL_LENGTH, GENERIC_LENGTH } from './length-config';
 import { stringConfig } from './string-config';
+import { Order } from './order';
 
 @Entity()
 export class Email {
@@ -19,6 +20,9 @@ export class Email {
 
   @Column({ default: false })
   public isSent: boolean;
+
+  @ManyToOne(type => Order, { nullable: true })
+  public order: Order;
 
   @Column()
   @CreateDateColumn()

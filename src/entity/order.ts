@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 
 import { Status } from '../models/order.models';
+import { Email } from './email';
 import {
   EMAIL_LENGTH,
   GENERIC_FORM_LENGTH,
@@ -40,6 +41,9 @@ export class Order {
 
   @OneToMany(type => OrderItem, (orderItem: OrderItem) => orderItem.order, { cascade: ['insert'] })
   public orderItems: OrderItem[];
+
+  @OneToMany(type => Email, (email: Email) => email.order, { cascade: ['insert'] })
+  public emails: Email[];
 
   @OneToMany(type => Supply, (supply: Supply) => supply.order)
   public supplies: Supply[];
