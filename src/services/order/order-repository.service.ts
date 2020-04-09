@@ -20,4 +20,8 @@ export class OrderRepositoryService {
 
     return await selectQueryBuilder.getOne();
   }
+
+  public async save(order: Order): Promise<Order> {
+    return await this.repository.save(order);
+  }
 }
