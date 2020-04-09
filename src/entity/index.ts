@@ -5,6 +5,7 @@ import { Image } from './image';
 import { Manufacturer } from './manufacturer';
 import { Order } from './order';
 import { OrderItem } from './order-item';
+import { Payment } from './payment';
 import { Product } from './product';
 import { PromoCode } from './promo-code';
 import { Supply } from './supply';
@@ -18,6 +19,7 @@ export const entities = [
   Manufacturer,
   Order,
   OrderItem,
+  Payment,
   Product,
   PromoCode,
   Supply,

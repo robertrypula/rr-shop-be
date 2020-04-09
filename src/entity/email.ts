@@ -1,8 +1,8 @@
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 import { EMAIL_LENGTH, GENERIC_LENGTH } from './length-config';
-import { stringConfig } from './string-config';
 import { Order } from './order';
+import { stringConfig } from './string-config';
 
 @Entity()
 export class Email {

@@ -5,7 +5,7 @@ import { getSecretConfig } from '../config';
 import { Category } from '../entity/category';
 import { fileLogger } from '../logs/file-logger';
 import { SecretConfig } from '../models/models';
-import { Headers, Notification } from '../simple-pay-u/models';
+import { Headers, Notification, OrderSuccess } from '../simple-pay-u/models';
 import { SimplePayU } from '../simple-pay-u/simple-pay-u';
 import { getOrderNumber } from '../utils/order.utils';
 import { reStringifyPretty, stringifyPretty } from '../utils/utils';
@@ -18,7 +18,7 @@ export class PayUController {
       const email = 'robert.rypula@gmail.com';
       const extOrderId: string = getOrderNumber();
       const simplePayU: SimplePayU = this.getSimplePayU();
-      const orderResponse = await simplePayU.createOrder({
+      const orderResponse: OrderSuccess = await simplePayU.createOrder({
         buyer: {
           email,
           firstName: 'ółżźć℥',

@@ -16,4 +16,4 @@ export const BARCODE_LENGTH = 30;
 export const PRODUCT_CASH_REGISTER_NAME_LENGTH = 40;
 
 export const UUID_LENGTH = 36;
-export const ORDER_NUMBER_LENGTH = 10;
+export const ORDER_NUMBER_LENGTH = 13;

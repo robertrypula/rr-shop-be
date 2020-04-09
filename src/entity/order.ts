@@ -22,6 +22,7 @@ import {
   ZIP_CODE_LENGTH
 } from './length-config';
 import { OrderItem } from './order-item';
+import { Payment } from './payment';
 import { PromoCode } from './promo-code';
 import { stringConfig } from './string-config';
 import { Supply } from './supply';
@@ -36,14 +37,17 @@ export class Order {
   public uuid: string;
 
   @Index({ unique: true })
-  @Column('varchar', { length: ORDER_NUMBER_LENGTH, ...stringConfig }) // example: WA-123-456
+  @Column('varchar', { length: ORDER_NUMBER_LENGTH, ...stringConfig }) // example: W-123-456-789
   public number: string;
+
+  @OneToMany(type => Email, (email: Email) => email.order, { cascade: ['insert'] })
+  public emails: Email[];
 
   @OneToMany(type => OrderItem, (orderItem: OrderItem) => orderItem.order, { cascade: ['insert'] })
   public orderItems: OrderItem[];
 
-  @OneToMany(type => Email, (email: Email) => email.order, { cascade: ['insert'] })
-  public emails: Email[];
+  @OneToMany(type => Payment, (payment: Payment) => payment.order, { cascade: ['insert'] })
+  public payments: Payment[];
 
   @OneToMany(type => Supply, (supply: Supply) => supply.order)
   public supplies: Supply[];
@@ -84,9 +88,6 @@ export class Order {
 
   @Column('enum', { enum: Status, ...stringConfig })
   public status: Status;
-
-  @Column('varchar', { length: URL_LENGTH, nullable: true, default: null, ...stringConfig })
-  public paymentUrl: string;
 
   // ----------
 

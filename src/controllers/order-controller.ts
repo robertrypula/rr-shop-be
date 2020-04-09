@@ -33,7 +33,7 @@ export class OrderController {
       return;
     }
 
-    res.status(200).send({}); // { uuid: order.uuid } // TODO revert this comment
+    res.status(200).send({ uuid: order.uuid });
   }
 
   public async getOrder(req: Request, res: Response): Promise<void> {
