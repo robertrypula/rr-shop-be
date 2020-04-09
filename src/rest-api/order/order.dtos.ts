@@ -2,6 +2,7 @@
 
 import { Expose, Type } from 'class-transformer';
 import {
+  ArrayMaxSize,
   ArrayMinSize,
   IsArray,
   IsEmail,
@@ -16,7 +17,12 @@ import {
   Min,
   ValidateNested
 } from 'class-validator';
-import { DISCOUNT_PERCENTAGE_MAX } from '../../config';
+import {
+  DISCOUNT_PERCENTAGE_MAX,
+  ORDER_DELIVERY_PLUS_PAYMENT_SIZE,
+  ORDER_PRODUCTS_SIZE_MAX,
+  ORDER_PRODUCTS_SIZE_MIN
+} from '../../config';
 import {
   EMAIL_LENGTH,
   GENERIC_FORM_LENGTH,
@@ -76,7 +82,8 @@ export class OrderCreateRequestDto {
   @ValidateNested()
   @IsNotEmpty()
   @IsArray()
-  @ArrayMinSize(3)
+  @ArrayMinSize(ORDER_DELIVERY_PLUS_PAYMENT_SIZE + ORDER_PRODUCTS_SIZE_MIN)
+  @ArrayMaxSize(ORDER_DELIVERY_PLUS_PAYMENT_SIZE + ORDER_PRODUCTS_SIZE_MAX)
   public orderItems: OrderCreateRequestOrderItemDto[];
 
   // ---

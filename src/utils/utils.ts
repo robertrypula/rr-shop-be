@@ -16,15 +16,15 @@ export const reStringifyPretty = (json: string): string => {
   }
 };
 
-export const getDuplicates = (array: string[]): string[] => {
-  const map: { [key: string]: string } = {};
-  const duplicates: string[] = [];
+export const getDuplicates = <T>(array: T[]): T[] => {
+  const map: { [key: string]: T } = {};
+  const duplicates: T[] = [];
 
-  array.forEach((item: string): void => {
-    if (typeof map[item] !== 'undefined') {
+  array.forEach((item: T): void => {
+    if (typeof map[`${item}`] !== 'undefined') {
       duplicates.push(item);
     } else {
-      map[item] = '';
+      map[`${item}`] = null;
     }
   });
 

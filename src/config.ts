@@ -9,6 +9,10 @@ export const EMAIL_SEND_MAX_LIMIT = 4;
 
 export const DISCOUNT_PERCENTAGE_MAX = 20;
 
+export const ORDER_DELIVERY_PLUS_PAYMENT_SIZE = 2;
+export const ORDER_PRODUCTS_SIZE_MIN = 1;
+export const ORDER_PRODUCTS_SIZE_MAX = 100;
+
 export const getSecretConfig = (): SecretConfig => {
   try {
     return toSecretConfig(fileLoad(join(__dirname, '/secret-config.json')));
