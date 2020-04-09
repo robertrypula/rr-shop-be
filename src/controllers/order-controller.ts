@@ -9,8 +9,8 @@ import { OrderService } from '../services/order/order.service';
 
 export class OrderController {
   public constructor(
-    protected orderService: OrderService = new OrderService(),
-    protected orderRepositoryService: OrderRepositoryService = new OrderRepositoryService()
+    protected orderRepositoryService: OrderRepositoryService = new OrderRepositoryService(),
+    protected orderService: OrderService = new OrderService()
   ) {}
 
   public async createOrder(req: Request, res: Response): Promise<void> {

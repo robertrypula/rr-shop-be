@@ -17,10 +17,10 @@ export class Payment {
   @ManyToOne(type => Order)
   public order: Order;
 
-  @Column('enum', { enum: Status, ...stringConfig })
+  @Column('enum', { enum: Status, nullable: false, default: Status.PENDING, ...stringConfig })
   public status: Status;
 
-  @Column('enum', { enum: PaymentType, ...stringConfig })
+  @Column('enum', { enum: PaymentType, nullable: false, default: PaymentType.BankTransfer, ...stringConfig })
   public paymentType: PaymentType;
 
   @Column({ type: 'mediumtext', nullable: true, default: null, ...stringConfig })

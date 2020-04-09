@@ -86,7 +86,7 @@ export class Order {
 
   // ----------
 
-  @Column('enum', { enum: Status, ...stringConfig })
+  @Column('enum', { enum: Status, nullable: false, default: Status.PaymentWait, ...stringConfig })
   public status: Status;
 
   // ----------
