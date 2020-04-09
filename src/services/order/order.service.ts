@@ -44,6 +44,10 @@ export class OrderService {
     email = await this.repositoryEmail.save(email);
     order = await this.repository.save(order);
 
+    // TODO add relation between order/email with cascade insert
+    // Cascade relation save looks like to be wrapped with transaction
+    // https://github.com/typeorm/typeorm/issues/1025#issuecomment-343122704
+
     return order;
     /*
     order.orderItems = [];
