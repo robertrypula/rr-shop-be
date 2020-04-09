@@ -9,7 +9,7 @@ export class PromoCode {
   @PrimaryGeneratedColumn()
   public id: number;
 
-  @Column('varchar', { length: PROMO_CODE_LENGTH, ...stringConfig })
+  @Column('varchar', { unique: true, length: PROMO_CODE_LENGTH, ...stringConfig })
   public name: string;
 
   @Column('decimal', { precision: 5, scale: 2 })
