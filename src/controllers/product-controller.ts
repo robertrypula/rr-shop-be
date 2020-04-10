@@ -15,12 +15,12 @@ import { ProductService } from '../services/product/product.service';
 export class ProductController {
   public constructor(
     protected repository: Repository<Product> = getRepository(Product),
-    protected productService: ProductService = new ProductService(repository)
+    protected productService: ProductService = new ProductService()
   ) {}
 
   public async getCashRegisterCvs(req: Request, res: Response): Promise<void> {
     // TODO find more REST approach (it's not returning JSON and violates REST endpoint structure)
-    // TODO move it to product.service.ts
+    // TODO move it to product.service.ts / product-repository.service
     const queryBuilder: SelectQueryBuilder<Product> = this.repository
       .createQueryBuilder('product')
       .select([
