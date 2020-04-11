@@ -73,7 +73,7 @@ export class OrderService {
 
       orderItem.order = order; // required at selling price calculation (promoCode is in order)
       orderItem.name = foundProduct.name;
-      orderItem.priceUnitOriginal = orderCreateRequestOrderItemDto.priceUnitOriginal; // TODO change it to product
+      orderItem.priceUnitOriginal = foundProduct.priceUnit;
       orderItem.priceUnitSelling = orderItem.getCalculatedPriceUnitSelling();
       orderItem.quantity = orderCreateRequestOrderItemDto.quantity;
       orderItem.type = foundProduct.type;
@@ -133,14 +133,16 @@ export class OrderService {
       getFormattedPrice(orderCreateRequestOrderItemDto.priceUnitOriginal) !==
       getFormattedPrice(orderItem.priceUnitOriginal)
     ) {
-      throw `Original price sent in request is different than the price calculated on the server`;
+      throw `Original unit price of '${name}' sent in request (${orderCreateRequestOrderItemDto.priceUnitOriginal}) ` +
+        `is different than the product's unit price on the server (${orderItem.priceUnitOriginal})`;
     }
 
     if (
       getFormattedPrice(orderCreateRequestOrderItemDto.priceUnitSelling) !==
       getFormattedPrice(orderItem.priceUnitSelling)
     ) {
-      throw `Selling price sent in request is different than the price calculated on the server`;
+      throw `Selling unit price of '${name}' sent in request (${orderCreateRequestOrderItemDto.priceUnitSelling}) ` +
+        `is different than the product's unit price calculated on the server (${orderItem.priceUnitSelling})`;
     }
   }
 
