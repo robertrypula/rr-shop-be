@@ -13,10 +13,17 @@ export const DEFAULT_ATTACHMENTS: Attachment[] = [
 ];
 
 export const ORDER_ITEM = `
-  {{ COUNTER }}. <b>{{ NAME }}</b>
-  <br/>
-  {{ PRICE_UNIT_ORIGINAL }} zł x {{ QUANTITY }} = {{ PRICE_TOTAL_ORIGINAL }} zł
-  <br/><br/>
+  <tr>
+    <td width="25" valign="top" style="vertical-align: top;">
+      {{ COUNTER }}.
+    </td>
+    <td width="315" valign="top" style="vertical-align: top;">
+      <b>{{ NAME }}</b>
+    </td>
+    <td width="160" valign="top" style="vertical-align: top; text-align: right">
+      {{ QUANTITY }} x {{ PRICE_UNIT_ORIGINAL }} zł = {{ PRICE_TOTAL_ORIGINAL }} zł
+    </td>
+  </tr>
 `;
 
 export const PROMO_CODE = `
@@ -27,13 +34,13 @@ export const PROMO_CODE = `
 
 export const PRICE_WITHOUT_PROMO_CODE = `
   <p>
-      Do zapłaty: <strong>{{ PRICE_TOTAL_SELLING }}</strong>
+    Do zapłaty: <strong>{{ PRICE_TOTAL_SELLING }}</strong>
   </p>
 `;
 
 export const PRICE_WITH_PROMO_CODE = `
   <p>
-      Do zapłaty (z uwzględnieniem rabatu): <strong>{{ PRICE_TOTAL_SELLING }}</strong>
+    Do zapłaty (z uwzględnieniem rabatu): <strong>{{ PRICE_TOTAL_SELLING }} zł</strong>
   </p>
 `;
 
@@ -51,7 +58,7 @@ export const PAYMENT_BANK_TRANSFER = `
 
 export const PAYMENT_PAY_U = `
   <p>
-    Zanim zajmiemy się jego kompletowaniem prosimy o dokonanie płatności poprzez serwis PayU:
+    Zanim zajmiemy się jego kompletowaniem prosimy o dokonanie płatności elektronicznej:
     <br/>
     <a href="{{ PAY_U_URL }}" target="_blank"><strong>Płatność PayU</strong></a>
   </p>
@@ -95,13 +102,17 @@ export const DEFAULT: string = `
     <meta charset="utf-8" />
   </head>
   <body>
-    <h2>Dzień dobry {{ NAME }},</h2>
-
     <p>
-        przyjęliśmy Twoje zamówienie do realizacji i nadaliśmy mu numer <strong>{{ NUMBER }}</strong>.
+      Witaj {{ NAME }},
+      <br/>
+      przyjęliśmy Twoje zamówienie do realizacji i nadaliśmy mu numer <strong>{{ NUMBER }}</strong>.
     </p>
 
-    {{ ORDER_ITEMS }}
+    <table width="500" cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        {{ ORDER_ITEMS }}
+      </tbody>
+    </table>
 
     {{ PROMO_CODE }}
 
@@ -112,7 +123,7 @@ export const DEFAULT: string = `
     {{ DELIVERY }}
 
     <p>
-        Pozdrawiamy
+      Pozdrawiamy
     </p>
 
     <table width="400" cellpadding="0" cellspacing="0" border="0">
