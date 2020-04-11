@@ -9,8 +9,6 @@ export const fromOrderCreateRequestDto = (dto: OrderCreateRequestDto): Order => 
   dto.orderItems.forEach((orderItemDto: OrderCreateRequestOrderItemDto): void => {
     const orderItem: OrderItem = new OrderItem();
 
-    orderItem.priceUnitOriginal = orderItemDto.priceUnitOriginal;
-    orderItem.priceUnitSelling = orderItemDto.priceUnitSelling;
     orderItem.productId = orderItemDto.productId;
     orderItem.quantity = orderItemDto.quantity;
 

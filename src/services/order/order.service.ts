@@ -2,11 +2,14 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { Email } from '../../entity/email';
 import { Order } from '../../entity/order';
+import { OrderItem } from '../../entity/order-item';
+import { Product } from '../../entity/product';
 import { PromoCode } from '../../entity/promo-code';
 import { fromOrderCreateRequestDto } from '../../mappers/order.mappers';
 import { Status } from '../../models/order.models';
 import { OrderCreateRequestDto, OrderCreateRequestPromoCodeDto } from '../../rest-api/order/order.dtos';
 import { getOrderNumber } from '../../utils/order.utils';
+import { ProductService } from '../product/product.service';
 import { PromoCodeRepositoryService } from '../promo-code/promo-code-repository.service';
 import { TemplateService } from '../template.service';
 import { OrderRepositoryService } from './order-repository.service';
@@ -15,7 +18,8 @@ export class OrderService {
   public constructor(
     protected promoCodeRepositoryService: PromoCodeRepositoryService = new PromoCodeRepositoryService(),
     protected orderRepositoryService: OrderRepositoryService = new OrderRepositoryService(),
-    protected templateService: TemplateService = new TemplateService()
+    protected templateService: TemplateService = new TemplateService(),
+    protected productService: ProductService = new ProductService()
   ) {}
 
   public async createOrder(orderCreateRequestDto: OrderCreateRequestDto): Promise<Order> {
@@ -50,30 +54,32 @@ export class OrderService {
 
   protected async handleOrderItems(order: Order, orderCreateRequestDto: OrderCreateRequestDto): Promise<void> {
     // TODO investigate locking: https://stackoverflow.com/questions/17431338/optimistic-locking-in-mysql
-    /*
-    order.orderItems.forEach((orderItem: OrderItem): void => {
-      orderItem.name = 'dua';
-    });
-    order.orderItems = [];
-    for (let i = 0; i < orderCreateRequestDto.orderItems.length; i++) {
-      const orderItemDto: OrderCreateRequestOrderItemsDto = orderCreateRequestDto.orderItems[i];
-      const orderItem: OrderItem = new OrderItem();
-      const product: Product = await this.repositoryProduct.findOneOrFail(orderItemDto.productId, {
-        select: ['id', 'name', 'priceUnit']
-      });
+    const productIds: number[] = order.orderItems.map((orderOrder: OrderItem): number => orderOrder.productId);
+    const products: Product[] = await this.productService.getProductsFetchTypeMedium(productIds);
 
-      orderItem.name = product.name;
-      orderItem.vat = 0; // should be latest VAT from supply table
-      orderItem.priceUnitOriginal = product.priceUnit;
-      orderItem.priceUnitSelling = product.priceUnit;
-      orderItem.product = product;
-      orderItem.quantity = orderItemDto.quantity;
-
-      // TODO fill in type
-
-      order.orderItems.push(orderItem);
+    if (productIds.length !== products.length) {
+      throw 'Some products from the order could not be found in database';
     }
-    */
+
+    order.orderItems.forEach((orderItem: OrderItem): void => {
+      const foundProduct: Product = products.find((product: Product): boolean => product.id === orderItem.productId);
+
+      if (!foundProduct) {
+        // actually it was already checked before by unique check in validator and length check above
+        throw 'Could not find product from order in the database';
+      }
+
+      orderItem.name = foundProduct.name;
+      orderItem.priceUnitOriginal = foundProduct.priceUnit;
+      orderItem.priceUnitSelling = null;
+      // orderItem.quantity = null; ALREADY SET
+      orderItem.type = foundProduct.type;
+      orderItem.deliveryType = foundProduct.deliveryType;
+      orderItem.paymentType = foundProduct.paymentType;
+
+      orderItem.productId = undefined; // will be set by TypeOrm
+      orderItem.product = foundProduct;
+    });
   }
 
   protected async handlePayment(order: Order, orderCreateRequestDto: OrderCreateRequestDto): Promise<void> {
