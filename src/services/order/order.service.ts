@@ -1,4 +1,3 @@
-import { inspect } from 'util';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Email } from '../../entity/email';
@@ -14,8 +13,6 @@ import { ProductService } from '../product/product.service';
 import { PromoCodeRepositoryService } from '../promo-code/promo-code-repository.service';
 import { TemplateService } from '../template.service';
 import { OrderRepositoryService } from './order-repository.service';
-
-// tslint:disable:no-console
 
 export class OrderService {
   public constructor(
@@ -42,11 +39,6 @@ export class OrderService {
   }
 
   protected finalValidation(order: Order, orderCreateRequestDto: OrderCreateRequestDto): void {
-    try {
-      console.log(inspect(order, { depth: null, colors: true }));
-    } catch (error) {
-      console.log(error);
-    }
     // TODO check: parcelLocker, amount of delivery and payment order items,
     // throw `Not good - TODO implement me`;
   }
@@ -77,7 +69,7 @@ export class OrderService {
         throw 'Could not find product from order in the database';
       }
 
-      orderItem.order = order;
+      orderItem.order = order; // required at selling price calculation (promoCode is in order)
 
       orderItem.name = foundProduct.name;
       orderItem.priceUnitOriginal = orderCreateRequestDto.orderItems.find(
