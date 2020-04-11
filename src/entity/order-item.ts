@@ -1,7 +1,7 @@
-import { IsNumber } from 'class-validator';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 import { DeliveryType, PaymentType, Type } from '../models/product.models';
+import { getNormalizedPrice } from '../utils/transformation.utils';
 import { PRODUCT_NAME_LENGTH } from './length-config';
 import { Order } from './order';
 import { Product } from './product';
@@ -16,11 +16,9 @@ export class OrderItem {
   public name: string;
 
   @Column('decimal', { precision: 7, scale: 2 })
-  @IsNumber({ allowInfinity: false, allowNaN: false })
   public priceUnitOriginal: number;
 
   @Column('decimal', { precision: 7, scale: 2 })
-  @IsNumber({ allowInfinity: false, allowNaN: false })
   public priceUnitSelling: number;
 
   @Column() // duplicate order item with NEGATIVE quantity when product is unavailable but was already paid
@@ -43,4 +41,13 @@ export class OrderItem {
 
   @Column()
   public productId: number;
+
+  public getCalculatedPriceUnitSelling(): number {
+    if (!this.order) {
+      throw `Cannot calculate selling unit price when there is no order attached to orderItem`;
+    }
+    return getNormalizedPrice(
+      this.priceUnitOriginal * (this.order.promoCode ? this.order.promoCode.getDiscountMultiplier() : 1)
+    );
+  }
 }

@@ -75,6 +75,10 @@ export const getNormalizedNamesTillTheEnd = (rowData: string[], startIndex: numb
   return result;
 };
 
+export const getNormalizedPrice = (price: number): number => {
+  return Math.round(price * 100) / 100;
+};
+
 export const parseDate = (value: string): Date => {
   if (value.length !== 10) {
     throw new Error('Wrong date');

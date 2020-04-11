@@ -1,3 +1,4 @@
+import { inspect } from 'util';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Email } from '../../entity/email';
@@ -13,6 +14,8 @@ import { ProductService } from '../product/product.service';
 import { PromoCodeRepositoryService } from '../promo-code/promo-code-repository.service';
 import { TemplateService } from '../template.service';
 import { OrderRepositoryService } from './order-repository.service';
+
+// tslint:disable:no-console
 
 export class OrderService {
   public constructor(
@@ -39,8 +42,13 @@ export class OrderService {
   }
 
   protected finalValidation(order: Order, orderCreateRequestDto: OrderCreateRequestDto): void {
+    try {
+      console.log(inspect(order, { depth: null, colors: true }));
+    } catch (error) {
+      console.log(error);
+    }
     // TODO check: parcelLocker, amount of delivery and payment order items,
-    throw `Not good - TODO implement me`;
+    // throw `Not good - TODO implement me`;
   }
 
   protected async handleEmail(order: Order): Promise<void> {
@@ -55,7 +63,7 @@ export class OrderService {
   protected async handleOrderItems(order: Order, orderCreateRequestDto: OrderCreateRequestDto): Promise<void> {
     // TODO investigate locking: https://stackoverflow.com/questions/17431338/optimistic-locking-in-mysql
     const productIds: number[] = order.orderItems.map((orderOrder: OrderItem): number => orderOrder.productId);
-    const products: Product[] = await this.productService.getProductsFetchTypeMedium(productIds);
+    const products: Product[] = await this.productService.getProductsFetchTypeFull(productIds);
 
     if (productIds.length !== products.length) {
       throw 'Some products from the order could not be found in database';
@@ -69,16 +77,22 @@ export class OrderService {
         throw 'Could not find product from order in the database';
       }
 
+      orderItem.order = order;
+
       orderItem.name = foundProduct.name;
-      orderItem.priceUnitOriginal = foundProduct.priceUnit;
-      orderItem.priceUnitSelling = null;
-      // orderItem.quantity = null; ALREADY SET
+      orderItem.priceUnitOriginal = orderCreateRequestDto.orderItems.find(
+        oi => oi.productId === orderItem.productId
+      ).priceUnitOriginal; // TODO change it to product
+      orderItem.priceUnitSelling = orderItem.getCalculatedPriceUnitSelling();
       orderItem.type = foundProduct.type;
       orderItem.deliveryType = foundProduct.deliveryType;
       orderItem.paymentType = foundProduct.paymentType;
 
-      orderItem.productId = undefined; // will be set by TypeOrm
       orderItem.product = foundProduct;
+
+      // leave setting relation id to TypeOrm...
+      // orderItem.productId = undefined;
+      // orderItem.order = undefined;
     });
   }
 

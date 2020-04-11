@@ -20,4 +20,8 @@ export class PromoCode {
 
   @OneToMany(type => Order, (order: Order) => order.promoCode)
   public order: Order[];
+
+  public getDiscountMultiplier(): number {
+    return (100 - this.percentageDiscount) / 100;
+  }
 }
