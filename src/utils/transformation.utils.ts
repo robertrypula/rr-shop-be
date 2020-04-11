@@ -60,6 +60,10 @@ export const getFormattedDate = (
   ].join('');
 };
 
+export const getFormattedPrice = (price: number): string => {
+  return (price ? price : 0).toFixed(2);
+};
+
 export const getMap = <T extends { id: number }>(entities: T[]): { [key: string]: T } => {
   const initial: { [key: string]: T } = {};
 

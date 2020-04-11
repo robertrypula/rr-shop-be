@@ -7,13 +7,14 @@ import { Product } from '../../entity/product';
 import { PromoCode } from '../../entity/promo-code';
 import { fromOrderCreateRequestDto } from '../../mappers/order.mappers';
 import { Status } from '../../models/order.models';
+import { Type } from '../../models/product.models';
 import {
   OrderCreateRequestDto,
   OrderCreateRequestOrderItemDto,
   OrderCreateRequestPromoCodeDto
 } from '../../rest-api/order/order.dtos';
 import { getOrderNumber } from '../../utils/order.utils';
-import { getMap } from '../../utils/transformation.utils';
+import { getFormattedPrice, getMap } from '../../utils/transformation.utils';
 import { ProductService } from '../product/product.service';
 import { PromoCodeRepositoryService } from '../promo-code/promo-code-repository.service';
 import { TemplateService } from '../template.service';
@@ -81,7 +82,7 @@ export class OrderService {
 
       orderItem.product = foundProduct;
 
-      orderItem.order = undefined; // leave setting relation id to TypeOrm...
+      orderItem.order = undefined; // leave relations to TypeOrm...
 
       this.validateOrderItem(orderItem, orderCreateRequestOrderItemDto);
 
@@ -98,11 +99,8 @@ export class OrderService {
       const name: string = orderCreateRequestDto.promoCode.name;
       const promoCode: PromoCode = await this.promoCodeRepositoryService.getActivePromoCode(name);
 
-      if (this.validatePromoCode(promoCode, orderCreateRequestDto.promoCode)) {
-        order.promoCode = promoCode;
-      } else {
-        throw `Invalid promo code`;
-      }
+      this.validatePromoCode(promoCode, orderCreateRequestDto.promoCode);
+      order.promoCode = promoCode;
     }
   }
 
@@ -115,18 +113,43 @@ export class OrderService {
     orderItem: OrderItem,
     orderCreateRequestOrderItemDto: OrderCreateRequestOrderItemDto
   ): void {
-    if (orderItem.quantity > orderItem.product.quantity) {
-      throw [
-        `Requested quantity (${orderItem.quantity}) for product`,
-        ` '${orderItem.product.name}' exceeds available quantity (${orderItem.product.quantity})`
-      ].join('');
+    const availableQuantity: number = orderItem.product.quantity;
+    const name: string = orderItem.product.name;
+    const quantity: number = orderItem.quantity;
+
+    if (orderItem.type === Type.Product && quantity > availableQuantity) {
+      throw `Requested quantity (${quantity}) for product '${name}' exceeds available quantity (${availableQuantity})`;
+    }
+
+    if (orderItem.type === Type.Delivery && quantity !== 1) {
+      throw `Quantity of Delivery should be always equal to 1`;
+    }
+
+    if (orderItem.type === Type.Payment && quantity !== 1) {
+      throw `Quantity of Payment should be always equal to 1`;
+    }
+
+    if (
+      getFormattedPrice(orderCreateRequestOrderItemDto.priceUnitOriginal) !==
+      getFormattedPrice(orderItem.priceUnitOriginal)
+    ) {
+      throw `Original price sent in request is different than the price calculated on the server`;
+    }
+
+    if (
+      getFormattedPrice(orderCreateRequestOrderItemDto.priceUnitSelling) !==
+      getFormattedPrice(orderItem.priceUnitSelling)
+    ) {
+      throw `Selling price sent in request is different than the price calculated on the server`;
     }
   }
 
   protected validatePromoCode(
     promoCode: PromoCode,
     orderCreateRequestPromoCodeDto: OrderCreateRequestPromoCodeDto
-  ): boolean {
-    return promoCode && promoCode.percentageDiscount === orderCreateRequestPromoCodeDto.percentageDiscount;
+  ): void {
+    if (!promoCode || promoCode.percentageDiscount !== orderCreateRequestPromoCodeDto.percentageDiscount) {
+      throw `Invalid promo code`;
+    }
   }
 }

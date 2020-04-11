@@ -4,9 +4,7 @@ import { extractConstraints } from '../../utils/transformation.utils';
 import { getDuplicates } from '../../utils/utils';
 import { OrderCreateRequestDto, OrderCreateRequestOrderItemDto } from './order.dtos';
 
-export const validateOrderCreateRequestDto = async (
-  orderCreateRequestDto: OrderCreateRequestDto
-): Promise<void> => {
+export const validateOrderCreateRequestDto = async (orderCreateRequestDto: OrderCreateRequestDto): Promise<void> => {
   const validationErrors: ValidationError[] = await validate(orderCreateRequestDto, { forbidUnknownValues: true });
   const productIds: number[] = orderCreateRequestDto.orderItems.map(
     (orderCreateRequestOrderItemDto: OrderCreateRequestOrderItemDto): number => orderCreateRequestOrderItemDto.productId
