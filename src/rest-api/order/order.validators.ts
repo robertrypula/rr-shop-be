@@ -6,7 +6,7 @@ import { OrderCreateRequestDto, OrderCreateRequestOrderItemDto } from './order.d
 
 export const validateOrderCreateRequestDto = async (
   orderCreateRequestDto: OrderCreateRequestDto
-): Promise<string[]> => {
+): Promise<void> => {
   const validationErrors: ValidationError[] = await validate(orderCreateRequestDto, { forbidUnknownValues: true });
   const productIds: number[] = orderCreateRequestDto.orderItems.map(
     (orderCreateRequestOrderItemDto: OrderCreateRequestOrderItemDto): number => orderCreateRequestOrderItemDto.productId
@@ -19,5 +19,7 @@ export const validateOrderCreateRequestDto = async (
     errors.push('productId needs to be unique');
   }
 
-  return errors;
+  if (errors.length) {
+    throw errors;
+  }
 };

@@ -36,16 +36,11 @@ export class OrderService {
 
     await this.handlePromoCode(order, orderCreateRequestDto);
     await this.handleOrderItems(order, orderCreateRequestDto);
-    this.finalValidation(order, orderCreateRequestDto);
+    this.validateOrder(order, orderCreateRequestDto);
     await this.handlePayment(order, orderCreateRequestDto);
     await this.handleEmail(order);
 
     return await this.orderRepositoryService.save(order); // TypeORM already wraps cascade insert with transaction
-  }
-
-  protected finalValidation(order: Order, orderCreateRequestDto: OrderCreateRequestDto): void {
-    // TODO check: parcelLocker, amount of delivery and payment order items,
-    // throw `Not good - TODO implement me`;
   }
 
   protected async handleEmail(order: Order): Promise<void> {
@@ -88,12 +83,7 @@ export class OrderService {
 
       orderItem.order = undefined; // leave setting relation id to TypeOrm...
 
-      if (orderItem.quantity > foundProduct.quantity) {
-        throw [
-          `Requested quantity (${orderItem.quantity}) for product`,
-          ` '${foundProduct.name}' exceeds available quantity (${foundProduct.quantity})`
-        ].join('');
-      }
+      this.validateOrderItem(orderItem, orderCreateRequestOrderItemDto);
 
       order.orderItems.push(orderItem);
     });
@@ -108,7 +98,7 @@ export class OrderService {
       const name: string = orderCreateRequestDto.promoCode.name;
       const promoCode: PromoCode = await this.promoCodeRepositoryService.getActivePromoCode(name);
 
-      if (this.isPromoCodeDtoEqualToDb(promoCode, orderCreateRequestDto.promoCode)) {
+      if (this.validatePromoCode(promoCode, orderCreateRequestDto.promoCode)) {
         order.promoCode = promoCode;
       } else {
         throw `Invalid promo code`;
@@ -116,7 +106,24 @@ export class OrderService {
     }
   }
 
-  protected isPromoCodeDtoEqualToDb(
+  protected validateOrder(order: Order, orderCreateRequestDto: OrderCreateRequestDto): void {
+    // TODO check: parcelLocker, amount of delivery and payment order items,
+    // throw `Not good - TODO implement me`;
+  }
+
+  protected validateOrderItem(
+    orderItem: OrderItem,
+    orderCreateRequestOrderItemDto: OrderCreateRequestOrderItemDto
+  ): void {
+    if (orderItem.quantity > orderItem.product.quantity) {
+      throw [
+        `Requested quantity (${orderItem.quantity}) for product`,
+        ` '${orderItem.product.name}' exceeds available quantity (${orderItem.product.quantity})`
+      ].join('');
+    }
+  }
+
+  protected validatePromoCode(
     promoCode: PromoCode,
     orderCreateRequestPromoCodeDto: OrderCreateRequestPromoCodeDto
   ): boolean {

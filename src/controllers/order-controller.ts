@@ -20,13 +20,13 @@ export class OrderController {
     let order: Order;
 
     try {
-      const errors: string[] = await validateOrderCreateRequestDto(orderCreateRequestDto);
+      await validateOrderCreateRequestDto(orderCreateRequestDto);
+    } catch (errors) {
+      res.status(400).send({ errorDetails: errors, errorMessage: 'Validation errors' });
+      return;
+    }
 
-      if (errors.length) {
-        res.status(500).send({ errorDetails: errors, errorMessage: 'Validation errors' });
-        return;
-      }
-
+    try {
       order = await this.orderService.createOrder(orderCreateRequestDto);
     } catch (error) {
       res.status(500).send({ errorMessage: 'Could not create order', errorDetails: error });
