@@ -9,6 +9,7 @@ import { fromOrderCreateRequestDto } from '../../mappers/order.mappers';
 import { Status } from '../../models/order.models';
 import { OrderCreateRequestDto, OrderCreateRequestPromoCodeDto } from '../../rest-api/order/order.dtos';
 import { getOrderNumber } from '../../utils/order.utils';
+import { getMap } from '../../utils/transformation.utils';
 import { ProductService } from '../product/product.service';
 import { PromoCodeRepositoryService } from '../promo-code/promo-code-repository.service';
 import { TemplateService } from '../template.service';
@@ -56,16 +57,16 @@ export class OrderService {
     // TODO investigate locking: https://stackoverflow.com/questions/17431338/optimistic-locking-in-mysql
     const productIds: number[] = order.orderItems.map((orderOrder: OrderItem): number => orderOrder.productId);
     const products: Product[] = await this.productService.getProductsFetchTypeFull(productIds);
+    const productsMap: { [key: string]: Product } = getMap(products);
 
     if (productIds.length !== products.length) {
       throw 'Some products from the order could not be found in database';
     }
 
     order.orderItems.forEach((orderItem: OrderItem): void => {
-      const foundProduct: Product = products.find((product: Product): boolean => product.id === orderItem.productId);
+      const foundProduct: Product = productsMap[`${orderItem.productId}`];
 
       if (!foundProduct) {
-        // actually it was already checked before by unique check in validator and length check above
         throw 'Could not find product from order in the database';
       }
 

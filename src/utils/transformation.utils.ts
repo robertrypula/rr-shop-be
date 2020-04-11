@@ -60,6 +60,16 @@ export const getFormattedDate = (
   ].join('');
 };
 
+export const getMap = <T extends { id: number }>(entities: T[]): { [key: string]: T } => {
+  const initial: { [key: string]: T } = {};
+
+  return entities.reduce((accumulator: { [id: string]: T }, entity: T) => {
+    accumulator[`${entity.id}`] = entity;
+
+    return accumulator;
+  }, initial);
+};
+
 export const getNormalizedNamesTillTheEnd = (rowData: string[], startIndex: number, lengthThreshold = 2): string[] => {
   const result: string[] = [];
 
