@@ -12,13 +12,108 @@ export const DEFAULT_ATTACHMENTS: Attachment[] = [
   }
 ];
 
+export const ORDER_ITEM = `
+  {{ COUNTER }}. <b>{{ NAME }}</b>
+  <br/>
+  {{ PRICE_UNIT_ORIGINAL }} zł x {{ QUANTITY }} = {{ PRICE_TOTAL_ORIGINAL }} zł
+  <br/><br/>
+`;
+
+export const PROMO_CODE = `
+  <p>
+    Podczas składania zamówienia podano kod rabatowy -{{ DISCOUNT }}%
+  </p>
+`;
+
+export const PRICE_WITHOUT_PROMO_CODE = `
+  <p>
+      Do zapłaty: <strong>{{ PRICE_TOTAL_SELLING }}</strong>
+  </p>
+`;
+
+export const PRICE_WITH_PROMO_CODE = `
+  <p>
+      Do zapłaty (z uwzględnieniem rabatu): <strong>{{ PRICE_TOTAL_SELLING }}</strong>
+  </p>
+`;
+
+export const PAYMENT_BANK_TRANSFER = `
+  <p>
+    Zanim zajmiemy się jego kompletowaniem prosimy o dokonanie płatności poprzez
+    przelew bankowy na numer konta:
+  </p>
+  <p>
+    <strong>0000-1111-2222-3333-4444-5555-6666-7777-8888</strong>
+    <br/>
+    Tytuł przelewu: {{ NUMBER }}
+  </p>
+`;
+
+export const PAYMENT_PAY_U = `
+  <p>
+    Zanim zajmiemy się jego kompletowaniem prosimy o dokonanie płatności poprzez serwis PayU:
+    <br/>
+    <a href="{{ PAY_U_URL }}" target="_blank"><strong>Płatność PayU</strong></a>
+  </p>
+`;
+
+export const DELIVERY_IN_POST_COURIER: string = `
+  <p>
+    Po zaksięgowaniu wpłaty paczka zostanie dostarczona kurierem InPost na adres:
+    <br/>
+    {{ NAME }} {{ SURNAME }}
+    <br/>
+    {{ ADDRESS }}
+    <br/>
+    {{ ZIP_CODE }} {{ CITY }}
+  </p>
+`;
+
+export const DELIVERY_IN_POST_PARCEL_LOCKER: string = `
+  <p>
+    Po zaksięgowaniu wpłaty paczka zostanie dostarczona do paczkomatu InPost: {{ PARCEL_LOCKER }}
+  </p>
+`;
+
+export const DELIVERY_OWN: string = `
+  <p>
+    Wybrano odbiór osobisty - po zaksięgowaniu wpłaty, o możliwości odbioru poinformujemy Cię osobnym mailem.
+  </p>
+`;
+
+/*
+    <p>
+        W każdej chwili możesz podglądnąć aktualny stan zamówienia klikając w poniższy link:
+        <br/>
+        <a href="{{ ORDER_URL }}"><strong>Podgląd zamówienia</strong></a>
+    </p>
+ */
+
 export const DEFAULT: string = `
 <html lang="pl">
   <head>
     <meta charset="utf-8" />
   </head>
   <body>
-    {{ MESSAGE }}
+    <h2>Dzień dobry {{ NAME }},</h2>
+
+    <p>
+        przyjęliśmy Twoje zamówienie do realizacji i nadaliśmy mu numer <strong>{{ NUMBER }}</strong>.
+    </p>
+
+    {{ ORDER_ITEMS }}
+
+    {{ PROMO_CODE }}
+
+    {{ PRICE }}
+
+    {{ PAYMENT }}
+
+    {{ DELIVERY }}
+
+    <p>
+        Pozdrawiamy
+    </p>
 
     <table width="400" cellpadding="0" cellspacing="0" border="0">
       <tbody>
