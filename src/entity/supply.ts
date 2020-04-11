@@ -1,5 +1,6 @@
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
+import { decimalPercentageConfig, decimalPriceConfig } from './decimal-config';
 import { Order } from './order';
 import { Product } from './product';
 import { stringConfig } from './string-config';
@@ -9,10 +10,10 @@ export class Supply {
   @PrimaryGeneratedColumn()
   public id: number;
 
-  @Column('decimal', { precision: 5, scale: 2 })
+  @Column('decimal', { ...decimalPercentageConfig })
   public vat: number;
 
-  @Column('decimal', { precision: 7, scale: 2 })
+  @Column('decimal', { ...decimalPriceConfig })
   public priceUnitGross: number;
 
   @Column({ nullable: true, default: null })

@@ -14,6 +14,7 @@ import {
 import { Status } from '../models/order.models';
 import { DeliveryType, PaymentType, Type } from '../models/product.models';
 import { Category } from './category';
+import { decimalPriceConfig } from './decimal-config';
 import { Distributor } from './distributor';
 import { Image } from './image';
 import { BARCODE_LENGTH, PKWIU_LENGTH, PRODUCT_CASH_REGISTER_NAME_LENGTH, PRODUCT_NAME_LENGTH } from './length-config';
@@ -45,7 +46,7 @@ export class Product {
   @Column({ default: 0 })
   public sortOrder: number;
 
-  @Column('decimal', { precision: 7, scale: 2 })
+  @Column('decimal', { ...decimalPriceConfig })
   public priceUnit: number;
 
   @Column('varchar', { length: PKWIU_LENGTH, nullable: true, default: null, ...stringConfig })

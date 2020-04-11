@@ -29,6 +29,7 @@ export class OrderController {
     try {
       order = await this.orderService.createOrder(orderCreateRequestDto);
     } catch (error) {
+      // TODO catch validation errors and return 400 HTTP CODE
       res.status(500).send({ errorMessage: 'Could not create order', errorDetails: error });
       return;
     }

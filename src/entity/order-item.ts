@@ -2,6 +2,7 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 import { DeliveryType, PaymentType, Type } from '../models/product.models';
 import { getNormalizedPrice } from '../utils/transformation.utils';
+import { decimalPriceConfig } from './decimal-config';
 import { PRODUCT_NAME_LENGTH } from './length-config';
 import { Order } from './order';
 import { Product } from './product';
@@ -15,10 +16,10 @@ export class OrderItem {
   @Column('varchar', { length: PRODUCT_NAME_LENGTH, ...stringConfig })
   public name: string;
 
-  @Column('decimal', { precision: 7, scale: 2 })
+  @Column('decimal', { ...decimalPriceConfig })
   public priceUnitOriginal: number;
 
-  @Column('decimal', { precision: 7, scale: 2 })
+  @Column('decimal', { ...decimalPriceConfig })
   public priceUnitSelling: number;
 
   @Column() // duplicate order item with NEGATIVE quantity when product is unavailable but was already paid
