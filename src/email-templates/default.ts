@@ -34,7 +34,7 @@ export const PROMO_CODE = `
 
 export const PRICE_WITHOUT_PROMO_CODE = `
   <p>
-    Do zapłaty: <strong>{{ PRICE_TOTAL_SELLING }}</strong>
+    Do zapłaty: <strong>{{ PRICE_TOTAL_SELLING }} zł</strong>
   </p>
 `;
 
