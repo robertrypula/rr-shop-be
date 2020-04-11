@@ -46,7 +46,7 @@ export class OrderController {
   }
 
   public async getOrder(req: Request, res: Response): Promise<void> {
-    const order: Order = await this.orderRepositoryService.getOrder(req.query.uuid);
+    const order: Order = await this.orderRepositoryService.getOrder(`${req.query.uuid}`); // TODO check
 
     order ? res.send(order) : res.status(404).send({});
   }

@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
-import { getRepository, Repository } from 'typeorm';
-import { SelectQueryBuilder } from 'typeorm/query-builder/SelectQueryBuilder';
+import { getRepository, Repository, SelectQueryBuilder } from 'typeorm';
 
 import { Product } from '../entity/product';
 import { FetchType, ParameterBag } from '../models/product.models';
@@ -106,17 +105,18 @@ export class ProductController {
     return {
       categoryIds: this.getIdsAsArray(req, 'categoryIds'),
       fetchType: this.getFetchType(req),
-      name: req.query.name ? req.query.name : null,
+      name: req.query.name ? `${req.query.name}` : null, // TODO check
       productId: req.params.id ? +req.params.id : null,
       productIds: this.getIdsAsArray(req, 'productIds')
     };
   }
 
   protected getIdsAsArray(req: Request, field: string): number[] {
+    // TODO check req.query[field] types
     return typeof req.query[field] !== 'undefined'
-      ? req.query[field] === ''
+      ? `${req.query[field]}` === ''
         ? []
-        : req.query[field].split(',').map((categoryId: string): number => +categoryId)
+        : `${req.query[field]}`.split(',').map((categoryId: string): number => +categoryId)
       : null;
   }
 

@@ -1,5 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
-import { SelectQueryBuilder } from 'typeorm/query-builder/SelectQueryBuilder';
+import { getRepository, Repository, SelectQueryBuilder } from 'typeorm';
 
 import { Product } from '../../entity/product';
 import { ProductsOrderItems, ProductsSuppliesCount } from '../../models/product.models';
