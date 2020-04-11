@@ -7,7 +7,11 @@ import { Product } from '../../entity/product';
 import { PromoCode } from '../../entity/promo-code';
 import { fromOrderCreateRequestDto } from '../../mappers/order.mappers';
 import { Status } from '../../models/order.models';
-import { OrderCreateRequestDto, OrderCreateRequestPromoCodeDto } from '../../rest-api/order/order.dtos';
+import {
+  OrderCreateRequestDto,
+  OrderCreateRequestOrderItemDto,
+  OrderCreateRequestPromoCodeDto
+} from '../../rest-api/order/order.dtos';
 import { getOrderNumber } from '../../utils/order.utils';
 import { getMap } from '../../utils/transformation.utils';
 import { ProductService } from '../product/product.service';
@@ -55,40 +59,43 @@ export class OrderService {
 
   protected async handleOrderItems(order: Order, orderCreateRequestDto: OrderCreateRequestDto): Promise<void> {
     // TODO investigate locking: https://stackoverflow.com/questions/17431338/optimistic-locking-in-mysql
-    const productIds: number[] = order.orderItems.map((orderOrder: OrderItem): number => orderOrder.productId);
+    const productIds: number[] = orderCreateRequestDto.orderItems.map(
+      (orderCreateRequestOrderItemDto: OrderCreateRequestOrderItemDto): number =>
+        orderCreateRequestOrderItemDto.productId
+    );
     const products: Product[] = await this.productService.getProductsFetchTypeFull(productIds);
     const productsMap: { [key: string]: Product } = getMap(products);
 
-    order.orderItems.forEach((orderItem: OrderItem): void => {
-      const foundProduct: Product = productsMap[`${orderItem.productId}`];
+    order.orderItems = [];
+    orderCreateRequestDto.orderItems.forEach((orderCreateRequestOrderItemDto: OrderCreateRequestOrderItemDto): void => {
+      const foundProduct: Product = productsMap[`${orderCreateRequestOrderItemDto.productId}`];
+      const orderItem: OrderItem = new OrderItem();
 
       if (!foundProduct) {
         throw 'Could not find product from order in the database';
       }
 
-      if (orderItem.quantity > foundProduct.quantity) {
-        throw [
-          `Quantity (${orderItem.quantity}) for product`,
-          ` '${foundProduct.name}' exceeds available quantity (${foundProduct.quantity})`
-        ].join('');
-      }
-
       orderItem.order = order; // required at selling price calculation (promoCode is in order)
-
       orderItem.name = foundProduct.name;
-      orderItem.priceUnitOriginal = orderCreateRequestDto.orderItems.find(
-        oi => oi.productId === orderItem.productId
-      ).priceUnitOriginal; // TODO change it to product
+      orderItem.priceUnitOriginal = orderCreateRequestOrderItemDto.priceUnitOriginal; // TODO change it to product
       orderItem.priceUnitSelling = orderItem.getCalculatedPriceUnitSelling();
+      orderItem.quantity = orderCreateRequestOrderItemDto.quantity;
       orderItem.type = foundProduct.type;
       orderItem.deliveryType = foundProduct.deliveryType;
       orderItem.paymentType = foundProduct.paymentType;
 
       orderItem.product = foundProduct;
 
-      // leave setting relation id to TypeOrm...
-      // orderItem.productId = undefined;
-      // orderItem.order = undefined;
+      orderItem.order = undefined; // leave setting relation id to TypeOrm...
+
+      if (orderItem.quantity > foundProduct.quantity) {
+        throw [
+          `Requested quantity (${orderItem.quantity}) for product`,
+          ` '${foundProduct.name}' exceeds available quantity (${foundProduct.quantity})`
+        ].join('');
+      }
+
+      order.orderItems.push(orderItem);
     });
   }
 
