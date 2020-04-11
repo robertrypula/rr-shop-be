@@ -13,12 +13,20 @@ const libraryName = packageJson.name
 const externals = [
   'bcryptjs',
   'body-parser',
+  'class-transformer',
   'class-validator',
   'cors',
   'express',
+  'googleapis',
   'helmet',
   'jsonwebtoken',
-  'typeorm'
+  'md5',
+  'mysql',
+  'nodemailer',
+  'reflect-metadata',
+  'request-promise-native',
+  'typeorm',
+  'uuid'
 ];
 
 /*
