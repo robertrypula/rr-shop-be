@@ -59,15 +59,18 @@ export class OrderService {
     const products: Product[] = await this.productService.getProductsFetchTypeFull(productIds);
     const productsMap: { [key: string]: Product } = getMap(products);
 
-    if (productIds.length !== products.length) {
-      throw 'Some products from the order could not be found in database';
-    }
-
     order.orderItems.forEach((orderItem: OrderItem): void => {
       const foundProduct: Product = productsMap[`${orderItem.productId}`];
 
       if (!foundProduct) {
         throw 'Could not find product from order in the database';
+      }
+
+      if (orderItem.quantity > foundProduct.quantity) {
+        throw [
+          `Quantity (${orderItem.quantity}) for product`,
+          ` '${foundProduct.name}' exceeds available quantity (${foundProduct.quantity})`
+        ].join('');
       }
 
       orderItem.order = order; // required at selling price calculation (promoCode is in order)
