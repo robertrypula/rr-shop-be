@@ -7,7 +7,7 @@ import { Product } from '../../entity/product';
 import { PromoCode } from '../../entity/promo-code';
 import { fromOrderCreateRequestDto } from '../../mappers/order.mappers';
 import { Status } from '../../models/order.models';
-import { Type } from '../../models/product.models';
+import { DeliveryType, Type } from '../../models/product.models';
 import {
   OrderCreateRequestDto,
   OrderCreateRequestOrderItemDto,
@@ -105,8 +105,20 @@ export class OrderService {
   }
 
   protected validateOrder(order: Order, orderCreateRequestDto: OrderCreateRequestDto): void {
-    // TODO check: parcelLocker, amount of delivery and payment order items,
-    // throw `Not good - TODO implement me`;
+    let deliveryOrderItem: OrderItem;
+
+    if (!order.isTypeAndLengthOfOrderItemValid()) {
+      throw 'Order should have one Payment, one Delivery and at least one Product';
+    }
+
+    deliveryOrderItem = order.getDeliveryOrderItem();
+    if (
+      deliveryOrderItem &&
+      deliveryOrderItem.deliveryType === DeliveryType.InPostParcelLocker &&
+      !orderCreateRequestDto.parcelLocker
+    ) {
+      throw `Parcel Locker name missing`;
+    }
   }
 
   protected validateOrderItem(

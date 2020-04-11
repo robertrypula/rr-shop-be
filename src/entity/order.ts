@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 
 import { Status } from '../models/order.models';
+import { Type } from '../models/product.models';
 import { Email } from './email';
 import {
   EMAIL_LENGTH,
@@ -17,7 +18,6 @@ import {
   ORDER_NUMBER_LENGTH,
   PARCEL_LOCKER_LENGTH,
   PHONE_LENGTH,
-  URL_LENGTH,
   UUID_LENGTH,
   ZIP_CODE_LENGTH
 } from './length-config';
@@ -101,4 +101,22 @@ export class Order {
   @Column()
   @UpdateDateColumn()
   public updatedAt: Date;
+
+  public isTypeAndLengthOfOrderItemValid(): boolean {
+    return (
+      this.getOrderItemsByType([Type.Product]).length > 0 &&
+      this.getOrderItemsByType([Type.Delivery]).length === 1 &&
+      this.getOrderItemsByType([Type.Payment]).length === 1
+    );
+  }
+
+  public getOrderItemsByType(types: Type[]): OrderItem[] {
+    return this.orderItems.filter((orderItem: OrderItem): boolean => types.includes(orderItem.type));
+  }
+
+  public getDeliveryOrderItem(): OrderItem {
+    const deliveries = this.getOrderItemsByType([Type.Delivery]);
+
+    return deliveries.length === 1 ? deliveries[0] : null;
+  }
 }
