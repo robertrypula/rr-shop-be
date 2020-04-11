@@ -33,6 +33,14 @@ export class OrderController {
       return;
     }
 
+    /*
+    try {
+      console.log(inspect(order, { depth: null, colors: true }));
+    } catch (error) {
+      console.log(error);
+    }
+    */
+
     res.status(200).send({ uuid: order.uuid });
   }
 
