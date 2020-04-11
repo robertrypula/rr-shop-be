@@ -3,11 +3,14 @@ import { v4 as uuidv4 } from 'uuid';
 import { Email } from '../../entity/email';
 import { Order } from '../../entity/order';
 import { OrderItem } from '../../entity/order-item';
+import { Payment } from '../../entity/payment';
 import { Product } from '../../entity/product';
 import { PromoCode } from '../../entity/promo-code';
 import { fromOrderCreateRequestDto } from '../../mappers/order.mappers';
-import { Status } from '../../models/order.models';
-import { DeliveryType, Type } from '../../models/product.models';
+import * as fromOrderModels from '../../models/order.models';
+import * as fromPaymentModels from '../../models/payment.models';
+import { PayUOrder } from '../../models/payment.models';
+import { DeliveryType, PaymentType, Type } from '../../models/product.models';
 import {
   OrderCreateRequestDto,
   OrderCreateRequestOrderItemDto,
@@ -15,6 +18,7 @@ import {
 } from '../../rest-api/order/order.dtos';
 import { getOrderNumber } from '../../utils/order.utils';
 import { getFormattedPrice, getMap } from '../../utils/transformation.utils';
+import { PayUService } from '../pay-u/pay-u.service';
 import { ProductService } from '../product/product.service';
 import { PromoCodeRepositoryService } from '../promo-code/promo-code-repository.service';
 import { TemplateService } from '../template.service';
@@ -22,23 +26,24 @@ import { OrderRepositoryService } from './order-repository.service';
 
 export class OrderService {
   public constructor(
-    protected promoCodeRepositoryService: PromoCodeRepositoryService = new PromoCodeRepositoryService(),
     protected orderRepositoryService: OrderRepositoryService = new OrderRepositoryService(),
-    protected templateService: TemplateService = new TemplateService(),
-    protected productService: ProductService = new ProductService()
+    protected payUService: PayUService = new PayUService(),
+    protected productService: ProductService = new ProductService(),
+    protected promoCodeRepositoryService: PromoCodeRepositoryService = new PromoCodeRepositoryService(),
+    protected templateService: TemplateService = new TemplateService()
   ) {}
 
-  public async createOrder(orderCreateRequestDto: OrderCreateRequestDto): Promise<Order> {
+  public async createOrder(orderCreateRequestDto: OrderCreateRequestDto, ip: string): Promise<Order> {
     const order: Order = fromOrderCreateRequestDto(orderCreateRequestDto);
 
-    order.status = Status.PaymentWait;
+    order.status = fromOrderModels.Status.PaymentWait;
     order.uuid = uuidv4();
     order.number = getOrderNumber();
 
     await this.handlePromoCode(order, orderCreateRequestDto);
     await this.handleOrderItems(order, orderCreateRequestDto);
     this.validateOrder(order, orderCreateRequestDto);
-    await this.handlePayment(order, orderCreateRequestDto);
+    await this.handlePayment(order, orderCreateRequestDto, ip);
     await this.handleEmail(order);
 
     return await this.orderRepositoryService.save(order); // TypeORM already wraps cascade insert with transaction
@@ -90,8 +95,24 @@ export class OrderService {
     });
   }
 
-  protected async handlePayment(order: Order, orderCreateRequestDto: OrderCreateRequestDto): Promise<void> {
-    return null;
+  protected async handlePayment(order: Order, orderCreateRequestDto: OrderCreateRequestDto, ip: string): Promise<void> {
+    const paymentOrderItem: OrderItem = order.getPaymentOrderItem();
+
+    if (paymentOrderItem) {
+      const payment: Payment = new Payment();
+
+      order.payments = [payment];
+      payment.amount = order.getPriceTotalSelling([Type.Delivery, Type.Payment, Type.Product]);
+      payment.status = fromPaymentModels.Status.Pending;
+      payment.paymentType = paymentOrderItem.paymentType;
+
+      if (paymentOrderItem.paymentType === PaymentType.PayU) {
+        const payUOrder: PayUOrder = await this.payUService.createPayUOrder(order, ip);
+
+        payment.paymentExternalId = payUOrder.orderId;
+        payment.paymentUrl = payUOrder.redirectUri;
+      }
+    }
   }
 
   protected async handlePromoCode(order: Order, orderCreateRequestDto: OrderCreateRequestDto): Promise<void> {

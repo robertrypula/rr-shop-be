@@ -1,5 +1,10 @@
 export enum Status {
-  CANCELED = 'CANCELED',
-  COMPLETED = 'COMPLETED',
-  PENDING = 'PENDING'
+  Canceled = 'Canceled',
+  Completed = 'Completed',
+  Pending = 'Pending'
+}
+
+export interface PayUOrder {
+  orderId: string;
+  redirectUri: string;
 }

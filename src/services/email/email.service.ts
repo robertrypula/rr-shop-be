@@ -1,13 +1,12 @@
-import { getRepository, Repository } from 'typeorm';
-
 import { getSecretConfig } from '../../config';
 import { DEFAULT_ATTACHMENTS } from '../../email-templates/default';
 import { Email } from '../../entity/email';
 import { SecretConfig } from '../../models/models';
 import { SimpleGmail } from '../../simple-gmail/simple-gmail';
+import { EmailRepositoryService } from './email-repository.service';
 
 export class EmailService {
-  public constructor(protected repository: Repository<Email> = getRepository(Email)) {}
+  public constructor(protected emailRepositoryService: EmailRepositoryService = new EmailRepositoryService()) {}
 
   public async send(emails: Email[]): Promise<void> {
     const simpleGmail: SimpleGmail = this.getSimpleGmail();
@@ -18,7 +17,7 @@ export class EmailService {
       if (!email.isSent) {
         await simpleGmail.send(email.to, email.subject, email.html, DEFAULT_ATTACHMENTS);
         email.isSent = true;
-        await this.repository.save(email);
+        await this.emailRepositoryService.save(email);
       }
     }
   }

@@ -14,4 +14,8 @@ export class EmailRepositoryService {
       .limit(limit)
       .getMany();
   }
+
+  public async save(email: Email): Promise<Email> {
+    return await this.repository.save(email);
+  }
 }

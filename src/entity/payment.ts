@@ -2,7 +2,8 @@ import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, Up
 
 import { Status } from '../models/payment.models';
 import { PaymentType } from '../models/product.models';
-import { URL_LENGTH } from './length-config';
+import { decimalPriceConfig } from './decimal-config';
+import { PAYMENT_EXTERNAL_ID_LENGTH, URL_LENGTH } from './length-config';
 import { Order } from './order';
 import { stringConfig } from './string-config';
 
@@ -11,13 +12,19 @@ export class Payment {
   @PrimaryGeneratedColumn()
   public id: number;
 
+  @Column('decimal', { ...decimalPriceConfig })
+  public amount: number;
+
+  @Column('varchar', { length: PAYMENT_EXTERNAL_ID_LENGTH, ...stringConfig })
+  public paymentExternalId: string;
+
   @Column('varchar', { length: URL_LENGTH, nullable: true, default: null, ...stringConfig })
   public paymentUrl: string;
 
   @ManyToOne(type => Order)
   public order: Order;
 
-  @Column('enum', { enum: Status, nullable: false, default: Status.PENDING, ...stringConfig })
+  @Column('enum', { enum: Status, nullable: false, default: Status.Pending, ...stringConfig })
   public status: Status;
 
   @Column('enum', { enum: PaymentType, nullable: false, default: PaymentType.BankTransfer, ...stringConfig })

@@ -116,9 +116,15 @@ export class Order {
   }
 
   public getDeliveryOrderItem(): OrderItem {
-    const deliveries = this.getOrderItemsByType([Type.Delivery]);
+    const deliveries: OrderItem[] = this.getOrderItemsByType([Type.Delivery]);
 
     return deliveries.length === 1 ? deliveries[0] : null;
+  }
+
+  public getPaymentOrderItem(): OrderItem {
+    const payments: OrderItem[] = this.getOrderItemsByType([Type.Payment]);
+
+    return payments.length === 1 ? payments[0] : null;
   }
 
   public getPriceTotalOriginal(types: Type[]): number {

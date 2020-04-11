@@ -17,3 +17,5 @@ export const PRODUCT_CASH_REGISTER_NAME_LENGTH = 40;
 
 export const UUID_LENGTH = 36;
 export const ORDER_NUMBER_LENGTH = 13;
+
+export const PAYMENT_EXTERNAL_ID_LENGTH = 100;
