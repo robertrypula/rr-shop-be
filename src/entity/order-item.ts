@@ -50,4 +50,12 @@ export class OrderItem {
       this.priceUnitOriginal * (this.order.promoCode ? this.order.promoCode.getDiscountMultiplier() : 1)
     );
   }
+
+  public getPriceTotalOriginal(): number {
+    return this.priceUnitOriginal * this.quantity;
+  }
+
+  public getPriceTotalSelling(): number {
+    return this.priceUnitSelling * this.quantity;
+  }
 }

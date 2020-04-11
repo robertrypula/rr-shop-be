@@ -11,6 +11,7 @@ import {
 
 import { Status } from '../models/order.models';
 import { Type } from '../models/product.models';
+import { getNormalizedPrice } from '../utils/transformation.utils';
 import { Email } from './email';
 import {
   EMAIL_LENGTH,
@@ -118,5 +119,23 @@ export class Order {
     const deliveries = this.getOrderItemsByType([Type.Delivery]);
 
     return deliveries.length === 1 ? deliveries[0] : null;
+  }
+
+  public getPriceTotalOriginal(types: Type[]): number {
+    return getNormalizedPrice(
+      this.getOrderItemsByType(types).reduce(
+        (accumulator: number, orderItem: OrderItem): number => accumulator + orderItem.getPriceTotalOriginal(),
+        0
+      )
+    );
+  }
+
+  public getPriceTotalSelling(types: Type[]): number {
+    return getNormalizedPrice(
+      this.getOrderItemsByType(types).reduce(
+        (accumulator: number, orderItem: OrderItem): number => accumulator + orderItem.getPriceTotalSelling(),
+        0
+      )
+    );
   }
 }

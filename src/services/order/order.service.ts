@@ -119,6 +119,78 @@ export class OrderService {
     ) {
       throw `Parcel Locker name missing`;
     }
+
+    if (
+      getFormattedPrice(orderCreateRequestDto.priceTotalOriginalAll) !==
+      getFormattedPrice(order.getPriceTotalOriginal([Type.Delivery, Type.Payment, Type.Product]))
+    ) {
+      throw `In the sent request (${getFormattedPrice(orderCreateRequestDto.priceTotalOriginalAll)}) ` +
+        `total original price is different than total original price calculated on the ` +
+        `server (${order.getPriceTotalOriginal([Type.Delivery, Type.Payment, Type.Product])})`;
+    }
+
+    if (
+      getFormattedPrice(orderCreateRequestDto.priceTotalOriginalDelivery) !==
+      getFormattedPrice(order.getPriceTotalOriginal([Type.Delivery]))
+    ) {
+      throw `In the sent request (${getFormattedPrice(orderCreateRequestDto.priceTotalOriginalDelivery)}) ` +
+        `delivery original price is different than delivery original price calculated on the ` +
+        `server (${order.getPriceTotalOriginal([Type.Delivery])})`;
+    }
+
+    if (
+      getFormattedPrice(orderCreateRequestDto.priceTotalOriginalPayment) !==
+      getFormattedPrice(order.getPriceTotalOriginal([Type.Payment]))
+    ) {
+      throw `In the sent request (${getFormattedPrice(orderCreateRequestDto.priceTotalOriginalPayment)}) ` +
+        `payment original price is different than payment original price calculated on the ` +
+        `server (${order.getPriceTotalOriginal([Type.Payment])})`;
+    }
+
+    if (
+      getFormattedPrice(orderCreateRequestDto.priceTotalOriginalProduct) !==
+      getFormattedPrice(order.getPriceTotalOriginal([Type.Product]))
+    ) {
+      throw `In the sent request (${getFormattedPrice(orderCreateRequestDto.priceTotalOriginalProduct)}) ` +
+        `product original price is different than product original price calculated on the ` +
+        `server (${order.getPriceTotalOriginal([Type.Product])})`;
+    }
+
+    if (
+      getFormattedPrice(orderCreateRequestDto.priceTotalSellingAll) !==
+      getFormattedPrice(order.getPriceTotalSelling([Type.Delivery, Type.Payment, Type.Product]))
+    ) {
+      throw `In the sent request (${getFormattedPrice(orderCreateRequestDto.priceTotalSellingAll)}) ` +
+        `total selling price is different than total selling price calculated on the ` +
+        `server (${order.getPriceTotalSelling([Type.Delivery, Type.Payment, Type.Product])})`;
+    }
+
+    if (
+      getFormattedPrice(orderCreateRequestDto.priceTotalSellingDelivery) !==
+      getFormattedPrice(order.getPriceTotalSelling([Type.Delivery]))
+    ) {
+      throw `In the sent request (${getFormattedPrice(orderCreateRequestDto.priceTotalSellingDelivery)}) ` +
+        `delivery selling price is different than delivery selling price calculated on the ` +
+        `server (${order.getPriceTotalSelling([Type.Delivery])})`;
+    }
+
+    if (
+      getFormattedPrice(orderCreateRequestDto.priceTotalSellingPayment) !==
+      getFormattedPrice(order.getPriceTotalSelling([Type.Payment]))
+    ) {
+      throw `In the sent request (${getFormattedPrice(orderCreateRequestDto.priceTotalSellingPayment)}) ` +
+        `payment selling price is different than payment selling price calculated on the ` +
+        `server (${order.getPriceTotalSelling([Type.Payment])})`;
+    }
+
+    if (
+      getFormattedPrice(orderCreateRequestDto.priceTotalSellingProduct) !==
+      getFormattedPrice(order.getPriceTotalSelling([Type.Product]))
+    ) {
+      throw `In the sent request (${getFormattedPrice(orderCreateRequestDto.priceTotalSellingProduct)}) ` +
+        `product selling price is different than product selling price calculated on the ` +
+        `server (${order.getPriceTotalSelling([Type.Product])})`;
+    }
   }
 
   protected validateOrderItem(
