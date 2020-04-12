@@ -27,10 +27,13 @@ export class Category {
   public content: string;
 
   @Column({ nullable: true, default: null })
-  public isUnAccessible: boolean;
+  public isNotClickable: boolean;
 
   @Column({ nullable: true, default: null })
   public isWithoutProducts: boolean;
+
+  @Column({ nullable: true, default: null })
+  public isInternal: boolean;
 
   @Column({ default: 0 })
   public sortOrder: number;

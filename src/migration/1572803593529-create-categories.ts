@@ -24,8 +24,9 @@ export class CreateCategories1572803593529 implements MigrationInterface {
       const name = categoryTsvRow.tree[categoryTsvRow.tree.length - 1];
 
       category.structuralNode = categoryTsvRow.structuralNode;
-      category.isUnAccessible = categoryTsvRow.isUnAccessible === true ? true : undefined;
+      category.isNotClickable = categoryTsvRow.isNotClickable === true ? true : undefined;
       category.isWithoutProducts = categoryTsvRow.isWithoutProducts === true ? true : undefined;
+      category.isInternal = categoryTsvRow.isInternal === true ? true : undefined;
       category.name = name;
       category.slug = getSlugFromPolishString(name);
       category.content = content;
@@ -54,10 +55,11 @@ export class CreateCategories1572803593529 implements MigrationInterface {
 
       categoryTsvRows.push({
         structuralNode: rowData[0] === '' ? null : (rowData[0] as StructuralNode),
-        isUnAccessible: rowData[1] === '1',
+        isNotClickable: rowData[1] === '1',
         isWithoutProducts: rowData[2] === '1',
-        contentFilename: rowData[3],
-        tree: this.getTree(4, rowData)
+        isInternal: rowData[3] === '1',
+        contentFilename: rowData[4],
+        tree: this.getTree(5, rowData)
       });
     }
 
