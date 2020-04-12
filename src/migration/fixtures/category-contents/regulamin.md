@@ -91,7 +91,7 @@ W celu złożenia Zamówienia należy:
 2. Bieg terminu określonego w ust. 1 rozpoczyna się od dostarczenia Produktu Konsumentowi lub wskazanej przez niego osobie innej niż przewoźnik.
 3. W przypadku Umowy, która obejmuje wiele Produktów, które są dostarczane osobno, partiami lub w częściach, termin wskazany w ust. 1 biegnie od dostawy ostatniej rzeczy, partii lub części.
 4. Konsument może odstąpić od Umowy, składając Sprzedawcy oświadczenie o odstąpieniu od Umowy. Do zachowania terminu odstąpienia od Umowy wystarczy wysłanie przez Konsumenta oświadczenia przed upływem tego terminu.
-5. Oświadczenie może być wysłane za pomocą tradycyjnej poczty, bądź drogą elektroniczną poprzez przesłanie oświadczenia na adres e-mail Sprzedawcy - dane kontaktowe Sprzedawcy zostały określone w § 3. Oświadczenie można złożyć również na formularzu, którego wzór załącznik do ustawy z dnia 30 maja 2014 roku o prawach konsumenta, jednak nie jest to obowiązkowe.
+5. Oświadczenie może być wysłane za pomocą tradycyjnej poczty, bądź drogą elektroniczną poprzez przesłanie oświadczenia na adres e-mail Sprzedawcy - dane kontaktowe Sprzedawcy zostały określone w § 3. Oświadczenie można złożyć również na formularzu, którego wzór stanowi załącznik do ustawy z dnia 30 maja 2014 roku o prawach konsumenta, jednak nie jest to obowiązkowe.
 6. W przypadku przesłania oświadczenia przez Konsumenta drogą elektroniczną, Sprzedawca niezwłocznie prześle Konsumentowi na podany przez Konsumenta adres e-mail potwierdzenie otrzymania oświadczenia o odstąpieniu od Umowy.
 8. Skutki odstąpienia od Umowy:
     - W przypadku odstąpienia od Umowy zawartej na odległość Umowę uważa się za niezawartą.
