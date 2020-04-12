@@ -112,7 +112,7 @@ export class Product {
     const suppliesQuantity: number = this.supplies ? this.supplies.length : 0;
     const orderItemsQuantity: number = this.orderItems
       ? this.orderItems.reduce((a: number, c: OrderItem): number => {
-          return a + (c.order && c.order.status !== Status.Cancelled ? c.quantity : 0);
+          return a + (c.order && c.order.status !== Status.Canceled ? c.quantity : 0);
         }, 0)
       : 0;
 

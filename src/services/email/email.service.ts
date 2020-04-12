@@ -1,4 +1,4 @@
-import { getSecretConfig } from '../../config';
+import { EMAIL_SEND_DEFAULT_LIMIT, getSecretConfig } from '../../config';
 import { DEFAULT_ATTACHMENTS } from '../../email-templates/default';
 import { Email } from '../../entity/email';
 import { SecretConfig } from '../../models/models';
@@ -7,6 +7,10 @@ import { EmailRepositoryService } from './email-repository.service';
 
 export class EmailService {
   public constructor(protected emailRepositoryService: EmailRepositoryService = new EmailRepositoryService()) {}
+
+  public async getEmailsNotYetSent(limit: number = EMAIL_SEND_DEFAULT_LIMIT): Promise<Email[]> {
+    return await this.emailRepositoryService.getEmailsNotYetSent(limit);
+  }
 
   public async send(emails: Email[]): Promise<void> {
     const simpleGmail: SimpleGmail = this.getSimpleGmail();

@@ -109,8 +109,8 @@ export class OrderService {
       if (paymentOrderItem.paymentType === PaymentType.PayU) {
         const payUOrder: PayUOrder = await this.payUService.createPayUOrder(order, ip);
 
-        payment.paymentExternalId = payUOrder.orderId;
-        payment.paymentUrl = payUOrder.redirectUri;
+        payment.externalId = payUOrder.orderId;
+        payment.url = payUOrder.redirectUri;
       }
     }
   }

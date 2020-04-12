@@ -12,8 +12,10 @@ import { entities } from './entity';
 import { migrations } from './migration';
 import { SecretConfig } from './models/models';
 import { routes } from './routes';
+import { RecurringTasksService } from './services/recurring-tasks/recurring-tasks.service';
 
 const secretConfig: SecretConfig = getSecretConfig();
+let recurringTasksService: RecurringTasksService;
 
 // tslint:disable:no-console
 
@@ -54,6 +56,11 @@ createConnection({
 
     app.listen(3000, () => {
       console.log('Server started on port 3000!');
+
+      setInterval(async () => {
+        recurringTasksService = recurringTasksService ? recurringTasksService : new RecurringTasksService();
+        await recurringTasksService.sendEmails();
+      }, 3000);
     });
   })
   .catch(error => console.log(error));

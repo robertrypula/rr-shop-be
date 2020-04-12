@@ -3,7 +3,7 @@ import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, Up
 import { Status } from '../models/payment.models';
 import { PaymentType } from '../models/product.models';
 import { decimalPriceConfig } from './decimal-config';
-import { PAYMENT_EXTERNAL_ID_LENGTH, URL_LENGTH } from './length-config';
+import { GENERIC_URL_LENGTH, PAYMENT_EXTERNAL_ID_LENGTH } from './length-config';
 import { Order } from './order';
 import { stringConfig } from './string-config';
 
@@ -15,11 +15,11 @@ export class Payment {
   @Column('decimal', { ...decimalPriceConfig })
   public amount: number;
 
-  @Column('varchar', { length: PAYMENT_EXTERNAL_ID_LENGTH, ...stringConfig })
-  public paymentExternalId: string;
+  @Column('varchar', { length: PAYMENT_EXTERNAL_ID_LENGTH, nullable: true, default: null, ...stringConfig })
+  public externalId: string;
 
-  @Column('varchar', { length: URL_LENGTH, nullable: true, default: null, ...stringConfig })
-  public paymentUrl: string;
+  @Column('varchar', { length: GENERIC_URL_LENGTH, nullable: true, default: null, ...stringConfig })
+  public url: string;
 
   @ManyToOne(type => Order)
   public order: Order;

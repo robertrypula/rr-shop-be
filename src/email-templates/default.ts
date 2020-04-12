@@ -26,9 +26,24 @@ export const ORDER_ITEM = `
   </tr>
 `;
 
-export const PROMO_CODE = `
+export const PAYMENT_BANK_TRANSFER = `
   <p>
-    Podczas składania zamówienia podano kod rabatowy -{{ DISCOUNT }}%
+    Zanim zajmiemy się jego kompletowaniem prosimy o dokonanie płatności poprzez
+    przelew bankowy.
+  </p>
+  <p>
+    Numer konta: <strong>0000-1111-2222-3333-4444-5555-6666-7777-8888</strong>
+    <br/>
+    Tytuł przelewu: <strong>{{ NUMBER }}</strong>
+  </p>
+`;
+
+export const PAYMENT_PAY_U = `
+  <p>
+    Zanim zajmiemy się jego kompletowaniem prosimy o dokonanie płatności elektronicznej:
+  </p>
+  <p>
+    <a href="{{ PAY_U_URL }}" target="_blank"><strong>Płatność PayU</strong></a>
   </p>
 `;
 
@@ -40,27 +55,7 @@ export const PRICE_WITHOUT_PROMO_CODE = `
 
 export const PRICE_WITH_PROMO_CODE = `
   <p>
-    Do zapłaty (z uwzględnieniem rabatu): <strong>{{ PRICE_TOTAL_SELLING }} zł</strong>
-  </p>
-`;
-
-export const PAYMENT_BANK_TRANSFER = `
-  <p>
-    Zanim zajmiemy się jego kompletowaniem prosimy o dokonanie płatności poprzez
-    przelew bankowy na numer konta:
-  </p>
-  <p>
-    <strong>0000-1111-2222-3333-4444-5555-6666-7777-8888</strong>
-    <br/>
-    Tytuł przelewu: {{ NUMBER }}
-  </p>
-`;
-
-export const PAYMENT_PAY_U = `
-  <p>
-    Zanim zajmiemy się jego kompletowaniem prosimy o dokonanie płatności elektronicznej:
-    <br/>
-    <a href="{{ PAY_U_URL }}" target="_blank"><strong>Płatność PayU</strong></a>
+    Do zapłaty (z uwzględnieniem {{ DISCOUNT }}% zniżki): <strong>{{ PRICE_TOTAL_SELLING }} zł</strong>
   </p>
 `;
 
@@ -68,23 +63,25 @@ export const DELIVERY_IN_POST_COURIER: string = `
   <p>
     Po zaksięgowaniu wpłaty paczka zostanie dostarczona kurierem InPost na adres:
     <br/>
-    {{ NAME }} {{ SURNAME }}
-    <br/>
-    {{ ADDRESS }}
-    <br/>
-    {{ ZIP_CODE }} {{ CITY }}
+    <strong>
+      {{ NAME }} {{ SURNAME }}
+      <br/>
+      {{ ADDRESS }}
+      <br/>
+      {{ ZIP_CODE }} {{ CITY }}
+    </strong>
   </p>
 `;
 
 export const DELIVERY_IN_POST_PARCEL_LOCKER: string = `
   <p>
-    Po zaksięgowaniu wpłaty paczka zostanie dostarczona do paczkomatu InPost: {{ PARCEL_LOCKER }}
+    Po zaksięgowaniu wpłaty paczka zostanie dostarczona do paczkomatu InPost: <strong>{{ PARCEL_LOCKER }}</strong>
   </p>
 `;
 
 export const DELIVERY_OWN: string = `
   <p>
-    Wybrano odbiór osobisty - po zaksięgowaniu wpłaty, o możliwości odbioru poinformujemy Cię osobnym mailem.
+    Po zaksięgowaniu wpłaty, o możliwości <strong>odbioru osobistego</strong> poinformujemy Cię osobnym mailem.
   </p>
 `;
 
@@ -102,29 +99,27 @@ export const DEFAULT: string = `
     <meta charset="utf-8" />
   </head>
   <body>
-    <p>
-      Witaj {{ NAME }},
-      <br/>
-      przyjęliśmy Twoje zamówienie do realizacji i nadaliśmy mu numer <strong>{{ NUMBER }}</strong>.
-    </p>
+    <div style="font-family: Arial, serif; font-size: 12px; line-height: 16px; color: #2c2c2c;">
+      <p>
+        Witaj {{ NAME }},
+        <br/>
+        przyjęliśmy Twoje zamówienie do realizacji i nadaliśmy mu numer <strong>{{ NUMBER }}</strong>.
+      </p>
 
-    <table width="500" cellpadding="0" cellspacing="0" border="0">
-      <tbody>
-        {{ ORDER_ITEMS }}
-      </tbody>
-    </table>
+      <table width="500" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+          {{ ORDER_ITEMS }}
+        </tbody>
+      </table>
 
-    {{ PROMO_CODE }}
+      {{ PAYMENT }}
+      {{ PRICE }}
+      {{ DELIVERY }}
 
-    {{ PRICE }}
-
-    {{ PAYMENT }}
-
-    {{ DELIVERY }}
-
-    <p>
-      Pozdrawiamy
-    </p>
+      <p>
+        Pozdrawiamy
+      </p>
+    </div>
 
     <table width="400" cellpadding="0" cellspacing="0" border="0">
       <tbody>

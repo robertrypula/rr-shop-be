@@ -29,7 +29,7 @@ export class CreatePromoCodes1584659163123 implements MigrationInterface {
 
     /*
     await this.createOrder(queryRunner, Status.PaymentWait, [[await p(2), 4], [await p(3), 1]]);
-    await this.createOrder(queryRunner, Status.Cancelled, [[await p(2), 2], [await p(1), 6]]);
+    await this.createOrder(queryRunner, Status.Canceled, [[await p(2), 2], [await p(1), 6]]);
     await this.createOrder(queryRunner, Status.Completed, [[await p(2), 1], [await p(3), 6], [await p(3), -4]]);
 
     // 50 order with 10 items each - 4.5 seconds to load all 292 products

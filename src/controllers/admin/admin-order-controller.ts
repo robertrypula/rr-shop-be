@@ -6,7 +6,7 @@ import { Status } from '../../models/order.models';
 
 const data = [
   { id: 1, number: 'WA-123-546', status: Status.PaymentWait },
-  { id: 2, number: 'WA-445-433', status: Status.Cancelled },
+  { id: 2, number: 'WA-445-433', status: Status.Canceled },
   { id: 3, number: 'WA-654-454', status: Status.Shipped },
   { id: 4, number: 'WA-876-543', status: Status.Completed }
 ];

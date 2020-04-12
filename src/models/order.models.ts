@@ -4,5 +4,5 @@ export enum Status {
   ReadyForPickup = 'ReadyForPickup',
   Shipped = 'Shipped',
   Completed = 'Completed',
-  Cancelled = 'Cancelled'
+  Canceled = 'Canceled'
 }

@@ -3,14 +3,10 @@ import { Request, Response } from 'express';
 import { EMAIL_SEND_DEFAULT_LIMIT, EMAIL_SEND_MAX_LIMIT } from '../config';
 import { Email } from '../entity/email';
 import { EmailIsSentPatchDto } from '../rest-api/email/email.dtos';
-import { EmailRepositoryService } from '../services/email/email-repository.service';
 import { EmailService } from '../services/email/email.service';
 
 export class EmailController {
-  public constructor(
-    protected emailService: EmailService = new EmailService(),
-    protected emailRepositoryService: EmailRepositoryService = new EmailRepositoryService()
-  ) {}
+  public constructor(protected emailService: EmailService = new EmailService()) {}
 
   public async patchIsSend(req: Request, res: Response): Promise<void> {
     // TODO move validation to validator and use class-validator/class-transformer
@@ -29,7 +25,7 @@ export class EmailController {
     }
 
     try {
-      emails = await this.emailRepositoryService.getEmailsNotYetSent(limit);
+      emails = await this.emailService.getEmailsNotYetSent(limit);
     } catch (error) {
       res.status(500).send({ errorMessage: 'Error occurred while fetching emails' });
       return;

@@ -8,13 +8,11 @@ import {
   PAYMENT_BANK_TRANSFER,
   PAYMENT_PAY_U,
   PRICE_WITH_PROMO_CODE,
-  PRICE_WITHOUT_PROMO_CODE,
-  PROMO_CODE
+  PRICE_WITHOUT_PROMO_CODE
 } from '../email-templates/default';
 import { Order } from '../entity/order';
 import { OrderItem } from '../entity/order-item';
 import { Payment } from '../entity/payment';
-import { PromoCode } from '../entity/promo-code';
 import { SecretConfig } from '../models/models';
 import { Status } from '../models/order.models';
 import { DeliveryType, PaymentType, Type } from '../models/product.models';
@@ -27,18 +25,11 @@ import { getFormattedPrice } from '../utils/transformation.utils';
 
 export class TemplateService {
   public getOrderEmailHtml(order: Order): string {
-    const message: string = [
-      `<pre style="font-size: 11px; line-height: 1.1em; font-family: monospace;">`,
-      `${JSON.stringify(order, null, 2)}`,
-      `</pre>`
-    ].join('');
-
     return (
       DEFAULT.replace('{{ NAME }}', order.name)
         .replace('{{ NUMBER }}', order.number)
         // .replace('{{ ORDER_URL }}', )
         .replace('{{ ORDER_ITEMS }}', this.getOrderItemsHtml(order.orderItems))
-        .replace('{{ PROMO_CODE }}', this.getPromoCodeHtml(order.promoCode))
         .replace('{{ PRICE }}', this.getPriceHtml(order))
         .replace('{{ PAYMENT }}', this.getPaymentHtml(order))
         .replace('{{ DELIVERY }}', this.getDeliveryHtml(order))
@@ -60,7 +51,7 @@ export class TemplateService {
         return `${fullPrefix}zamówienie ${order.number} gotowe do odbioru osobistego`;
       case Status.Completed:
         return `${fullPrefix}zamówienie ${order.number} zostało zakończone, dziękujemy!`;
-      case Status.Cancelled:
+      case Status.Canceled:
         return `${fullPrefix}zamówienie ${order.number} zostało anulowane`;
       default:
         return `${fullPrefix}zamówienie ${order.number}`;
@@ -81,17 +72,16 @@ export class TemplateService {
     return html;
   }
 
-  protected getPromoCodeHtml(promoCode: PromoCode): string {
-    return promoCode ? PROMO_CODE.replace('{{ DISCOUNT }}', `${promoCode.percentageDiscount}`) : '';
-  }
-
   protected getPriceHtml(order: Order): string {
     const priceSelling: string = getFormattedPrice(
       order.getPriceTotalSelling([Type.Delivery, Type.Payment, Type.Product])
     );
 
     return order.promoCode
-      ? PRICE_WITH_PROMO_CODE.replace('{{ PRICE_TOTAL_SELLING }}', priceSelling)
+      ? PRICE_WITH_PROMO_CODE.replace('{{ DISCOUNT }}', `${order.promoCode.percentageDiscount}`).replace(
+          '{{ PRICE_TOTAL_SELLING }}',
+          priceSelling
+        )
       : PRICE_WITHOUT_PROMO_CODE.replace('{{ PRICE_TOTAL_SELLING }}', priceSelling);
   }
 
@@ -105,7 +95,7 @@ export class TemplateService {
         const payment: Payment =
           order.payments.length && order.payments[0].paymentType === PaymentType.PayU ? order.payments[0] : null;
 
-        return PAYMENT_PAY_U.replace('{{ PAY_U_URL }}', payment ? payment.paymentUrl : '');
+        return PAYMENT_PAY_U.replace('{{ PAY_U_URL }}', payment ? payment.url : '');
     }
 
     return '';

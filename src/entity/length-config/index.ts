@@ -7,7 +7,7 @@ export const PARCEL_LOCKER_LENGTH = 40;
 
 export const PROMO_CODE_LENGTH = 12;
 
-export const URL_LENGTH = 2048;
+export const GENERIC_URL_LENGTH = 2048;
 
 export const GENERIC_LENGTH = 100;
 export const PRODUCT_NAME_LENGTH = 200;

@@ -32,6 +32,9 @@ export class Email {
   @UpdateDateColumn()
   public updatedAt: Date;
 
+  @Column({ nullable: true, default: null })
+  public lockedAt: Date; // TODO lock when waiting for gmail in order to avoid overlapping scheduled tasks
+
   public setTo(to: string): Email {
     this.to = to;
 
