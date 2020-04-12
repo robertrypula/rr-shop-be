@@ -1,4 +1,4 @@
-##Cholestrofratin forte do zaparzania w saszetkach 30x2g, Boni Fratres
+##Cholestrofratin forte do zaparzania w saszetkach 30x2g, Boni Fraters
 
 **Opis** Cholestofratin Forte to naturalna mieszanka ziołowa sporządzona zgodnie z zakonną recepturą, zawierająca karczoch, który wraz z szyszkami chmielu i korzeniem mniszka ma korzystny wpływ na poziom cholesterolu. Dodatkowo głóg wspomaga serce i prawidłową wydolność układu krwionośnego.
 

@@ -3,7 +3,7 @@
 **Opis** Naturalna woda lecznicza Jan jest bardzo moczopędna, idealna w leczeniu kamicy nerkowej oraz innych schorzeń nerek i dróg moczowych, miażdżycy i cukrzycy. W połączeniu z wodą „Zuber” wydatnie obniża poziom cholesterolu i cukru we krwi.
 
 Wodę leczniczą Jan poleca się w:
-- **krenoterapi w celu leczenia** chorób nerek i dróg moczowych, cukrzycy, otyłości, nadczynności tarczycy oraz osteoporozy
+- \*\*krenoterapi w celu leczenia\*\* chorób nerek i dróg moczowych, cukrzycy, otyłości, nadczynności tarczycy oraz osteoporozy
 - **inhalacjach/płukankach** w celu leczenia przewlekłych nieżytów alergicznych górnych dróg oddechowych, paradontozy oraz zanikowego nieżytu śluzówek. 
 
 **Zalecane spożycie** W leczeniu – ściśle według wskazań lekarza. Profilaktycznie, ok. 500 – 700 ml (w indywidualnych przypadkach więcej) 3 x dziennie, 30-45 minut przed posiłkiem. Należy pić powoli, małymi łykami, o temperaturze takiej jaką posiada na wypływie, gdyż jej ogrzanie może skutkować utratą wielu właściwości biochemicznych z powodu wytrącania się niektórych składników mineralnych. 

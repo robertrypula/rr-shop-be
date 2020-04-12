@@ -2,7 +2,7 @@
 
 **Opis** Pneumovit zatoki to idealne rozwiązanie dla osób z zapaleniem zatok przynosowych i towarzyszącym mu obrzękiem błony śluzowej nosa. Zawarta w składzie hipertoniczna uzdrowiskowa woda: wodorowęglanowo, chlorkowo, sodowa, bromkowo, jodkowo, borowa, skutecznie i delikatnie oczyszcza śluzówkę nosa i ujście zatok przynosowych a wapń zawarty w składzie wykazuje działanie przeciwzapalne i przeciwuczuleniowe. Preparat wspomaga mechanizmy obronne organizmu i wzmacnia odporność na znajdujące się w powietrzu alergeny (pyłki, kurz).
 
-Pneumovit zatoki :
+Pneumovit zatoki:
 - udrażnia przewody nosowe i ujście zatok przynosowych,
 - oczyszcza błony śluzowe przed podaniem leków drogą wziewną,
 - chroni śluzówkę nosa przed nadmiernym wysuszeniem,

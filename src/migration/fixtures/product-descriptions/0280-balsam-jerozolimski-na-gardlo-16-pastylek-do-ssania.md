@@ -10,7 +10,7 @@
 
 **Zalecane spożycie** Pastylkę należy ssać powoli, aż do całkowitego rozpuszczenia. Dzieci od 6 od 12 lat -2 pastylki dziennie. Dzieci powyżej 12 lat i dorośli – 3 pastylki dziennie.
 
-**Skład** Zawartość substancji w 2 pastylkach: Extractum Compositum Balasam Jerozolimski (ekstrakty z kwiatu bzu czarnego, kwiatu lipy, kwiatu dziewanny, kwiatu rumianku, plechy porostu islandzkiego, ziela tymianku, ziela melisy) 350mg, miód pszczeli 200mg, olejek miętowy 8mg, olejek eukaliptusowy 6mg, mentol 2mg.
+**Skład** Zawartość substancji w 2 pastylkach: Extractum Compositum Balsam Jerozolimski (ekstrakty z kwiatu bzu czarnego, kwiatu lipy, kwiatu dziewanny, kwiatu rumianku, plechy porostu islandzkiego, ziela tymianku, ziela melisy) 350mg, miód pszczeli 200mg, olejek miętowy 8mg, olejek eukaliptusowy 6mg, mentol 2mg.
 
 **Dystrybutor** Boni Fratres Pharmaceutical Sp. z o.o. 
 ul. Krakowska 50 lok. 4, 31-066 Kraków

@@ -1,4 +1,4 @@
-##Herbatka uodparniająca 100g, Boni Fratres
+##Herbatka uodparniająca 100g, Boni Fraters
 
 **Opis** Herbatka uodparniająca to mieszanka ziół i owoców, wspierająca naturalną odporność organizmu. Według literatury zielarskiej liście czarnej porzeczki wykazują działanie m.in. przeciwzapalne, antybakteryjne, wspomagają przy tym krążenie i oczyszczanie organizmu ze szkodliwych produktów przzemiany materii. Owoce jarzębiny, podobnie jak liście porzeczki wykazują działanie przeciwzapalne oraz antybakteryjne, działają ściągająco oraz są źródłem łatwo sprzyswajalnych witamin i soli mineralnych. Równie cenne pod względem wartości odżywczych są owoce aronii, róży oraz kwiat hibiskusa. Melisa natomiast działa bakteriobójczo, grzybobójczo oraz przeciwwirusowo jednocześnie wspomagając trawienie i działając uspokajająco.
 
