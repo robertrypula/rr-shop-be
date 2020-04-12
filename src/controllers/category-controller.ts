@@ -7,13 +7,18 @@ export class CategoryController {
   public constructor(protected repository: Repository<Category> = getRepository(Category)) {}
 
   public async all(req: Request, res: Response): Promise<void> {
-    res.send(
-      await this.repository.find({
-        select: ['id', 'name', 'slug', 'content', 'isNotClickable', 'isWithoutProducts', 'structuralNode', 'parentId']
-      })
-    );
+    // TODO move it to repository class
+    const categories: Category[] = await this.repository
+      .createQueryBuilder('category')
+      .select(
+        ['id', 'name', 'slug', 'content', 'isNotClickable', 'isWithoutProducts', 'structuralNode', 'parentId'].map(
+          c => `category.${c}`
+        )
+      )
+      .where('category.isInternal is not true')
+      .getMany();
 
-    // TODO filter out isInternal
+    res.send(categories);
 
     /*
     const categories: Category[] = await this.repository
