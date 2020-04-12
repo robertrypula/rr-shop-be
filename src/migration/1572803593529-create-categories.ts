@@ -3,7 +3,7 @@ import { MigrationInterface, QueryRunner } from 'typeorm';
 
 import { Category } from '../entity/category';
 import { StructuralNode } from '../models/category.models';
-import { getSlugFromPolishString } from '../utils/product.utils';
+import { getSlugFromPolishString } from '../utils/name.utils';
 import { removeMultipleWhitespaceCharacters } from '../utils/transformation.utils';
 import { fileLoad } from '../utils/utils';
 import { CategoryTsvRow } from './fixtures/dtos';

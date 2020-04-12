@@ -8,7 +8,7 @@ import { Manufacturer } from '../entity/manufacturer';
 import { Product } from '../entity/product';
 import { Supply } from '../entity/supply';
 import { DeliveryType, PaymentType, Type } from '../models/product.models';
-import { getCashRegisterName, getSlugFromPolishString } from '../utils/product.utils';
+import { getCashRegisterName, getSlugFromPolishString } from '../utils/name.utils';
 import {
   extractBestBefore,
   getNormalizedNamesTillTheEnd,

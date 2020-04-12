@@ -16,6 +16,7 @@ export const getSlugFromPolishString = (name: string): string => {
   return name
     .toLowerCase()
     .replace(/%/g, '-procent')
+    .replace(/_/g, '-')
     .replace(/,/g, '-')
     .replace(/\./g, '-')
     .replace(/ą/g, 'a')
