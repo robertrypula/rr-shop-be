@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 import { DeliveryType, PaymentType, Type } from '../models/product.models';
 import { getNormalizedPrice } from '../utils/transformation.utils';
@@ -7,6 +7,7 @@ import { PRODUCT_NAME_LENGTH } from './length-config';
 import { Order } from './order';
 import { Product } from './product';
 import { stringConfig } from './string-config';
+import { Supply } from './supply';
 
 @Entity()
 export class OrderItem {
@@ -39,6 +40,9 @@ export class OrderItem {
 
   @ManyToOne(type => Product)
   public product: Product;
+
+  @OneToMany(type => Supply, (supply: Supply) => supply.orderItem)
+  public supplies: Supply[];
 
   @Column()
   public productId: number;

@@ -1,7 +1,7 @@
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 import { decimalPercentageConfig, decimalPriceConfig } from './decimal-config';
-import { Order } from './order';
+import { OrderItem } from './order-item';
 import { Product } from './product';
 import { stringConfig } from './string-config';
 
@@ -25,11 +25,11 @@ export class Supply {
   @Column()
   public productId: number;
 
-  @Column('boolean', { default: false }) // use to mark that product was destroyed, lost or best before date expired
+  @Column('boolean', { default: false }) // use to mark which product was destroyed, lost or best before date expired
   public isUnavailable: boolean; // do NOT use together with 'order' field
 
-  @ManyToOne(type => Order) // do NOT use together with 'isUnavailable' field
-  public order: Order; // do NOT use to calculate quantity, it's to track which best before dates product are gone
+  @ManyToOne(type => OrderItem) // use ONLY to mark which best before dates product are gone
+  public orderItem: OrderItem; // do NOT use together with 'isUnavailable' field or Quantity calculation
 
   @Column({ type: 'mediumtext', nullable: true, default: null, ...stringConfig })
   public notes: string;

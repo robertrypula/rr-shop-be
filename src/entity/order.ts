@@ -50,9 +50,6 @@ export class Order {
   @OneToMany(type => Payment, (payment: Payment) => payment.order, { cascade: ['insert'] })
   public payments: Payment[];
 
-  @OneToMany(type => Supply, (supply: Supply) => supply.order)
-  public supplies: Supply[];
-
   @ManyToOne(type => PromoCode)
   public promoCode: PromoCode;
 
