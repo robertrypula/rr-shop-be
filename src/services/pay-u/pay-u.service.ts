@@ -6,8 +6,11 @@ import { PayUOrder } from '../../models/payment.models';
 import { Headers, Notification, OrderSuccess } from '../../simple-pay-u/models';
 import { SimplePayU } from '../../simple-pay-u/simple-pay-u';
 import { reStringifyPretty, stringifyPretty } from '../../utils/utils';
+import { PaymentService } from '../payment/payment.service';
 
 export class PayUService {
+  public constructor(protected paymentService: PaymentService = new PaymentService()) {}
+
   public async createPayUOrder(order: Order, ip: string): Promise<PayUOrder> {
     const simplePayU: SimplePayU = this.getSimplePayU(order);
     const orderSuccess: OrderSuccess = await simplePayU.createOrder({
@@ -30,7 +33,7 @@ export class PayUService {
     };
   }
 
-  public async handleNotification(headers: Headers, body: string): Promise<void> {
+  public async handleNotificationRequest(headers: Headers, body: string): Promise<void> {
     let notification: Notification;
     let errorOnParsingNotification: string;
     let errorOnLoggingToFile: string;
@@ -51,10 +54,9 @@ export class PayUService {
     }
 
     try {
-      // TODO solve circular dependency :(
-      // await this.orderService.storePayUNotification(headers, body,
-      // notification, errorOnParsingNotification, errorOnLoggingToFile);
-      // console.log(notification);
+      if (notification) {
+        await this.paymentService.handlePayUNotification(notification);
+      }
     } catch (error) {
       errorOnStoringToDatabase = `${error}`;
     }

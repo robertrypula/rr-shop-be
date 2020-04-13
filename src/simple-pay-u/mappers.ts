@@ -49,6 +49,10 @@ export const toNotification = (headers: Headers, body: any, secondKey: string): 
     throw `Missing 'order.extOrderId'`;
   }
 
+  if (!o.order || !o.order.orderId) {
+    throw `Missing 'order.orderId'`;
+  }
+
   if (
     !o.order ||
     ![NotificationOrderStatus.CANCELED, NotificationOrderStatus.COMPLETED, NotificationOrderStatus.PENDING].includes(
@@ -60,6 +64,7 @@ export const toNotification = (headers: Headers, body: any, secondKey: string): 
 
   return {
     extOrderId: o.order.extOrderId,
+    orderId: o.order.orderId,
     status: o.order.status
   };
 };

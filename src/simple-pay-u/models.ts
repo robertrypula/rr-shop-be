@@ -46,6 +46,7 @@ export enum NotificationOrderStatus {
 
 export interface Notification {
   extOrderId: string;
+  orderId: string;
   status: NotificationOrderStatus;
 }
 

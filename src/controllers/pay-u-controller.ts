@@ -8,7 +8,7 @@ export class PayUController {
 
   public async notify(req: Request, res: Response): Promise<void> {
     try {
-      await this.payUService.handleNotification(req.headers as Headers, req.body);
+      await this.payUService.handleNotificationRequest(req.headers as Headers, req.body);
     } catch (error) {
       res
         .contentType('application/json')

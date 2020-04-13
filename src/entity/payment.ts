@@ -2,6 +2,7 @@ import { Column, CreateDateColumn, Entity, Index, ManyToOne, PrimaryGeneratedCol
 
 import { Status } from '../models/payment.models';
 import { PaymentType } from '../models/product.models';
+import { getFormattedDate } from '../utils/transformation.utils';
 import { decimalPriceConfig } from './decimal-config';
 import { GENERIC_URL_LENGTH, PAYMENT_EXTERNAL_ID_LENGTH } from './length-config';
 import { Order } from './order';
@@ -44,4 +45,8 @@ export class Payment {
   @Column()
   @UpdateDateColumn()
   public updatedAt: Date;
+
+  public appendLog(value: string): void {
+    this.logs = `${this.logs ? `${this.logs}\n` : ''}${getFormattedDate(new Date(), '-', ' ', ':', '.')} ${value}`;
+  }
 }

@@ -93,7 +93,9 @@ export class TemplateService {
         return PAYMENT_BANK_TRANSFER.replace('{{ NUMBER }}', order.number);
       case PaymentType.PayU:
         const payment: Payment =
-          order.payments.length && order.payments[0].paymentType === PaymentType.PayU ? order.payments[0] : null;
+          order.payments && order.payments.length && order.payments[0].paymentType === PaymentType.PayU
+            ? order.payments[0]
+            : null;
 
         return PAYMENT_PAY_U.replace('{{ PAY_U_URL }}', payment ? payment.url : '');
     }

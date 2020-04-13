@@ -52,4 +52,10 @@ export class Email {
 
     return this;
   }
+
+  public setOrder(order: Order): Email {
+    this.order = order;
+
+    return this;
+  }
 }

@@ -60,7 +60,7 @@ createConnection({
       setInterval(async () => {
         recurringTasksService = recurringTasksService ? recurringTasksService : new RecurringTasksService();
         await recurringTasksService.sendEmails();
-      }, 3000);
+      }, 8000);
     });
   })
   .catch(error => console.log(error));
