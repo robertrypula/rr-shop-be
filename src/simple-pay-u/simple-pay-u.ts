@@ -53,9 +53,9 @@ export class SimplePayU {
     }
   }
 
-  public getNotification(headers: fromModels.Headers, responseBody: string): fromModels.Notification {
+  public getNotification(headers: fromModels.Headers, body: string): fromModels.Notification {
     try {
-      return toNotification(headers, responseBody, this.settings.secondKey);
+      return toNotification(headers, body, this.settings.secondKey);
     } catch (error) {
       throw `Cannot get notification due to: [${error}]`;
     }

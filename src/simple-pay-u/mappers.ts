@@ -38,10 +38,10 @@ export const toAuthorizeSuccess = (responseBody: any): AuthorizeSuccess => {
   };
 };
 
-export const toNotification = (headers: Headers, responseBody: any, secondKey: string): Notification => {
-  const o: any = JSON.parse(responseBody);
+export const toNotification = (headers: Headers, body: any, secondKey: string): Notification => {
+  const o: any = JSON.parse(body);
 
-  if (!isSignatureValid(headers, responseBody, secondKey)) {
+  if (!isSignatureValid(headers, body, secondKey)) {
     throw `Wrong signature`;
   }
 
