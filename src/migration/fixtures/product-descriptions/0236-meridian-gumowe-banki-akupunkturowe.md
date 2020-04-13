@@ -5,5 +5,7 @@ Medycyny Tradycyjnej, Chińskiej Republiki Ludowej. Posiadają atest Chińskiej 
 
 **Stosowanie** [Ulotka do pobrania](file:///home/monika/Downloads/Ulotka-do-baniek%20(3).pdf)
 
+**Kraj pochodzenia** Chiny
+
 **Dystrybutor** MERIDIAN Piotr Kazała
 ul. Mogielnicka 19, 05-600 Grójec

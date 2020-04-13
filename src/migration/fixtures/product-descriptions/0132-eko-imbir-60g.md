@@ -1,6 +1,6 @@
 ##Ekologiczny imbir 60g, Dary Natury
 
-**Opis** Korzenny, cytrynowy smak. Według literatury zielarskiej posiada właściwości antyseptyczne, stymulujące, wspomaga trawienie oraz poprawia krążenie krwi. Polecany do słodkich wypieków oraz przede wszystkim do dań kuchni azjatyckiej.
+**Opis** Korzenny, cytrynowy smak. Według literatury zielarskiej posiada właściwości antyseptyczne, stymulujące, wspomagające trawienie oraz poprawiające krążenie krwi. Polecany do słodkich wypieków oraz przede wszystkim do dań kuchni azjatyckiej.
 
 **Skład** Suszony imbir (produkt rolnictwa ekologicznego) 100%
 

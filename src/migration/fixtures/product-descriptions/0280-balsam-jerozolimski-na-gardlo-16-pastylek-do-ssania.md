@@ -8,7 +8,7 @@
 - ułatwiają odkrztuszanie (lipa, tymianek),
 - wspomagają właściwe funkcjonowanie górnych dróg oddechowych i działają odświeżająco (tymianek, olejek eukaliptusowy, olejek miętowy, mentol).
 
-**Zalecane spożycie** Pastylkę należy ssać powoli, aż do całkowitego rozpuszczenia. Dzieci od 6 od 12 lat -2 pastylki dziennie. Dzieci powyżej 12 lat i dorośli – 3 pastylki dziennie.
+**Zalecane spożycie** Pastylkę należy ssać powoli, aż do całkowitego rozpuszczenia. Dzieci od 6 od 12 lat - 2 pastylki dziennie. Dzieci powyżej 12 lat i dorośli – 3 pastylki dziennie.
 
 **Skład** Zawartość substancji w 2 pastylkach: Extractum Compositum Balsam Jerozolimski (ekstrakty z kwiatu bzu czarnego, kwiatu lipy, kwiatu dziewanny, kwiatu rumianku, plechy porostu islandzkiego, ziela tymianku, ziela melisy) 350mg, miód pszczeli 200mg, olejek miętowy 8mg, olejek eukaliptusowy 6mg, mentol 2mg.
 

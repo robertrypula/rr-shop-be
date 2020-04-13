@@ -1,7 +1,7 @@
 ##Pneumovit baby spray do nosa 35ml, Gorvita
 
-**Opis** Pneumovit baby spray skutecznie i delikatnie oczyszcza i nawilża śluzówkę nosa u niemowląt i dzieci łagodząc objawy kataru. Preparat ze względu na unikalne, naturalne składniki oraz zastosowanie innowacyjnej końcówki rozpylacza przystosowanej dla małych dzieci jest szczególnie polecany:
-- w niedrożności nosa i ujścia zatok przynosowych spowodowanych stanami kataralnymi pochodzenia infekcyjnego i alergicznego,
+**Opis** Pneumovit baby spray skutecznie i delikatnie oczyszcza i nawilża śluzówkę nosa u niemowląt i dzieci łagodząc objawy kataru. Preparat ze względu na unikalne, naturalne składniki oraz przyjazną dla małych dzieci końcówkę rozpylacza, jest szczególnie polecany w:
+- w niedrożności nosa i ujścia zatok przynosowych spowodowanych katarem pochodzenia infekcyjnego i alergicznego,
 - oczyszczaniu błon śluzowych przed podaniem leków drogą wziewną,
 - uzupełnieniu leczenia górnych dróg oddechowych,
 - oczyszczaniu śluzówki z alergenów (pyłki, kurz),

@@ -4,8 +4,8 @@
 
 **Zalecane spożycie** 1 saszetkę zalać szklanka wrzątku, pozostawić na kilka minut do naciągnięcia. Pić około poł godziny przed pójściem spać.
 
-**Skład** Owoc dzikiej róży*, głogu*, liść melisy* po 25%, chmiel szyszka, koper włoski, kwiat lawendy w różnych proporcjach.
-*produkt rolnictwa ekologicznego
+**Skład** Owoc dzikiej róży\*, głogu\*, liść melisy\* po 25%, chmiel szyszka, koper włoski, kwiat lawendy w różnych proporcjach.
+\*produkt rolnictwa ekologicznego
 
 **Jednostka Certyfikująca** PL-EKO-01
 

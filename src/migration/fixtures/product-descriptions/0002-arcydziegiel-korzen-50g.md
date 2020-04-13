@@ -1,6 +1,6 @@
 ##Korzeń arcydzięgla 50g, Flos
 
-**Opis** W literaturze zielarskiej korzeń arcydzięgla polecany jest przy zaburzeniach w funkcjonowaniu układu pokarmowego, infekcjach górnych dróg oddechowych oraz w stanach wyczerpania nerwowego, bezsenności czy nadmiernej pobudliwości. Może być stosowany również zewnętrznie w formie naparu, odwaru do przemywania skóry problemowej (tłustej, z trądzikiem, ze zmianami bakteryjnymi, drożdżakowymi).
+**Opis** W literaturze zielarskiej korzeń arcydzięgla polecany jest przy zaburzeniach w funkcjonowaniu układu pokarmowego, infekcjach górnych dróg oddechowych oraz w stanach wyczerpania nerwowego, bezsenności czy nadmiernej pobudliwości. Arcydzięgiel może być stosowany również zewnętrznie w formie naparu, odwaru do przemywania skóry problemowej (tłustej, z trądzikiem, ze zmianami bakteryjnymi, drożdżakowymi).
 
 **Skład** Wysuszony, rozdrobniony korzeń arcydzięgla (Archangelicae radix) 100%
 

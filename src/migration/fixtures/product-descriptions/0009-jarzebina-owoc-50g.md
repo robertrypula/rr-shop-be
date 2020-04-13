@@ -2,7 +2,7 @@
 
 **Opis** Według literatury zielarskiej owoce jarzębiny wykazują właściwosci ściągające (np. w biegunkach), przeciwzapalne, hamują rozwój bakterii, grzybów oraz "oczyszczają krew". 
 
-**Zalecane spożycie** 1 łyżeczkę owoców jarzębiny (3g) zalać szklanką wrzącej wody, naparzać pod przykryciem 10 min. Wypić jeszcze ciepły napar. 3 g owoców jarzębiny stanowi jego dzienną porcję do spożycia. Nie należy przekraczać zalecanej porcji do spożycia w ciągu dnia.
+**Zalecane spożycie** 1 łyżeczkę owoców jarzębiny (3g) zalać szklanką wrzącej wody, naparzać pod przykryciem 10 min. Wypić jeszcze ciepły napar. Dzienna porcja do spożycia to 3g owoców.
 
 **Skład** Suszone owoce jarzębiny (Sorbi aucupariae fructus) 100%
 

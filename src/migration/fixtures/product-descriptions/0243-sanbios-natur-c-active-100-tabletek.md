@@ -5,12 +5,12 @@
 **Zalecane spożycie** Najczęściej 1 tabletka dziennie - rano, obficie popijając; w stanach zwiększonego zapotrzebowania 2 tabletki dziennie w porcjach podzielonych, obficie popijając.
 
 **Skład** Składniki w przeliczeniu na 2 tabletki:
-- dzika róża (Rosa Canina) owoc-476mg
-- witamina C (kwas L askorbinowy)-360mg
-- wyciąg z owocu rokitnika (Hippophae rhamnoides)-14 mg
-- wyciąg z owocu żurawiny (Oxycoccus)-14 mg
-- wyciąg z owocu czarnej porzeczki (Ribes nigrum)-10 mg
+- dzika róża (Rosa Canina) owoc - 476mg
+- witamina C (kwas L askorbinowy) - 360mg
+- wyciąg z owocu rokitnika (Hippophae rhamnoides) - 14mg
+- wyciąg z owocu żurawiny (Oxycoccus) - 14mg
+- wyciąg z owocu czarnej porzeczki (Ribes nigrum) - 10mg
 
-Ponadto w skład tabletek wchodzi substancja wypełniająca - celuloza mikrokrystaliczna, substancja przeciwzbrylająca - sole magnezowe kwasów tłuszczowych, substancja wiążąca - dwutlenek krzemu.
+W skład tabletek wchodzi substancja wypełniająca - celuloza mikrokrystaliczna, substancja przeciwzbrylająca - sole magnezowe kwasów tłuszczowych, substancja wiążąca - dwutlenek krzemu.
 
 **Producent** SANBIOS, ul. Ligocka 17 B, Gliwice

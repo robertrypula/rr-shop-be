@@ -4,8 +4,8 @@
 
 **Zalecane spożycie** 1 saszetkę herbatki zalać szklanką wrzątku i pozostawić pod przykryciem do zaparzenia na około 10- 15 minut. Pić 2 razy dziennie.
 
-**Skład** Owoc głogu* 20%, ziele krwawnika*, serdecznika*, nostrzyka*, szyszki chmielu*, kwiat wrzosu*, liść melisy*, kłącze kozłka*, płatki róży w różnych proporcjach. 
-*produkt rolnictwa ekologicznego
+**Skład** Owoc głogu\* 20%, ziele krwawnika\*, serdecznika\*, nostrzyka\*, szyszki chmielu\*, kwiat wrzosu\*, liść melisy\*, kłącze kozłka\*, płatki róży w różnych proporcjach. 
+\*produkt rolnictwa ekologicznego
 
 **Jednostka Certyfikująca** PL-EKO-01
 

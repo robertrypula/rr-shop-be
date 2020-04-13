@@ -1,6 +1,6 @@
 ##Korzeń traganka 500mg - 100 kapsułek, Nanga
 
-**Opis** Korzeń traganka jest bardzo popularnym surowcem leczniczym w krajach Azji (Chiny, Japonia). Według literatury zielarskiej działa antyoksydacyjnie, przeciwzapalnie, przeciwwirusowo, przeciwalergicznie oraz wspomagająco na odporność. 
+**Opis** Korzeń traganka błoniastego jest bardzo popularnym surowcem leczniczym w krajach Azji (Chiny, Japonia). Według literatury zielarskiej działa antyoksydacyjnie, przeciwzapalnie, przeciwwirusowo, przeciwalergicznie oraz wspomagająco na odporność. 
 
 **Przeciwwskazania i interakcje** Produkt nie zalecany dla dzieci, kobiet w ciąży oraz karmiących piersią.
 

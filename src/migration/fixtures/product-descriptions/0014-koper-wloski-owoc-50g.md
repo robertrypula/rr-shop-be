@@ -1,6 +1,6 @@
 ##Owoc kopru włoskiego 50g, Flos
 
-**Opis** Owoce kopru charakeryzuje gorzki smak i kamforowy zapach. Pobudzają wydzielanie soku żołądkowego, łagodzą dyskomfort związany ze wzdęciami oraz wspomagają proces trawienia. Według literatury zielarskiej owoce kopru wspomagają usuwanie śluzu zalegającego w górnych drogach oddechowych. 
+**Opis** Owoce kopru charakeryzuje gorzki smak i kamforowy zapach. Pobudzają wydzielanie soku żołądkowego, łagodzą dyskomfort związany ze wzdęciami oraz wspomagają proces trawienia. Ponadto, według literatury zielarskiej owoce kopru wspomagają usuwanie śluzu zalegającego w górnych drogach oddechowych. 
 
 **Skład** Cały, wysuszony owoc kopru włoskiego (Foeniculi fructus) 100%
 

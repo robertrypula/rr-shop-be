@@ -1,6 +1,6 @@
 ##Balsam jerozolimski dla dzieci 200ml, Boni Fratres
 
-**Opis** Balsam jerozolimski dla dzieci to suplemenet diety zawierający starannie dobraną kompozycję ziół, oparty o zakonne receptury Zakonu Bonifratrów. Składniki zawarte w preparacie wspierają właściwe funkcjonowanie układu oddechowego i odpornościowego, łagodzą podrażnione gardło, krtań oraz struny głosowe, ułatwiając odksztuszanie zalegającej wydzieliny. 
+**Opis** Balsam jerozolimski dla dzieci to suplemenet diety zawierający starannie dobraną kompozycję ziół, oparty o zakonne receptury Zakonu Bonifratrów. Składniki zawarte w preparacie wspierają właściwe funkcjonowanie układu oddechowego i odpornościowego, łagodzą podrażnione gardło, krtań oraz struny głosowe, ułatwiając odkrztuszanie zalegającej wydzieliny. 
 
 **Właściwości najważniejszych składników preparatu:**
 

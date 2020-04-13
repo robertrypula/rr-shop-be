@@ -1,6 +1,6 @@
 ##Liść podagrycznika 50g, Flos
 
-**Opis** Podagrycznik według literatury zielarskiej wykazuje właściwości przeciwzapalne oraz przeciwdrobnoustrojowe, w medycynie ludowej używany był przede wszystkim w leczeniu chorób reumatycznych, dny moczanowej czyli podagry oraz rwy kulszowej.
+**Opis** Według literatury zielarskiej podagrycznik wykazuje właściwości przeciwzapalne oraz przeciwdrobnoustrojowe. W medycynie ludowej używany był przede wszystkim w leczeniu chorób reumatycznych, dny moczanowej czyli podagry oraz rwy kulszowej.
 
 **Skład** Wysuszony, rozdrobniony liść podagrycznika pospolitego (Aegopodium podagraria L.) 100%
 

@@ -4,5 +4,7 @@
 
 **Skład** Olea europea fruit oil, Aqua, Helianthus annuus seed oil, Argania spinosa kernel oil, Sodium Hydroxide, Butyrospermum parkii butter, Origanum vulgare leaf.
 
+**Kraj pochodzenia** Maroko
+
 **Importer** MarokoProdukt Sp. z o.o.
 ul. Jeżynowa 1, 62-002 Suchy Las

@@ -1,6 +1,6 @@
 ##Maść tygrysia z szungitem 100ml, Remedium Natura
 
-**Opis** Maść zawiera w swoim składzie naturalne substancje o działaniu przeciwbólowym, przeciwzapalnym i przeciwobrzękowym. Szungit to najdawniejszy z występujących na Ziemi minerałów zawierających węgiel. Wykazuje właściwości sorpcyjne, katalityczne, antybakteryjne, przeciwzapalne, leczy choroby skóry i stawów.
+**Opis** Maść zawiera w swoim składzie naturalne substancje o działaniu przeciwbólowym, przeciwzapalnym i przeciwobrzękowym. Szungit to najdawniejszy z występujących na Ziemi minerałów zawierających węgiel. Wykazuje właściwości sorpcyjne, katalityczne, antybakteryjne, przeciwzapalne, wspomaga leczenie chorób skóry i stawów.
 
 Wskazania do stosowania:
 - bóle kręgosłupa i stawów, 

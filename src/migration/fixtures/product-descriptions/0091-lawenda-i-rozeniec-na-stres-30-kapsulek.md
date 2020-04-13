@@ -1,9 +1,9 @@
 ##Lawenda i różeniec na stres - 30 kapsułek wegetariańskich, Herbal Pharmaceuticals
 
-**Opis** Lawenda i różeniec to preparat polecany w celu uspokojenia w sytuacjach stresowych i zwiększonego napięcia oraz utrzymania prawidłowej sprawności intelektualnej, bez efektu otępienia. Zawiera naturalne, wysokiej jakości ekstrakty z takich ziół jak lawenda, różeniec górski, ashwagandha czy szyszki chmielu, które:
-- sprzyjają uspokojeniu w stresie i rozdrażnieniu
-- redukują napięcie i wspomagają dobre samopoczucie
-- ułatwiają wyciszenie i uspokojenie
+**Opis** Lawenda i różeniec to preparat polecany w celu uspokojenia w sytuacjach stresowych i zwiększonego napięcia, oraz utrzymania prawidłowej sprawności intelektualnej, bez efektu otępienia. Zawiera naturalne, wysokiej jakości ekstrakty z takich ziół jak lawenda, różeniec górski, ashwagandha czy szyszki chmielu, które:
+- sprzyjają uspokojeniu w stresie i rozdrażnieniu,
+- redukują napięcie i wspomagają dobre samopoczucie,
+- ułatwiają wyciszenie i uspokojenie oraz
 - zwiększają odporność organizmu na stres.
 
 **Sposób spożycia** 1 kapsułka dwa razy dziennie. 

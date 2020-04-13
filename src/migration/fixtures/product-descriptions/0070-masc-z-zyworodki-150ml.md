@@ -1,6 +1,6 @@
 ##Maść z żyworódki 150ml, Farm-vix
 
-**Opis** Naturalna maść, przeznaczona do pielęgnacji skóry suchej i normalnej. Odżywcze właściwości żyworódki sprawiają, że skóra staje się sprężysta, gładka i odpowiednio nawilżona. Doskonale nadaje się przy popękanym naskórku dłoni i rogowaciejącym naskórku stóp. Oryginalna receptura Medin Terra Brno.
+**Opis** Naturalna maść, przeznaczona do pielęgnacji skóry suchej i normalnej. Odżywcze właściwości żyworódki sprawiają, że skóra staje się sprężysta, gładka i odpowiednio nawilżona. Maść polecana jest przy popękanym naskórku dłoni i rogowaciejącym naskórku stóp. Oryginalna receptura Medin Terra Brno.
 
 **Skład** Petrolatum, Kalanchoe daigremontina.
 

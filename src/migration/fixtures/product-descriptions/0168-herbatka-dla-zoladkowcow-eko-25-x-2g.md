@@ -4,8 +4,8 @@
 
 **Zalecane spożycie** 1 saszetkę herbatki zalać szklanką wrzątku i pozostawić pod przykryciem do zaparzenia na około 10- 15 minut. Pić 2 razy dziennie.
 
-**Skład** Róża owoc*, ślaz ziele* po 15%, bez owoc*, głóg owoc*, tarnina owoc*, babka zwyczajna liść*, bukwica ziele*, przytulia ziele*, ślaz kwiat*, nagietek płatki* w różnych proporcjach.
-*produkt rolnictwa ekologicznego
+**Skład** Róża owoc\*, ślaz ziele\* po 15%, bez owoc\*, głóg owoc\*, tarnina owoc\*, babka zwyczajna liść\*, bukwica ziele\*, przytulia ziele\*, ślaz kwiat\*, nagietek płatki\* w różnych proporcjach.
+\*produkt rolnictwa ekologicznego
 
 **Jednostka Certyfikująca** PL-EKO-01
 

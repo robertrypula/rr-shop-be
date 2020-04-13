@@ -1,6 +1,6 @@
 ##Naturalne mydło z błotem z morza martwego 100g, Mydlarnia „Powrót do Natury”
 
-**Opis** Dzięki aktywnym składnikom minerałów z Morza Martwego mydło głęboko oczyszcza skórę, absorbuje nadmiar tłuszczu i usuwa obumarłe komórki naskórka, dlatego szczególnie polecane jest do skóry z tendencją do wyprysków i przetłuszczania się. Wyprodukowane według tradycyjnej receptury z roślinnych, naturalnych surowców najwyższej jakości, myje i pielęgnuje skórę nie powodując podrażnień. Wspomaga leczenie m.in. łuszczycy, egzemy i innych chorób dermatologicznych.
+**Opis** Dzięki aktywnym składnikom minerałów z Morza Martwego mydło głęboko oczyszcza skórę, absorbuje nadmiar tłuszczu i usuwa obumarłe komórki naskórka, dlatego jest szczególnie polecane do skóry z tendencją do wyprysków i przetłuszczania się. Wyprodukowane według tradycyjnej receptury z roślinnych, naturalnych surowców najwyższej jakości, myje i pielęgnuje skórę nie powodując podrażnień. Wspomaga leczenie m.in. łuszczycy, egzemy i innych chorób dermatologicznych.
 
 **Stosowanie** Namydlić całe ciało i powolnymi, ruchami masować powierzchnię skóry, aby aktywne składniki zaczęły przez nią przenikać w głąb ciała. Taki relaksacyjny masaż powinien trwać kilka, kilkanaście minut, po czym mydło należy spłukać wodą.
 

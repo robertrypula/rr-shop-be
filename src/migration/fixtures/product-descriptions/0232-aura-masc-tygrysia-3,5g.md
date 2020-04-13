@@ -4,7 +4,7 @@
 
 **Stosowanie** Stosować niewielką ilość maści na obolałe miejsca. Należy unikać kontaktu maści z oczami.
 
-**Przeciwwskazania** Nie powinno się stosować maści u dzieci poniżej drugiego roku życia.
+**Przeciwwskazania** Maści nie powinno się stosować u dzieci poniżej drugiego roku życia.
 
 **Skład** Mięta pieprzowa, olejek goździkowy, olejek eukaliptusowy, olejek kamforowy, kamfora, wazelina, ozekeryt (wosk mineralny).
 

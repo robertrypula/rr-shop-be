@@ -1,6 +1,6 @@
 ##Ekologiczny lubczyk 20g, Dary Natury
 
-**Opis** Lubczyk polecany jest do aromatyzowania wszelkich zup, marynat oraz mięs.
+**Opis** Lubczyk polecany jest do aromatyzowania wszelkich zup, sosów, marynat oraz mięs.
 
 **Skład** Liść lubczyku (produkt rolnictwa ekologicznego) 100%
 

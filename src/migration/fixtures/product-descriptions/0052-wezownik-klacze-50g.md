@@ -1,6 +1,6 @@
 ##Kłącze wężownika 50g, Flos
 
-**Opis** Kłącze wężownika wykazuje działanie przeciwzapalne, krwiotamujące, ściągające oraz przeciwbiegunkowe. W literaturze zielarskiej polecany jest do stosowania m.in. przy biegunkach, krwawieniach z przewodu pokarmowego czy wrzodach. Działa antyseptycznie, dlatego polecany jest również do stosowania w formie okładów lub przemywań skóry trądzikowej bądź łojotokowej oraz trudno gojących się ran czy też odleżyn.  
+**Opis** Kłącze wężownika wykazuje działanie przeciwzapalne, krwiotamujące, ściągające oraz przeciwbiegunkowe. W literaturze zielarskiej polecane jest do stosowania m.in. przy biegunkach, krwawieniach z przewodu pokarmowego czy wrzodach. Działa również antyseptycznie, dlatego polecane jest do stosowania w formie okładów lub przemywań skóry trądzikowej bądź łojotokowej oraz trudno gojących się ran lub odleżyn.  
 
 **Skład** Kłącze wężownika 100%
 

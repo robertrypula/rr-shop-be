@@ -4,9 +4,9 @@
 
 Laureat Nagrody Nobla za badania nad zjawiskiem odporności - Ilia Miecznikow, twierdził że bakterie z rodzaju Lactobacillus (obecne w kiszonkach) opóźniają procesy starzenia a tym samym przedłużają życie.
 Ponadto produkty na bazie fermentowanych warzyw są:
-- lekkostrawne i łatwo przyswajalne 
-- dzięki zawartości żywych kultur bakterii wytwarzających kwas mlekowy wspierają układ immunologiczny oraz korzystnie wpływają na mikroflorę jelitową
-- zawierają błonnik wspomagający przemianę materii 
+- lekkostrawne i łatwo przyswajalne, 
+- dzięki zawartości żywych kultur bakterii wytwarzających kwas mlekowy wspierają układ immunologiczny oraz korzystnie wpływają na mikroflorę jelitową,
+- zawierają błonnik wspomagający przemianę materii, 
 - wspomagają detoksykację organizmu oraz
 - zmniejszają ryzyko wystąpienia niektórych chorób dzięki obecności związków biologicznie aktywnych.
 

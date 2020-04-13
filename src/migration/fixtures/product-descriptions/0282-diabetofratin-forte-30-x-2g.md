@@ -1,4 +1,4 @@
-##Diabetofratin forte do zaparzania w saszetkach 30x2g, Boni Fraters
+##Diabetofratin forte do zaparzania w saszetkach 30x2g, Boni Fratres
 
 **Opis** Diabetofratin Forte to naturalna mieszanka sporządzona zgodnie z zakonną recepturą. Dzięki zawartości takich ziół jak morwa biała, naowocnia fasoli czy łuska gryczana wspomaga organizm w utrzymaniu prawidłowego poziomu cukru we krwi a dzięki zawartości pokrzywy również prawidłowego krążenia krwi. 
 

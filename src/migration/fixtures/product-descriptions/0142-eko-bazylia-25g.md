@@ -1,6 +1,6 @@
 ##Ekologiczna bazylia 25g, Dary Natury
 
-**Opis** Intensywny korzenno-kamforowy zapach, według literatury zielarskiej wspomaga trawienie. Polecana do potraw kuchni śródziemnomorskiej, makaronów oraz dressingów.
+**Opis** Intensywny korzenno-kamforowy zapach, według literatury zielarskiej wspomaga trawienie. Bazylia polecana jest do potraw kuchni śródziemnomorskiej, makaronów oraz dressingów.
 
 **Skład** Suszona bazylia (produkt rolnictwa ekologicznego) 100%
 

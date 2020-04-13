@@ -1,6 +1,6 @@
 ##Ziele macierzanki 50g, Flos
 
-**Opis** W zielu macierzanki występują m.in. flawonoidy, saponiny, garbniki i gorycze. Według literatury zielarskiej macierzanka działa wykrztuśnie, ściągająco i odkażająco, dlatego zalecana jest przy wszelkich infekcjach górnych dróg oddechowych. Polecana jest również do płukania w stanach zapalnych jamy ustnej i gardła oraz w postaci okładów na nerwobóle i bóle reumatyczne.
+**Opis** W zielu macierzanki występują m.in. flawonoidy, saponiny, garbniki i gorycze. Według literatury zielarskiej macierzanka działa wykrztuśnie, ściągająco i odkażająco, dlatego zalecana jest przy wszelkich infekcjach górnych dróg oddechowych. Polecana jest również do płukania jamy ustnej i gardła w stanach zapalnych oraz w postaci okładów przy nerwobólach i bólach reumatycznych.
 
 **Skład** Wysuszone, rozdrobnione ziele macierzanki (Serpylli herba) 100%
 

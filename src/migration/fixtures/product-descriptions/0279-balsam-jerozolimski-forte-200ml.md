@@ -17,7 +17,7 @@
 * Pelargonia – udrażnia zatoki,
 * Witamina C – wspiera układ immunologiczny.
 
-**Zalecane spożycie** Dzieci powyżej 12. roku życia 3 razy dziennie po 5 ml. Dorośli: 3 razy dziennie po 10 ml. Preparat można przyjmować w naturalnej postaci lub rozpuścić w niewielkiej ilości wody.
+**Zalecane spożycie** Dzieci powyżej 12. roku życia 3 razy dziennie po 5ml. Dorośli: 3 razy dziennie po 10ml. Preparat można przyjmować w naturalnej postaci lub rozpuścić w niewielkiej ilości wody.
 
 **Skład** Zawartość substancji w 15ml preparatu: sacharoza, woda, Extractum Compositum Balasam Jerozolimski (ekstrakty z kwiatu bzu czarnego, kwiatu lipy, kwiatu dziewanny, kwiatu rumianku, plechy porostu islandzkiego, ziela tymianku, ziela melisy) 600mg, ekstrakt z balsamowca mirry 105mg, kwas L-askorbinowy 90mg, ekstrakt z pąków sosny zwyczajnej 75mg, ekstrakt suchy z pelargonii 45,3mg, ekstrakt z podbiału 30mg, substancja konserwująca: sorbinian potasu, regulator kwasowości: kwas cytrynowy, guma ksantanowa.
 

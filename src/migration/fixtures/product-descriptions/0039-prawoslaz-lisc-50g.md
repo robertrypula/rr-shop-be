@@ -1,6 +1,6 @@
 ##Liść prawoślazu 50g, Flos
 
-**Opis** Liście prawoślazu zawierają nieco mniej śluzów niż korzeń, ale podobnie jak on polecane są schorzeniach układu oddechowego oraz przy problemach z przewodem pokarmowym. 
+**Opis** Liście prawoślazu zawierają nieco mniej śluzów niż korzeń, ale podobnie jak on polecane są w schorzeniach układu oddechowego oraz przy problemach z przewodem pokarmowym. 
 
 **Skład** Wysuszony, rozdrobniony liść prawoślazu (Althaeae folium) 100%
 

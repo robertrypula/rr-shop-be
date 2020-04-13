@@ -4,7 +4,7 @@
 
 **Przeciwwskazania i interakcje** Ciąża, karmienie piersią, zaburzenia płodności. Nie zaleca się stosowania jednocześnie z syntetycznymi lekami przeciwzakrzepowymi i przeciwnadciśnieniowymi. 
 
-**Skład** Andrographis paniculata
+**Skład** Andrographis paniculata 100%
 
 **Producent** NANGA Przemysław Figura
 ul. Zamkowa 97, 77-400 Złotów

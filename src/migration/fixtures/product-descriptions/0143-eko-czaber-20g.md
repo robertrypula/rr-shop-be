@@ -1,6 +1,6 @@
 ##Ekologiczny cząber 20g, Dary Natury
 
-**Opis** Według literatury zielarskiej ma właściwości antybakteryjne, wspomaga trawienie, wydzielanie soków żołądkowych oraz łagodzi skurcze mięśni gładkich jelit. Polecany do dań z roślin strączkowych oraz takich potraw jak bigos, kwaśnica czy kapuśniak.
+**Opis** Według literatury zielarskiej ma właściwości antybakteryjne, wspomaga trawienie, wydzielanie soków żołądkowych oraz łagodzi skurcze mięśni gładkich jelit. Cząber polecany jest do dań przygotowywanych na bazie roślin strączkowych oraz kapusty, jak bigos, kwaśnica czy kapuśniak.
 
 **Skład** Suszony cząber (produkt rolnictwa ekologicznego) 100%
 

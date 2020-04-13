@@ -1,4 +1,4 @@
-##Naturalne mydło potasowe w płynie 500ml, Mydlarnia "Powrót do natury"
+##Naturalne mydło potasowe w płynie 500ml, Mydlarnia „Powrót do Natury”
 
 **Opis** Hipoalergiczne mydło potasowe przeznaczone do mycia całego ciała, włosów oraz zmywania. Powstaje z tłuszczy palmowych w tradycyjnym procesie zmydlania wodorotlenkiem potasu. Nie zawiera żadnych dodatków chemicznych. 
 

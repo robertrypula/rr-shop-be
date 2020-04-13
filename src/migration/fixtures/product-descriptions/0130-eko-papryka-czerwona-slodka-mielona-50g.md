@@ -1,6 +1,6 @@
 ##Ekologiczna papryka czerwona mielona 50g, Dary Natury
 
-**Opis** Przyprawa otrzymywana ze słodkiej papryki o przyjemnym korzennym zapachu i łagodnym smaku. Według literaury zielarskiej wspomaga trawienie. Polecana w szczególności do kurczaka, wołowiny i cielęciny.
+**Opis** Przyprawa otrzymywana ze słodkiej papryki o przyjemnym korzennym zapachu i łagodnym smaku. Według literatury zielarskiej wspomaga trawienie. Polecana w szczególności do kurczaka, wołowiny i cielęciny.
 
 **Skład** Wysuszona, zmielona czerwona papryka (produkt rolnictwa ekologicznego) 100%
 

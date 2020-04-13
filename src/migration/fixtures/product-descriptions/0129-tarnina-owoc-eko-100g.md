@@ -1,6 +1,6 @@
 ##Ekologiczny owoc tarniny 100g, Dary Natury
 
-**Opis** Owoce tarniny, potocznie zwane tarkami bogate są m.in. w pektyny, garbniki oraz kwasy organiczne. Według literatury zielarskiej polecane są przy biegunkach oraz problemach skórnych jak czyraki lub trądzik. 
+**Opis** Owoce tarniny, potocznie zwane tarkami bogate są m.in. w pektyny, garbniki oraz kwasy organiczne. Według literatury zielarskiej tarnina polecana jest przy biegunkach oraz problemach skórnych jak czyraki lub trądzik. 
 
 **Skład** Owoce tarniny (produkt rolnictwa ekologicznego) 100%
 

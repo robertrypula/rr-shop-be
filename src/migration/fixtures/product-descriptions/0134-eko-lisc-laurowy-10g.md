@@ -1,6 +1,6 @@
 ##Ekologiczny liść laurowy 10g, Dary Natury
 
-**Opis** Intensywny gorzkawy smak, według literaury zielarskiej posiada właściwości stymulujące, antyseptyczne, ściągające oraz wspomagające trawienie. Polecany do wszelkiego rodzaju zup, wywarów, duszonych mięs oraz marynat.
+**Opis** Intensywny gorzkawy smak. Według literatury zielarskiej liście laurowe posiadają właściwości stymulujące, antyseptyczne, ściągające oraz wspomagające trawienie. Polecane są do wszelkiego rodzaju zup, wywarów, sosów, duszonych mięs oraz marynat.
 
 **Skład** Liść laurowy (produkt rolnictwa ekologicznego) 100%
 

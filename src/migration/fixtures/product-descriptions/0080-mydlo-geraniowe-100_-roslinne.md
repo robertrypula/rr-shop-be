@@ -1,4 +1,4 @@
-##Mydło geraniowe z zieloną glinką 100g, Mydlarnia "Powrót do Natury"
+##Mydło geraniowe z zieloną glinką 100g, Mydlarnia „Powrót do Natury”
 
 **Opis** Mydło geraniowe z zieloną glinką przeznaczone jest do cery trądzikowej, ze skłonnością do przetłuszczania. Geranium wykazuje działanie ściągające, przeciwzapalne oraz antyłojotokowe, natomiast zielona glinka działa dezynfekująco, wspomagając leczenie trądziku i wszelkich wyprysków.
 

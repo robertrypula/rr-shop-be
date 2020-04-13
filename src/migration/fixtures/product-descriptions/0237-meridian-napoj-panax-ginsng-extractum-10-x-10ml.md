@@ -6,7 +6,7 @@
 
 **Zalecane spożycie** Rekomendowana dzienna porcja: osoby dorosłe 1- 2 razy po 1 ampułce wypić przez załączone rurki.
 
-**Skład** W skład 1 ampułki wchodzi sproszkowany korzeń Żeń-szenia właściwego (Panax Ginseng)- 2500 mg, miód-3 g.
+**Skład** W skład 1 ampułki wchodzi sproszkowany korzeń Żeń-szenia właściwego (Panax Ginseng)- 2500mg, miód-3g.
 
 **Kraj pochodzenia** Chiny
 

@@ -4,8 +4,8 @@
 
 **Zalecane spożycie** Jedną saszetkę herbaty zalać szklanką wody o temperaturze ok. 95 stopni (odczekać 1-3 min od momentu wrzenia) i zaparzać przez kilka minut pod przykryciem.
 
-**Skład** Herbata czarna cejlońska* 92%, cynamon cejloński mielony*, kardamon*, imbir*, goździki*.
-*produkt rolnictwa ekologicznego
+**Skład** Herbata czarna cejlońska\* 92%, cynamon cejloński mielony\*, kardamon\*, imbir\*, goździki\*.
+\*produkt rolnictwa ekologicznego
 
 **Jednostka Certyfikująca** PL-EKO-01
 

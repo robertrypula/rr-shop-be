@@ -1,6 +1,6 @@
 ##Ekologiczny koperek 30g, Dary Natury
 
-**Opis** Koperek szczególnie polecany jest do aromatyzowania wszelkich zup, sosób oraz potraw na bazie ryb.
+**Opis** Koperek szczególnie polecany jest do aromatyzowania wszelkich zup, sosów oraz potraw na bazie ryb.
 
 **Skład** Wysuszony koperek (produkt rolnictwa ekologicznego) 100%
 

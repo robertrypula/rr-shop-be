@@ -4,8 +4,8 @@
 
 **Zalecane spożycie** 1 saszetkę herbatki zalać szklanką wrzątku i pozostawić pod przykryciem do zaparzenia na około 10-15 minut.
 
-**Skład** Owoc maliny* 40%, owoc dzikiej róży*, kwiat lipy* 20%, kwiat hibiskusa*.
-*produkt rolnictwa ekologicznego
+**Skład** Owoc maliny\* 40%, owoc dzikiej róży\*, kwiat lipy\* 20%, kwiat hibiskusa\*.
+\*produkt rolnictwa ekologicznego
 
 **Jednostka Certyfikująca** PL-EKO-01
 
