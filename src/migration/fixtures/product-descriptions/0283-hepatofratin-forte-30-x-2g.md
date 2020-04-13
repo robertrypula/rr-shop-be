@@ -1,4 +1,4 @@
-##Hepatofratin forte do zaparzania w saszetkach 30x2g, Boni Fratres
+##Hepatofratin forte do zaparzania w saszetkach 30x2g, Boni Fraters
 
 **Opis** Hepatofratin Forte to naturalna mieszanka ziołowa sporządzona zgodnie z zakonną recepturą na bazie takich surowców jak mięta, mniszek i kmin, wspomagających proces trawienia. Karczoch natomiast wspiera pracę wątroby i przyczynia się do prawidłowego funkcjonowania dróg żółciowych.
 

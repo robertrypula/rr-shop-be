@@ -1,4 +1,4 @@
-##Owoc ostropestu plamistego 100g, FLos
+##Owoc ostropestu plamistego 100g, Flos
 
 **Opis** Owoce ostropestu zawierają cenny składnik- sylimarynę, która jest jedną z podstawowych substancji używanych w terapii uzupełniającej chorób wątroby. Sylimaryna chroni ją przed czynnikami toksycznymi oraz wspomaga procesy jej regeneracji. W literaturze zielarskiej ostropest polecany jest również w bólach woreczka żółciowego oraz w terapii antyalkoholowej.   
 

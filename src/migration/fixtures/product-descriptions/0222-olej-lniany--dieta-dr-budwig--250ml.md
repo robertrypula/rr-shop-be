@@ -9,7 +9,7 @@ Każda wyprodukowana według najwyższych standardów jakości seria Olej Lniany
 
 Surowce do produkcji pochodzą od sprawdzonych przez Instytut wieloletnich dostawców oraz upraw własnych. Kontrolowany jest każdy etap wytwarzania oleju. Badania wykonywane są dla każdej serii surowca wg najwyższych standardów zarządzania bezpieczeństwem żywności ISO 22000:2006.
 
-**Skład** Olej lniany wysokolinolenowy tłoczony na zimno – 100%
+**Skład** Olej lniany wysokolinolenowy tłoczony na zimno – 100%.
 
 **Producent** Instytut Włókien Naturalnych i Roślin Zielarskich
 ul. Wojska Polskiego 71b, 60-630 Poznań

@@ -1,4 +1,4 @@
-##Ziele rutwicy 50g, FLos
+##Ziele rutwicy 50g, Flos
 
 **Opis** Jedno z najstarszych ziół wykorzystywanych w leczeniu cukrzycy, które przyczyniło się do powstania leku syntetycznego o działaniu przeciwcukrzycowym - metforminy. Według literatury zielarskiej rutwica reguluje funkcje kory nadnerczy i obniża poziom cukru we krwi. 
 

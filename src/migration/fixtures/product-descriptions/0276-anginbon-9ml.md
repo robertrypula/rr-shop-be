@@ -4,7 +4,7 @@
 
 **Stosowanie** 5-6 razy dziennie 1-2 dawki.
 
-**Skład** Olejki: Anyżowy, z Drzewa herbacianego, Eukaliptusowy, Tymiankowy, Szałwiowy, Melisowy, Goździkowy, Cynamonowy. Mentol, Propolis, Destylat oczarowy, Sacharynian sodu, Etanol, Glicerol.
+**Skład** Olejki: anyżowy, z drzewa herbacianego, eukaliptusowy, tymiankowy, szałwiowy, melisowy, goździkowy, cynamonowy. Mentol, propolis, destylat oczarowy, sacharynian sodu, etanol, glicerol.
 
 **Producent** Laboratorium Medycyny Naturalnej BONIMED
 ul. Stawowa 23, 34-300 Żywiec

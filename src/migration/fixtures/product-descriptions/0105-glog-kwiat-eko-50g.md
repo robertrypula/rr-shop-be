@@ -1,4 +1,4 @@
-##Ekologiczny kwiat głogu 50g, Dary Natury
+##Ekologiczny kwiat głogu 50g, Dary Natury 
 
 **Opis** Kwiat głogu zawiera znaczne ilości flawonoidów, związków aminowych, purynowych, kumarynowych, fitosteroli i wiele innych. Według literaury zielarskiej preparaty z głogu działają rozkurczająco, nasercowo, moczopędnie i uspokajająco. Szczególnie polecane u osób starszych (przy tak zwanym starczym sercu) oraz borykających się z nadciśnieniem tętniczym czy problemami z krążeniem. 
 
