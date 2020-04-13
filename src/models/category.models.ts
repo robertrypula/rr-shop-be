@@ -6,6 +6,7 @@ export enum StructuralNode {
   FooterMap = 'FooterMap',
   Header = 'Header',
   News = 'News',
+  PageTemplates = 'PageTemplates',
   Payment = 'Payment',
   Recommended = 'Recommended',
   ShopCategories = 'ShopCategories'
