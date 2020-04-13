@@ -53,6 +53,9 @@ export class Product {
   @Column('decimal', { ...decimalPriceConfig })
   public priceUnit: number;
 
+  @Column('decimal', { ...decimalPriceConfig, nullable: true, default: null })
+  public priceUnitBeforePromotion: number;
+
   @Column('varchar', { length: PKWIU_LENGTH, nullable: true, default: null, ...stringConfig })
   public pkwiu: string;
 
