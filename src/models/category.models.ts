@@ -8,6 +8,7 @@ export enum StructuralNode {
   News = 'News',
   PageTemplates = 'PageTemplates',
   Payment = 'Payment',
+  Promotions = 'Promotions',
   Recommended = 'Recommended',
   ShopCategories = 'ShopCategories'
 }
