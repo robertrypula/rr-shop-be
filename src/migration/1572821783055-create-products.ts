@@ -46,6 +46,7 @@ export class CreateProducts1572821783055 implements MigrationInterface {
       product.slug = getSlugFromPolishString(product.name);
       product.description = descriptionMdFile.description;
       // product.sortOrder
+      product.isHidden = mainTsvRow.isHidden;
       product.priceUnit =
         mainTsvRow.priceUnitSelling > 0 && mainTsvRow.priceUnitSelling < 10000 ? mainTsvRow.priceUnitSelling : 0;
       product.pkwiu = mainTsvRow.pkwiu;
@@ -166,19 +167,20 @@ export class CreateProducts1572821783055 implements MigrationInterface {
         id: +rowData[2],
         name: rowData[3].trim(),
         categoryLikeType: rowData[5].trim(),
-        quantity: +rowData[6],
-        priceUnitNet: parsePrice(rowData[7]),
-        vat: parsePrice(rowData[8]),
-        priceUnitGross: parsePrice(rowData[9]),
-        bestBeforeDates: extractBestBefore(+rowData[6], rowData[10]),
-        distributor: rowData[11].trim(),
-        pkwiu: rowData[12].trim(),
-        descriptionFilename: removeWhitespaceCharacters(rowData[13]),
-        imageFilename: removeWhitespaceCharacters(rowData[14])
+        isHidden: rowData[6] === '1',
+        quantity: +rowData[7],
+        priceUnitNet: parsePrice(rowData[8]),
+        vat: parsePrice(rowData[9]),
+        priceUnitGross: parsePrice(rowData[10]),
+        bestBeforeDates: extractBestBefore(+rowData[7], rowData[11]),
+        distributor: rowData[12].trim(),
+        pkwiu: rowData[13].trim(),
+        descriptionFilename: removeWhitespaceCharacters(rowData[14]),
+        imageFilename: removeWhitespaceCharacters(rowData[15])
           .replace('.jpg', '')
           .replace('.png', ''),
-        priceUnitSelling: parsePrice(rowData[15]),
-        categories: this.getCategories(rowData)
+        priceUnitSelling: parsePrice(rowData[16]),
+        categories: this.getCategories(rowData, 17)
       });
     }
 
@@ -230,8 +232,8 @@ export class CreateProducts1572821783055 implements MigrationInterface {
     return result;
   }
 
-  protected getCategories(rowData: string[]): string[] {
-    const categories: string[] = getNormalizedNamesTillTheEnd(rowData, 16);
+  protected getCategories(rowData: string[], startIndex: number): string[] {
+    const categories: string[] = getNormalizedNamesTillTheEnd(rowData, startIndex);
     const duplicates: string[] = getDuplicates(categories);
 
     if (duplicates.length) {

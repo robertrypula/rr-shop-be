@@ -8,17 +8,22 @@ export class ProductRepositoryService {
 
   // ---------------------------------------------------------------------------
 
-  public async getProductsFetchTypeMinimal(productIds: number[]): Promise<Product[]> {
+  public async getProductsFetchTypeMinimal(productIds: number[], excludeHidden = true): Promise<Product[]> {
     const queryBuilder: SelectQueryBuilder<Product> = this.repository
       .createQueryBuilder('product')
-      .select(['product.id']);
+      .select(['product.id'])
+      .where('1 = 1');
 
-    productIds !== null && queryBuilder.where('product.id IN (:...productIds)', { productIds });
+    productIds !== null && queryBuilder.andWhere('product.id IN (:...productIds)', { productIds });
+    excludeHidden && queryBuilder.andWhere('product.isHidden is false');
 
     return await queryBuilder.getMany();
   }
 
-  public async getProductsFetchTypeMediumWithoutOrderItemsAndSupplies(productIds: number[]): Promise<Product[]> {
+  public async getProductsFetchTypeMediumWithoutOrderItemsAndSupplies(
+    productIds: number[],
+    excludeHidden = true
+  ): Promise<Product[]> {
     const queryBuilder: SelectQueryBuilder<Product> = this.repository
       .createQueryBuilder('product')
       .select([
@@ -27,16 +32,19 @@ export class ProductRepositoryService {
         ...['name'].map(c => `manufacturer.${c}`)
       ])
       .leftJoin('product.images', 'image')
-      .leftJoin('product.manufacturer', 'manufacturer');
-    let products: Product[];
+      .leftJoin('product.manufacturer', 'manufacturer')
+      .where('1 = 1');
 
-    productIds !== null && queryBuilder.where('product.id IN (:...productIds)', { productIds });
-    products = await queryBuilder.getMany();
+    productIds !== null && queryBuilder.andWhere('product.id IN (:...productIds)', { productIds });
+    excludeHidden && queryBuilder.andWhere('product.isHidden is false');
 
-    return products;
+    return await queryBuilder.getMany();
   }
 
-  public async getProductsFetchTypeFullWithoutOrderItemsAndSupplies(productIds: number[]): Promise<Product[]> {
+  public async getProductsFetchTypeFullWithoutOrderItemsAndSupplies(
+    productIds: number[],
+    excludeHidden = true
+  ): Promise<Product[]> {
     const queryBuilder: SelectQueryBuilder<Product> = this.repository
       .createQueryBuilder('product')
       .select([
@@ -49,32 +57,36 @@ export class ProductRepositoryService {
       ])
       .leftJoin('product.images', 'image')
       .leftJoin('product.manufacturer', 'manufacturer')
-      .leftJoin('manufacturer.images', 'manufacturerImage');
-    let products: Product[];
+      .leftJoin('manufacturer.images', 'manufacturerImage')
+      .where('1 = 1');
 
-    productIds !== null && queryBuilder.where('product.id IN (:...productIds)', { productIds });
-    products = await queryBuilder.getMany();
+    productIds !== null && queryBuilder.andWhere('product.id IN (:...productIds)', { productIds });
+    excludeHidden && queryBuilder.andWhere('product.isHidden is false');
 
-    return products;
+    return await queryBuilder.getMany();
   }
 
   // ---------------------------------------------------------------------------
 
-  public async getProductsIdsByCategoryIds(categoryIds: number[]): Promise<number[]> {
+  public async getProductsIdsByCategoryIds(categoryIds: number[], excludeHidden = true): Promise<number[]> {
     const queryBuilder: SelectQueryBuilder<Product> = this.repository
       .createQueryBuilder('product')
       .select('product.id as id')
       .leftJoin('product.categories', 'category')
       .where('category.id IN (:...categoryIds)', { categoryIds });
 
+    excludeHidden && queryBuilder.andWhere('product.isHidden is false');
+
     return (await queryBuilder.getRawMany()).map((row: { id: number }): number => row.id);
   }
 
-  public async getProductsIdsByName(name: string): Promise<number[]> {
+  public async getProductsIdsByName(name: string, excludeHidden = true): Promise<number[]> {
     const queryBuilder: SelectQueryBuilder<Product> = this.repository
       .createQueryBuilder('product')
       .select('product.id as id')
       .where('product.name like :name', { name: '%' + name + '%' });
+
+    excludeHidden && queryBuilder.andWhere('product.isHidden is false');
 
     return (await queryBuilder.getRawMany()).map((row: { id: number }): number => row.id);
   }

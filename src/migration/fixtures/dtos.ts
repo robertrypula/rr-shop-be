@@ -22,6 +22,7 @@ export interface MainTsvRow {
   id: number;
   name: string;
   categoryLikeType: string;
+  isHidden: boolean;
   quantity: number;
   priceUnitNet: number;
   vat: number;
