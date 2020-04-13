@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, Index, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 import { Status } from '../models/payment.models';
 import { PaymentType } from '../models/product.models';
@@ -15,6 +15,7 @@ export class Payment {
   @Column('decimal', { ...decimalPriceConfig })
   public amount: number;
 
+  @Index({ unique: true })
   @Column('varchar', { length: PAYMENT_EXTERNAL_ID_LENGTH, nullable: true, default: null, ...stringConfig })
   public externalId: string;
 

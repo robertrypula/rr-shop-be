@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, Index, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 import { decimalPercentageConfig } from './decimal-config';
 import { PROMO_CODE_LENGTH } from './length-config';
@@ -10,7 +10,8 @@ export class PromoCode {
   @PrimaryGeneratedColumn()
   public id: number;
 
-  @Column('varchar', { unique: true, length: PROMO_CODE_LENGTH, ...stringConfig })
+  @Index({ unique: true })
+  @Column('varchar', { length: PROMO_CODE_LENGTH, ...stringConfig })
   public name: string;
 
   @Column('decimal', { ...decimalPercentageConfig })

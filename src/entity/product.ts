@@ -2,6 +2,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  Index,
   JoinTable,
   ManyToMany,
   ManyToOne,
@@ -31,12 +32,15 @@ export class Product {
   @Column({ nullable: true, default: null })
   public externalId: number;
 
+  @Index({ unique: true })
   @Column('varchar', { length: PRODUCT_NAME_LENGTH, ...stringConfig })
   public name: string;
 
+  @Index({ unique: true })
   @Column('varchar', { length: PRODUCT_CASH_REGISTER_NAME_LENGTH, nullable: true, default: null, ...stringConfig })
   public nameCashRegister: string;
 
+  @Index({ unique: true })
   @Column('varchar', { length: PRODUCT_NAME_LENGTH, ...stringConfig })
   public slug: string;
 
@@ -52,6 +56,7 @@ export class Product {
   @Column('varchar', { length: PKWIU_LENGTH, nullable: true, default: null, ...stringConfig })
   public pkwiu: string;
 
+  @Index({ unique: true })
   @Column('varchar', { length: BARCODE_LENGTH, nullable: true, default: null, ...stringConfig })
   public barcode: string;
 
@@ -62,6 +67,9 @@ export class Product {
   public type: Type;
 
   public quantity: number;
+
+  @Column('boolean', { default: false })
+  public isHidden: boolean;
 
   @Column('enum', { enum: DeliveryType, nullable: true, default: undefined, ...stringConfig })
   public deliveryType: DeliveryType;

@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, Index, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 import { Image } from './image';
 import { GENERIC_LENGTH } from './length-config';
@@ -10,6 +10,7 @@ export class Manufacturer {
   @PrimaryGeneratedColumn()
   public id: number;
 
+  @Index({ unique: true })
   @Column('varchar', { length: GENERIC_LENGTH, ...stringConfig })
   public name: string;
 
