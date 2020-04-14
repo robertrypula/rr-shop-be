@@ -53,8 +53,8 @@ export class OrderService {
     order.emails = [
       new Email()
         .setTo(order.email)
-        .setSubject(this.templateService.getOrderEmailSubject(order))
-        .setHtml(this.templateService.getOrderEmailHtml(order))
+        .setSubject(await this.templateService.getOrderEmailSubject(order))
+        .setHtml(await this.templateService.getOrderEmailHtml(order))
     ];
   }
 

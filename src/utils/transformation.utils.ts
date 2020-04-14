@@ -129,6 +129,13 @@ export const removeMultipleWhitespaceCharacters = (value: string): string => {
   return `${value}`.replace(/\s\s+/g, ' ');
 };
 
+export const removeNewlinesCharacters = (value: string): string => {
+  return `${value}`
+    .replace(/\n/g, '')
+    .replace(/\r/g, '')
+    .trim();
+};
+
 export const removeWhitespaceCharacters = (value: string): string => {
   return `${value}`.replace(/\s/g, '');
 };

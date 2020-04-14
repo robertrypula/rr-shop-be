@@ -28,7 +28,7 @@ export class PaymentService {
       throw 'Could not find PayU entry that matches notification payload';
     }
 
-    // console.log(payment);
+    console.log(payment);
     // console.log(notification);
 
     switch (notification.status) {
@@ -37,12 +37,12 @@ export class PaymentService {
       case NotificationOrderStatus.COMPLETED:
         payment.status = fromPaymentModels.Status.Completed;
         payment.order.status = fromOrderModels.Status.PaymentCompleted;
-        email = this.createEmail(payment);
+        email = await this.createEmail(payment);
         break;
       case NotificationOrderStatus.CANCELED:
         payment.status = fromPaymentModels.Status.Completed;
         payment.order.status = fromOrderModels.Status.Canceled;
-        email = this.createEmail(payment);
+        email = await this.createEmail(payment);
         break;
     }
 
@@ -54,11 +54,11 @@ export class PaymentService {
     email && (await this.emailRepositoryService.save(email));
   }
 
-  protected createEmail(payment: Payment): Email {
+  protected async createEmail(payment: Payment): Promise<Email> {
     return new Email()
       .setTo(payment.order.email)
-      .setSubject(this.templateService.getOrderEmailSubject(payment.order))
-      .setHtml(this.templateService.getOrderEmailHtml(payment.order))
+      .setSubject(await this.templateService.getOrderEmailSubject(payment.order))
+      .setHtml(await this.templateService.getOrderEmailHtml(payment.order))
       .setOrder(payment.order);
   }
 }

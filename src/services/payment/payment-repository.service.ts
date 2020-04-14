@@ -8,10 +8,11 @@ export class PaymentRepositoryService {
   public async getPaymentWithFullOrder(paymentExternalId: string, orderNumber: string): Promise<Payment> {
     const selectQueryBuilder: SelectQueryBuilder<Payment> = this.repository
       .createQueryBuilder('payment')
-      .select(['payment', 'order', 'orderItems', 'promoCode'])
+      .select(['payment', 'order', 'orderItems', 'promoCode', 'payments'])
       .leftJoin('payment.order', 'order')
       .leftJoin('order.orderItems', 'orderItems')
       .leftJoin('order.promoCode', 'promoCode')
+      .leftJoin('order.payments', 'payments')
       .where('payment.externalId = :paymentExternalId', { paymentExternalId })
       .andWhere('order.number = :orderNumber', { orderNumber });
 

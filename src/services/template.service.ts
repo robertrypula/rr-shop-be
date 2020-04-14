@@ -10,13 +10,17 @@ import {
   PRICE_WITH_PROMO_CODE,
   PRICE_WITHOUT_PROMO_CODE
 } from '../email-templates/default';
+import { Category } from '../entity/category';
 import { Order } from '../entity/order';
 import { OrderItem } from '../entity/order-item';
 import { Payment } from '../entity/payment';
+import { StructuralNode } from '../models/category.models';
 import { SecretConfig } from '../models/models';
 import { Status } from '../models/order.models';
 import { DeliveryType, PaymentType, Type } from '../models/product.models';
-import { getFormattedPrice } from '../utils/transformation.utils';
+import { EmailTemplate, TemplatesMap } from '../models/template.models';
+import { getFormattedPrice, removeNewlinesCharacters, removeWhitespaceCharacters } from '../utils/transformation.utils';
+import { CategoryRepositoryService } from './category/category-repository.service';
 
 // TODO implement html template loading
 // TODO check why it's not working with ts-node-dev package
@@ -24,7 +28,18 @@ import { getFormattedPrice } from '../utils/transformation.utils';
 // const DEFAULT = require('./email-templates/default.html');
 
 export class TemplateService {
-  public getOrderEmailHtml(order: Order): string {
+  protected templatesMapCache: TemplatesMap;
+
+  public constructor(
+    protected categoryRepositoryService: CategoryRepositoryService = new CategoryRepositoryService()
+  ) {}
+
+  public async getOrderEmailHtml(order: Order): Promise<string> {
+    const templatesMap: TemplatesMap = await this.getTemplatesMap();
+    console.log('------------------------------');
+    console.log(templatesMap);
+    console.log('------------------------------');
+
     return (
       DEFAULT.replace('{{ NAME }}', order.name)
         .replace('{{ NUMBER }}', order.number)
@@ -36,26 +51,39 @@ export class TemplateService {
     );
   }
 
-  public getOrderEmailSubject(order: Order): string {
+  public async getOrderEmailSubject(order: Order): Promise<string> {
+    const templatesMap: TemplatesMap = await this.getTemplatesMap();
     const secretConfig: SecretConfig = getSecretConfig();
-    const fullPrefix = `${secretConfig.gmail.subjectPrefix}Waleriana.pl - `;
+    let subject: string = '';
 
     switch (order.status) {
       case Status.PaymentWait:
-        return `${fullPrefix}nowe zamówienie ${order.number}`;
+        subject = templatesMap[EmailTemplate.EmailSubjectPaymentWait];
+        break;
       case Status.PaymentCompleted:
-        return `${fullPrefix}zamówienie ${order.number} zostało opłacone`;
+        subject = templatesMap[EmailTemplate.EmailSubjectPaymentCompleted];
+        break;
       case Status.Shipped:
-        return `${fullPrefix}paczka do zamówienia ${order.number} została wysłana`;
+        subject = templatesMap[EmailTemplate.EmailSubjectShipped];
+        break;
       case Status.ReadyForPickup:
-        return `${fullPrefix}zamówienie ${order.number} gotowe do odbioru osobistego`;
+        subject = templatesMap[EmailTemplate.EmailSubjectReadyForPickup];
+        break;
       case Status.Completed:
-        return `${fullPrefix}zamówienie ${order.number} zostało zakończone, dziękujemy!`;
+        subject = templatesMap[EmailTemplate.EmailSubjectCompleted];
+        break;
       case Status.Canceled:
-        return `${fullPrefix}zamówienie ${order.number} zostało anulowane`;
-      default:
-        return `${fullPrefix}zamówienie ${order.number}`;
+        subject = templatesMap[EmailTemplate.EmailSubjectCanceled];
+        break;
     }
+
+    if (!subject) {
+      throw 'Could not load email subject';
+    }
+
+    return (
+      secretConfig.gmail.subjectPrefix + removeNewlinesCharacters(subject.replace('{{ ORDER_NUMBER }}', order.number))
+    );
   }
 
   protected getOrderItemsHtml(orderItems: OrderItem[]): string {
@@ -120,5 +148,18 @@ export class TemplateService {
     }
 
     return '';
+  }
+
+  protected async getTemplatesMap(): Promise<TemplatesMap> {
+    if (!this.templatesMapCache) {
+      this.templatesMapCache = (await this.categoryRepositoryService.getCategoriesByStructuralNode(
+        StructuralNode.EmailTemplates
+      )).reduce((accumulator: TemplatesMap, current: Category): TemplatesMap => {
+        accumulator[current.name] = current.content;
+        return accumulator;
+      }, {});
+    }
+
+    return this.templatesMapCache;
   }
 }
