@@ -1,1 +1,27 @@
-07
+<p>
+  Witaj {{ NAME }},
+  <br />
+  przyjęliśmy Twoje zamówienie do realizacji i nadaliśmy mu numer <strong>{{ NUMBER }}</strong>.
+</p>
+
+<table width="500" cellpadding="0" cellspacing="0" border="0">
+  <tbody>
+    {{ ORDER_ITEMS }}
+  </tbody>
+</table>
+
+<p>
+  Zanim zajmiemy się jego kompletowaniem prosimy o dokonanie płatności:
+</p>
+
+{{ PAYMENT }} {{ PRICE }}
+
+<p>
+  Po zaksięgowaniu wpłaty paczka zostanie dostarczona:
+</p>
+
+{{ DELIVERY }}
+
+<p>
+  Pozdrawiamy
+</p>

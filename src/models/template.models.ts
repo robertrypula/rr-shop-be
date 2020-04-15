@@ -15,5 +15,14 @@ export enum EmailTemplate {
   EmailMessageShipped = 'EmailMessageShipped',
   EmailMessageReadyForPickup = 'EmailMessageReadyForPickup',
   EmailMessageCompleted = 'EmailMessageCompleted',
-  EmailMessageCanceled = 'EmailMessageCanceled'
+  EmailMessageCanceled = 'EmailMessageCanceled',
+  EmailOrderItemProduct = 'EmailOrderItemProduct',
+  EmailOrderItemDeliveryAndPayment = 'EmailOrderItemDeliveryAndPayment',
+  EmailPaymentBankTransfer = 'EmailPaymentBankTransfer',
+  EmailPaymentPayU = 'EmailPaymentPayU',
+  EmailPriceWithoutPromoCode = 'EmailPriceWithoutPromoCode',
+  EmailPriceWithPromoCode = 'EmailPriceWithPromoCode',
+  EmailDeliveryInPostCourier = 'EmailDeliveryInPostCourier',
+  EmailDeliveryInPostParcelLocker = 'EmailDeliveryInPostParcelLocker',
+  EmailDeliveryOwn = 'EmailDeliveryOwn'
 }

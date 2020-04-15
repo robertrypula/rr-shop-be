@@ -1,9 +1,9 @@
 import { getSecretConfig } from '../config';
 import {
-  DEFAULT,
   DELIVERY_IN_POST_COURIER,
   DELIVERY_IN_POST_PARCEL_LOCKER,
   DELIVERY_OWN,
+  footerImage001Cid,
   ORDER_ITEM,
   PAYMENT_BANK_TRANSFER,
   PAYMENT_PAY_U,
@@ -19,13 +19,8 @@ import { SecretConfig } from '../models/models';
 import { Status } from '../models/order.models';
 import { DeliveryType, PaymentType, Type } from '../models/product.models';
 import { EmailTemplate, TemplatesMap } from '../models/template.models';
-import { getFormattedPrice, removeNewlinesCharacters, removeWhitespaceCharacters } from '../utils/transformation.utils';
+import { getFormattedPrice, removeNewlinesCharacters } from '../utils/transformation.utils';
 import { CategoryRepositoryService } from './category/category-repository.service';
-
-// TODO implement html template loading
-// TODO check why it's not working with ts-node-dev package
-// https://github.com/robertrypula/audio-network-reborn/commit/d37ea6bcdfa84ca5b325da09195bd1c9de79be31
-// const DEFAULT = require('./email-templates/default.html');
 
 export class TemplateService {
   protected templatesMapCache: TemplatesMap;
@@ -35,20 +30,17 @@ export class TemplateService {
   ) {}
 
   public async getOrderEmailHtml(order: Order): Promise<string> {
-    const templatesMap: TemplatesMap = await this.getTemplatesMap();
-    console.log('------------------------------');
-    console.log(templatesMap);
-    console.log('------------------------------');
+    const message: string = (await this.getOrderEmailMessage(order))
+      .replace('{{ NUMBER }}', order.number)
+      // .replace('{{ ORDER_URL }}', )
+      .replace('{{ ORDER_ITEMS }}', await this.getOrderItemsHtml(order.orderItems))
+      .replace('{{ PRICE }}', await this.getPriceHtml(order))
+      .replace('{{ PAYMENT }}', await this.getPaymentHtml(order))
+      .replace('{{ DELIVERY }}', await this.getDeliveryHtml(order));
 
-    return (
-      DEFAULT.replace('{{ NAME }}', order.name)
-        .replace('{{ NUMBER }}', order.number)
-        // .replace('{{ ORDER_URL }}', )
-        .replace('{{ ORDER_ITEMS }}', this.getOrderItemsHtml(order.orderItems))
-        .replace('{{ PRICE }}', this.getPriceHtml(order))
-        .replace('{{ PAYMENT }}', this.getPaymentHtml(order))
-        .replace('{{ DELIVERY }}', this.getDeliveryHtml(order))
-    );
+    return (await this.getOrderEmailRoot())
+      .replace('{{ FOOTER_IMAGE_001_CID }}', footerImage001Cid)
+      .replace('{{ MESSAGE }}', message);
   }
 
   public async getOrderEmailSubject(order: Order): Promise<string> {
@@ -86,7 +78,50 @@ export class TemplateService {
     );
   }
 
-  protected getOrderItemsHtml(orderItems: OrderItem[]): string {
+  protected async getOrderEmailRoot(): Promise<string> {
+    const templatesMap: TemplatesMap = await this.getTemplatesMap();
+    const root: string = templatesMap[EmailTemplate.EmailRoot];
+
+    if (!root) {
+      throw 'Could not load email root';
+    }
+
+    return root;
+  }
+
+  protected async getOrderEmailMessage(order: Order): Promise<string> {
+    const templatesMap: TemplatesMap = await this.getTemplatesMap();
+    let message: string = '';
+
+    switch (order.status) {
+      case Status.PaymentWait:
+        message = templatesMap[EmailTemplate.EmailMessagePaymentWait];
+        break;
+      case Status.PaymentCompleted:
+        message = templatesMap[EmailTemplate.EmailMessagePaymentCompleted];
+        break;
+      case Status.Shipped:
+        message = templatesMap[EmailTemplate.EmailMessageShipped];
+        break;
+      case Status.ReadyForPickup:
+        message = templatesMap[EmailTemplate.EmailMessageReadyForPickup];
+        break;
+      case Status.Completed:
+        message = templatesMap[EmailTemplate.EmailMessageCompleted];
+        break;
+      case Status.Canceled:
+        message = templatesMap[EmailTemplate.EmailMessageCanceled];
+        break;
+    }
+
+    if (!message) {
+      throw 'Could not load email message';
+    }
+
+    return message;
+  }
+
+  protected async getOrderItemsHtml(orderItems: OrderItem[]): Promise<string> {
     let html = '';
 
     orderItems.forEach((orderItem: OrderItem, index: number): void => {
@@ -100,20 +135,7 @@ export class TemplateService {
     return html;
   }
 
-  protected getPriceHtml(order: Order): string {
-    const priceSelling: string = getFormattedPrice(
-      order.getPriceTotalSelling([Type.Delivery, Type.Payment, Type.Product])
-    );
-
-    return order.promoCode
-      ? PRICE_WITH_PROMO_CODE.replace('{{ DISCOUNT }}', `${order.promoCode.percentageDiscount}`).replace(
-          '{{ PRICE_TOTAL_SELLING }}',
-          priceSelling
-        )
-      : PRICE_WITHOUT_PROMO_CODE.replace('{{ PRICE_TOTAL_SELLING }}', priceSelling);
-  }
-
-  protected getPaymentHtml(order: Order): string {
+  protected async getPaymentHtml(order: Order): Promise<string> {
     const paymentOrderItem: OrderItem = order.getPaymentOrderItem();
 
     switch (paymentOrderItem.paymentType) {
@@ -131,7 +153,20 @@ export class TemplateService {
     return '';
   }
 
-  protected getDeliveryHtml(order: Order): string {
+  protected async getPriceHtml(order: Order): Promise<string> {
+    const priceSelling: string = getFormattedPrice(
+      order.getPriceTotalSelling([Type.Delivery, Type.Payment, Type.Product])
+    );
+
+    return order.promoCode
+      ? PRICE_WITH_PROMO_CODE.replace('{{ DISCOUNT }}', `${order.promoCode.percentageDiscount}`).replace(
+          '{{ PRICE_TOTAL_SELLING }}',
+          priceSelling
+        )
+      : PRICE_WITHOUT_PROMO_CODE.replace('{{ PRICE_TOTAL_SELLING }}', priceSelling);
+  }
+
+  protected async getDeliveryHtml(order: Order): Promise<string> {
     const deliveryOrderItem: OrderItem = order.getDeliveryOrderItem();
 
     switch (deliveryOrderItem.deliveryType) {

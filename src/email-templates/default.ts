@@ -2,7 +2,7 @@ import { createReadStream } from 'fs';
 import { join } from 'path';
 import { Attachment } from '../simple-gmail/models';
 
-const footerImage001Cid = 'footer.image.001';
+export const footerImage001Cid = 'footer.image.001';
 
 export const DEFAULT_ATTACHMENTS: Attachment[] = [
   {
@@ -28,10 +28,6 @@ export const ORDER_ITEM = `
 
 export const PAYMENT_BANK_TRANSFER = `
   <p>
-    Zanim zajmiemy się jego kompletowaniem prosimy o dokonanie płatności poprzez
-    przelew bankowy.
-  </p>
-  <p>
     Numer konta: <strong>0000-1111-2222-3333-4444-5555-6666-7777-8888</strong>
     <br/>
     Tytuł przelewu: <strong>{{ NUMBER }}</strong>
@@ -39,9 +35,7 @@ export const PAYMENT_BANK_TRANSFER = `
 `;
 
 export const PAYMENT_PAY_U = `
-  <p>
-    Zanim zajmiemy się jego kompletowaniem prosimy o dokonanie płatności elektronicznej:
-  </p>
+
   <p>
     <a href="{{ PAY_U_URL }}" target="_blank"><strong>Płatność PayU</strong></a>
   </p>
@@ -92,29 +86,3 @@ export const DELIVERY_OWN: string = `
         <a href="{{ ORDER_URL }}"><strong>Podgląd zamówienia</strong></a>
     </p>
  */
-
-export const EMAIL_MESSAGE_PAYMENT_WAIT: string = `
-  <p>
-    Witaj {{ NAME }},
-    <br/>
-    przyjęliśmy Twoje zamówienie do realizacji i nadaliśmy mu numer <strong>{{ NUMBER }}</strong>.
-  </p>
-
-  <table width="500" cellpadding="0" cellspacing="0" border="0">
-    <tbody>
-      {{ ORDER_ITEMS }}
-    </tbody>
-  </table>
-
-  {{ PAYMENT }}
-  {{ PRICE }}
-  {{ DELIVERY }}
-
-  <p>
-    Pozdrawiamy
-  </p>
-`;
-
-export const DEFAULT: string = `
-
-`;
