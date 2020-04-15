@@ -1,15 +1,5 @@
 import { getSecretConfig } from '../config';
-import {
-  DELIVERY_IN_POST_COURIER,
-  DELIVERY_IN_POST_PARCEL_LOCKER,
-  DELIVERY_OWN,
-  footerImage001Cid,
-  ORDER_ITEM,
-  PAYMENT_BANK_TRANSFER,
-  PAYMENT_PAY_U,
-  PRICE_WITH_PROMO_CODE,
-  PRICE_WITHOUT_PROMO_CODE
-} from '../email-templates/default';
+import { footerImage001Cid } from '../email-templates/default';
 import { Category } from '../entity/category';
 import { Order } from '../entity/order';
 import { OrderItem } from '../entity/order-item';
@@ -31,6 +21,7 @@ export class TemplateService {
 
   public async getOrderEmailHtml(order: Order): Promise<string> {
     const message: string = (await this.getOrderEmailMessage(order))
+      .replace('{{ NAME }}', order.name)
       .replace('{{ NUMBER }}', order.number)
       // .replace('{{ ORDER_URL }}', )
       .replace('{{ ORDER_ITEMS }}', await this.getOrderItemsHtml(order.orderItems))
@@ -38,39 +29,36 @@ export class TemplateService {
       .replace('{{ PAYMENT }}', await this.getPaymentHtml(order))
       .replace('{{ DELIVERY }}', await this.getDeliveryHtml(order));
 
-    return (await this.getOrderEmailRoot())
+    return (await this.getContent(EmailTemplate.EmailRoot))
       .replace('{{ FOOTER_IMAGE_001_CID }}', footerImage001Cid)
       .replace('{{ MESSAGE }}', message);
   }
 
   public async getOrderEmailSubject(order: Order): Promise<string> {
-    const templatesMap: TemplatesMap = await this.getTemplatesMap();
     const secretConfig: SecretConfig = getSecretConfig();
     let subject: string = '';
 
     switch (order.status) {
       case Status.PaymentWait:
-        subject = templatesMap[EmailTemplate.EmailSubjectPaymentWait];
+        subject = await this.getContent(EmailTemplate.EmailSubjectPaymentWait);
         break;
       case Status.PaymentCompleted:
-        subject = templatesMap[EmailTemplate.EmailSubjectPaymentCompleted];
+        subject = await this.getContent(EmailTemplate.EmailSubjectPaymentCompleted);
         break;
       case Status.Shipped:
-        subject = templatesMap[EmailTemplate.EmailSubjectShipped];
+        subject = await this.getContent(EmailTemplate.EmailSubjectShipped);
         break;
       case Status.ReadyForPickup:
-        subject = templatesMap[EmailTemplate.EmailSubjectReadyForPickup];
+        subject = await this.getContent(EmailTemplate.EmailSubjectReadyForPickup);
         break;
       case Status.Completed:
-        subject = templatesMap[EmailTemplate.EmailSubjectCompleted];
+        subject = await this.getContent(EmailTemplate.EmailSubjectCompleted);
         break;
       case Status.Canceled:
-        subject = templatesMap[EmailTemplate.EmailSubjectCanceled];
+        subject = await this.getContent(EmailTemplate.EmailSubjectCanceled);
         break;
-    }
-
-    if (!subject) {
-      throw 'Could not load email subject';
+      default:
+        throw 'Unsupported order status in getOrderEmailSubject';
     }
 
     return (
@@ -78,54 +66,33 @@ export class TemplateService {
     );
   }
 
-  protected async getOrderEmailRoot(): Promise<string> {
-    const templatesMap: TemplatesMap = await this.getTemplatesMap();
-    const root: string = templatesMap[EmailTemplate.EmailRoot];
-
-    if (!root) {
-      throw 'Could not load email root';
-    }
-
-    return root;
-  }
-
   protected async getOrderEmailMessage(order: Order): Promise<string> {
-    const templatesMap: TemplatesMap = await this.getTemplatesMap();
-    let message: string = '';
-
     switch (order.status) {
       case Status.PaymentWait:
-        message = templatesMap[EmailTemplate.EmailMessagePaymentWait];
-        break;
+        return this.getContent(EmailTemplate.EmailMessagePaymentWait);
       case Status.PaymentCompleted:
-        message = templatesMap[EmailTemplate.EmailMessagePaymentCompleted];
-        break;
+        return this.getContent(EmailTemplate.EmailMessagePaymentCompleted);
       case Status.Shipped:
-        message = templatesMap[EmailTemplate.EmailMessageShipped];
-        break;
+        return this.getContent(EmailTemplate.EmailMessageShipped);
       case Status.ReadyForPickup:
-        message = templatesMap[EmailTemplate.EmailMessageReadyForPickup];
-        break;
+        return this.getContent(EmailTemplate.EmailMessageReadyForPickup);
       case Status.Completed:
-        message = templatesMap[EmailTemplate.EmailMessageCompleted];
-        break;
+        return this.getContent(EmailTemplate.EmailMessageCompleted);
       case Status.Canceled:
-        message = templatesMap[EmailTemplate.EmailMessageCanceled];
-        break;
+        return this.getContent(EmailTemplate.EmailMessageCanceled);
+      default:
+        throw 'Unsupported order status in getOrderEmailMessage';
     }
-
-    if (!message) {
-      throw 'Could not load email message';
-    }
-
-    return message;
   }
 
   protected async getOrderItemsHtml(orderItems: OrderItem[]): Promise<string> {
+    const productTemplate: string = await this.getContent(EmailTemplate.EmailOrderItemProduct);
+    const deliveryAndPaymentTemplate: string = await this.getContent(EmailTemplate.EmailOrderItemDeliveryAndPayment);
     let html = '';
 
     orderItems.forEach((orderItem: OrderItem, index: number): void => {
-      html += ORDER_ITEM.replace('{{ COUNTER }}', `${index + 1}`)
+      html += (orderItem.type === Type.Product ? productTemplate : deliveryAndPaymentTemplate)
+        .replace('{{ COUNTER }}', `${index + 1}`)
         .replace('{{ NAME }}', orderItem.name)
         .replace('{{ PRICE_UNIT_ORIGINAL }}', getFormattedPrice(orderItem.priceUnitOriginal))
         .replace('{{ QUANTITY }}', `${orderItem.quantity}`)
@@ -137,33 +104,32 @@ export class TemplateService {
 
   protected async getPaymentHtml(order: Order): Promise<string> {
     const paymentOrderItem: OrderItem = order.getPaymentOrderItem();
+    const payment: Payment = order.payments && order.payments.length ? order.payments[0] : null;
 
     switch (paymentOrderItem.paymentType) {
       case PaymentType.BankTransfer:
-        return PAYMENT_BANK_TRANSFER.replace('{{ NUMBER }}', order.number);
+        return (await this.getContent(EmailTemplate.EmailPaymentBankTransfer)).replace('{{ NUMBER }}', order.number);
       case PaymentType.PayU:
-        const payment: Payment =
-          order.payments && order.payments.length && order.payments[0].paymentType === PaymentType.PayU
-            ? order.payments[0]
-            : null;
-
-        return PAYMENT_PAY_U.replace('{{ PAY_U_URL }}', payment ? payment.url : '');
+        return (await this.getContent(EmailTemplate.EmailPaymentPayU))
+          .replace('{{ PAY_U_URL }}', payment ? payment.url : '')
+          .trim();
     }
 
     return '';
   }
 
   protected async getPriceHtml(order: Order): Promise<string> {
-    const priceSelling: string = getFormattedPrice(
+    const priceTotalSelling: string = getFormattedPrice(
       order.getPriceTotalSelling([Type.Delivery, Type.Payment, Type.Product])
     );
 
     return order.promoCode
-      ? PRICE_WITH_PROMO_CODE.replace('{{ DISCOUNT }}', `${order.promoCode.percentageDiscount}`).replace(
-          '{{ PRICE_TOTAL_SELLING }}',
-          priceSelling
-        )
-      : PRICE_WITHOUT_PROMO_CODE.replace('{{ PRICE_TOTAL_SELLING }}', priceSelling);
+      ? (await this.getContent(EmailTemplate.EmailPriceWithPromoCode))
+          .replace('{{ DISCOUNT }}', `${order.promoCode.percentageDiscount}`)
+          .replace('{{ PRICE_TOTAL_SELLING }}', priceTotalSelling)
+      : (await this.getContent(EmailTemplate.EmailPriceWithoutPromoCode))
+          .replace('{{ PRICE_TOTAL_SELLING }}', priceTotalSelling)
+          .trim();
   }
 
   protected async getDeliveryHtml(order: Order): Promise<string> {
@@ -171,18 +137,32 @@ export class TemplateService {
 
     switch (deliveryOrderItem.deliveryType) {
       case DeliveryType.InPostCourier:
-        return DELIVERY_IN_POST_COURIER.replace('{{ NAME }}', order.name)
+        return (await this.getContent(EmailTemplate.EmailDeliveryInPostCourier))
+          .replace('{{ NAME }}', order.name)
           .replace('{{ SURNAME }}', order.surname)
           .replace('{{ ADDRESS }}', order.address)
           .replace('{{ ZIP_CODE }}', order.zipCode)
           .replace('{{ CITY }}', order.city);
       case DeliveryType.InPostParcelLocker:
-        return DELIVERY_IN_POST_PARCEL_LOCKER.replace('{{ PARCEL_LOCKER }}', order.parcelLocker);
+        return (await this.getContent(EmailTemplate.EmailDeliveryInPostParcelLocker))
+          .replace('{{ PARCEL_LOCKER }}', order.parcelLocker)
+          .trim();
       case DeliveryType.Own:
-        return DELIVERY_OWN;
+        return await this.getContent(EmailTemplate.EmailDeliveryOwn);
     }
 
     return '';
+  }
+
+  protected async getContent(emailTemplate: EmailTemplate): Promise<string> {
+    const templatesMap: TemplatesMap = await this.getTemplatesMap();
+    const content: string = templatesMap[emailTemplate];
+
+    if (!content) {
+      throw `Could not load ${emailTemplate}`;
+    }
+
+    return content;
   }
 
   protected async getTemplatesMap(): Promise<TemplatesMap> {
