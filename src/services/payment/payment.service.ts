@@ -28,7 +28,7 @@ export class PaymentService {
       throw 'Could not find PayU entry that matches notification payload';
     }
 
-    console.log(payment);
+    // console.log(payment);
     // console.log(notification);
 
     switch (notification.status) {
@@ -40,7 +40,7 @@ export class PaymentService {
         email = await this.createEmail(payment);
         break;
       case NotificationOrderStatus.CANCELED:
-        payment.status = fromPaymentModels.Status.Completed;
+        payment.status = fromPaymentModels.Status.Canceled;
         payment.order.status = fromOrderModels.Status.Canceled;
         email = await this.createEmail(payment);
         break;
