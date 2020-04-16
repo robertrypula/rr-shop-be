@@ -5,7 +5,7 @@ export interface CategoryTsvRow {
   structuralNode: StructuralNode;
   isNotClickable: boolean;
   isWithoutProducts: boolean;
-  isInternal: boolean;
+  isHidden: boolean;
   contentFilename: string;
   tree: string[];
 }

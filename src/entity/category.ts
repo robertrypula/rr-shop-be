@@ -33,7 +33,7 @@ export class Category {
   public isWithoutProducts: boolean;
 
   @Column({ nullable: true, default: null })
-  public isInternal: boolean;
+  public isHidden: boolean;
 
   @Column({ default: 0 })
   public sortOrder: number;

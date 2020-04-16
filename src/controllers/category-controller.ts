@@ -15,7 +15,7 @@ export class CategoryController {
           c => `category.${c}`
         )
       )
-      .where('category.isInternal is not true')
+      .where('category.isHidden is not true')
       .getMany();
 
     res.send(categories);
