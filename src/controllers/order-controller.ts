@@ -4,14 +4,10 @@ import { Request, Response } from 'express';
 import { Order } from '../entity/order';
 import { OrderCreateRequestDto } from '../rest-api/order/order.dtos';
 import { validateOrderCreateRequestDto } from '../rest-api/order/order.validators';
-import { OrderRepositoryService } from '../services/order/order-repository.service';
 import { OrderService } from '../services/order/order.service';
 
 export class OrderController {
-  public constructor(
-    protected orderRepositoryService: OrderRepositoryService = new OrderRepositoryService(),
-    protected orderService: OrderService = new OrderService()
-  ) {}
+  public constructor(protected orderService: OrderService = new OrderService()) {}
 
   public async createOrder(req: Request, res: Response): Promise<void> {
     const orderCreateRequestDto: OrderCreateRequestDto = plainToClass(OrderCreateRequestDto, req.body, {
@@ -46,7 +42,7 @@ export class OrderController {
   }
 
   public async getOrder(req: Request, res: Response): Promise<void> {
-    const order: Order = await this.orderRepositoryService.getOrder(`${req.query.uuid}`); // TODO check
+    const order: Order = await this.orderService.getOrder(`${req.query.uuid}`);
 
     order ? res.send(order) : res.status(404).send({});
   }

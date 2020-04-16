@@ -49,6 +49,10 @@ export class OrderService {
     return await this.orderRepositoryService.save(order); // TypeORM already wraps cascade insert with transaction
   }
 
+  public async getOrder(uuid: string): Promise<Order> {
+    return await this.orderRepositoryService.getOrder(uuid);
+  }
+
   protected async handleEmail(order: Order): Promise<void> {
     order.emails = [
       new Email()

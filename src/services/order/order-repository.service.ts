@@ -9,12 +9,23 @@ export class OrderRepositoryService {
     const selectQueryBuilder: SelectQueryBuilder<Order> = this.repository
       .createQueryBuilder('order')
       .select([
-        ...['uuid', 'number', 'status'].map(c => `order.${c}`),
-        ...['name', 'priceUnitSelling', 'priceUnitOriginal', 'quantity', 'type', 'productId'].map(
-          c => `orderItems.${c}`
-        )
+        ...['uuid', 'number', 'status', 'createdAt'].map(c => `order.${c}`),
+        ...[
+          'name',
+          'priceUnitOriginal',
+          'priceUnitSelling',
+          'quantity',
+          'type',
+          'deliveryType',
+          'paymentType',
+          'productId'
+        ].map(c => `orderItems.${c}`),
+        ...['name', 'percentageDiscount'].map(c => `promoCode.${c}`),
+        ...['amount', 'url', 'paymentType'].map(c => `payments.${c}`)
       ])
       .leftJoin('order.orderItems', 'orderItems')
+      .leftJoin('order.promoCode', 'promoCode')
+      .leftJoin('order.payments', 'payments')
       .where('order.uuid = :uuid', { uuid });
 
     return await selectQueryBuilder.getOne();
