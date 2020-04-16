@@ -25,6 +25,7 @@ export class TemplateService {
       .replace('{{ NUMBER }}', order.number)
       // .replace('{{ ORDER_URL }}', )
       .replace('{{ ORDER_ITEMS }}', await this.getOrderItemsHtml(order.orderItems))
+      .replace('{{ COMMENTS }}', order.comments)
       .replace('{{ PRICE }}', await this.getPriceHtml(order))
       .replace('{{ PAYMENT }}', await this.getPaymentHtml(order))
       .replace('{{ DELIVERY }}', await this.getDeliveryHtml(order));

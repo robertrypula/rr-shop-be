@@ -1,4 +1,5 @@
 export enum StructuralNode {
+  Articles = 'Articles',
   BestSellers = 'BestSellers',
   Delivery = 'Delivery',
   EmailTemplates = 'EmailTemplates',
