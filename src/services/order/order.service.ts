@@ -80,6 +80,7 @@ export class OrderService {
         throw 'Could not find product from order in the database';
       }
 
+      orderItem.uuid = uuidv4();
       orderItem.order = order; // required at selling price calculation (promoCode is in order)
       orderItem.name = foundProduct.name;
       orderItem.priceUnitOriginal = foundProduct.priceUnit;
@@ -106,6 +107,7 @@ export class OrderService {
       const payment: Payment = new Payment();
 
       order.payments = [payment];
+      payment.uuid = uuidv4();
       payment.amount = order.getPriceTotalSelling([Type.Delivery, Type.Payment, Type.Product]);
       payment.status = fromPaymentModels.Status.Pending;
       payment.paymentType = paymentOrderItem.paymentType;
@@ -122,7 +124,7 @@ export class OrderService {
   protected async handlePromoCode(order: Order, orderCreateRequestDto: OrderCreateRequestDto): Promise<void> {
     if (orderCreateRequestDto.promoCode) {
       const name: string = orderCreateRequestDto.promoCode.name;
-      const promoCode: PromoCode = await this.promoCodeRepositoryService.getActivePromoCode(name);
+      const promoCode: PromoCode = await this.promoCodeRepositoryService.getActivePromoCode(name, true);
 
       this.validatePromoCode(promoCode, orderCreateRequestDto.promoCode);
       order.promoCode = promoCode;

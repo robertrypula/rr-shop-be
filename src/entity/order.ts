@@ -18,6 +18,7 @@ import {
   GENERIC_FORM_LENGTH,
   ORDER_NUMBER_LENGTH,
   PARCEL_LOCKER_LENGTH,
+  PARCEL_NUMBER_LENGTH,
   PHONE_LENGTH,
   UUID_LENGTH,
   ZIP_CODE_LENGTH
@@ -81,6 +82,9 @@ export class Order {
 
   @Column('varchar', { length: PARCEL_LOCKER_LENGTH, nullable: true, default: null, ...stringConfig })
   public parcelLocker: string;
+
+  @Column('varchar', { length: PARCEL_NUMBER_LENGTH, nullable: true, default: null, ...stringConfig })
+  public parcelNumber: string;
 
   // ----------
 

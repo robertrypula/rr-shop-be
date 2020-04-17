@@ -1,9 +1,9 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, Index, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 import { DeliveryType, PaymentType, Type } from '../models/product.models';
 import { getNormalizedPrice } from '../utils/transformation.utils';
 import { decimalPriceConfig } from './decimal-config';
-import { PRODUCT_NAME_LENGTH } from './length-config';
+import { PRODUCT_NAME_LENGTH, UUID_LENGTH } from './length-config';
 import { Order } from './order';
 import { Product } from './product';
 import { stringConfig } from './string-config';
@@ -13,6 +13,10 @@ import { Supply } from './supply';
 export class OrderItem {
   @PrimaryGeneratedColumn()
   public id: number;
+
+  @Index({ unique: true })
+  @Column('varchar', { length: UUID_LENGTH, ...stringConfig })
+  public uuid: string;
 
   @Column('varchar', { length: PRODUCT_NAME_LENGTH, ...stringConfig })
   public name: string;

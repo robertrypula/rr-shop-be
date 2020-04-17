@@ -11,6 +11,7 @@ export class OrderRepositoryService {
       .select([
         ...['uuid', 'number', 'status', 'createdAt'].map(c => `order.${c}`),
         ...[
+          'uuid',
           'name',
           'priceUnitOriginal',
           'priceUnitSelling',
@@ -21,7 +22,7 @@ export class OrderRepositoryService {
           'productId'
         ].map(c => `orderItems.${c}`),
         ...['name', 'percentageDiscount'].map(c => `promoCode.${c}`),
-        ...['amount', 'url', 'paymentType'].map(c => `payments.${c}`)
+        ...['uuid', 'amount', 'url', 'paymentType'].map(c => `payments.${c}`)
       ])
       .leftJoin('order.orderItems', 'orderItems')
       .leftJoin('order.promoCode', 'promoCode')
