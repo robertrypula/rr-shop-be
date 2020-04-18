@@ -117,6 +117,7 @@ export class CreateProducts1572821783055 implements MigrationInterface {
     const result: Supply[] = [];
 
     if (mainTsvRow.quantity !== mainTsvRow.bestBeforeDates.length) {
+      console.log(mainTsvRow);
       throw new Error('Mismatch in best before data and quantity data');
     }
 
@@ -212,8 +213,9 @@ export class CreateProducts1572821783055 implements MigrationInterface {
       name = this.cleanProductName(lineFirst);
     }
 
-    description = description.replace(/(\*\*.+\*\*)/g, '#### $1\n');
+    description = description.replace(/(\*\*.+\*\*) /g, '#### $1\n');
     description = description.replace(/#### \*\*(.+)\*\*/g, '#### $1');
+    description = description.replace(/\r/g, '');
 
     return {
       description,
@@ -229,7 +231,7 @@ export class CreateProducts1572821783055 implements MigrationInterface {
       result = result.substr(2);
     }
 
-    return result;
+    return result.trim();
   }
 
   protected getCategories(rowData: string[], startIndex: number): string[] {
