@@ -4,6 +4,7 @@ import { Attachment } from '../simple-gmail/models';
 
 export const footerImage001Cid = 'footer.image.001';
 
+// TODO fix here https://stackabuse.com/encoding-and-decoding-base64-strings-in-node-js/
 export const DEFAULT_ATTACHMENTS: Attachment[] = [
   {
     cid: footerImage001Cid,

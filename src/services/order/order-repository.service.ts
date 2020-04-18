@@ -5,6 +5,26 @@ import { Order } from '../../entity/order';
 export class OrderRepositoryService {
   public constructor(protected repository: Repository<Order> = getRepository(Order)) {}
 
+  public async getAdminOrder(id: string): Promise<Order> {
+    const selectQueryBuilder: SelectQueryBuilder<Order> = this.repository
+      .createQueryBuilder('order')
+      .select(['order', 'orderItems', 'product', 'promoCode', 'payments', 'emails'])
+      .leftJoin('order.orderItems', 'orderItems')
+      .leftJoin('orderItems.product', 'product')
+      .leftJoin('order.promoCode', 'promoCode')
+      .leftJoin('order.payments', 'payments')
+      .leftJoin('order.emails', 'emails')
+      .where('order.id = :id', { id });
+
+    return await selectQueryBuilder.getOne();
+  }
+
+  public async getAdminOrders(): Promise<Order[]> {
+    const selectQueryBuilder: SelectQueryBuilder<Order> = this.repository.createQueryBuilder('order').select('order');
+
+    return await selectQueryBuilder.getMany();
+  }
+
   public async getOrder(uuid: string): Promise<Order> {
     const selectQueryBuilder: SelectQueryBuilder<Order> = this.repository
       .createQueryBuilder('order')
