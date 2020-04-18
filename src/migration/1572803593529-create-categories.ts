@@ -84,7 +84,7 @@ export class CreateCategories1572803593529 implements MigrationInterface {
     let content: string = null;
 
     try {
-      content = fileLoad(join(__dirname, `/fixtures/category-contents/${filename}`));
+      content = fileLoad(join(__dirname, `/fixtures/pages/${filename}`));
     } catch (e) {
       // console.log(`${e}`);
     }

@@ -150,7 +150,7 @@ export class CreateProducts1572821783055 implements MigrationInterface {
     let mainTsvLines: string[] = [];
 
     try {
-      mainTsvLines = fileLoad(join(__dirname, '/fixtures/main.tsv')).split('\n');
+      mainTsvLines = fileLoad(join(__dirname, '/fixtures/products-0001.tsv')).split('\n');
       // tslint:disable-next-line:no-empty
     } catch (e) {}
 
@@ -274,7 +274,7 @@ export class CreateProducts1572821783055 implements MigrationInterface {
     let descriptionFile: string = '';
 
     try {
-      descriptionFile = fileLoad(join(__dirname, `/fixtures/product-descriptions/${filename}`));
+      descriptionFile = fileLoad(join(__dirname, `/fixtures/products/${filename}`));
     } catch (e) {
       // console.log(`${e}`);
     }

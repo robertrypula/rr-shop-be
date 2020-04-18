@@ -12,4 +12,4 @@ src/logs/*
 !src/logs/file-logger.ts
 
 src/migration/fixtures/categories.tsv
-src/migration/fixtures/main.tsv
+src/migration/fixtures/products-0001.tsv
