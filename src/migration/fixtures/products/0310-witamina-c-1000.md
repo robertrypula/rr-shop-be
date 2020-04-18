@@ -11,7 +11,8 @@ Rutynę (Sophora Japonica)
 Hesperydynę
 
 Działanie witaminy C:
-- pozytywnie wpływa na układ odpornościowy,  
+
+- pozytywnie wpływa na układ odpornościowy,
 - wspomaga prawidłowe funkcjonowanie układu nerwowego,
 - przyczynia się do prawidłowej produkcji kolagenu istotnego dla prawidłowego funkcjonowania kości, zębów, naczyń krwionośnych, chrząstek i skóry,
 - przyczynia się do zmniejszenia uczucia zmęczenia i znużenia,
@@ -20,9 +21,9 @@ Działanie witaminy C:
 #### Stosowanie
 
 Zaleca się stosowanie ¼ miarki dziennie, w trakcie posiłku.  
-Zawartość opakowania: Proszek 250 g  
+Zawartość opakowania: Proszek 250 g
 
-¼ miarki zawiera:                              
+¼ miarki zawiera:  
 Witamina C - 1000 mg - 1250% dziennej referencyjnej wartości spożycia dla dorosłych  
 w tym:  
 kwas L-askorbinowy - 500 mg  
@@ -38,4 +39,5 @@ Ekstrakt z owoców aceroli - 20 mg
 Witamina C: kwas L-askorbinowy oraz askorbinian sodu, ekstrakt ze skórki owoców gorzkiej pomarańczy 95%, 25:1 w tym bioflawonoidy cytrusowe oraz hesperydyna, rutyna (sophora japonica), ekstrakt z owoców aceroli (Malpighia Glabra)
 
 #### Producent
+
 MedicaLine, Ostrówiec 150, 05-480 Karczew

@@ -17,4 +17,5 @@ Zawartość opakowania: 120 kapsułek
 Substancja wypełniająca: oliwa z oliwek Extra Virgin, żelatyna wołowa, gliceryna, woda, witamina D3 (cholekalcyferol).
 
 #### Producent
+
 MedicaLine, Ostrówiec 150, 05-480 Karczew

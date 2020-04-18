@@ -10,15 +10,16 @@ Witamina K występuje w dwóch formach: K1 i K2. Witamina K1 jest zawarta w ziel
 
 #### Stosowanie
 
-Zaleca się stosowanie 1 kapsułki raz dziennie w trakcie posiłku.  
+Zaleca się stosowanie 1 kapsułki raz dziennie w trakcie posiłku.
 
 1 kapsułka zawiera 100 mcg 100 mcg (µg) witaminy K czyli 133,00% referencyjnej wartości spożycia i 50 mcg (µg) witaminy D czyli 1000,00% referencyjnej wartości spożycia.
 
-Zawartość opakowania: 60 kapsułek 
+Zawartość opakowania: 60 kapsułek
 
 #### Skład
 
 Substancja wypełniająca: celuloza mikrokrystaliczna, witamina K menachinon-7 w opatentowanej formie VitaMk7®, witamina D (cholekalcyferol), żelatyna wołowa, substancja utrzymująca wilgoć: glicerol, woda.
 
 #### Producent
+
 MedicaLine, Ostrówiec 150, 05-480 Karczew

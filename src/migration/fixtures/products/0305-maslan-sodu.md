@@ -10,7 +10,7 @@ Zaleca się stosowanie 1 kapsułki dwa razy dziennie (rano i wieczorem).
 Zawartość opakowania: 100 kapsułek dojelitowych VEGE
 
 1 kapsułka zawiera:  
-  Maślan sodu - 550 mg  
+ Maślan sodu - 550 mg  
 w tym kwas masłowy - 170 mg
 
 #### Skład
@@ -18,4 +18,5 @@ w tym kwas masłowy - 170 mg
 Sól sodowa kwasu masłowego (maślan sodu) w postaci mikrokapsułek dojelitowych, otoczka mikrokapsułek (kwas stearynowy roślinny), otoczka kapsułki vege (hydroksypropylometyloceluloza).
 
 #### Producent
+
 MedicaLine, Ostrówiec 150, 05-480 Karczew

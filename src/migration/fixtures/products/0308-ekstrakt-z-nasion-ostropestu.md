@@ -9,16 +9,17 @@ Supelement diety **Ekstrakt z nasion ostropestu 190 mg + karchoch** zawiera 150m
 Zaleca się stosowanie 1 kapsułki dziennie w trakcie posiłku.  
 Zawartość opakowania: 100 kapsułek VEGE
 
-1 kapsułka zawiera:     
+1 kapsułka zawiera:  
 Ekstrakt z nasion ostropestu plamistego (Silybum marianum) - 190mg  
-  W tym sylimaryna - 150 mg  
-  W tym sylibina - 57 mg    
+ W tym sylimaryna - 150 mg  
+ W tym sylibina - 57 mg  
 Ekstrakt z karczocha 5% - 100 mg  
 W tym cynaryna - 5 mg
 
 #### Skład
 
- Ekstrakt z nasion ostropestu plamistego (Silybum marianum) standaryzowany na zawartoś: 80% sylimaryny oraz 30% sylibiny, ekstrakt karczocha standaryzowany na 5% cynaryny, otoczka kapsułki: (substancja wiążąca: Hydroksypropylometyloceluloza).
+Ekstrakt z nasion ostropestu plamistego (Silybum marianum) standaryzowany na zawartoś: 80% sylimaryny oraz 30% sylibiny, ekstrakt karczocha standaryzowany na 5% cynaryny, otoczka kapsułki: (substancja wiążąca: Hydroksypropylometyloceluloza).
 
 #### Producent
+
 Aliness, Ostrówiec 150, 05-480 Karczew

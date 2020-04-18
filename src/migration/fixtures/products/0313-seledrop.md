@@ -5,11 +5,12 @@
 Suplement diety w kroplach **Seledrop** uzupełnia codzienną dietę w selen.
 
 Działanie selenu:
+
 - przyczynia się do prawidłowego funkcjonowania układu odpornościowego
 - neutralizuje szkodliwe działanie wolnych rodników i pomaga usuwać ich nadmiar z organizmu
 - pomaga utrzymać zdrowe serce i uniknąć chorób układu krążenia
 - pomaga zachować zdrowe włosy i paznokcie
-- wspiera prawidłowe funkcjonowanie tarczycy  
+- wspiera prawidłowe funkcjonowanie tarczycy
 
 #### Stosowanie
 
@@ -25,4 +26,5 @@ Porcja dzienna (4 aplikacje) zawiera 110 µg selenu - 200% referencyjnej wartoś
 Woda, aromat: mięta ogrodowa, selenian (IV) sodu.
 
 #### Producent
+
 Aura Herbals Jarosław Paul, ul. 23 Marca 77/3, 81-820 Sopot
