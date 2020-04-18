@@ -9,7 +9,7 @@ export class OrderRepositoryService {
     const selectQueryBuilder: SelectQueryBuilder<Order> = this.repository
       .createQueryBuilder('order')
       .select([
-        ...['uuid', 'number', 'status', 'createdAt'].map(c => `order.${c}`),
+        ...['uuid', 'number', 'status', 'createdAt', 'updatedAt'].map(c => `order.${c}`),
         ...[
           'uuid',
           'name',
