@@ -1,6 +1,6 @@
 ##Owoc róży 50g, Flos
 
-**Opis** W wysuszonych owocach róży znajdziemy węglowodany, białko, potas, sód, magnez, żelazo, fosfor, siarkę, witaminy a także flawonoidy czy karotenoidy. Napary z owoców róży wspierają odporność, działają moczopędnie, wzmacniają organizm a przede wszystkim są w zupełności bezpieczne dla dzieci i osób starszych. 
+**Opis** W wysuszonych owocach róży znajdziemy węglowodany, białko, potas, sód, magnez, żelazo, fosfor, siarkę, witaminy a także flawonoidy czy karotenoidy. Napary z owoców róży wspierają odporność, działają moczopędnie, wzmacniają organizm a przede wszystkim są w zupełności bezpieczne dla dzieci i osób starszych.
 
 **Skład** Rozdrobniony owoc róży (Rosae pseudo-fructus) 100%
 

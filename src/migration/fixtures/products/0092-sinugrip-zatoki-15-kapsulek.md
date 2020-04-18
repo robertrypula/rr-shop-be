@@ -1,8 +1,9 @@
 ##Sinugrip zatoki 15 kapsułek, Herbal Pharmaceuticals
 
 **Opis** SinuGrip Zatoki to preparat stworzony w celu wsparcia fizjologicznej odporności organizmu w okresie zwiększonego ryzyka infekcji. Zawiera wyłącznie naturalne, wysokiej jakości ekstrakty z ziół, które:
+
 - wspierają naturalne mechanizmy obronne organizmu (andrographis, werbena, dziewanna, czarny bez, pelargonia afrykańska),
-- łagodzą podrażnienia gardła, krtani i strun głosowych (werbena, dziewanna, czarny bez), 
+- łagodzą podrażnienia gardła, krtani i strun głosowych (werbena, dziewanna, czarny bez),
 - dodają energii oraz przyczyniają się do dobrego samopoczucia fizycznego.
 
 **Zalecane spożycie** 1 kapsułka dziennie.

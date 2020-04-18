@@ -8,5 +8,5 @@
 
 **Skład** Zawartość ziół w 1 saszetce: korzeń mniszka lekarskiego 0,50g(Taraxaci radix), kłącze perzu 0,50g (Graminis rhizoma), owoc kopru włoskiego 0,50g (Foeniculi fructus), liść mięty 0,25g (Menthae folium), liść morwy białej 0,25g (Morus alba L.).
 
-**Producent** Boni Fratres Pharmaceutical Sp. z o.o. 
+**Producent** Boni Fratres Pharmaceutical Sp. z o.o.
 ul. Krakowska 50 lok. 4, 31-066 Kraków

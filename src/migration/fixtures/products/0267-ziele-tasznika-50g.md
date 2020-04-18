@@ -1,6 +1,6 @@
 ##Ziele tasznika 50g, Herbapol Kraków
 
-**Opis** Według literatury zielarskiej działa przeciwkrwotocznie, dlatego też jest jednym z lepszych środków na krwawienia z żołądka, jelit, nerek oraz płuc a także przy przedłużających się krwawieniach miesiączkowych. 
+**Opis** Według literatury zielarskiej działa przeciwkrwotocznie, dlatego też jest jednym z lepszych środków na krwawienia z żołądka, jelit, nerek oraz płuc a także przy przedłużających się krwawieniach miesiączkowych.
 
 **Skład** Ziele tasznika 100%
 

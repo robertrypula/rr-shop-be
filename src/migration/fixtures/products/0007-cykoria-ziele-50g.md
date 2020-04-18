@@ -1,6 +1,6 @@
 ##Ziele cykorii 50g, Flos
 
-**Opis** Według literatury zielarskiej ziele cykorii wzmaga wydzielanie soków trawiennych oraz żółci, wspomaga regulację wypróżnień, działa moczopędnie oraz pobudza przemianę materii. 
+**Opis** Według literatury zielarskiej ziele cykorii wzmaga wydzielanie soków trawiennych oraz żółci, wspomaga regulację wypróżnień, działa moczopędnie oraz pobudza przemianę materii.
 
 **Skład** Wysuszone, rozdrobnione ziele cykorii (Cichorii herba), syn. ziele podróżnika 100%
 

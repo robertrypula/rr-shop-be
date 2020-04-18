@@ -1,6 +1,6 @@
 ##Kwiat czerwonej koniczyny 50g, Flos
 
-**Opis** Czerwona koniczyna to przede wszystkim flawonoidy oraz znaczne ilości barwników antocyjanowych czy garbników. Te ostatnie według literatury zielarskiej sprawiają, że czerwona koniczyna wykazuje działanie antybakteryjne, przeciwwirusowe oraz przeciwgorączkowe. Koniczyna polecana jest jako środek wykrztuśny, moczopędny, napotny oraz ogólnie odtruwający organizm. Łagodzi objawy menopauzy. 
+**Opis** Czerwona koniczyna to przede wszystkim flawonoidy oraz znaczne ilości barwników antocyjanowych czy garbników. Te ostatnie według literatury zielarskiej sprawiają, że czerwona koniczyna wykazuje działanie antybakteryjne, przeciwwirusowe oraz przeciwgorączkowe. Koniczyna polecana jest jako środek wykrztuśny, moczopędny, napotny oraz ogólnie odtruwający organizm. Łagodzi objawy menopauzy.
 
 **Skład** Wysuszony, rozdrobniony kwiat koniczyny czerwonej, syn. kwiat koniczyny łąkowej (Trifolium pratense L.) 100%
 

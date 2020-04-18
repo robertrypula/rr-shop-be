@@ -1,6 +1,6 @@
 ##Cardiobonisan Ojca Grzegorza 25x4g - zioła do zaparzania w saszetkach, Bonimed
 
-**Opis** Mieszanka ziołowa do zaparzania w saszetkach, wspierająca serce i układ krążenia. Kwiatostan głogu wspomaga pracę i ukrwienie mięśnia sercowego oraz utrzymanie prawidłowego ciśnienia tętniczego krwi. Ziele nawłoci i rdestu ptasiego wspomagają wydalanie moczu i utrzymanie w zdrowiu dróg moczowych a liść melisy, korzeń kozłka, szyszki chmielu, kwiatostan głogu i ziele serdecznika łagodzą stres i ułatwiają zasypianie. 
+**Opis** Mieszanka ziołowa do zaparzania w saszetkach, wspierająca serce i układ krążenia. Kwiatostan głogu wspomaga pracę i ukrwienie mięśnia sercowego oraz utrzymanie prawidłowego ciśnienia tętniczego krwi. Ziele nawłoci i rdestu ptasiego wspomagają wydalanie moczu i utrzymanie w zdrowiu dróg moczowych a liść melisy, korzeń kozłka, szyszki chmielu, kwiatostan głogu i ziele serdecznika łagodzą stres i ułatwiają zasypianie.
 
 **Przeciwwskazania i interakcje** Ciąża, karmienie piersią.
 

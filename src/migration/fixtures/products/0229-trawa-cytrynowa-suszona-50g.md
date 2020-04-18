@@ -1,6 +1,6 @@
 ##Trawa cytrynowa 50g, Merre
 
-**Opis** Jedna z podstawowych przypraw kuchni tajskiej. Nadaje potrawom odświeżający, cytrynowy smak, pozbawiony kwaśności cytryny. 
+**Opis** Jedna z podstawowych przypraw kuchni tajskiej. Nadaje potrawom odświeżający, cytrynowy smak, pozbawiony kwaśności cytryny.
 
 **Skład** Trawa cytrynowa 100%
 

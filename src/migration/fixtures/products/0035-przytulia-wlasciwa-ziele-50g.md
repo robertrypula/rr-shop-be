@@ -1,6 +1,6 @@
 ##Ziele przytulii właściwej 50g, Flos
 
-**Opis** Według literatury zielarskiej przytulia właściwa wykazuje działanie moczopędne, przeciwobrzękowe oraz przeciwzapalne. Dodatkowo działa przeciwwysiękowo, dlatego odwary z jej ziela polecane są do przemywania ran, wyprysków oraz skóry ze zmiananymi ropnymi.    
+**Opis** Według literatury zielarskiej przytulia właściwa wykazuje działanie moczopędne, przeciwobrzękowe oraz przeciwzapalne. Dodatkowo działa przeciwwysiękowo, dlatego odwary z jej ziela polecane są do przemywania ran, wyprysków oraz skóry ze zmiananymi ropnymi.
 
 **Skład** Wysuszone, rozdrobnione ziele przytulii właściwej (Galium verum L.) 100%
 

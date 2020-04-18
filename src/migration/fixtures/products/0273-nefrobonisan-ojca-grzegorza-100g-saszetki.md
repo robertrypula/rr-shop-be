@@ -9,4 +9,3 @@ liść borówki brusznicy (Vaccinium vitis-idaea L.) 15%.
 
 **Producent** Laboratorium Medycyny Naturalnej BONIMED
 ul. Stawowa 23, 34-300 Żywiec
-

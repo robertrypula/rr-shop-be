@@ -5,6 +5,7 @@
 **Zalecane spożycie** Najczęściej 1 tabletka dziennie - rano, obficie popijając; w stanach zwiększonego zapotrzebowania 2 tabletki dziennie w porcjach podzielonych, obficie popijając.
 
 **Skład** Składniki w przeliczeniu na 2 tabletki:
+
 - dzika róża (Rosa Canina) owoc - 476mg
 - witamina C (kwas L askorbinowy) - 360mg
 - wyciąg z owocu rokitnika (Hippophae rhamnoides) - 14mg

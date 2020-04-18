@@ -4,5 +4,5 @@
 
 **Skład** Bursztyn bałtycki 100%, w opakowaniu znajduje się również przepis na nalewkę wg receptury Ojca Klimuszki.
 
-**Producent** PPHU "DOBRYNIN" 
+**Producent** PPHU "DOBRYNIN"
 ul. Majowa 7, 92-724 Łódź

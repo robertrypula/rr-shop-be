@@ -6,5 +6,5 @@
 
 **Skład** Zawartość ziół w 1 saszetce: korzeń mniszka lekarskiego 0,70g (Taraxaci radix), liść karczocha 0,50g (Cynarae folium), liść mięty 0,40g (Menthae folium), owoc kminu 0,30g (Carvi fructus), ziele rdestu ptasiego 0,10g (Polygoni avicularis herba).
 
-**Producent** Boni Fratres Pharmaceutical Sp. z o.o. 
+**Producent** Boni Fratres Pharmaceutical Sp. z o.o.
 ul. Krakowska 50 lok. 4, 31-066 Kraków

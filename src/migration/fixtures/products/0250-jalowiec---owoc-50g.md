@@ -1,6 +1,6 @@
 ##Owoc jałowca 50g, Herbapol Kraków
 
-**Opis** Według literatury zielarskiej te niepozorne szyszkojagody wykazują działanie diuretyczne, antyseptyczne oraz przeciwreumatyczne. Są bogate m.in. w garbniki, flawonoidy, związki żywicowe oraz kwasy organiczne. 
+**Opis** Według literatury zielarskiej te niepozorne szyszkojagody wykazują działanie diuretyczne, antyseptyczne oraz przeciwreumatyczne. Są bogate m.in. w garbniki, flawonoidy, związki żywicowe oraz kwasy organiczne.
 
 **Skład** Owoce jałowca 100%
 

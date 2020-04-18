@@ -1,6 +1,6 @@
 ##Owoc jarzębiny 50g, Flos
 
-**Opis** Według literatury zielarskiej owoce jarzębiny wykazują właściwosci ściągające (np. w biegunkach), przeciwzapalne, hamują rozwój bakterii, grzybów oraz "oczyszczają krew". 
+**Opis** Według literatury zielarskiej owoce jarzębiny wykazują właściwosci ściągające (np. w biegunkach), przeciwzapalne, hamują rozwój bakterii, grzybów oraz "oczyszczają krew".
 
 **Zalecane spożycie** 1 łyżeczkę owoców jarzębiny (3g) zalać szklanką wrzącej wody, naparzać pod przykryciem 10 min. Wypić jeszcze ciepły napar. Dzienna porcja do spożycia to 3g owoców.
 

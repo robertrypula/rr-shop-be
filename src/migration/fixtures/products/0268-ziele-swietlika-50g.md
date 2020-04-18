@@ -1,6 +1,7 @@
 ##Ziele świetlika 50g, Herbapol Kraków
 
 **Opis** Według literatury zielarskiej ziele świetlika wykazuje działanie ściągające i przeciwzapalne, dlatego w szczególności polecane jest do stosowania zewnętrznego w formie kompresów na oczy, przy następujących dolegliwościach:
+
 - zapalenie spojówek,
 - światłowstręt,
 - nadmierne łzawienie,

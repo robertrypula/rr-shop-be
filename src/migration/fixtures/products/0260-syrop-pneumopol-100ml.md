@@ -6,7 +6,7 @@
 
 **Skład** Cukier, woda, wyciąg z kwiatu dziewanny, kwiatu bzu czarnego i ziela werbeny – 10%, koncentrat malinowy – 1%, witamina C – 0,1%, regulator kwasowości – kwas cytrynowy, aromat malinowy.
 Zawartość składników w przeliczeniu na zalecaną do spożycia dzienną porcję syropu wynosi: wyciąg z kwiatu dziewanny, kwiatu bzu czarnego i ziela werbeny – zawartość w 2 łyżeczkach (10 ml) – 1300 mg, zawartość w 4 łyżeczkach (20 ml) – 2600 mg; witamina C – zawartość w 2 łyżeczkach (10 ml) – 13 mg, RDA\* – 16%, zawartość w 4 łyżeczkach (20 ml) – 26 mg, RDA\* –32%; koncentrat malinowy – zawartość w 2 łyżeczkach (10 ml) – 130 mg, zawartość w 4 łyżeczkach (20 ml) – 260 mg.
-*RDA = zalecane dzienne spożycie
+\*RDA = zalecane dzienne spożycie
 
 **Producent** Krakowskie Zakłady Zielarskie HERBAPOL w Krakowie SA
 ul. Chałupnika 14, 31-464 Kraków

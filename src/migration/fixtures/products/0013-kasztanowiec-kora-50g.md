@@ -1,6 +1,6 @@
 ##Kora kasztanowca 50g, Flos
 
-**Opis** Kora kasztanowca systematycznie stosowana do płukania włosów wspomaga walkę z łupieżem, zapobiega łysieniu oraz likwiduje siwiznę. 
+**Opis** Kora kasztanowca systematycznie stosowana do płukania włosów wspomaga walkę z łupieżem, zapobiega łysieniu oraz likwiduje siwiznę.
 
 **Skład** Kora kasztanowca 100%
 

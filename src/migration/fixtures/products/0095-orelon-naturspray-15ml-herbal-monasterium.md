@@ -1,6 +1,7 @@
 ##Orelon NaturSpray 15ml, Herbal Pharmaceuticals
 
 **Opis** Wyrób medyczny przeznaczony do użytku dla dorosłych i dzieci powyżej 3 miesiąca życia. Polecany do:
+
 - rozpuszczania i usuwania złogów woskowiny usznej,
 - zachowania higieny uszu u osób noszących aparaty słuchowe oraz borykających się z nadprodukcją woskowiny,
 - eliminacji zalegania wody w kanale ucha u osób uprawiających sporty wodne oraz kąpiących się.

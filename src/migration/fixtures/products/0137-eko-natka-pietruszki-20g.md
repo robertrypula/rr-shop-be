@@ -1,6 +1,6 @@
 ##Ekologiczna natka pietruszki 20g, Dary Natury
 
-**Opis** Łagodny oraz delikatny zapach i smak. Szczególnie polecana do wszelkich zup oraz sosów. 
+**Opis** Łagodny oraz delikatny zapach i smak. Szczególnie polecana do wszelkich zup oraz sosów.
 
 **Skład** Wysuszona natka pietruszki (produkt rolnictwa ekologicznego) 100%
 

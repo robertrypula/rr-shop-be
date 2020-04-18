@@ -1,6 +1,6 @@
 ##Ekologiczna trawa cytrynowa 20g, Dary Natury
 
-**Opis** Cytrusowy aromat. Według literatury zielarskiej działa antyseptycznie oraz wspomaga trawienie i krążenie. Trawa cytrynowa polecana jest w szczegolności do dań kuchni azjatyckiej oraz aromatyzowania herbat i innych naparów. 
+**Opis** Cytrusowy aromat. Według literatury zielarskiej działa antyseptycznie oraz wspomaga trawienie i krążenie. Trawa cytrynowa polecana jest w szczegolności do dań kuchni azjatyckiej oraz aromatyzowania herbat i innych naparów.
 
 **Skład** Trawa cytrynowa (produkt rolnictwa ekologicznego) 100%
 

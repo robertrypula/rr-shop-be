@@ -1,6 +1,6 @@
 ##Ekologiczny czosnek mielony 50g, Dary Natury
 
-**Opis** Suszony czosnek to idealny dodatek do wszelkiego rodzaju potraw mięsnych, marynat, sosów oraz past warzywnych.  
+**Opis** Suszony czosnek to idealny dodatek do wszelkiego rodzaju potraw mięsnych, marynat, sosów oraz past warzywnych.
 
 **Skład** Suszony czosnek mielony (produkt rolnictwa ekologicznego) 100%
 

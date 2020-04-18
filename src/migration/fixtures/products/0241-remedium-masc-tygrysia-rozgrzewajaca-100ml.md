@@ -1,6 +1,6 @@
 ##Maść tygrysia rozgrzewająca 100ml, Remedium Natura
 
-**Opis** Maść tygrysia rozgrzewająca zawiera m.in. wyciąg z papryczki chili, olejek terpentynopwy oraz olejek aukaliptusowy. Polecana jest przy rwie kulszowej, nerwobólach czy zapaleniu korzonków. 
+**Opis** Maść tygrysia rozgrzewająca zawiera m.in. wyciąg z papryczki chili, olejek terpentynopwy oraz olejek aukaliptusowy. Polecana jest przy rwie kulszowej, nerwobólach czy zapaleniu korzonków.
 
 **Stosowanie** Wcierać 2-3 razy dziennie do całkowitego wchłonięcia.
 

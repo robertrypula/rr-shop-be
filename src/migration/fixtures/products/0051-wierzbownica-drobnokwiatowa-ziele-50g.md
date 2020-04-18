@@ -1,6 +1,6 @@
 ##Ziele wierzbownicy drobnokwiatowej 50g, Flos
 
-**Opis** Wierzbownica drobnokwiatowa działa przeciwzapalnie, przeciwbakteryjnie, przeciwwysiękowo oraz antyandrogennie. Zalecana jest przy wszelkich chorobach skórnych, m.in. łojotoku, łojotokowym zapaleniu skóry czy łysieniu androgennym oraz wspomagająco w chorobach autoimmunologicznych układowych. W literaturze zielarskiej wierzbownica jest szczególnie polecana w przeroście i stanach zapalnych gruczołu krokowego. 
+**Opis** Wierzbownica drobnokwiatowa działa przeciwzapalnie, przeciwbakteryjnie, przeciwwysiękowo oraz antyandrogennie. Zalecana jest przy wszelkich chorobach skórnych, m.in. łojotoku, łojotokowym zapaleniu skóry czy łysieniu androgennym oraz wspomagająco w chorobach autoimmunologicznych układowych. W literaturze zielarskiej wierzbownica jest szczególnie polecana w przeroście i stanach zapalnych gruczołu krokowego.
 
 **Zalecane spożycie** 2 płaskie łyżeczki ziela wierzbownicy (2g) zalać filiżanką wrzącej wody, naparzać pod przykryciem przez 10 min. Świeży i ciepły napar pić 1 raz dziennie. 2 płaskie łyżeczki od herbaty (2 g) stanowią dzienną porcję do spożycia.
 

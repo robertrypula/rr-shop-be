@@ -1,6 +1,6 @@
 ##Liść karczocha 50g, Flos
 
-**Opis** Według literatury zielarskiej substancje zawarte w liściach karczocha wykazują działanie żółciotwórcze, żółciopędne, odtruwające oraz regenerujące na miąższ wątroby i woreczek żółciowy. 
+**Opis** Według literatury zielarskiej substancje zawarte w liściach karczocha wykazują działanie żółciotwórcze, żółciopędne, odtruwające oraz regenerujące na miąższ wątroby i woreczek żółciowy.
 
 **Skład** Liść karczocha 100%
 

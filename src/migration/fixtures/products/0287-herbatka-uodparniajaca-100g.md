@@ -6,5 +6,5 @@
 
 **Skład** Liść czarnej porzeczki (Folium Ribis nigri), hibiskus (Flos Hibisci), owoc aronii (Aroniae Fructus), owoc róży (Fructus Rosae), liść pokrzywy (Urticae Folium), liść melisy (Folium Melissae), owoc jarzębiny (Fructus Sorbi).
 
-**Producent** Boni Fratres Pharmaceutical Sp. z o.o. 
+**Producent** Boni Fratres Pharmaceutical Sp. z o.o.
 ul. Krakowska 50 lok. 4, 31-066 Kraków

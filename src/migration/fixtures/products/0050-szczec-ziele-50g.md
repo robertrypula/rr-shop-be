@@ -1,6 +1,6 @@
 ##Ziele szczeci 50g, Flos
 
-**Opis** Zarówno korzeń jak i ziele szczeci obfitują w cenne związki takie jak kwas chlorogenowy, chinowy i kawowy, irydoidy, trójterpeny, saponiny oraz alkaloidy. W literaturze zielarskiej oba surowce polecane są wspomagająco w leczeniu boreliozy. 
+**Opis** Zarówno korzeń jak i ziele szczeci obfitują w cenne związki takie jak kwas chlorogenowy, chinowy i kawowy, irydoidy, trójterpeny, saponiny oraz alkaloidy. W literaturze zielarskiej oba surowce polecane są wspomagająco w leczeniu boreliozy.
 
 **Skład** Ziele szczeci 100%
 
