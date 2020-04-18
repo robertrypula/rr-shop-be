@@ -213,10 +213,11 @@ export class CreateProducts1572821783055 implements MigrationInterface {
       name = this.cleanProductName(lineFirst);
     }
 
-    description = description.replace(/(\*\*.+\*\*) /g, '#### $1\n');
-    description = description.replace(/#### \*\*(.+)\*\*/g, '#### $1');
-
-    description = description.replace(/\r/g, '');
+    description = description
+      .replace(/^(\*\*.+\*\*) /mg, '#### $1\n\n')
+      .replace(/^(\*\*.+\*\*)/mg, '#### $1\n\n')
+      .replace(/#### \*\*(.+)\*\*/g, '#### $1')
+      .replace(/\r/g, '');
 
     return {
       description,
