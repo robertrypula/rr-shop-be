@@ -214,8 +214,8 @@ export class CreateProducts1572821783055 implements MigrationInterface {
     }
 
     description = description
-      .replace(/^(\*\*.+\*\*) /mg, '#### $1\n\n')
-      .replace(/^(\*\*.+\*\*)/mg, '#### $1\n\n')
+      .replace(/^(\*\*.+\*\*) /gm, '#### $1\n\n')
+      .replace(/^(\*\*.+\*\*)/gm, '#### $1\n\n')
       .replace(/#### \*\*(.+)\*\*/g, '#### $1')
       .replace(/\r/g, '');
 
