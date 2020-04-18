@@ -117,15 +117,15 @@ export class Order {
   }
 
   public getDeliveryOrderItem(): OrderItem {
-    const deliveries: OrderItem[] = this.getOrderItemsByType([Type.Delivery]);
+    const deliveryOrderItems: OrderItem[] = this.getOrderItemsByType([Type.Delivery]);
 
-    return deliveries.length === 1 ? deliveries[0] : null;
+    return deliveryOrderItems.length === 1 ? deliveryOrderItems[0] : null;
   }
 
   public getPaymentOrderItem(): OrderItem {
-    const payments: OrderItem[] = this.getOrderItemsByType([Type.Payment]);
+    const paymentOrderItems: OrderItem[] = this.getOrderItemsByType([Type.Payment]);
 
-    return payments.length === 1 ? payments[0] : null;
+    return paymentOrderItems.length === 1 ? paymentOrderItems[0] : null;
   }
 
   public getPriceTotalOriginal(types: Type[]): number {
