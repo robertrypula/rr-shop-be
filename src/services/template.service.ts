@@ -1,4 +1,4 @@
-import { getSecretConfig } from '../config';
+import { getSecretConfig, ORDER_PAGE_URL } from '../config';
 import { footerImage001Cid } from '../email-templates/default';
 import { Category } from '../entity/category';
 import { Order } from '../entity/order';
@@ -20,10 +20,11 @@ export class TemplateService {
   ) {}
 
   public async getOrderEmailHtml(order: Order): Promise<string> {
+    const secretConfig: SecretConfig = getSecretConfig();
     const message: string = (await this.getOrderEmailMessage(order))
       .replace('{{ NAME }}', order.name)
       .replace('{{ NUMBER }}', order.number)
-      // .replace('{{ ORDER_URL }}', )
+      .replace('{{ ORDER_PAGE_URL }}', ORDER_PAGE_URL(secretConfig.application.baseUrl, order.uuid))
       .replace('{{ ORDER_ITEMS }}', await this.getOrderItemsHtml(order.orderItems))
       .replace('{{ COMMENTS }}', order.comments)
       .replace('{{ PRICE }}', await this.getPriceHtml(order))

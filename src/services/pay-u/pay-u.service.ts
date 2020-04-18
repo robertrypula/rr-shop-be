@@ -1,4 +1,4 @@
-import { getSecretConfig, ORDER_PAYMENT_RETURN_URL } from '../../config';
+import { getSecretConfig, ORDER_PAGE_URL } from '../../config';
 import { Order } from '../../entity/order';
 import { fileLogger } from '../../logs/file-logger';
 import { SecretConfig } from '../../models/models';
@@ -91,7 +91,7 @@ export class PayUService {
     return new SimplePayU({
       clientId: secretConfig.payU.clientId,
       clientSecret: secretConfig.payU.clientSecret,
-      continueUrl: ORDER_PAYMENT_RETURN_URL(secretConfig.payU.continueUrl, order ? order.uuid : ''),
+      continueUrl: ORDER_PAGE_URL(secretConfig.application.baseUrl, order ? order.uuid : ''),
       currencyCode: secretConfig.payU.currencyCode,
       environment: secretConfig.payU.environment,
       merchantPosId: secretConfig.payU.merchantPosId,

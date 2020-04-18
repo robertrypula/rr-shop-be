@@ -12,6 +12,9 @@ export interface SecretConfig {
     password: string;
     username: string;
   };
+  application: {
+    baseUrl: string;
+  };
   gmail: {
     clientId: string;
     clientSecret: string;

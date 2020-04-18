@@ -11,11 +11,3 @@ export const DEFAULT_ATTACHMENTS: Attachment[] = [
     filename: 'footer-image-001.png'
   }
 ];
-
-/*
-    <p>
-        W każdej chwili możesz podglądnąć aktualny stan zamówienia klikając w poniższy link:
-        <br/>
-        <a href="{{ ORDER_URL }}"><strong>Podgląd zamówienia</strong></a>
-    </p>
- */

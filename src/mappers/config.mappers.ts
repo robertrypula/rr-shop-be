@@ -4,12 +4,16 @@ import { Environment } from '../simple-pay-u/models';
 export const toSecretConfig = (fileContent: string): SecretConfig => {
   const o: any = JSON.parse(fileContent);
 
-  if (!o.admin || !o.gmail || !o.jwt || !o.mySql || !o.payU || !o.typeOrm) {
-    throw `Missing 'admin', 'gmail', 'jwt', 'mySql', 'payU' or 'typeOrm' fields`;
+  if (!o.admin || !o.application || !o.gmail || !o.jwt || !o.mySql || !o.payU || !o.typeOrm) {
+    throw `Missing 'admin', 'application', 'gmail', 'jwt', 'mySql', 'payU' or 'typeOrm' fields`;
   }
 
   if (!o.admin.username || !o.admin.password) {
     throw `Missing field(s) inside 'admin' field`;
+  }
+
+  if (!o.application.baseUrl) {
+    throw `Missing field(s) inside 'application' field`;
   }
 
   if (
@@ -63,6 +67,9 @@ export const toSecretConfig = (fileContent: string): SecretConfig => {
     admin: {
       password: o.admin.password,
       username: o.admin.username
+    },
+    application: {
+      baseUrl: o.application.baseUrl
     },
     gmail: {
       clientId: o.gmail.clientId,
