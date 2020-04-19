@@ -10,10 +10,10 @@ Nasz sklep oferuje następujące sposoby dostawy towaru:
 
 2. Odbiór w punkcie Paczkomaty InPost - 12,99 zł brutto
 
-   ![paczkomat](https://inpost.pl/sites/default/files/2020-03/Ikona%20Logo%20Paczkomaty_0.jpg 'paczkomat')
+   ![paczkomat](https://static.waleriana.pl/pages/0001-koszty-dostawy/in-post-paczkomat.jpg 'InPost Paczkomat')
 
 3. Przesyłka kurierem InPost - 15,99 zł brutto
 
    Paczki kurierskie w InPost są dostarczane przeważnie już następnego dnia po ich nadaniu.
 
-   ![kurier](https://inpost.pl/sites/default/files/2020-04/Logo%20Kurier%20Ikona.jpg 'InPost Kurier')
+   ![kurier](https://static.waleriana.pl/pages/0001-koszty-dostawy/in-post-kurier.jpg 'InPost Kurier')

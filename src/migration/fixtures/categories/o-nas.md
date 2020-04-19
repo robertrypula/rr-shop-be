@@ -26,6 +26,8 @@ służąc Państwu radą. Mamy nadzieję, że tak jak my, również i Państwo z
 się światem ziół, roślin, minerałów oraz zaczną czerpać z bogactw jakie oferuje
 nam Matka Natura każdego dnia.
 
+![Monika](https://static.waleriana.pl/pages/0000-o-nas/monika.jpg 'Monika') ![Asia](https://static.waleriana.pl/pages/0000-o-nas/asia.jpg 'Asia')
+
 Pozdrawiamy  
-Asia i Monika  
+Monika i Asia  
 Zespół Waleriana.pl

@@ -41,7 +41,11 @@
 Zapisywane na komputerze użytkownika (klienta sklepu) pliki cookies (ciasteczka) wykorzystywane są w niżej wymienionych celach:
 
 1. Do zapamiętania zamknięcia Popupa informacyjnego o plikach cookie – 365 dni, po czym plik cookie (ciasteczko) jest usuwany.
+2. Technologii Google służącej do nadzoru ruchu na stronie
+3. Okna wyboru paczkomatu
 
 ### § 6 Inne technologie podobne do ciasteczek
 
-Technoogia Local Storage służy do przechowywania danych zapisywanych podczas korzystania z serwisów w wydzielonej części pamięci przeglądarki. Dostęp do danych w Local storage może uzyskać tylko strona internetowa, z której dane zostały zapisane w przeglądarce. Dane w Local Storage są przechowywane przez przeglądarkę po jej zamknięciu.
+Technologia Local Storage służy do przechowywania danych zapisywanych podczas korzystania z serwisów w wydzielonej części pamięci przeglądarki. Dostęp do danych w Local storage może uzyskać tylko strona internetowa, z której dane zostały zapisane w przeglądarce. Dane w Local Storage są przechowywane przez przeglądarkę po jej zamknięciu.
+
+W przypadku sklepu internetowego Waleriana.pl w Local Storage zapisywany jest między innymi aktualny stan koszyka, wybrana metoda płatności, wybrana metoda dostawy oraz dane klienta potrzebne do zrealizowania zamówienia. Umożliwia to powrót do zakupów po odświeżeniu strony, restarcie przeglądarki/komputera itp. Należy mieć to na uwadze składając zamówienie z komputera, którego nie jesteśmy właścicielem. Użytkownik w każdej chwili może wyczyścić te dane korzystając z funkcji przeglądarki internetowej.
