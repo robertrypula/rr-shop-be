@@ -5,7 +5,7 @@ import { getSecretConfig } from '../config';
 import { JwtPayload, SecretConfig } from '../models/models';
 
 export const checkJwt = (req: Request, res: Response, next: NextFunction): Promise<void> => {
-  let token = req.headers.authorization as string;
+  let token = (req.headers.authorization as string) || '';
   let jwtPayload: JwtPayload;
   let secretConfig: SecretConfig;
 

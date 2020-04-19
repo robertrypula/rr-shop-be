@@ -32,6 +32,14 @@ export class ProductService {
     });
   }
 
+  public async getAdminProduct(id: number): Promise<Product> {
+    return await this.productRepositoryService.getAdminProduct(id);
+  }
+
+  public async getAdminProducts(): Promise<Product[]> {
+    return await this.productRepositoryService.getAdminProducts();
+  }
+
   public async getProductsByFetchType(productIds: number[], fetchType: FetchType): Promise<Product[]> {
     if (productIds !== null) {
       productIds = removeDuplicates(productIds.map(i => i + '')).map(i => +i);

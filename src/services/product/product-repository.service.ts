@@ -8,6 +8,32 @@ export class ProductRepositoryService {
 
   // ---------------------------------------------------------------------------
 
+  public async getAdminProduct(id: number): Promise<Product> {
+    const selectQueryBuilder: SelectQueryBuilder<Product> = this.repository
+      .createQueryBuilder('product')
+      .select(['product', 'orderItems', 'supplies', 'distributor', 'manufacturer'])
+      .leftJoin('product.orderItems', 'orderItems')
+      .leftJoin('product.supplies', 'supplies')
+      .leftJoin('product.distributor', 'distributor')
+      .leftJoin('product.manufacturer', 'manufacturer')
+      .where('product.id = :id', { id });
+
+    return await selectQueryBuilder.getOne();
+  }
+
+  public async getAdminProducts(): Promise<Product[]> {
+    const selectQueryBuilder: SelectQueryBuilder<Product> = this.repository
+      .createQueryBuilder('product')
+      .select(['product', 'orderItems', 'distributor', 'manufacturer'])
+      .leftJoin('product.orderItems', 'orderItems')
+      .leftJoin('product.distributor', 'distributor')
+      .leftJoin('product.manufacturer', 'manufacturer');
+
+    return await selectQueryBuilder.getMany();
+  }
+
+  // ---------------------------------------------------------------------------
+
   public async getProductsFetchTypeMinimal(productIds: number[], excludeHidden = true): Promise<Product[]> {
     const queryBuilder: SelectQueryBuilder<Product> = this.repository
       .createQueryBuilder('product')

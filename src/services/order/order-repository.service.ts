@@ -5,12 +5,11 @@ import { Order } from '../../entity/order';
 export class OrderRepositoryService {
   public constructor(protected repository: Repository<Order> = getRepository(Order)) {}
 
-  public async getAdminOrder(id: string): Promise<Order> {
+  public async getAdminOrder(id: number): Promise<Order> {
     const selectQueryBuilder: SelectQueryBuilder<Order> = this.repository
       .createQueryBuilder('order')
-      .select(['order', 'orderItems', 'product', 'promoCode', 'payments', 'emails'])
+      .select(['order', 'orderItems', 'promoCode', 'payments', 'emails'])
       .leftJoin('order.orderItems', 'orderItems')
-      .leftJoin('orderItems.product', 'product')
       .leftJoin('order.promoCode', 'promoCode')
       .leftJoin('order.payments', 'payments')
       .leftJoin('order.emails', 'emails')
@@ -20,7 +19,10 @@ export class OrderRepositoryService {
   }
 
   public async getAdminOrders(): Promise<Order[]> {
-    const selectQueryBuilder: SelectQueryBuilder<Order> = this.repository.createQueryBuilder('order').select('order');
+    const selectQueryBuilder: SelectQueryBuilder<Order> = this.repository
+      .createQueryBuilder('order')
+      .select(['order', 'orderItems'])
+      .leftJoin('order.orderItems', 'orderItems');
 
     return await selectQueryBuilder.getMany();
   }

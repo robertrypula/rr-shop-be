@@ -8,6 +8,7 @@ import { Product } from '../../entity/product';
 import { PromoCode } from '../../entity/promo-code';
 import { fromOrderCreateRequestDto } from '../../mappers/order.mappers';
 import * as fromOrderModels from '../../models/order.models';
+import { Status } from '../../models/order.models';
 import * as fromPaymentModels from '../../models/payment.models';
 import { PayUOrder } from '../../models/payment.models';
 import { DeliveryType, PaymentType, Type } from '../../models/product.models';
@@ -53,13 +54,64 @@ export class OrderService {
     return await this.orderRepositoryService.getOrder(uuid);
   }
 
+  public async getAdminOrders(): Promise<Order[]> {
+    return await this.orderRepositoryService.getAdminOrders();
+  }
+
+  public async getAdminOrder(id: number): Promise<Order> {
+    return await this.orderRepositoryService.getAdminOrder(id);
+  }
+
+  public async adminChangeStatus(id: number, newStatus: Status): Promise<void> {
+    const order: Order = await this.orderRepositoryService.getAdminOrder(id);
+    const deliveryOrderItem: OrderItem = order.getDeliveryOrderItem();
+
+    switch (order.status) {
+      case Status.PaymentWait:
+        if (newStatus !== Status.PaymentCompleted) {
+          throw 'Next status after PaymentWait should be always PaymentCompleted';
+        }
+        break;
+      case Status.PaymentCompleted:
+        if (deliveryOrderItem.deliveryType === DeliveryType.Own && newStatus !== Status.ReadyForPickup) {
+          throw 'When delivery type is Own then next status after PaymentCompleted and is ReadyForPickup';
+        } else if (deliveryOrderItem.deliveryType !== DeliveryType.Own && newStatus !== Status.Shipped) {
+          throw 'When delivery type is InPost* then next status after PaymentCompleted and is Shipped';
+        }
+        break;
+      case Status.ReadyForPickup:
+        if (![Status.Completed, Status.Canceled].includes(newStatus)) {
+          throw 'Next status after ReadyForPickup should be always Completed or Canceled';
+        }
+        break;
+      case Status.Shipped:
+        if (![Status.Completed, Status.Canceled].includes(newStatus)) {
+          throw 'Next status after Shipped should be always Completed or Canceled';
+        }
+        break;
+      case Status.Completed:
+        throw 'Cannot change status when order is Completed';
+      case Status.Canceled:
+        throw 'Cannot change status when order is Canceled';
+    }
+
+    // console.log(id, newStatus);
+    // console.log(order);
+
+    order.status = newStatus;
+    order.emails.push(await this.createEmail(order));
+    await this.orderRepositoryService.save(order);
+  }
+
   protected async handleEmail(order: Order): Promise<void> {
-    order.emails = [
-      new Email()
-        .setTo(order.email)
-        .setSubject(await this.templateService.getOrderEmailSubject(order))
-        .setHtml(await this.templateService.getOrderEmailHtml(order))
-    ];
+    order.emails = [await this.createEmail(order)];
+  }
+
+  protected async createEmail(order: Order): Promise<Email> {
+    return new Email()
+      .setTo(order.email)
+      .setSubject(await this.templateService.getOrderEmailSubject(order))
+      .setHtml(await this.templateService.getOrderEmailHtml(order));
   }
 
   protected async handleOrderItems(order: Order, orderCreateRequestDto: OrderCreateRequestDto): Promise<void> {
