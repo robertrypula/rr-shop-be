@@ -27,7 +27,7 @@
 3. Numer telefonu Sprzedawcy: +48 739 907 730
 4. Numer rachunku bankowego Sprzedawcy: 29 1140 2004 0000 3102 7976 4379
 5. Klient może porozumiewać się ze Sprzedawcą za pomocą adresów i numerów telefonów podanych w niniejszym paragrafie.
-6. Klient może porozumieć się telefonicznie ze Sprzedawcą w godzinach 8:00 - 18:00.
+6. Klient może porozumieć się telefonicznie ze Sprzedawcą w godzinach 10:00 - 17:00.
 
 ### § 4 Wymagania techniczne
 

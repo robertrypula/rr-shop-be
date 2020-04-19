@@ -40,7 +40,7 @@
 
 Zapisywane na komputerze użytkownika (klienta sklepu) pliki cookies (ciasteczka) wykorzystywane są w niżej wymienionych celach:
 
-1. Do zapamiętania zamknięcia Popupa informacyjnego o plikach cookie – 365 dni, po czym plik cookie (ciasteczko) jest usuwany
+1. Do zapamiętania zamknięcia Popupa informacyjnego o plikach cookie – 365 dni, po czym plik cookie (ciasteczko) jest usuwany.
 
 ### § 6 Inne technologie podobne do ciasteczek
 
