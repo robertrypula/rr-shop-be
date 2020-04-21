@@ -2,6 +2,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToMany,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -9,7 +10,9 @@ import {
 } from 'typeorm';
 
 import { StructuralNode } from '../models/category.models';
+import { Image } from './image';
 import { GENERIC_LENGTH } from './length-config';
+import { Product } from './product';
 import { stringConfig } from './string-config';
 
 @Entity()
@@ -49,6 +52,12 @@ export class Category {
 
   @ManyToOne(type => Category)
   public parent: Category;
+
+  @OneToMany(type => Image, (image: Image) => image.category, { cascade: ['insert'] })
+  public images: Image[];
+
+  @ManyToMany(type => Product, product => product.categories)
+  public products: Product[];
 
   @Column()
   @CreateDateColumn()

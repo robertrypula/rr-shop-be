@@ -1,5 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
+import { Category } from './category';
 import { GENERIC_LENGTH } from './length-config';
 import { Manufacturer } from './manufacturer';
 import { Product } from './product';
@@ -15,6 +16,9 @@ export class Image {
 
   @Column({ default: 0 })
   public sortOrder: number;
+
+  @ManyToOne(type => Category)
+  public category: Category;
 
   @ManyToOne(type => Product)
   public product: Product;

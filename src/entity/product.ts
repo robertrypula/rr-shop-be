@@ -100,9 +100,16 @@ export class Product {
   @ManyToOne(type => Manufacturer, { cascade: ['insert'] })
   public manufacturer: Manufacturer;
 
-  @ManyToMany(type => Category)
+  @ManyToMany(type => Category, category => category.products)
   @JoinTable()
   public categories: Category[];
+
+  // TODO I'm not really sure if this is ok, investigate it and then add...
+  // https://stackoverflow.com/questions/43747765/self-referencing-manytomany-relationship-typeorm
+  // https://github.com/typeorm/typeorm/issues/1511
+  // @ManyToMany(type => Product, product => product.products)
+  // @JoinTable()
+  // public products: Product[];
 
   @RelationId((product: Product) => product.categories)
   public categoryIds: number[]; // https://github.com/typeorm/typeorm/blob/master/docs/decorator-reference.md#relationid
@@ -135,6 +142,6 @@ export class Product {
       this.orderItems = undefined;
     }
 
-    this.quantity = this.type === Type.Product ? suppliesQuantity - orderItemsQuantity : -12345;
+    this.quantity = this.type === Type.Product ? suppliesQuantity - orderItemsQuantity : -12345; // TODO remove magic n.
   }
 }
