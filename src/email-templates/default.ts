@@ -10,7 +10,7 @@ const footerImage001CidBase64Data = `iVBORw0KGgoAAAANSUhEUgAAASIAAABeCAMAAACw9+m
 export const DEFAULT_ATTACHMENTS: Attachment[] = [
   {
     cid: footerImage001Cid,
-    content: new Buffer(footerImage001CidBase64Data, 'base64'),
+    content: Buffer.from(footerImage001CidBase64Data, 'base64'),
     filename: 'footer-image-001.png'
   }
 ];
