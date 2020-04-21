@@ -1,7 +1,7 @@
 import { getRepository, Repository, SelectQueryBuilder } from 'typeorm';
 
 import { Product } from '../../entity/product';
-import { ProductsOrderItems, ProductsSuppliesCount } from '../../models/product.models';
+import { ProductsOrderItems, ProductsSuppliesCount, Type } from '../../models/product.models';
 
 export class ProductRepositoryService {
   public constructor(protected repository: Repository<Product> = getRepository(Product)) {}
@@ -11,9 +11,23 @@ export class ProductRepositoryService {
   public async getAdminProduct(id: number): Promise<Product> {
     const selectQueryBuilder: SelectQueryBuilder<Product> = this.repository
       .createQueryBuilder('product')
-      .select(['product', 'orderItems', 'supplies', 'distributor', 'manufacturer'])
+      .select([
+        'product',
+        'orderItems',
+        ...['order.number', 'order.status'],
+        ...['orderItemsSupplies.bestBefore'],
+        'productSupplies',
+        'productSuppliesOrderItem.priceUnitSelling',
+        ...['productSuppliesOrderItemOrder.number', 'productSuppliesOrderItemOrder.status'],
+        'distributor',
+        'manufacturer'
+      ])
       .leftJoin('product.orderItems', 'orderItems')
-      .leftJoin('product.supplies', 'supplies')
+      .leftJoin('orderItems.order', 'order')
+      .leftJoin('orderItems.supplies', 'orderItemsSupplies')
+      .leftJoin('product.supplies', 'productSupplies')
+      .leftJoin('productSupplies.orderItem', 'productSuppliesOrderItem')
+      .leftJoin('productSuppliesOrderItem.order', 'productSuppliesOrderItemOrder')
       .leftJoin('product.distributor', 'distributor')
       .leftJoin('product.manufacturer', 'manufacturer')
       .where('product.id = :id', { id });
@@ -27,7 +41,9 @@ export class ProductRepositoryService {
       .select(['product', 'orderItems', 'distributor', 'manufacturer'])
       .leftJoin('product.orderItems', 'orderItems')
       .leftJoin('product.distributor', 'distributor')
-      .leftJoin('product.manufacturer', 'manufacturer');
+      .leftJoin('product.manufacturer', 'manufacturer')
+      // .where('product.type = :type', { type: Type.Product })
+      .orderBy('product.externalId', 'ASC');
 
     return await selectQueryBuilder.getMany();
   }

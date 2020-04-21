@@ -8,8 +8,9 @@ export class OrderRepositoryService {
   public async getAdminOrder(id: number): Promise<Order> {
     const selectQueryBuilder: SelectQueryBuilder<Order> = this.repository
       .createQueryBuilder('order')
-      .select(['order', 'orderItems', 'promoCode', 'payments', 'emails'])
+      .select(['order', 'orderItems', 'supplies', 'promoCode', 'payments', 'emails'])
       .leftJoin('order.orderItems', 'orderItems')
+      .leftJoin('orderItems.supplies', 'supplies')
       .leftJoin('order.promoCode', 'promoCode')
       .leftJoin('order.payments', 'payments')
       .leftJoin('order.emails', 'emails')
@@ -22,7 +23,8 @@ export class OrderRepositoryService {
     const selectQueryBuilder: SelectQueryBuilder<Order> = this.repository
       .createQueryBuilder('order')
       .select(['order', 'orderItems'])
-      .leftJoin('order.orderItems', 'orderItems');
+      .leftJoin('order.orderItems', 'orderItems')
+      .orderBy('order.createdAt', 'DESC');
 
     return await selectQueryBuilder.getMany();
   }
