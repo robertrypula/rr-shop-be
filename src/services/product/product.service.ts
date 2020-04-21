@@ -39,8 +39,8 @@ export class ProductService {
   public async getAdminProducts(): Promise<Product[]> {
     const products: Product[] = await this.productRepositoryService.getAdminProducts();
 
-    // await this.attachOrderItemsStubs(products, null);
-    // await this.attachSuppliesStubs(products, null);
+    await this.attachOrderItemsStubs(products, null);
+    await this.attachSuppliesStubs(products, null);
 
     return this.triggerCalculations(products, false);
   }

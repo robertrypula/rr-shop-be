@@ -40,14 +40,8 @@ export class ProductRepositoryService {
       .createQueryBuilder('product')
       .select([
         ...['id', 'externalId', 'name', 'nameCashRegister', 'priceUnit', 'isHidden', 'type'].map(c => `product.${c}`),
-        'orderItems.quantity',
-        'orderItemsOrder.status',
-        ...['id', 'isUnavailable'].map(c => `supplies.${c}`),
         'manufacturer.name'
       ])
-      .leftJoin('product.orderItems', 'orderItems')
-      .leftJoin('orderItems.order', 'orderItemsOrder')
-      .leftJoin('product.supplies', 'supplies')
       // .leftJoin('product.distributor', 'distributor')
       .leftJoin('product.manufacturer', 'manufacturer')
       // .where('product.type = :type', { type: Type.Product })
