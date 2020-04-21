@@ -119,8 +119,11 @@ export class Product {
     // Alternatives:
     // https://stackoverflow.com/questions/19436895/sql-how-to-to-sum-two-values-from-different-tables
     // https://stackoverflow.com/questions/28329525/multiple-left-join-with-sum
-    // TODO we should filter out 'isUnavailable' Supplies not only in DB but also in this code
-    const suppliesQuantity: number = this.supplies ? this.supplies.length : 0;
+    const suppliesQuantity: number = this.supplies
+      ? this.supplies.reduce((a: number, c: Supply): number => {
+          return a + (c.isUnavailable === true ? 0 : 1);
+        }, 0)
+      : 0;
     const orderItemsQuantity: number = this.orderItems
       ? this.orderItems.reduce((a: number, c: OrderItem): number => {
           return a + (c.order && c.order.status !== Status.Canceled ? c.quantity : 0);
@@ -132,7 +135,6 @@ export class Product {
       this.orderItems = undefined;
     }
 
-    // TODO do not send quantity for Delivery and Payment products - we don't want to share sales data
-    this.quantity = suppliesQuantity - orderItemsQuantity;
+    this.quantity = this.type === Type.Product ? suppliesQuantity - orderItemsQuantity : -12345;
   }
 }
