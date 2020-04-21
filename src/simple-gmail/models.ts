@@ -1,5 +1,3 @@
-import { ReadStream } from 'fs';
-
 export interface Settings {
   clientId: string;
   clientSecret: string;
@@ -10,6 +8,6 @@ export interface Settings {
 
 export interface Attachment {
   cid: string;
-  content: ReadStream;
+  content: Buffer;
   filename: string;
 }
