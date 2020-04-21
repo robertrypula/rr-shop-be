@@ -37,7 +37,12 @@ export class ProductService {
   }
 
   public async getAdminProducts(): Promise<Product[]> {
-    return await this.productRepositoryService.getAdminProducts();
+    const products: Product[] = await this.productRepositoryService.getAdminProducts();
+
+    // await this.attachOrderItemsStubs(products, null);
+    // await this.attachSuppliesStubs(products, null);
+
+    return this.triggerCalculations(products, false);
   }
 
   public async getProductsByFetchType(productIds: number[], fetchType: FetchType): Promise<Product[]> {
@@ -88,8 +93,8 @@ export class ProductService {
     return await this.productRepositoryService.getProductsIdsByName(name);
   }
 
-  public triggerCalculations(products: Product[]): Product[] {
-    products.forEach((product: Product): void => product.calculateQuantity(true));
+  public triggerCalculations(products: Product[], dropRelations = true): Product[] {
+    products.forEach((product: Product): void => product.calculateQuantity(dropRelations));
 
     return products;
   }

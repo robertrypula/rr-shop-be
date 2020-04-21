@@ -38,9 +38,17 @@ export class ProductRepositoryService {
   public async getAdminProducts(): Promise<Product[]> {
     const selectQueryBuilder: SelectQueryBuilder<Product> = this.repository
       .createQueryBuilder('product')
-      .select(['product', 'orderItems', 'distributor', 'manufacturer'])
+      .select([
+        ...['id', 'externalId', 'name', 'nameCashRegister', 'priceUnit', 'isHidden', 'type'].map(c => `product.${c}`),
+        'orderItems.quantity',
+        'orderItemsOrder.status',
+        ...['id', 'isUnavailable'].map(c => `supplies.${c}`),
+        'manufacturer.name'
+      ])
       .leftJoin('product.orderItems', 'orderItems')
-      .leftJoin('product.distributor', 'distributor')
+      .leftJoin('orderItems.order', 'orderItemsOrder')
+      .leftJoin('product.supplies', 'supplies')
+      // .leftJoin('product.distributor', 'distributor')
       .leftJoin('product.manufacturer', 'manufacturer')
       // .where('product.type = :type', { type: Type.Product })
       .orderBy('product.externalId', 'ASC');
@@ -69,7 +77,7 @@ export class ProductRepositoryService {
     const queryBuilder: SelectQueryBuilder<Product> = this.repository
       .createQueryBuilder('product')
       .select([
-        ...['id', 'name', 'priceUnit', 'slug'].map(c => `product.${c}`),
+        ...['id', 'name', 'priceUnit', 'slug', 'type'].map(c => `product.${c}`),
         ...['id', 'filename', 'sortOrder'].map(c => `image.${c}`),
         ...['name'].map(c => `manufacturer.${c}`)
       ])
