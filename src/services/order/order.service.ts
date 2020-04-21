@@ -90,9 +90,15 @@ export class OrderService {
         }
         break;
       case Status.Completed:
-        throw 'Cannot change status when order is Completed';
+        if (newStatus !== Status.Canceled) {
+          throw 'Next status after Completed could be only Canceled';
+        }
+        break;
       case Status.Canceled:
-        throw 'Cannot change status when order is Canceled';
+        if (newStatus !== Status.Completed) {
+          throw 'Next status after Canceled could be only Completed';
+        }
+        break;
     }
 
     // console.log(id, newStatus);
