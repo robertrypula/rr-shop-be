@@ -156,6 +156,10 @@ export class OrderService {
 
       order.orderItems.push(orderItem);
     });
+
+    order.orderItems = order.orderItems.sort((a: OrderItem, b: OrderItem): number =>
+      a.getSortOrder() === b.getSortOrder() ? 0 : a.getSortOrder() < b.getSortOrder() ? -1 : 1
+    );
   }
 
   protected async handlePayment(order: Order, orderCreateRequestDto: OrderCreateRequestDto, ip: string): Promise<void> {

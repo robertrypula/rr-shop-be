@@ -67,4 +67,17 @@ export class OrderItem {
   public getPriceTotalSelling(): number {
     return this.priceUnitSelling * this.quantity;
   }
+
+  public getSortOrder(): number {
+    switch (this.type) {
+      case Type.Product:
+        return 0;
+      case Type.Delivery:
+        return 1;
+      case Type.Payment:
+        return 2;
+    }
+
+    return 0;
+  }
 }
