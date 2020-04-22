@@ -31,6 +31,9 @@ export class Supply {
   @ManyToOne(type => OrderItem) // use ONLY to mark which best before dates product are gone
   public orderItem: OrderItem; // do NOT use together with 'isUnavailable' field or Quantity calculation
 
+  @Column({ nullable: true })
+  public orderItemId: number;
+
   @Column({ type: 'mediumtext', nullable: true, default: null, ...stringConfig })
   public notes: string;
 

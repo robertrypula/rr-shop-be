@@ -144,4 +144,15 @@ export class Product {
 
     this.quantity = this.type === Type.Product ? suppliesQuantity - orderItemsQuantity : -12345; // TODO remove magic n.
   }
+
+  public getSuppliesCountAttachedToGivenOrderItemId(orderItemId: number): number {
+    if (!this.supplies) {
+      throw 'Supplies array missing in calculations related to it';
+    }
+
+    return this.supplies.reduce(
+      (accumulator: number, supply: Supply): number => accumulator + (supply.orderItemId === orderItemId ? 1 : 0),
+      0
+    );
+  }
 }
