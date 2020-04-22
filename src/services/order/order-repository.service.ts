@@ -8,9 +8,26 @@ export class OrderRepositoryService {
   public async getAdminOrder(id: number): Promise<Order> {
     const selectQueryBuilder: SelectQueryBuilder<Order> = this.repository
       .createQueryBuilder('order')
-      .select(['order', 'orderItems', 'supplies', 'promoCode', 'payments', 'emails'])
+      .select([
+        'order',
+        'orderItems',
+        'orderItemsSupplies',
+        ...['id', 'externalId'].map(c => `orderItemsProduct.${c}`),
+        ...['filename'].map(c => `orderItemsProductImages.${c}`),
+        'orderItemsProductSupplies',
+        ...['id'].map(c => `orderItemsProductSuppliesOrderItem.${c}`),
+        ...['number', 'status'].map(c => `orderItemsProductSuppliesOrderItemOrder.${c}`),
+        'promoCode',
+        'payments',
+        'emails'
+      ])
       .leftJoin('order.orderItems', 'orderItems')
-      .leftJoin('orderItems.supplies', 'supplies')
+      .leftJoin('orderItems.supplies', 'orderItemsSupplies')
+      .leftJoin('orderItems.product', 'orderItemsProduct')
+      .leftJoin('orderItemsProduct.images', 'orderItemsProductImages')
+      .leftJoin('orderItemsProduct.supplies', 'orderItemsProductSupplies')
+      .leftJoin('orderItemsProductSupplies.orderItem', 'orderItemsProductSuppliesOrderItem')
+      .leftJoin('orderItemsProductSuppliesOrderItem.order', 'orderItemsProductSuppliesOrderItemOrder')
       .leftJoin('order.promoCode', 'promoCode')
       .leftJoin('order.payments', 'payments')
       .leftJoin('order.emails', 'emails')
