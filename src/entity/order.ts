@@ -39,7 +39,7 @@ export class Order {
   public uuid: string;
 
   @Index({ unique: true })
-  @Column('varchar', { length: ORDER_NUMBER_LENGTH, ...stringConfig }) // example: W-123-456-789
+  @Column('varchar', { length: ORDER_NUMBER_LENGTH, ...stringConfig }) // example: 2347-9WER
   public number: string;
 
   @OneToMany(type => Email, (email: Email) => email.order, { cascade: ['insert'] })
