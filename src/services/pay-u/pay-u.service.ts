@@ -81,7 +81,7 @@ export class PayUService {
         ...[stringifyPretty(headers), body, reStringifyPretty(body)],
         ...[stringifyPretty(notification), errorOnParsingNotification]
       ].join('\n\n----\n\n'),
-      'payUNotify'
+      'pay-u-notify'
     );
   }
 
