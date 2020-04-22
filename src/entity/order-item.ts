@@ -55,9 +55,11 @@ export class OrderItem {
     if (!this.order) {
       throw `Cannot calculate selling unit price when there is no order attached to orderItem`;
     }
-    return getNormalizedPrice(
-      this.priceUnitOriginal * (this.order.promoCode ? this.order.promoCode.getDiscountMultiplier() : 1)
-    );
+    if (!this.type) {
+      throw `Cannot calculate selling unit price when there is no type set in orderItem`;
+    }
+
+    return getNormalizedPrice(this.priceUnitOriginal * this.getPromoCodeDiscountMultiplier());
   }
 
   public getPriceTotalOriginal(): number {
@@ -79,5 +81,13 @@ export class OrderItem {
     }
 
     return 0;
+  }
+
+  protected getPromoCodeDiscountMultiplier(): number {
+    if (this.type === Type.Product && this.order && this.order.promoCode) {
+      return this.order.promoCode.getDiscountMultiplier();
+    }
+
+    return 1;
   }
 }

@@ -141,12 +141,13 @@ export class OrderService {
       orderItem.uuid = uuidv4();
       orderItem.order = order; // required at selling price calculation (promoCode is in order)
       orderItem.name = foundProduct.name;
-      orderItem.priceUnitOriginal = foundProduct.priceUnit;
-      orderItem.priceUnitSelling = orderItem.getCalculatedPriceUnitSelling();
       orderItem.quantity = orderCreateRequestOrderItemDto.quantity;
       orderItem.type = foundProduct.type;
       orderItem.deliveryType = foundProduct.deliveryType;
       orderItem.paymentType = foundProduct.paymentType;
+
+      orderItem.priceUnitOriginal = foundProduct.priceUnit;
+      orderItem.priceUnitSelling = orderItem.getCalculatedPriceUnitSelling();
 
       orderItem.product = foundProduct;
 
