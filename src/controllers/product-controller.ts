@@ -70,7 +70,7 @@ export class ProductController {
         productIds = await this.productService.getProductsIdsByCategoryIds(parameterBag.categoryIds);
       } else if (parameterBag.productIds) {
         productIds = parameterBag.productIds;
-      } else if (parameterBag.name) {
+      } else if (parameterBag.name || parameterBag.name === '') {
         productIds = await this.productService.getProductsIdsByName(parameterBag.name);
       }
 
@@ -105,7 +105,7 @@ export class ProductController {
     return {
       categoryIds: this.getIdsAsArray(req, 'categoryIds'),
       fetchType: this.getFetchType(req),
-      name: req.query.name ? `${req.query.name}` : null, // TODO check
+      name: typeof req.query.name !== 'undefined' ? `${req.query.name}` : null,
       productId: req.params.id ? +req.params.id : null,
       productIds: this.getIdsAsArray(req, 'productIds')
     };

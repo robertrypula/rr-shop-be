@@ -128,7 +128,8 @@ export class ProductRepositoryService {
     const queryBuilder: SelectQueryBuilder<Product> = this.repository
       .createQueryBuilder('product')
       .select('product.id as id')
-      .where('product.name like :name', { name: '%' + name + '%' });
+      .where('product.name like :name', { name: '%' + name + '%' })
+      .andWhere('product.type = :type', { type: Type.Product });
 
     excludeHidden && queryBuilder.andWhere('product.isHidden is false');
 
