@@ -23,7 +23,7 @@ export class PayUService {
       },
       customerIp: ip,
       extOrderId: order.number,
-      totalAmount: order.payments[0].amount * 100, // TODO refactor when multiple PayU payments will be required
+      totalAmount: Math.round(order.payments[0].amount * 100), // TODO refactor when multiple payments will be required
       validityTime: 3600
     });
 
