@@ -21,7 +21,7 @@ export const toSecretConfig = (fileContent: string): SecretConfig => {
     !o.gmail.clientSecret ||
     !o.gmail.from ||
     !o.gmail.refreshToken ||
-    !o.gmail.subjectPrefix ||
+    typeof o.gmail.subjectPrefix !== 'string' ||
     !o.gmail.user
   ) {
     throw `Missing field(s) inside 'gmail' field`;
