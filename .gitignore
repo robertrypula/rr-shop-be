@@ -8,8 +8,8 @@ node_modules/
 database.sqlite
 src/secret-config.json
 
-src/logs/pay-u/*
-!src/logs/pay-u/.gitkeep
+src/logs/*
+!src/logs/file-logger.ts
 
 src/migration/fixtures/categories.tsv
 src/migration/fixtures/products-0001.tsv
