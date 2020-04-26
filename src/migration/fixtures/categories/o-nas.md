@@ -20,6 +20,7 @@ powinna opierać się na leczniczej potędze natury. Uważamy, że człowiek jes
 częścią przyrody i powinien żyć z nią w harmonii. Oczywiście nie będziemy nikogo
 namawiać do przytulania drzew, ale warto by zwrócić uwagę na to, co otacza nas
 dookoła, docenić to, spróbować zrozumieć gdyż wszystko jest po coś…
+
 Serdecznie zapraszamy Państwa do zakupów w naszym sklepie. Systematycznie
 będziemy poszerzać naszą ofertę o naturalne, wartościowe produkty, jednocześnie
 służąc Państwu radą. Mamy nadzieję, że tak jak my, również i Państwo zafascynują
