@@ -4,7 +4,8 @@
 
 **Zalecane spożycie** Jedną saszetkę herbatki zalać szklanką wody o temperaturze - ok. 80 stopni (odczekać 3-5 min od momentu wrzenia) i zaparzać przez kilka minut pod przykryciem.
 
-**Skład** Herbata zielona cejlońska\* 70%, yerba mate\* 30%
+**Skład** Herbata zielona cejlońska\* 70%, yerba mate\* 30%.  
+
 \*produkt rolnictwa ekologicznego
 
 **Jednostka Certyfikująca** PL-EKO-01

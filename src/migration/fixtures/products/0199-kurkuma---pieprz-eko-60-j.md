@@ -4,7 +4,8 @@
 
 **Zalecane spożycie** Dorośli 1 kapsułkę dziennie popić szklanką wody.
 
-**Skład** Zawartość 1 kapsułki: kurkuma\* 550mg (Curcuma longa), pieprz\* 55mg (Piper nigrum), hydroksypropylometyloceluloza (otoczka kapsułki).
+**Skład** Zawartość 1 kapsułki: kurkuma\* 550mg (Curcuma longa), pieprz\* 55mg (Piper nigrum), hydroksypropylometyloceluloza (otoczka kapsułki).  
+
 \*produkt rolnictwa ekologicznego
 
 **Producent** Mirosław Angielczyk DARY NATURY

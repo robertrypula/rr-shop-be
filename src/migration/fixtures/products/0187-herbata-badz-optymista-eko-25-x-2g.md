@@ -4,7 +4,8 @@
 
 **Zalecane spożycie** 1 saszetkę herbatki zalać szklanką wrzątku i pozostawić pod przykryciem do zaparzenia na około 10- 15 minut. Pić 2 razy dziennie.
 
-**Skład** Ziele melisy (Melissa officinalis)\*, ziele przytulii (Galium verum)\*, ziele gojnika (Sideritis scardica)\*, ziele ostrożenia (Cirisum oleraceum)\*, ziele owsa (Avena sativa)\*, korzeń kozłka (Valeriana officinalis)\*, ziele bukwicy (Betonica officinalis)\*, ziele dziurawca (Hypericum perforatum)\*, szyszki chmielu (Humulus lupulus)\*, ziele przetacznika (Veronica officinalis)\* w różnych proporcjach.
+**Skład** Ziele melisy (Melissa officinalis)\*, ziele przytulii (Galium verum)\*, ziele gojnika (Sideritis scardica)\*, ziele ostrożenia (Cirisum oleraceum)\*, ziele owsa (Avena sativa)\*, korzeń kozłka (Valeriana officinalis)\*, ziele bukwicy (Betonica officinalis)\*, ziele dziurawca (Hypericum perforatum)\*, szyszki chmielu (Humulus lupulus)\*, ziele przetacznika (Veronica officinalis)\* w różnych proporcjach.  
+
 \*produkt rolnictwa ekologicznego
 
 **Jednostka Certyfikująca** PL-EKO-01

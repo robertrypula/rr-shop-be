@@ -4,7 +4,8 @@
 
 **Zalecane spożycie** Jedną piramidkę herbaty zalać szklanką wody o temperaturze ok. 80 stopni (odczekać 3-5 min od momentu wrzenia) i zaparzać przez kilka minut pod przykryciem.
 
-**Skład** Herbata zielona cejlońska\* 90%, sok z pigwowca\* 10%
+**Skład** Herbata zielona cejlońska\* 90%, sok z pigwowca\* 10%.  
+
 \*produkt rolnictwa ekologicznego
 
 **Jednostka Certyfikująca** PL-EKO-01

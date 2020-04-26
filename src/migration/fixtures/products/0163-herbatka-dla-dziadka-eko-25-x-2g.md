@@ -4,7 +4,8 @@
 
 **Zalecane spożycie** Jedną saszetkę zalać wrzątkiem i parzyć pod przykryciem około 10 minut.
 
-**Skład** Ziele wierzbownicy\* 40%, owoc tarniny\*, róży\*, ziele jemioły\*, liść mięty\* w różnych proporcjach.
+**Skład** Ziele wierzbownicy\* 40%, owoc tarniny\*, róży\*, ziele jemioły\*, liść mięty\* w różnych proporcjach.  
+
 \*produkt rolnictwa ekologicznego
 
 **Jednostka Certyfikująca** PL-EKO-01

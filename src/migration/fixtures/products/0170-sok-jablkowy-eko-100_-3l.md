@@ -4,7 +4,7 @@
 
 Jabłka dzięki zawartości pektyn nie tylko wspomagają organizm w obniżeniu złego poziomu cholesterolu we krwi ale również leczą zaparcia. Poprawiają apetyt, działają moczopędne a dzięki zawartości kwasów jabłkowego i winowego powstrzumują rozwój bakterii fermentacyjnych i chorobotwórczych w przewodzie pokarmowym.
 
-**Skład** Sok tłoczony z jabłek (produkt rolnictwa ekologicznego) 100%
+**Skład** Sok tłoczony z jabłek (produkt rolnictwa ekologicznego) 100%, pasteryzowany.
 
 **Jednostka certyfikująca** PL-EKO-01
 

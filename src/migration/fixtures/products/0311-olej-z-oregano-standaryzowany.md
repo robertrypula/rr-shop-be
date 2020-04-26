@@ -4,7 +4,7 @@
 
 Supelement diety **Dzikie oregano 100% naturalny olej** w kroplach zawiera 90% naturalnego karwakrolu (standaryzowanego).
 
-Olejek z dzikiego oregano zawiera flawonoidy i fenole. Jest bogaty w octan geranylu, karwakrol, tymol, cymol, borneol, linalol i pinen. Stanowi bogate źródło witaminy A i C.
+Olejek z dzikiego oregano zawiera flawonoidy i fenole. Jest bogaty w octan geranylu, karwakrol, tymol, cymol, borneol, linalol i pinen. Stanowi bogate źródło witaminy A i C. Według literatury zielarskiej wykazuje działanie przeciwdrobnoustrojowe, przeciwzapalne, antyoksydacyjne oraz hamuje wzrost Candida albicans.
 
 #### Stosowanie
 

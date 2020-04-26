@@ -4,7 +4,8 @@
 
 **Zalecane spożycie** 1 saszetkę herbatki zalać szklanką wrzątku i pozostawić pod przykryciem do zaparzenia na około 10-15 minut. Pić 2 razy dziennie.
 
-**Skład** Ziele rutwicy\*, liść melisy\*, pokrzywy\*, owoc róży\* i maliny\*, kminek\*, porzeczka czerwona\*, kwiat rumianku\*, bazylia\*, koper włoski\* w różnych proporcjach.
+**Skład** Ziele rutwicy\*, liść melisy\*, pokrzywy\*, owoc róży\* i maliny\*, kminek\*, porzeczka czerwona\*, kwiat rumianku\*, bazylia\*, koper włoski\* w różnych proporcjach.  
+
 \*produkt rolnictwa ekologicznego
 
 **Jednostka Certyfikująca** PL-EKO-01
