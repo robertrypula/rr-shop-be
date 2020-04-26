@@ -17,4 +17,3 @@ Kationy: wapniowy - 103,30, magnezowy - 16,70, sodowy - 15,76, potasowy - 1,60.
 
 **Producent** Uzdrowisko Krynica-Żegiestów S.A.
 ul. Nowotarskiego 9/4, 33-380 Krynica-Zdrój
-

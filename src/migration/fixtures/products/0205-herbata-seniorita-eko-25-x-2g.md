@@ -4,7 +4,7 @@
 
 **Zalecane spożycie** 1 saszetkę zalać 1 szklanką wrzątku. Pozostawić na 10-15 minut do zaparzenia. Pić 1-2 szklanki dziennie.
 
-**Skład** Ziele krwawnika\* 20%, ziele ślazu\*, owoc głogu\*, kwiat głogu\*, owoc tarniny\*, chmiel szyszki\*, liść melisy\*, kwiat koniczyny\* w różnych proporcjach.  
+**Skład** Ziele krwawnika\* 20%, ziele ślazu\*, owoc głogu\*, kwiat głogu\*, owoc tarniny\*, chmiel szyszki\*, liść melisy\*, kwiat koniczyny\* w różnych proporcjach.
 
 \*produkt rolnictwa ekologicznego
 

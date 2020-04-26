@@ -13,7 +13,7 @@ Jedna porcja oleju (15g) zawiera:
 
 **Zalecane spożycie** Spożywać 1 porcję 15 g oleju (17 ml = 1,5 łyżki stołowej) dziennie jednorazowo lub w porcjach podzielnych, najkorzystniej podczas posiłku. Olej można również stosować jako dodatek do surówek.
 
-**Skład** Olej tłoczony na zimno z mieszaniny: nasion wiesiołka\* (Oenothera biennis L.), nasion czarnuszki siewnej\* (Nigella sativa L.), ekstrakt (5:1) z owoców dzikiej róży\* (Rosa canina L.) i owoców rokitnika zwyczajnego\* (Hippophae rhamnoides L.).  
+**Skład** Olej tłoczony na zimno z mieszaniny: nasion wiesiołka\* (Oenothera biennis L.), nasion czarnuszki siewnej\* (Nigella sativa L.), ekstrakt (5:1) z owoców dzikiej róży\* (Rosa canina L.) i owoców rokitnika zwyczajnego\* (Hippophae rhamnoides L.).
 
 \*produkt rolnictwa ekologicznego
 

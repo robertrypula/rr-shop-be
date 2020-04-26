@@ -4,7 +4,7 @@
 
 **Zalecane spożycie** 1 saszetkę herbatki zalać szklanką wrzątku i pozostawić pod przykryciem do zaparzenia na około 10- 15 minut. Pić 2 razy dziennie.
 
-**Skład** Owoc maliny\* 30%, owoc bzu czarnego\*, tarniny\*, jabłka leśnego\*, kwiat lipy\*, ziele tawuły\* w różnych proporcjach.  
+**Skład** Owoc maliny\* 30%, owoc bzu czarnego\*, tarniny\*, jabłka leśnego\*, kwiat lipy\*, ziele tawuły\* w różnych proporcjach.
 
 \*produkt rolnictwa ekologicznego
 

@@ -10,7 +10,7 @@ Każda wyprodukowana według najwyższych standardów jakości seria Olej Lniany
 
 Surowce do produkcji pochodzą od sprawdzonych przez Instytut wieloletnich dostawców oraz upraw własnych. Kontrolowany jest każdy etap wytwarzania oleju. Badania wykonywane są dla każdej serii surowca wg najwyższych standardów zarządzania bezpieczeństwem żywności ISO 22000:2006.
 
-**Zalecane spożycie** Olej Lniany BOFLAX® należy spożywać na zimno, bez podgrzewania i gotowania, gdyż wówczas zachowuje właściwości prozdrowotne i nie ulega destrukcyjnym przemianom. Po otwarciu butelki należy go przechowywać w lodówce. Do codziennego, profilaktycznego spożycia wystarczy 1 łyżka stołowa (odpowiednio miarka dozująca 10ml). 
+**Zalecane spożycie** Olej Lniany BOFLAX® należy spożywać na zimno, bez podgrzewania i gotowania, gdyż wówczas zachowuje właściwości prozdrowotne i nie ulega destrukcyjnym przemianom. Po otwarciu butelki należy go przechowywać w lodówce. Do codziennego, profilaktycznego spożycia wystarczy 1 łyżka stołowa (odpowiednio miarka dozująca 10ml).
 
 **Skład** Olej lniany wysokolinolenowy tłoczony na zimno – 100%.
 

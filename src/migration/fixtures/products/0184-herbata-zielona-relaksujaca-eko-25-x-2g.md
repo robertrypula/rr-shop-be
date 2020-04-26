@@ -4,7 +4,7 @@
 
 **Zalecane spożycie** Jedną saszetkę herbaty zalać szklanką wody o temperaturze - ok. 80 stopni (odczekać 3-5 min od momentu wrzenia) i zaparzać przez kilka minut pod przykryciem.
 
-**Skład** Herbata zielona cejlońska\* 82%, melisa ziele\*, werbena cytrynowa\*, chmiel szyszki\*.  
+**Skład** Herbata zielona cejlońska\* 82%, melisa ziele\*, werbena cytrynowa\*, chmiel szyszki\*.
 
 \*produkt rolnictwa ekologicznego
 

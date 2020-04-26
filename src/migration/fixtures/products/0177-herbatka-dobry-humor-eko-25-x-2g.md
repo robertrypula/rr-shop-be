@@ -4,7 +4,7 @@
 
 **Zalecane spożycie** 1 saszetkę herbatki zalać szklanką wrzątku i pozostawić pod przykryciem do zaparzenia na około 10-15 minut.
 
-**Skład** Imbir\*, melisa liść\*, pigwowiec owoc\*, trawa cytrynowa\*, werbena cytrynowa\*, kocimiętka ziele\*, róża owoc\*, róża płatki\*.  
+**Skład** Imbir\*, melisa liść\*, pigwowiec owoc\*, trawa cytrynowa\*, werbena cytrynowa\*, kocimiętka ziele\*, róża owoc\*, róża płatki\*.
 
 \*produkt rolnictwa ekologicznego
 

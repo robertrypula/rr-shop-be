@@ -6,7 +6,7 @@
 
 **Zalecane spożycie** Dorośli 1 kapsułka dziennie, popić szklanką wody.
 
-**Skład** Zawartość 1 kapsułki: ekstrakt z błyskoporka podkorowego\* 470mg (Inonotus obliquus), hydroksypropylometyloceluloza (otoczka kapsułki).  
+**Skład** Zawartość 1 kapsułki: ekstrakt z błyskoporka podkorowego\* 470mg (Inonotus obliquus), hydroksypropylometyloceluloza (otoczka kapsułki).
 
 \*produkt rolnictwa ekologicznego
 

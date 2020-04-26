@@ -4,7 +4,7 @@
 
 **Zalecane spożycie** Jedną saszetkę herbatki zalać szklanką wrzątku i pozostawić pod przykryciem do zaparzenia na około 10-15 minut. Pić 1-2 razy dziennie.
 
-**Skład** Ziele krwawnika\*, rzepiku\* po 20%, ziele pięciornika gęsiego\*, cykorii podróżnika\*, bylicy\*, karczocha\*, drapacza\*, liść bobrka\* w różnych proporcjach.  
+**Skład** Ziele krwawnika\*, rzepiku\* po 20%, ziele pięciornika gęsiego\*, cykorii podróżnika\*, bylicy\*, karczocha\*, drapacza\*, liść bobrka\* w różnych proporcjach.
 
 \*produkt rolnictwa ekologicznego
 
