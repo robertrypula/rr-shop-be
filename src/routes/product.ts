@@ -8,5 +8,5 @@ const execute = (action: keyof ProductController) => (req: Request, res: Respons
   new ProductController()[action](req, res);
 
 productRouter.get('/', execute('getProducts'));
-productRouter.get('/cash-register-cvs', execute('getCashRegisterCvs')); // TODO find more REST approach
+productRouter.get('/cash-register-csv', execute('getCashRegisterCsv')); // TODO find more REST approach
 productRouter.get('/:id([0-9]+)', execute('getProduct'));
