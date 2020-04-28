@@ -31,6 +31,18 @@ export const getDuplicates = <T>(array: T[]): T[] => {
   return duplicates;
 };
 
+export const getUniqueValues = <T>(array: T[]): string[] => {
+  const map: { [key: string]: T } = {};
+
+  array.forEach((item: T): void => {
+    if (typeof map[`${item}`] === 'undefined') {
+      map[`${item}`] = null;
+    }
+  });
+
+  return Object.keys(map);
+};
+
 export const getIdRangeName = (id: number, range: number, maxLength: number): string => {
   const start: number = Math.floor((id - 1) / range);
 
