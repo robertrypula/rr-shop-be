@@ -34,3 +34,42 @@ export const getSlugFromPolishString = (name: string): string => {
     .replace(/--+/g, '-')
     .replace(/[^\-a-z0-9]/gi, '');
 };
+
+export const getCashRegisterWindow1250Encoding = (value: string): Buffer => {
+  const bytes: number[] = [];
+
+  for (let i = 0; i < value.length; i++) {
+    bytes.push(getCashRegisterBytesInWindow1250Encoding(value.charAt(i)));
+  }
+
+  return Buffer.from(bytes);
+};
+
+export const getCashRegisterBytesInWindow1250Encoding = (char: string): number => {
+  if (char.length !== 1) {
+    throw 'Char variable needs to be one character long';
+  }
+
+  switch (char) {
+    case 'Ą':
+      return 0xa5;
+    case 'Ć':
+      return 0xc6;
+    case 'Ę':
+      return 0xca;
+    case 'Ł':
+      return 0xa3;
+    case 'Ń':
+      return 0xd1;
+    case 'Ó':
+      return 0xd3;
+    case 'Ś':
+      return 0x8c;
+    case 'Ź':
+      return 0x8f;
+    case 'Ż':
+      return 0xaf;
+  }
+
+  return char.charCodeAt(0);
+};

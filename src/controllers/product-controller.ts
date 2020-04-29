@@ -2,8 +2,12 @@ import { Request, Response } from 'express';
 import { getRepository, Repository, SelectQueryBuilder } from 'typeorm';
 
 import { Product } from '../entity/product';
-import { FetchType, ParameterBag } from '../models/product.models';
+import { Supply } from '../entity/supply';
+import { FetchType, ParameterBag, Type } from '../models/product.models';
 import { ProductService } from '../services/product/product.service';
+import { getCashRegisterName, getCashRegisterWindow1250Encoding } from '../utils/name.utils';
+import { getFormattedDate } from '../utils/transformation.utils';
+import { getUniqueValues } from '../utils/utils';
 
 /*
   Where in:
@@ -11,54 +15,93 @@ import { ProductService } from '../services/product/product.service';
     https://github.com/typeorm/typeorm/issues/2135
 */
 
+const getCashRegisterCsvRow = (product: Product): string => {
+  const nameCashRegister: string = getCashRegisterName(product.nameCashRegister, true);
+
+  if (nameCashRegister !== product.nameCashRegister) {
+    throw `Cash register name of product ${product.externalId} is not valid`;
+  }
+
+  return [
+    ...[product.externalId, nameCashRegister, getCashRegisterVat(product)],
+    ...['1', '2', '1', 'N', '0000000000000'],
+    `${Math.round(product.priceUnit * 100)}`,
+    ...['N', 'T', 'N', 'N', '0']
+  ].join(';');
+};
+
+const getCashRegisterVat = (product: Product): string => {
+  if (product.type !== Type.Product) {
+    return 'A';
+  }
+
+  if (product.supplies && product.supplies.length > 0) {
+    const vats: string[] = product.supplies.map((supply: Supply): string => `${Math.round(supply.vat)}%`);
+    const uniqueVats: string[] = getUniqueValues(vats);
+
+    if (uniqueVats.length !== 1) {
+      throw `Multiple VAT issue (${uniqueVats.join(', ')}) found at product ${product.externalId}`;
+    }
+    /*
+    console.log(
+      product.externalId,
+      uniqueVats.length !== 1 ? 'YES!!!!' : '       ',
+      '------',
+      uniqueVats.join(','),
+      '------',
+      vats.join(','),
+      '------'
+    );
+    */
+
+    switch (Math.round(product.supplies[0].vat)) {
+      case 23:
+        return 'A';
+      case 8:
+        return 'B';
+      case 5:
+        return 'C';
+    }
+  }
+
+  throw `Cannot find supplies to check VAT for product ${product.externalId}`;
+};
+
 export class ProductController {
   public constructor(
     protected repository: Repository<Product> = getRepository(Product),
     protected productService: ProductService = new ProductService()
   ) {}
 
-  public async getCashRegisterCvs(req: Request, res: Response): Promise<void> {
+  public async getCashRegisterCsv(req: Request, res: Response): Promise<void> {
     // TODO find more REST approach (it's not returning JSON and violates REST endpoint structure)
     // TODO move it to product.service.ts / product-repository.service
-    const queryBuilder: SelectQueryBuilder<Product> = this.repository
-      .createQueryBuilder('product')
-      .select([
-        ...['id', 'externalId', 'nameCashRegister', 'priceUnit'].map(c => `product.${c}`),
-        ...['id', 'vat'].map(c => `supplies.${c}`)
-      ])
-      .leftJoin('product.supplies', 'supplies');
+    let csvWindows1250: Buffer;
 
-    res.contentType('text/csv; charset=utf-8').send(
-      (await queryBuilder.getMany())
-        .map((product: Product): string => {
-          const priceUnitScaled = Math.round(product.priceUnit * 100);
-          let vatNumber: number;
-          let vat = 'D';
+    try {
+      const queryBuilder: SelectQueryBuilder<Product> = this.repository
+        .createQueryBuilder('product')
+        .select([
+          ...['id', 'externalId', 'nameCashRegister', 'priceUnit', 'type'].map(c => `product.${c}`),
+          ...['id', 'vat'].map(c => `supplies.${c}`)
+        ])
+        .leftJoin('product.supplies', 'supplies');
+      const products: Product[] = await queryBuilder.getMany();
+      const csvUtf8: string = products.map((product: Product): string => getCashRegisterCsvRow(product)).join('\n');
 
-          if (product.supplies && product.supplies.length > 0) {
-            vatNumber = Math.round(product.supplies[0].vat);
-            switch (vatNumber) {
-              case 23:
-                vat = 'A';
-                break;
-              case 8:
-                vat = 'B';
-                break;
-              case 5:
-                vat = 'C';
-                break;
-            }
-          }
+      csvWindows1250 = getCashRegisterWindow1250Encoding(csvUtf8);
+    } catch (error) {
+      res.status(500).send({ error });
+      return;
+    }
 
-          return [
-            ...[product.externalId, product.nameCashRegister, vat],
-            ...['1', '2', '1', 'N', '0000000000000'],
-            priceUnitScaled,
-            ...['N', 'N', 'N', 'N', '0']
-          ].join(';');
-        })
-        .join('\n')
-    );
+    res
+      .writeHead(200, {
+        'Content-Disposition': `attachment; filename="cash_register_${getFormattedDate(new Date())}.csv"`,
+        'Content-Encoding': 'windows-1250',
+        'Content-Type': 'text/csv; charset=windows-1250'
+      })
+      .end(csvWindows1250);
   }
 
   public async getProducts(req: Request, res: Response): Promise<void> {
