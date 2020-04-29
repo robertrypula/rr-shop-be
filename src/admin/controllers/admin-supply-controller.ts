@@ -15,6 +15,6 @@ export class AdminSupplyController {
       return;
     }
 
-    res.send();
+    res.status(204).send();
   }
 }

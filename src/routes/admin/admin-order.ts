@@ -1,7 +1,7 @@
 import * as bodyParser from 'body-parser';
 import { Request, Response, Router } from 'express';
 
-import { AdminOrderController } from '../../controllers/admin/admin-order-controller';
+import { AdminOrderController } from '../../admin/controllers/admin-order-controller';
 
 export const adminOrderRouter = Router();
 

@@ -1,7 +1,7 @@
 import * as bodyParser from 'body-parser';
 import { Request, Response, Router } from 'express';
 
-import { AdminSupplyController } from '../../controllers/admin/admin-supply-controller';
+import { AdminSupplyController } from '../../admin/controllers/admin-supply-controller';
 
 export const adminSupplyRouter = Router();
 

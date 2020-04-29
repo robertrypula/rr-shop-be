@@ -1,9 +1,9 @@
 import { Router } from 'express';
 
 import { adminOrderRouter } from './admin-order';
+import { adminProductRouter } from './admin-product';
 import { adminSupplyRouter } from './admin-supply';
 import { adminUserRouter } from './admin-user';
-import { adminProductRouter } from './product-order';
 
 export const adminRoutes = Router();
 
