@@ -1,7 +1,8 @@
 import { getRepository, Repository, SelectQueryBuilder } from 'typeorm';
 
 import { Product } from '../../entity/product';
-import { ProductsOrderItems, ProductsSuppliesCount, Type } from '../../models/product.models';
+import { ProductQueryResult, ProductsOrderItems, ProductsSuppliesCount, Type } from '../../models/product.models';
+import { getProcessedProductQueryResults } from '../../utils/string-similarity.utils';
 
 export class ProductRepositoryService {
   public constructor(protected repository: Repository<Product> = getRepository(Product)) {}
@@ -124,16 +125,23 @@ export class ProductRepositoryService {
     return (await queryBuilder.getRawMany()).map((row: { id: number }): number => row.id);
   }
 
-  public async getProductsIdsByName(name: string, excludeHidden = true): Promise<number[]> {
+  public async getProductsIdsByQuery(query: string, excludeHidden = true): Promise<number[]> {
+    let productQueryResults: ProductQueryResult[];
     const queryBuilder: SelectQueryBuilder<Product> = this.repository
       .createQueryBuilder('product')
-      .select('product.id as id')
-      .where('product.name like :name', { name: '%' + name + '%' })
+      .select([...['id as id', 'name as name'].map(c => `product.${c}`), 'manufacturer.name as manufacturerName'])
+      .leftJoin('product.manufacturer', 'manufacturer')
       .andWhere('product.type = :type', { type: Type.Product });
 
     excludeHidden && queryBuilder.andWhere('product.isHidden is false');
 
-    return (await queryBuilder.getRawMany()).map((row: { id: number }): number => row.id);
+    productQueryResults = (await queryBuilder.getRawMany<ProductQueryResult>()).map(
+      (raw: any): ProductQueryResult => ({ id: raw.id, name: raw.name, manufacturerName: raw.manufacturerName })
+    );
+
+    return getProcessedProductQueryResults(productQueryResults, query, 10).map(
+      (productQueryResult: ProductQueryResult): number => productQueryResult.id
+    );
   }
 
   // ---------------------------------------------------------------------------

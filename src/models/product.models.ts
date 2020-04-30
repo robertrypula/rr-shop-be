@@ -26,9 +26,9 @@ export enum PaymentType {
 export interface ParameterBag {
   categoryIds: number[];
   fetchType: FetchType;
-  name: string;
   productId: number;
   productIds: number[];
+  query: string;
 }
 
 export interface ProductsOrderItems {
@@ -37,4 +37,11 @@ export interface ProductsOrderItems {
 
 export interface ProductsSuppliesCount {
   [productId: number]: number;
+}
+
+export interface ProductQueryResult {
+  id: number;
+  name: string;
+  manufacturerName: string;
+  rating?: number;
 }
