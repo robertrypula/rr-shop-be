@@ -13,7 +13,7 @@ export const getWords = (value: string): string[] => {
 export const getProcessedProductQueryResults = (
   productQueryResults: ProductQueryResult[],
   query: string,
-  limit: number
+  ratingThreshold: number
 ): ProductQueryResult[] => {
   for (let i = 0; i < productQueryResults.length; i++) {
     const item = productQueryResults[i];
@@ -25,13 +25,14 @@ export const getProcessedProductQueryResults = (
     a.rating === b.rating ? 0 : a.rating < b.rating ? 1 : -1
   );
 
-  productQueryResults = productQueryResults.slice(0, limit);
-
   return productQueryResults;
 };
 
-export const getStringsFromProductQueryResults = (productQueryResults: ProductQueryResult[]): string[] => {
-  return productQueryResults.map(
-    i => `${i.rating.toFixed(6)} | ${(i.id + '').padStart(4, '0')} | ${i.name} | ${i.manufacturerName}`
-  );
+export const getStringsFromProductQueryResults = (
+  productQueryResults: ProductQueryResult[],
+  limit: number
+): string[] => {
+  return productQueryResults
+    .map(i => `${i.rating.toFixed(6)} | ${(i.id + '').padStart(4, '0')} | ${i.name} | ${i.manufacturerName}`)
+    .slice(0, limit);
 };

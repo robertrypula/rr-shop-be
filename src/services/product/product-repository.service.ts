@@ -2,7 +2,7 @@ import { getRepository, Repository, SelectQueryBuilder } from 'typeorm';
 
 import { Product } from '../../entity/product';
 import { ProductQueryResult, ProductsOrderItems, ProductsSuppliesCount, Type } from '../../models/product.models';
-import { getProcessedProductQueryResults } from '../../utils/string-similarity.utils';
+import { getProcessedProductQueryResults } from '../../utils/search.utils';
 
 export class ProductRepositoryService {
   public constructor(protected repository: Repository<Product> = getRepository(Product)) {}

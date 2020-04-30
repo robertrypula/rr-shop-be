@@ -1,6 +1,19 @@
-import { ProductQueryResult } from '../models/product.models';
+import { ProductQueryResult, ProductQueryResultDbMock } from '../models/product.models';
 
-const products: Array<[number, string, string, string]> = [
+/*
+  SQL that helps to prepare DB mock:
+
+    SELECT
+      "QWERTY", p.externalId, p.name, CONCAT(m.name, ' UIOP'), "tags"
+    FROM
+      product as p
+      LEFT JOIN
+        manufacturer as m ON p.manufacturerId = m.id
+    WHERE
+      p.type = 'Product'
+ */
+
+const productQueryResultDbMocks: ProductQueryResultDbMock[] = [
   [1, 'Owoc aronii 50g', 'Flos', null],
   [2, 'Korzeń arcydzięgla 50g', 'Flos', null],
   [3, 'Kwiat akacji 50g', 'Flos', null],
@@ -339,11 +352,11 @@ const products: Array<[number, string, string, string]> = [
 ];
 
 export const createProductQueryResults = (): ProductQueryResult[] => {
-  return products.map(
-    (product: [number, string, string, string]): ProductQueryResult => ({
-      id: product[0],
-      manufacturerName: product[2],
-      name: product[1]
+  return productQueryResultDbMocks.map(
+    (productQueryResultDbMock: ProductQueryResultDbMock): ProductQueryResult => ({
+      id: productQueryResultDbMock[0],
+      manufacturerName: productQueryResultDbMock[2],
+      name: productQueryResultDbMock[1]
     })
   );
 };

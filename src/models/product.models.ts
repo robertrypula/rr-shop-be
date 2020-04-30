@@ -45,3 +45,13 @@ export interface ProductQueryResult {
   manufacturerName: string;
   rating?: number;
 }
+
+export type ProductQueryResultDbMock = [number, string, string, string];
+
+export interface ProductQueryTestVectorItem {
+  input: string;
+  output: {
+    total: number;
+    firstFewResults: string[];
+  };
+}
