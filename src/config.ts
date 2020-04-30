@@ -13,6 +13,8 @@ export const ORDER_DELIVERY_PLUS_PAYMENT_SIZE = 2;
 export const ORDER_PRODUCTS_SIZE_MIN = 1;
 export const ORDER_PRODUCTS_SIZE_MAX = 100;
 
+export const PRODUCT_SEARCH_RATING_THRESHOLD = 0.55;
+
 export const ORDER_PAGE_URL = (applicationBaseUrl: string, uuid: string) => `${applicationBaseUrl}/#order/${uuid}`;
 
 export const getSecretConfig = (): SecretConfig => {

@@ -1,5 +1,6 @@
 import { getRepository, Repository, SelectQueryBuilder } from 'typeorm';
 
+import { PRODUCT_SEARCH_RATING_THRESHOLD } from '../../config';
 import { Product } from '../../entity/product';
 import { ProductQueryResult, ProductsOrderItems, ProductsSuppliesCount, Type } from '../../models/product.models';
 import { getProcessedProductQueryResults } from '../../utils/search.utils';
@@ -139,7 +140,7 @@ export class ProductRepositoryService {
       (raw: any): ProductQueryResult => ({ id: raw.id, name: raw.name, manufacturerName: raw.manufacturerName })
     );
 
-    return getProcessedProductQueryResults(productQueryResults, query, 10).map(
+    return getProcessedProductQueryResults(productQueryResults, query, PRODUCT_SEARCH_RATING_THRESHOLD).map(
       (productQueryResult: ProductQueryResult): number => productQueryResult.id
     );
   }
