@@ -89,8 +89,8 @@ export class ProductService {
     return await this.productRepositoryService.getProductsIdsByCategoryIds(categoryIds);
   }
 
-  public async getProductsIdsByName(name: string): Promise<number[]> {
-    return await this.productRepositoryService.getProductsIdsByName(name);
+  public async getProductsIdsByQuery(query: string): Promise<number[]> {
+    return await this.productRepositoryService.getProductsIdsByQuery(query);
   }
 
   public triggerCalculations(products: Product[], dropRelations = true): Product[] {

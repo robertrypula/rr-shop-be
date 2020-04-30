@@ -113,8 +113,8 @@ export class ProductController {
         productIds = await this.productService.getProductsIdsByCategoryIds(parameterBag.categoryIds);
       } else if (parameterBag.productIds) {
         productIds = parameterBag.productIds;
-      } else if (parameterBag.name || parameterBag.name === '') {
-        productIds = await this.productService.getProductsIdsByName(parameterBag.name);
+      } else if (parameterBag.query || parameterBag.query === '') {
+        productIds = await this.productService.getProductsIdsByQuery(parameterBag.query);
       }
 
       res.send(await this.productService.getProductsByFetchType(productIds, parameterBag.fetchType));
@@ -135,7 +135,7 @@ export class ProductController {
       if (product.length === 1) {
         res.send(product[0]);
       } else {
-        res.status(404);
+        res.status(404).send();
       }
     } catch (error) {
       res.status(500).send({ errorMessage: `${error}` });
@@ -148,9 +148,9 @@ export class ProductController {
     return {
       categoryIds: this.getIdsAsArray(req, 'categoryIds'),
       fetchType: this.getFetchType(req),
-      name: typeof req.query.name !== 'undefined' ? `${req.query.name}` : null,
       productId: req.params.id ? +req.params.id : null,
-      productIds: this.getIdsAsArray(req, 'productIds')
+      productIds: this.getIdsAsArray(req, 'productIds'),
+      query: typeof req.query.query !== 'undefined' ? `${req.query.query}` : null
     };
   }
 
