@@ -76,6 +76,12 @@ export const getStringsFromProductQueryResults = (
   limit: number
 ): string[] => {
   return productQueryResults
-    .map(i => `${i.rating.toFixed(6)} | ${(i.id + '').padStart(4, '0')} | ${i.name} | ${i.manufacturerName}`)
+    .map((productQueryResult: ProductQueryResult): string =>
+      [
+        `${productQueryResult.rating.toFixed(6).padStart(8 + 1 + 6, ' ')} `,
+        `| ${(productQueryResult.id + '').padStart(4, '0')} `,
+        `| ${productQueryResult.name} | ${productQueryResult.manufacturerName}`
+      ].join('')
+    )
     .slice(0, limit);
 };
