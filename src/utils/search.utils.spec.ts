@@ -1,11 +1,53 @@
 import { ProductQueryResult, ProductQueryTestVectorItem } from '../models/product.models';
-import { getProcessedProductQueryResults, getStringsFromProductQueryResults, getWords } from './search.utils';
+import {
+  getProcessedProductQueryResults,
+  getRatingByFullPhrase,
+  getRatingByWords,
+  getStringsFromProductQueryResults,
+  getWords
+} from './search.utils';
 import { createProductQueryResults } from './search.utils.spec-data';
 
 // tslint:disable:object-literal-sort-keys
 // tslint:disable:max-line-length
 
 describe('String similarity utils', (): void => {
+  describe('getRatingByWords', (): void => {
+    it('should find 2 perfectly matched words', (): void => {
+      expect(
+        getRatingByWords('oregano 90%', 'Dzikie oregano 100% naturalny olej, 90% Naturalnego karwakrolu 30 ml Avitale')
+      ).toBeCloseTo(2020000, 6);
+    });
+
+    it('should find words even with typos', (): void => {
+      expect(
+        getRatingByWords(
+          'dzikee oregan',
+          'Dzikie oregano 100% naturalny olej, 90% Naturalnego karwakrolu 30 ml Avitale'
+        )
+      ).toBeCloseTo(1009090, 6);
+    });
+  });
+
+  describe('getRatingByFullPhrase', (): void => {
+    it('should find two words in long phrase', (): void => {
+      expect(
+        getRatingByFullPhrase(
+          'oregano 90%',
+          'Dzikie oregano 100% naturalny olej, 90% Naturalnego karwakrolu 30 ml Avitale'
+        )
+      ).toBeCloseTo(0.21621621621621623, 6);
+    });
+
+    it('should find single word with typos - one upper case one lower case', (): void => {
+      expect(getRatingByFullPhrase('dzikee', 'Dzikie')).toBeCloseTo(0.4, 6);
+    });
+
+    it('should find single word with typos - all lower case', (): void => {
+      expect(getRatingByFullPhrase('dzikee', 'dzikie')).toBeCloseTo(0.6, 6);
+    });
+  });
+
   describe('getWords', (): void => {
     it('should split words', (): void => {
       expect(getWords('czerwona papryka')).toEqual(['czerwona', 'papryka']);
@@ -14,16 +56,15 @@ describe('String similarity utils', (): void => {
     it('should filter out short words', (): void => {
       expect(getWords('olejek do smarowania')).toEqual(['olejek', 'smarowania']);
     });
+
+    it(`should explode '-' characters`, (): void => {
+      expect(getWords('żeń-szeń')).toEqual(['żeń', 'szeń']);
+    });
   });
 
   describe('getProcessedProductQueryResults', (): void => {
     const LIMIT = 10;
     const RATING_THRESHOLD = 0.3;
-    /*
-      Issues:
-        '90% oregano' ?????
-        'z roki'
-     */
 
     const productQueryTestVectorItems: ProductQueryTestVectorItem[] = [
       {

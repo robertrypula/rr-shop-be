@@ -3,7 +3,7 @@ import { compareTwoStrings } from 'string-similarity';
 import { ProductQueryResult } from '../models/product.models';
 import { removeMultipleWhitespaceCharacters } from './transformation.utils';
 
-const getRatingByWords = (stringA: string, stringB: string, log = false): number => {
+export const getRatingByWords = (stringA: string, stringB: string, log = false): number => {
   const wordsA: string[] = getWords(stringA.toLowerCase());
   const wordsB: string[] = getWords(stringB.toLowerCase());
   let wordsRating = 0;
@@ -14,7 +14,6 @@ const getRatingByWords = (stringA: string, stringB: string, log = false): number
       const wordRating: number = compareTwoStrings(wordsA[i], wordsB[j]);
       if (wordRating >= 0.7) {
         foundWords += 1;
-        // true && console.log(wordRating > 0.7 ? '## ' : '   ', wordRating.toFixed(6), wordsA[i], wordsB[j]);
         wordsRating += wordRating;
       }
     }
@@ -23,7 +22,7 @@ const getRatingByWords = (stringA: string, stringB: string, log = false): number
   return 1000000 * foundWords + 10 * Math.round(1000 * wordsRating);
 };
 
-const getRatingByFullPhrase = (stringA: string, stringB: string): number => {
+export const getRatingByFullPhrase = (stringA: string, stringB: string): number => {
   return compareTwoStrings(stringA, stringB);
 };
 
@@ -56,8 +55,8 @@ export const getProcessedProductQueryResults = (
   for (let i = 0; i < productQueryResults.length; i++) {
     const productQueryResult: ProductQueryResult = productQueryResults[i];
     const stringToSearchIn = `${productQueryResult.name} ${productQueryResult.manufacturerName}`;
-    const ratingByWords = getRatingByWords(query, stringToSearchIn);
-    const ratingByFullPhrase = getRatingByFullPhrase(query, stringToSearchIn);
+    const ratingByWords: number = getRatingByWords(query, stringToSearchIn);
+    const ratingByFullPhrase: number = getRatingByFullPhrase(query, stringToSearchIn);
 
     ratingByFullPhraseMax = ratingByFullPhrase > ratingByFullPhraseMax ? ratingByFullPhrase : ratingByFullPhraseMax;
     productQueryResults[i].rating = ratingByWords + ratingByFullPhrase;
