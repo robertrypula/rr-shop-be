@@ -21,7 +21,7 @@ describe('String similarity utils', (): void => {
     const RATING_THRESHOLD = 0.3;
     /*
       Issues:
-        'dziurawiec'
+        ''
         'babka lancetowata'
         'jeżówka purpurowa' powinno być 3 a nie jeden
         'anyż' - dziwne wyniki
@@ -36,7 +36,7 @@ describe('String similarity utils', (): void => {
       {
         input: 'sok z buraka kiszonego',
         output: {
-          total: 82,
+          total: 81,
           firstFewResults: [
             '1.000000 | 0172 | Ekologiczny sok z kiszonych buraków 3l | Dary Natury',
             '0.932203 | 0161 | Ekologiczny sok z kiszonej kapusty 3l | Dary Natury',
@@ -54,7 +54,7 @@ describe('String similarity utils', (): void => {
       {
         input: 'olej z oregano',
         output: {
-          total: 92,
+          total: 90,
           firstFewResults: [
             '1.000000 | 0307 | Dzikie oregano, olej 100%, 90 kapsułek miękkich | Aliness',
             '0.820202 | 0077 | Mydełko antybakteryjne z oregano 80g | MarokoProdukt',
@@ -68,11 +68,29 @@ describe('String similarity utils', (): void => {
             '0.599483 | 0324 | Naturalny olejek geraniowy 9ml | Dr Beta'
           ]
         }
+      },
+      {
+        input: 'dziurawiec',
+        output: {
+          total: 107,
+          firstFewResults: [
+            '1.000000 | 0118 | Ekologiczne ziele dziurawca 50g | Dary Natury',
+            '0.906404 | 0151 | Jałowiec 30g | Dary Natury',
+            '0.842491 | 0244 | Kwiat dziewanny 50g | Herbapol Kraków',
+            '0.710425 | 0334 | Vapomix ch-4 dla dzieci 9ml | Dr Beta',
+            '0.644258 | 0278 | Balsam jerozolimski dla dzieci 200ml | Boni Fratres',
+            '0.635945 | 0202 | Ekologiczna herbatka dla dzieci krasnoludek 25x2g | Dary Natury',
+            '0.635945 | 0231 | Naturalna woda lecznicza Jan 5l | Uzdrowisko Krynica-Żegiestów',
+            '0.625850 | 0264 | Syrop z dziewanny 100ml | Herbapol Kraków',
+            '0.619946 | 0174 | Ekologiczny olej dla dzieci junior 250ml | Dary Natury',
+            '0.619946 | 0227 | Sok z żurawin wielkoowocowych bez cukru 250ml | Sam Sok'
+          ]
+        }
       }
     ];
 
-    it('should return proper results for given query', (): void => {
-      productQueryTestVectorItems.forEach((productQueryTestVectorItem: ProductQueryTestVectorItem): void => {
+    productQueryTestVectorItems.forEach((productQueryTestVectorItem: ProductQueryTestVectorItem): void => {
+      it(`should return proper results for given query - ${productQueryTestVectorItem.input}`, (): void => {
         const processedProductQueryResults: ProductQueryResult[] = getProcessedProductQueryResults(
           createProductQueryResults(),
           productQueryTestVectorItem.input,

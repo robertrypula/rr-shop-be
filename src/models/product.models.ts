@@ -55,3 +55,7 @@ export interface ProductQueryTestVectorItem {
     firstFewResults: string[];
   };
 }
+
+export interface ProductsRatingMap {
+  [id: string]: number;
+}

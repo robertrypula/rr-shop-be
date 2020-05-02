@@ -75,6 +75,8 @@ export class Product {
 
   public quantity: number;
 
+  public rating: number;
+
   @Column('boolean', { default: false })
   public isHidden: boolean;
 
