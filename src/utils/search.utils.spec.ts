@@ -34,7 +34,7 @@ describe('String similarity utils', (): void => {
 
     const productQueryTestVectorItems: ProductQueryTestVectorItem[] = [
       {
-        input: 'sok z buraka kiszonego',
+        input: 'sok z buraka kiszonego', // 'bura' x 2 | 'kiszo' x 3 | 'sok' x 9
         output: {
           total: 81,
           firstFewResults: [
@@ -52,7 +52,7 @@ describe('String similarity utils', (): void => {
         }
       },
       {
-        input: 'olej z oregano',
+        input: 'olej z oregano', // 'olej' x 23 | 'oreg' x 4
         output: {
           total: 90,
           firstFewResults: [
@@ -70,7 +70,7 @@ describe('String similarity utils', (): void => {
         }
       },
       {
-        input: 'dziurawiec',
+        input: 'dziurawiec', // 'dziura' x 2
         output: {
           total: 107,
           firstFewResults: [
@@ -90,7 +90,7 @@ describe('String similarity utils', (): void => {
     ];
 
     productQueryTestVectorItems.forEach((productQueryTestVectorItem: ProductQueryTestVectorItem): void => {
-      it(`should return proper results for given query - ${productQueryTestVectorItem.input}`, (): void => {
+      it.skip(`should return proper results for given query - ${productQueryTestVectorItem.input}`, (): void => {
         const processedProductQueryResults: ProductQueryResult[] = getProcessedProductQueryResults(
           createProductQueryResults(),
           productQueryTestVectorItem.input,

@@ -49,6 +49,10 @@ export class ProductService {
     const productIds: number[] = productsRatingMap ? getProductIdsFromProductsRatingMap(productsRatingMap) : null;
     let products: Product[];
 
+    if (productIds && productIds.length === 0) {
+      return [];
+    }
+
     switch (fetchType) {
       case FetchType.Minimal:
         products = await this.productRepositoryService.getProductsFetchTypeMinimal(productIds);

@@ -132,7 +132,7 @@ export class ProductController {
 
     try {
       const product: Product[] = await this.productService.getProductsByFetchType(
-        getProductsRatingMapFromProductIds([0]),
+        getProductsRatingMapFromProductIds([parameterBag.productId]),
         parameterBag.fetchType
       );
 
