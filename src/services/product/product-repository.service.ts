@@ -1,6 +1,5 @@
 import { getRepository, Repository, SelectQueryBuilder } from 'typeorm';
 
-import { PRODUCT_SEARCH_RATING_THRESHOLD } from '../../config';
 import { Product } from '../../entity/product';
 import {
   getProductQueryResultsFromRawRowsByQuery,
@@ -144,11 +143,7 @@ export class ProductRepositoryService {
     excludeHidden && queryBuilder.andWhere('product.isHidden is false');
 
     return getProductsRatingMapFromProductQueryResults(
-      getProcessedProductQueryResults(
-        getProductQueryResultsFromRawRowsByQuery(await queryBuilder.getRawMany()),
-        query,
-        PRODUCT_SEARCH_RATING_THRESHOLD
-      )
+      getProcessedProductQueryResults(getProductQueryResultsFromRawRowsByQuery(await queryBuilder.getRawMany()), query)
     );
   }
 

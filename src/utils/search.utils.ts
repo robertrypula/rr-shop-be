@@ -1,21 +1,41 @@
 import { compareTwoStrings } from 'string-similarity';
 
+import {
+  PRODUCT_SEARCH_FULL_PHRASE_MAX_RATING_FRACTION,
+  PRODUCT_SEARCH_FULL_PHRASE_RATING_THRESHOLD,
+  PRODUCT_SEARCH_ON2_PERFORMANCE_LIMIT,
+  PRODUCT_SEARCH_WORD_MIN_CHARACTER,
+  PRODUCT_SEARCH_WORD_RATING_THRESHOLD
+} from '../config';
 import { ProductQueryResult } from '../models/product.models';
 import { removeMultipleWhitespaceCharacters } from './transformation.utils';
 
-export const getRatingByWords = (stringA: string, stringB: string, log = false): number => {
+// TODO check it - probably Levenshtein is better in matching words:
+// https://jacoby.github.io/2019/01/08/levenshtein-sorensendice-and-practical-information-theory.html
+
+export const getRatingByWords = (stringA: string, stringB: string): number => {
   const wordsA: string[] = getWords(stringA.toLowerCase());
   const wordsB: string[] = getWords(stringB.toLowerCase());
-  let wordsRating = 0;
+  let breakFlag = false;
+  let counter = 0;
   let foundWords = 0;
+  let wordRating: number;
+  let wordsRating = 0;
 
   for (let i = 0; i < wordsA.length; i++) {
     for (let j = 0; j < wordsB.length; j++) {
-      const wordRating: number = compareTwoStrings(wordsA[i], wordsB[j]);
-      if (wordRating >= 0.7) {
-        foundWords += 1;
+      breakFlag = ++counter > PRODUCT_SEARCH_ON2_PERFORMANCE_LIMIT;
+      if (breakFlag) {
+        break;
+      }
+      wordRating = compareTwoStrings(wordsA[i], wordsB[j]);
+      if (wordRating >= PRODUCT_SEARCH_WORD_RATING_THRESHOLD) {
+        foundWords++;
         wordsRating += wordRating;
       }
+    }
+    if (breakFlag) {
+      break;
     }
   }
 
@@ -35,7 +55,7 @@ export const getWords = (value: string): string[] => {
   )
     .trim()
     .split(' ')
-    .filter((word: string): boolean => word.length > 2);
+    .filter((word: string): boolean => word.length >= PRODUCT_SEARCH_WORD_MIN_CHARACTER);
 };
 
 const sortByRating = (a: ProductQueryResult, b: ProductQueryResult): number =>
@@ -43,8 +63,7 @@ const sortByRating = (a: ProductQueryResult, b: ProductQueryResult): number =>
 
 export const getProcessedProductQueryResults = (
   productQueryResults: ProductQueryResult[],
-  query: string,
-  ratingThreshold: number
+  query: string
 ): ProductQueryResult[] => {
   let ratingByFullPhraseMax = 0;
 
@@ -66,7 +85,8 @@ export const getProcessedProductQueryResults = (
 
   return productQueryResults.filter(
     (productQueryResult: ProductQueryResult): boolean =>
-      productQueryResult.rating >= 0.5 && productQueryResult.rating >= ratingByFullPhraseMax * 0.8
+      productQueryResult.rating >= PRODUCT_SEARCH_FULL_PHRASE_RATING_THRESHOLD &&
+      productQueryResult.rating >= ratingByFullPhraseMax * PRODUCT_SEARCH_FULL_PHRASE_MAX_RATING_FRACTION
   );
 };
 

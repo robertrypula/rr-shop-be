@@ -57,14 +57,28 @@ describe('String similarity utils', (): void => {
       expect(getWords('olejek do smarowania')).toEqual(['olejek', 'smarowania']);
     });
 
-    it(`should explode '-' characters`, (): void => {
+    it(`should split '-' characters`, (): void => {
       expect(getWords('żeń-szeń')).toEqual(['żeń', 'szeń']);
+    });
+
+    it(`should split longer phrase`, (): void => {
+      expect(getWords('Maślan Sodu 550 mg (Kwas masłowy 170 mg), 100 VEGE kapsułek MedicaLine')).toEqual([
+        'Maślan',
+        'Sodu',
+        '550',
+        'Kwas',
+        'masłowy',
+        '170',
+        '100',
+        'VEGE',
+        'kapsułek',
+        'MedicaLine'
+      ]);
     });
   });
 
   describe('getProcessedProductQueryResults', (): void => {
     const LIMIT = 10;
-    const RATING_THRESHOLD = 0.3;
 
     const productQueryTestVectorItems: ProductQueryTestVectorItem[] = [
       {
@@ -203,8 +217,7 @@ describe('String similarity utils', (): void => {
       it(`should return proper results for given query - ${productQueryTestVectorItem.input}`, (): void => {
         const processedProductQueryResults: ProductQueryResult[] = getProcessedProductQueryResults(
           createProductQueryResults(),
-          productQueryTestVectorItem.input,
-          RATING_THRESHOLD
+          productQueryTestVectorItem.input
         );
 
         expect({
