@@ -13,6 +13,8 @@ import { ProductQueryResult, ProductQueryResultDbMock } from '../models/product.
       p.type = 'Product'
  */
 
+// tslint:disable:object-literal-sort-keys
+
 const productQueryResultDbMocks: ProductQueryResultDbMock[] = [
   [1, 'Owoc aronii 50g', 'Flos', null],
   [2, 'Korzeń arcydzięgla 50g', 'Flos', null],
@@ -171,7 +173,7 @@ const productQueryResultDbMocks: ProductQueryResultDbMock[] = [
   [155, 'Pieprz cayenne 60g', 'Dary Natury', null],
   [156, 'Gałka muszkatołowa 30g', 'Dary Natury', null],
   [157, 'Ekologiczny syrop z owoców dzikiej róży 270ml', 'Dary Natury', null],
-  [158, 'Ekologiczny syrop z pączków sosny 270ml', 'Dary Natury', null],
+  [158, 'Ekologiczny syrop z pączków sosny 270ml', 'Dary Natury', 'wojtek lubi'],
   [159, 'Ekologiczny syrop z pigwowca 270ml', 'Dary Natury', null],
   [160, 'Ekologiczny syrop z głogu 270ml', 'Dary Natury', null],
   [161, 'Ekologiczny sok z kiszonej kapusty 3l', 'Dary Natury', null],
@@ -350,8 +352,9 @@ export const createProductQueryResults = (): ProductQueryResult[] => {
   return productQueryResultDbMocks.map(
     (productQueryResultDbMock: ProductQueryResultDbMock): ProductQueryResult => ({
       id: productQueryResultDbMock[0],
+      name: productQueryResultDbMock[1],
       manufacturerName: productQueryResultDbMock[2],
-      name: productQueryResultDbMock[1]
+      tags: productQueryResultDbMock[3]
     })
   );
 };

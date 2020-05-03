@@ -5,6 +5,7 @@ import { Product } from '../entity/product';
 import { Supply } from '../entity/supply';
 import { getProductsRatingMapFromProductIds } from '../mappers/product.mappers';
 import { FetchType, ParameterBag, ProductsRatingMap, Type } from '../models/product.models';
+import { LogSearchService } from '../services/log-search/log-search.service';
 import { ProductService } from '../services/product/product.service';
 import { getCashRegisterName, getCashRegisterWindow1250Encoding } from '../utils/name.utils';
 import { getFormattedDate } from '../utils/transformation.utils';
@@ -71,7 +72,8 @@ const getCashRegisterVat = (product: Product): string => {
 export class ProductController {
   public constructor(
     protected repository: Repository<Product> = getRepository(Product),
-    protected productService: ProductService = new ProductService()
+    protected productService: ProductService = new ProductService(),
+    protected logSearchService: LogSearchService = new LogSearchService()
   ) {}
 
   public async getCashRegisterCsv(req: Request, res: Response): Promise<void> {
@@ -117,6 +119,7 @@ export class ProductController {
         productsRatingMap = getProductsRatingMapFromProductIds(parameterBag.productIds);
       } else if (parameterBag.query || parameterBag.query === '') {
         productsRatingMap = await this.productService.getProductsRatingMapByQuery(parameterBag.query);
+        await this.logSearchService.logSearch(req.ip, parameterBag.query, productsRatingMap);
       }
 
       products = await this.productService.getProductsByFetchType(productsRatingMap, parameterBag.fetchType);

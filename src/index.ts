@@ -1,5 +1,3 @@
-// import { sendEmailAdvanced } from './gmail/advanced';
-
 import 'reflect-metadata';
 
 import * as cors from 'cors';

@@ -2,6 +2,7 @@ import { Category } from './category';
 import { Distributor } from './distributor';
 import { Email } from './email';
 import { Image } from './image';
+import { LogSearch } from './log-search';
 import { Manufacturer } from './manufacturer';
 import { Order } from './order';
 import { OrderItem } from './order-item';
@@ -16,6 +17,7 @@ export const entities = [
   Distributor,
   Email,
   Image,
+  LogSearch,
   Manufacturer,
   Order,
   OrderItem,

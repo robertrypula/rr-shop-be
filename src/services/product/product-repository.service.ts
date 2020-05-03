@@ -136,7 +136,10 @@ export class ProductRepositoryService {
   public async getProductsRatingMapByQuery(query: string, excludeHidden = true): Promise<ProductsRatingMap> {
     const queryBuilder: SelectQueryBuilder<Product> = this.repository
       .createQueryBuilder('product')
-      .select([...['id as id', 'name as name'].map(c => `product.${c}`), 'manufacturer.name as manufacturerName'])
+      .select([
+        ...['id as id', 'name as name', 'tags as tags'].map(c => `product.${c}`),
+        'manufacturer.name as manufacturerName'
+      ])
       .leftJoin('product.manufacturer', 'manufacturer')
       .where('product.type = :type', { type: Type.Product });
 

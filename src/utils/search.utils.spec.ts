@@ -210,6 +210,15 @@ describe('String similarity utils', (): void => {
             ' 1008000.279070 | 0017 | Kwiat czerwonej koniczyny 50g | Flos'
           ]
         }
+      },
+      {
+        input: 'wojtek lubi', // Tags test
+        output: {
+          total: 1,
+          firstFewResults: [
+            ' 2020000.290323 | 0158 | wojtek lubi | Ekologiczny syrop z pączków sosny 270ml | Dary Natury'
+          ]
+        }
       }
     ];
 

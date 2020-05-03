@@ -1,16 +1,11 @@
 import { ProductQueryResult, ProductsRatingMap } from '../models/product.models';
 
 export const getProductsRatingMapFromRawRowsByCategoryIds = (rawRowsByCategoryIds: any[]): ProductsRatingMap => {
-  const t = rawRowsByCategoryIds.reduce(
-    (accumulator: ProductsRatingMap, rawRowByCategoryIds: any): ProductsRatingMap => {
-      accumulator[`${rawRowByCategoryIds.id}`] = 0;
+  return rawRowsByCategoryIds.reduce((accumulator: ProductsRatingMap, rawRowByCategoryIds: any): ProductsRatingMap => {
+    accumulator[`${rawRowByCategoryIds.id}`] = 0;
 
-      return accumulator;
-    },
-    {}
-  );
-
-  return t;
+    return accumulator;
+  }, {});
 };
 
 export const getProductQueryResultsFromRawRowsByQuery = (rawRowsByQuery: any[]): ProductQueryResult[] => {
@@ -18,7 +13,8 @@ export const getProductQueryResultsFromRawRowsByQuery = (rawRowsByQuery: any[]):
     (rawRowByQuery: any): ProductQueryResult => ({
       id: rawRowByQuery.id,
       manufacturerName: rawRowByQuery.manufacturerName,
-      name: rawRowByQuery.name
+      name: rawRowByQuery.name,
+      tags: rawRowByQuery.tags
     })
   );
 };

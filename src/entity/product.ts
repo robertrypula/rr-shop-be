@@ -18,7 +18,13 @@ import { Category } from './category';
 import { decimalPriceConfig } from './decimal-config';
 import { Distributor } from './distributor';
 import { Image } from './image';
-import { BARCODE_LENGTH, PKWIU_LENGTH, PRODUCT_CASH_REGISTER_NAME_LENGTH, PRODUCT_NAME_LENGTH } from './length-config';
+import {
+  BARCODE_LENGTH,
+  GENERIC_TAGS_LENGTH,
+  PKWIU_LENGTH,
+  PRODUCT_CASH_REGISTER_NAME_LENGTH,
+  PRODUCT_NAME_LENGTH
+} from './length-config';
 import { Manufacturer } from './manufacturer';
 import { OrderItem } from './order-item';
 import { stringConfig } from './string-config';
@@ -36,9 +42,8 @@ export class Product {
   @Column('varchar', { length: PRODUCT_NAME_LENGTH, ...stringConfig })
   public name: string;
 
-  // TODO enable in next phase
-  // @Column('varchar', { length: GENERIC_TAGS_LENGTH, nullable: true, default: null, ...stringConfig })
-  // public tags: string;
+  @Column('varchar', { length: GENERIC_TAGS_LENGTH, nullable: true, default: null, ...stringConfig })
+  public tags: string;
 
   @Index({ unique: true })
   @Column('varchar', { length: PRODUCT_CASH_REGISTER_NAME_LENGTH, nullable: true, default: null, ...stringConfig })

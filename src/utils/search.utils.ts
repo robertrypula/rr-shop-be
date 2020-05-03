@@ -73,7 +73,8 @@ export const getProcessedProductQueryResults = (
 
   for (let i = 0; i < productQueryResults.length; i++) {
     const productQueryResult: ProductQueryResult = productQueryResults[i];
-    const stringToSearchIn = `${productQueryResult.name} ${productQueryResult.manufacturerName}`;
+    const tags: string = productQueryResult.tags ? `${productQueryResult.tags} ` : '';
+    const stringToSearchIn = `${tags}${productQueryResult.name} ${productQueryResult.manufacturerName}`;
     const ratingByWords: number = getRatingByWords(query, stringToSearchIn);
     const ratingByFullPhrase: number = getRatingByFullPhrase(query, stringToSearchIn);
 
@@ -99,7 +100,8 @@ export const getStringsFromProductQueryResults = (
       [
         `${productQueryResult.rating.toFixed(6).padStart(8 + 1 + 6, ' ')} `,
         `| ${(productQueryResult.id + '').padStart(4, '0')} `,
-        `| ${productQueryResult.name} | ${productQueryResult.manufacturerName}`
+        `${productQueryResult.tags ? `| ${productQueryResult.tags} ` : ''}| ${productQueryResult.name} `,
+        `| ${productQueryResult.manufacturerName}`
       ].join('')
     )
     .slice(0, limit);
