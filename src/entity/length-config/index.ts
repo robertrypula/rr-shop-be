@@ -21,3 +21,6 @@ export const UUID_LENGTH = 36;
 export const ORDER_NUMBER_LENGTH = 9;
 
 export const PAYMENT_EXTERNAL_ID_LENGTH = 100;
+
+export const IP_LENGTH = 39; // room for IP v6 ;)
+export const QUERY_LENGTH = 1024; // room for IP v6 ;)

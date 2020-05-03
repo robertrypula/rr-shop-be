@@ -32,6 +32,8 @@ export class ProductService {
     });
   }
 
+  // --------------------------------------------
+
   public async getAdminProduct(id: number): Promise<Product> {
     return await this.productRepositoryService.getAdminProduct(id);
   }
@@ -44,6 +46,8 @@ export class ProductService {
 
     return this.triggerCalculations(products, false);
   }
+
+  // --------------------------------------------
 
   public async getProductsByFetchType(productsRatingMap: ProductsRatingMap, fetchType: FetchType): Promise<Product[]> {
     const productIds: number[] = productsRatingMap ? getProductIdsFromProductsRatingMap(productsRatingMap) : null;
@@ -95,6 +99,8 @@ export class ProductService {
     return this.triggerCalculations(products);
   }
 
+  // --------------------------------------------
+
   public async getProductsRatingMapByCategoryIds(categoryIds: number[]): Promise<ProductsRatingMap> {
     return await this.productRepositoryService.getProductsRatingMapByCategoryIds(categoryIds);
   }
@@ -102,6 +108,8 @@ export class ProductService {
   public async getProductsRatingMapByQuery(query: string): Promise<ProductsRatingMap> {
     return await this.productRepositoryService.getProductsRatingMapByQuery(query);
   }
+
+  // --------------------------------------------
 
   public triggerCalculations(products: Product[], dropRelations = true): Product[] {
     products.forEach((product: Product): void => product.calculateQuantity(dropRelations));
