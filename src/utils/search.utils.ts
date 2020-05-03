@@ -1,13 +1,61 @@
 import { compareTwoStrings } from 'string-similarity';
 
+import {
+  PRODUCT_SEARCH_FULL_PHRASE_MAX_RATING_FRACTION,
+  PRODUCT_SEARCH_FULL_PHRASE_RATING_THRESHOLD,
+  PRODUCT_SEARCH_ON2_PERFORMANCE_LIMIT,
+  PRODUCT_SEARCH_WORD_MIN_CHARACTER,
+  PRODUCT_SEARCH_WORD_RATING_THRESHOLD
+} from '../config';
 import { ProductQueryResult } from '../models/product.models';
 import { removeMultipleWhitespaceCharacters } from './transformation.utils';
 
+// TODO check it - probably Levenshtein is better in matching words:
+// https://jacoby.github.io/2019/01/08/levenshtein-sorensendice-and-practical-information-theory.html
+
+export const getRatingByWords = (stringA: string, stringB: string): number => {
+  const wordsA: string[] = getWords(stringA.toLowerCase());
+  const wordsB: string[] = getWords(stringB.toLowerCase());
+  let breakFlag = false;
+  let counter = 0;
+  let foundWords = 0;
+  let wordRating: number;
+  let wordsRating = 0;
+
+  for (let i = 0; i < wordsA.length; i++) {
+    for (let j = 0; j < wordsB.length; j++) {
+      breakFlag = ++counter > PRODUCT_SEARCH_ON2_PERFORMANCE_LIMIT;
+      if (breakFlag) {
+        break;
+      }
+      wordRating = compareTwoStrings(wordsA[i], wordsB[j]);
+      if (wordRating >= PRODUCT_SEARCH_WORD_RATING_THRESHOLD) {
+        foundWords++;
+        wordsRating += wordRating;
+      }
+    }
+    if (breakFlag) {
+      break;
+    }
+  }
+
+  return 1000000 * foundWords + 10 * Math.round(1000 * wordsRating);
+};
+
+export const getRatingByFullPhrase = (stringA: string, stringB: string): number => {
+  return compareTwoStrings(stringA, stringB);
+};
+
 export const getWords = (value: string): string[] => {
-  return removeMultipleWhitespaceCharacters(value)
+  return removeMultipleWhitespaceCharacters(
+    value
+      .replace(/-/g, ' ')
+      .replace(/\(/g, ' ')
+      .replace(/\)/g, ' ')
+  )
     .trim()
     .split(' ')
-    .filter((word: string): boolean => word.length > 2);
+    .filter((word: string): boolean => word.length >= PRODUCT_SEARCH_WORD_MIN_CHARACTER);
 };
 
 const sortByRating = (a: ProductQueryResult, b: ProductQueryResult): number =>
@@ -15,10 +63,9 @@ const sortByRating = (a: ProductQueryResult, b: ProductQueryResult): number =>
 
 export const getProcessedProductQueryResults = (
   productQueryResults: ProductQueryResult[],
-  query: string,
-  ratingThreshold: number
+  query: string
 ): ProductQueryResult[] => {
-  let maxRating: number;
+  let ratingByFullPhraseMax = 0;
 
   if (!productQueryResults || productQueryResults.length === 0) {
     return [];
@@ -27,19 +74,19 @@ export const getProcessedProductQueryResults = (
   for (let i = 0; i < productQueryResults.length; i++) {
     const productQueryResult: ProductQueryResult = productQueryResults[i];
     const stringToSearchIn = `${productQueryResult.name} ${productQueryResult.manufacturerName}`;
+    const ratingByWords: number = getRatingByWords(query, stringToSearchIn);
+    const ratingByFullPhrase: number = getRatingByFullPhrase(query, stringToSearchIn);
 
-    productQueryResults[i].rating = compareTwoStrings(stringToSearchIn, query);
+    ratingByFullPhraseMax = ratingByFullPhrase > ratingByFullPhraseMax ? ratingByFullPhrase : ratingByFullPhraseMax;
+    productQueryResults[i].rating = ratingByWords + ratingByFullPhrase;
   }
 
   productQueryResults.sort(sortByRating);
 
-  maxRating = productQueryResults[0].rating;
-  for (let i = 0; i < productQueryResults.length; i++) {
-    productQueryResults[i].rating /= maxRating;
-  }
-
   return productQueryResults.filter(
-    (productQueryResult: ProductQueryResult): boolean => productQueryResult.rating >= ratingThreshold
+    (productQueryResult: ProductQueryResult): boolean =>
+      productQueryResult.rating >= PRODUCT_SEARCH_FULL_PHRASE_RATING_THRESHOLD &&
+      productQueryResult.rating >= ratingByFullPhraseMax * PRODUCT_SEARCH_FULL_PHRASE_MAX_RATING_FRACTION
   );
 };
 
@@ -48,6 +95,12 @@ export const getStringsFromProductQueryResults = (
   limit: number
 ): string[] => {
   return productQueryResults
-    .map(i => `${i.rating.toFixed(6)} | ${(i.id + '').padStart(4, '0')} | ${i.name} | ${i.manufacturerName}`)
+    .map((productQueryResult: ProductQueryResult): string =>
+      [
+        `${productQueryResult.rating.toFixed(6).padStart(8 + 1 + 6, ' ')} `,
+        `| ${(productQueryResult.id + '').padStart(4, '0')} `,
+        `| ${productQueryResult.name} | ${productQueryResult.manufacturerName}`
+      ].join('')
+    )
     .slice(0, limit);
 };
