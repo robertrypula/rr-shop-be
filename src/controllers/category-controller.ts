@@ -1,53 +1,21 @@
 import { Request, Response } from 'express';
-import { getRepository, Repository } from 'typeorm';
 
 import { Category } from '../entity/category';
+import { CategoryService } from '../services/category/category.service';
 
 export class CategoryController {
-  public constructor(protected repository: Repository<Category> = getRepository(Category)) {}
+  public constructor(protected categoryService: CategoryService = new CategoryService()) {}
 
-  public async all(req: Request, res: Response): Promise<void> {
-    // TODO move it to repository class
-    const categories: Category[] = await this.repository
-      .createQueryBuilder('category')
-      .select(
-        ['id', 'name', 'slug', 'content', 'isNotClickable', 'isWithoutProducts', 'structuralNode', 'parentId'].map(
-          c => `category.${c}`
-        )
-      )
-      .where('category.isHidden is not true')
-      .getMany();
+  public async getCategories(req: Request, res: Response): Promise<void> {
+    let categories: Category[];
+
+    try {
+      categories = await this.categoryService.getCategories();
+    } catch (error) {
+      res.status(500).send({ error });
+      return;
+    }
 
     res.send(categories);
-
-    /*
-    const categories: Category[] = await this.repository
-      .createQueryBuilder('category')
-      .select(['category.id', 'category.name', 'parentId'])
-      .leftJoin('category.children', 'children')
-      .getMany();
-    res.send(categories);
-    */
-
-    /*
-    const categories: Category[] = await this.repository
-      .createQueryBuilder('category')
-      .select(['category.id', 'category.name', 'children.id'])
-      .leftJoin('category.children', 'children')
-      .getMany();
-    res.send(categories);
-    */
-
-    /*
-    res.send(await this.repository.find({ select: ['id', 'name', 'parentId'] }));
-    */
-
-    /*
-    res.send(
-      await this.repository.find({
-        relations: ['children']
-      })
-    );
-    */
   }
 }

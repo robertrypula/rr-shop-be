@@ -9,7 +9,7 @@ export class AdminProductService {
   ) {}
 
   public async patch(id: number, body: AdminProductPatch): Promise<void> {
-    const product: Product = await this.adminProductRepositoryService.getAdminPureProduct(id);
+    const product: Product = await this.adminProductRepositoryService.getAdminFullProductWithoutRelations(id);
 
     product.name = body.name;
     product.slug = getSlugFromPolishString(product.name);

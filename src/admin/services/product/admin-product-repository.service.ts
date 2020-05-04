@@ -7,7 +7,7 @@ export class AdminProductRepositoryService {
 
   // ---------------------------------------------------------------------------
 
-  public async getAdminPureProduct(id: number): Promise<Product> {
+  public async getAdminFullProductWithoutRelations(id: number): Promise<Product> {
     const selectQueryBuilder: SelectQueryBuilder<Product> = this.repository
       .createQueryBuilder('product')
       .select(['product'])

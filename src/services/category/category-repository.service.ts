@@ -5,6 +5,18 @@ import { StructuralNode } from '../../models/category.models';
 export class CategoryRepositoryService {
   public constructor(protected repository: Repository<Category> = getRepository(Category)) {}
 
+  public async getCategories(): Promise<Category[]> {
+    return await this.repository
+      .createQueryBuilder('category')
+      .select(
+        ['id', 'name', 'slug', 'content', 'isNotClickable', 'isWithoutProducts', 'structuralNode', 'parentId'].map(
+          c => `category.${c}`
+        )
+      )
+      .where('category.isHidden is not true')
+      .getMany();
+  }
+
   public async getCategoriesByStructuralNode(structuralNode: StructuralNode): Promise<Category[]> {
     return await this.repository
       .createQueryBuilder('category')
