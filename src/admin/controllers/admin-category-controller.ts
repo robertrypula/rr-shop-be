@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
 import { Category } from '../../entity/category';
-import { AdminCategoryPatch } from '../rest-api/category.models';
+import { AdminCategoryPatch, AdminCategoryPost } from '../rest-api/category.models';
 import { AdminCategoryService } from '../services/category/admin-category.service';
 
 export class AdminCategoryController {
@@ -35,5 +35,19 @@ export class AdminCategoryController {
     }
 
     res.status(204).send();
+  }
+
+  public async createCategory(req: Request, res: Response): Promise<void> {
+    const body: AdminCategoryPost = req.body;
+    let category: Category;
+
+    try {
+      category = await this.adminCategoryService.create(body);
+    } catch (error) {
+      res.status(500).send({ errorMessage: `${error}` });
+      return;
+    }
+
+    res.status(200).send(category);
   }
 }

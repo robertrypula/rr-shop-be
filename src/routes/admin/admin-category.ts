@@ -12,3 +12,4 @@ const execute = (action: keyof AdminCategoryController) => (req: Request, res: R
 adminCategoryRouter.get('/', execute('getCategories'));
 adminCategoryRouter.get('/:id([0-9]+)', execute('getCategory'));
 adminCategoryRouter.patch('/:id([0-9]+)', jsonBodyParser, execute('patchCategory'));
+adminCategoryRouter.post('/', jsonBodyParser, execute('createCategory'));

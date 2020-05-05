@@ -31,10 +31,11 @@ export class AdminCategoryRepositoryService {
 
   // ---------------------------------------------------------------------------
 
-  public async getAdminFullCategoryWithoutRelations(id: number): Promise<Category> {
+  public async getAdminFullCategoryWithParent(id: number): Promise<Category> {
     const selectQueryBuilder: SelectQueryBuilder<Category> = this.repository
       .createQueryBuilder('category')
       .select(['category'])
+      .leftJoin('category.parent', 'parent')
       .where('category.id = :id', { id });
 
     return await selectQueryBuilder.getOne();
