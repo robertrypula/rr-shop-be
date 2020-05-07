@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
 import { Category } from '../../entity/category';
-import { AdminCategoryPatch, AdminCategoryPost } from '../rest-api/category.models';
+import { AdminCategoryWriteRequestBody } from '../rest-api/category.models';
 import { AdminCategoryService } from '../services/category/admin-category.service';
 
 export class AdminCategoryController {
@@ -25,7 +25,7 @@ export class AdminCategoryController {
   }
 
   public async patchCategory(req: Request, res: Response): Promise<void> {
-    const body: AdminCategoryPatch = req.body;
+    const body: AdminCategoryWriteRequestBody = req.body;
 
     try {
       await this.adminCategoryService.patch(req.params.id ? +req.params.id : null, body);
@@ -38,7 +38,7 @@ export class AdminCategoryController {
   }
 
   public async createCategory(req: Request, res: Response): Promise<void> {
-    const body: AdminCategoryPost = req.body;
+    const body: AdminCategoryWriteRequestBody = req.body;
     let category: Category;
 
     try {

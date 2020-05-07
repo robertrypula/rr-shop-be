@@ -1,13 +1,4 @@
-export interface AdminCategoryPatch {
-  content: string;
-  isHidden: boolean;
-  isNotClickable: boolean;
-  isWithoutProducts: boolean;
-  name: string;
-  parentId: number;
-}
-
-export interface AdminCategoryPost {
+export interface AdminCategoryWriteRequestBody {
   content: string;
   isHidden: boolean;
   isNotClickable: boolean;
