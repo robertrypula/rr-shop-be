@@ -1,4 +1,5 @@
 import { Manufacturer } from '../../../entity/manufacturer';
+import { cleanSingleLineAllowSingleSpaceTextBeforeStoringInDb } from '../../../utils/transformation.utils';
 import { AdminManufacturerWriteRequestBody } from '../../rest-api/manufacturer.models';
 import { AdminManufacturerRepositoryService } from './admin-manufacturer-repository.service';
 
@@ -36,6 +37,6 @@ export class AdminManufacturerService {
   }
 
   protected async fill(manufacturer: Manufacturer, body: AdminManufacturerWriteRequestBody): Promise<void> {
-    manufacturer.name = body.name;
+    manufacturer.name = body.name ? cleanSingleLineAllowSingleSpaceTextBeforeStoringInDb(body.name) : null;
   }
 }
