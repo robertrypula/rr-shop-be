@@ -21,7 +21,7 @@ export class AdminImageRepositoryService {
         'image',
         ...['id', 'name'].map(c => `category.${c}`),
         ...['id', 'name'].map(c => `manufacturer.${c}`),
-        ...['id', 'name'].map(c => `product.${c}`)
+        ...['id', 'externalId', 'name'].map(c => `product.${c}`)
       ])
       .leftJoin('image.category', 'category')
       .leftJoin('image.manufacturer', 'manufacturer')

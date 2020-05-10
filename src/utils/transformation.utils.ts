@@ -1,5 +1,26 @@
 import { ValidationError } from 'class-validator';
 
+import { getSlugFromPolishString } from './name.utils';
+
+export const cleanMultiLineTextBeforeStoringInDb = (text: string): string => {
+  return (
+    `${text}`
+      .replace(/\r/g, '')
+      .replace(/\t/g, '')
+      .trim() + '\n'
+  );
+};
+
+export const cleanSingleLineAllowSingleSpaceTextBeforeStoringInDb = (text: string): string => {
+  return removeNewlinesCharacters(removeMultipleWhitespaceCharacters(text))
+    .replace(/\t/g, '')
+    .trim();
+};
+
+export const cleanSingleLineNoWhiteSpacesTextBeforeStoringInDb = (text: string): string => {
+  return getSlugFromPolishString(text);
+};
+
 export const extractConstraints = (validationErrors: ValidationError[], errors: string[]): void => {
   validationErrors.forEach((validationError: ValidationError): void => {
     validationError.constraints &&

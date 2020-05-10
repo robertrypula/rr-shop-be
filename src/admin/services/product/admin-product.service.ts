@@ -1,7 +1,10 @@
 import { Product } from '../../../entity/product';
 import { ProductService } from '../../../services/product/product.service';
 import { getSlugFromPolishString } from '../../../utils/name.utils';
-import { removeMultipleWhitespaceCharacters } from '../../../utils/transformation.utils';
+import {
+  cleanMultiLineTextBeforeStoringInDb,
+  cleanSingleLineAllowSingleSpaceTextBeforeStoringInDb
+} from '../../../utils/transformation.utils';
 import { AdminProductWriteRequestBody } from '../../rest-api/product.models';
 import { AdminProductRepositoryService } from './admin-product-repository.service';
 
@@ -33,9 +36,9 @@ export class AdminProductService {
   }
 
   public async fill(product: Product, body: AdminProductWriteRequestBody): Promise<void> {
-    product.name = removeMultipleWhitespaceCharacters(body.name).trim();
-    product.slug = getSlugFromPolishString(product.name);
-    product.description = body.description ? body.description.replace(/\r/g, '').trim() : null;
+    product.name = body.name ? cleanSingleLineAllowSingleSpaceTextBeforeStoringInDb(body.name) : null;
+    product.slug = product.name ? getSlugFromPolishString(product.name) : null;
+    product.description = body.description ? cleanMultiLineTextBeforeStoringInDb(body.description) : null;
     product.priceUnit = body.priceUnit;
     product.notes = body.notes;
     product.isHidden = body.isHidden;

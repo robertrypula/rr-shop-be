@@ -1,4 +1,5 @@
 import { Image } from '../../../entity/image';
+import { cleanSingleLineNoWhiteSpacesTextBeforeStoringInDb } from '../../../utils/transformation.utils';
 import { AdminImageWriteRequestBody } from '../../rest-api/image.models';
 import { AdminCategoryRepositoryService } from '../category/admin-category-repository.service';
 import { AdminManufacturerRepositoryService } from '../manufacturer/admin-manufacturer-repository.service';
@@ -40,7 +41,7 @@ export class AdminImageService {
   }
 
   protected async fill(image: Image, body: AdminImageWriteRequestBody): Promise<void> {
-    image.filename = body.filename;
+    image.filename = body.filename ? cleanSingleLineNoWhiteSpacesTextBeforeStoringInDb(body.filename) : null;
     image.sortOrder = body.sortOrder;
 
     image.category = body.categoryId

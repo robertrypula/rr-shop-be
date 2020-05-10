@@ -1,6 +1,9 @@
 import { Category } from '../../../entity/category';
 import { getSlugFromPolishString } from '../../../utils/name.utils';
-import { removeMultipleWhitespaceCharacters } from '../../../utils/transformation.utils';
+import {
+  cleanMultiLineTextBeforeStoringInDb,
+  cleanSingleLineAllowSingleSpaceTextBeforeStoringInDb
+} from '../../../utils/transformation.utils';
 import { AdminCategoryWriteRequestBody } from '../../rest-api/category.models';
 import { AdminCategoryRepositoryService } from './admin-category-repository.service';
 
@@ -33,9 +36,9 @@ export class AdminCategoryService {
   }
 
   protected async fill(category: Category, body: AdminCategoryWriteRequestBody): Promise<void> {
-    category.name = removeMultipleWhitespaceCharacters(body.name).trim();
-    category.slug = getSlugFromPolishString(category.name);
-    category.content = body.content ? body.content.replace(/\r/g, '').trim() : null;
+    category.name = body.name ? cleanSingleLineAllowSingleSpaceTextBeforeStoringInDb(body.name) : null;
+    category.slug = category.name ? getSlugFromPolishString(category.name) : null;
+    category.content = body.content ? cleanMultiLineTextBeforeStoringInDb(body.content) : null;
     category.isHidden = body.isHidden;
     category.isNotClickable = body.isNotClickable;
     category.isWithoutProducts = body.isWithoutProducts;
