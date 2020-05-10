@@ -1,13 +1,17 @@
 import { Image } from '../../../entity/image';
 import { AdminImageWriteRequestBody } from '../../rest-api/image.models';
 import { AdminCategoryRepositoryService } from '../category/admin-category-repository.service';
+import { AdminManufacturerRepositoryService } from '../manufacturer/admin-manufacturer-repository.service';
 import { AdminProductRepositoryService } from '../product/admin-product-repository.service';
 import { AdminImageRepositoryService } from './admin-image-repository.service';
 
+// TODO check why prettier can't format long lines
+// tslint:disable:max-line-length
 export class AdminImageService {
   public constructor(
-    protected adminImageRepositoryService: AdminImageRepositoryService = new AdminImageRepositoryService(),
     protected adminCategoryRepositoryService: AdminCategoryRepositoryService = new AdminCategoryRepositoryService(),
+    protected adminImageRepositoryService: AdminImageRepositoryService = new AdminImageRepositoryService(),
+    protected adminManufacturerRepositoryService: AdminManufacturerRepositoryService = new AdminManufacturerRepositoryService(),
     protected adminProductRepositoryService: AdminProductRepositoryService = new AdminProductRepositoryService()
   ) {}
 
@@ -45,6 +49,8 @@ export class AdminImageService {
     image.product = body.productId
       ? await this.adminProductRepositoryService.getAdminProductWithNoRelations(body.productId)
       : null;
-    // image.manufacturer;
+    image.manufacturer = body.manufacturerId
+      ? await this.adminManufacturerRepositoryService.getAdminManufacturerWithNoRelations(body.manufacturerId)
+      : null;
   }
 }
