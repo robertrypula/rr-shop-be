@@ -10,7 +10,7 @@ export class AdminProductService {
   ) {}
 
   public async patch(id: number, body: AdminProductPatch): Promise<void> {
-    const product: Product = await this.adminProductRepositoryService.getAdminFullProductWithoutRelations(id);
+    const product: Product = await this.adminProductRepositoryService.getAdminProductWithNoRelations(id);
 
     product.name = removeMultipleWhitespaceCharacters(body.name).trim();
     product.slug = getSlugFromPolishString(product.name);

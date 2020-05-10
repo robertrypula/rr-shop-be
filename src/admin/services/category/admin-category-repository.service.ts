@@ -8,7 +8,8 @@ export class AdminCategoryRepositoryService {
   public async getAdminCategory(id: number): Promise<Category> {
     const selectQueryBuilder: SelectQueryBuilder<Category> = this.repository
       .createQueryBuilder('category')
-      .select(['category'])
+      .select(['category', 'parent'])
+      .leftJoin('category.parent', 'parent')
       .where('category.id = :id', { id });
 
     return await selectQueryBuilder.getOne();
@@ -29,13 +30,10 @@ export class AdminCategoryRepositoryService {
     return await selectQueryBuilder.getMany();
   }
 
-  // ---------------------------------------------------------------------------
-
-  public async getAdminFullCategoryWithParent(id: number): Promise<Category> {
+  public async getAdminCategoryWithNoRelations(id: number): Promise<Category> {
     const selectQueryBuilder: SelectQueryBuilder<Category> = this.repository
       .createQueryBuilder('category')
       .select(['category'])
-      .leftJoin('category.parent', 'parent')
       .where('category.id = :id', { id });
 
     return await selectQueryBuilder.getOne();

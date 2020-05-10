@@ -7,6 +7,20 @@ import { AdminCategoryService } from '../services/category/admin-category.servic
 export class AdminCategoryController {
   public constructor(protected adminCategoryService: AdminCategoryService = new AdminCategoryService()) {}
 
+  public async createCategory(req: Request, res: Response): Promise<void> {
+    const body: AdminCategoryWriteRequestBody = req.body;
+    let category: Category;
+
+    try {
+      category = await this.adminCategoryService.create(body);
+    } catch (error) {
+      res.status(500).send({ errorMessage: `${error}` });
+      return;
+    }
+
+    res.status(200).send(category);
+  }
+
   public async getCategories(req: Request, res: Response): Promise<void> {
     res.send(await this.adminCategoryService.getAdminCategories());
   }
@@ -35,19 +49,5 @@ export class AdminCategoryController {
     }
 
     res.status(204).send();
-  }
-
-  public async createCategory(req: Request, res: Response): Promise<void> {
-    const body: AdminCategoryWriteRequestBody = req.body;
-    let category: Category;
-
-    try {
-      category = await this.adminCategoryService.create(body);
-    } catch (error) {
-      res.status(500).send({ errorMessage: `${error}` });
-      return;
-    }
-
-    res.status(200).send(category);
   }
 }
