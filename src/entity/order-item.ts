@@ -1,4 +1,13 @@
-import { Column, Entity, Index, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  Index,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn
+} from 'typeorm';
 
 import { DeliveryType, PaymentType, Type } from '../models/product.models';
 import { getNormalizedPrice } from '../utils/transformation.utils';
@@ -50,6 +59,14 @@ export class OrderItem {
 
   @Column()
   public productId: number;
+
+  @Column()
+  @CreateDateColumn()
+  public createdAt: Date;
+
+  @Column()
+  @UpdateDateColumn()
+  public updatedAt: Date;
 
   public getCalculatedPriceUnitSelling(): number {
     if (!this.order) {

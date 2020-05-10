@@ -27,7 +27,6 @@ import { OrderItem } from './order-item';
 import { Payment } from './payment';
 import { PromoCode } from './promo-code';
 import { stringConfig } from './string-config';
-import { Supply } from './supply';
 
 @Entity()
 export class Order {
