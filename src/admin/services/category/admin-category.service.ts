@@ -12,7 +12,7 @@ export class AdminCategoryService {
   public async create(body: AdminCategoryWriteRequestBody): Promise<Category> {
     const category: Category = new Category();
 
-    await this.fillCategory(category, body);
+    await this.fill(category, body);
 
     return await this.adminCategoryRepositoryService.save(category);
   }
@@ -28,11 +28,11 @@ export class AdminCategoryService {
   public async patch(id: number, body: AdminCategoryWriteRequestBody): Promise<void> {
     const category: Category = await this.adminCategoryRepositoryService.getAdminCategoryWithNoRelations(id);
 
-    await this.fillCategory(category, body);
+    await this.fill(category, body);
     await this.adminCategoryRepositoryService.save(category);
   }
 
-  protected async fillCategory(category: Category, body: AdminCategoryWriteRequestBody): Promise<void> {
+  protected async fill(category: Category, body: AdminCategoryWriteRequestBody): Promise<void> {
     category.name = removeMultipleWhitespaceCharacters(body.name).trim();
     category.slug = getSlugFromPolishString(category.name);
     category.content = body.content ? body.content.replace(/\r/g, '').trim() : null;

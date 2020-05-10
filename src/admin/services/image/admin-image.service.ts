@@ -14,7 +14,7 @@ export class AdminImageService {
   public async create(body: AdminImageWriteRequestBody): Promise<Image> {
     const image: Image = new Image();
 
-    await this.fillImage(image, body);
+    await this.fill(image, body);
 
     return await this.adminImageRepositoryService.save(image);
   }
@@ -30,12 +30,12 @@ export class AdminImageService {
   public async patch(id: number, body: AdminImageWriteRequestBody): Promise<void> {
     const image: Image = await this.adminImageRepositoryService.getAdminImageWithNoRelations(id);
 
-    await this.fillImage(image, body);
+    await this.fill(image, body);
 
     await this.adminImageRepositoryService.save(image);
   }
 
-  protected async fillImage(image: Image, body: AdminImageWriteRequestBody): Promise<void> {
+  protected async fill(image: Image, body: AdminImageWriteRequestBody): Promise<void> {
     image.filename = body.filename;
     image.sortOrder = body.sortOrder;
 
