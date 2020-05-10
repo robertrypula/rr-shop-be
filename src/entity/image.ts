@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 import { Category } from './category';
 import { GENERIC_LENGTH } from './length-config';
@@ -34,4 +34,12 @@ export class Image {
 
   @Column({ nullable: true })
   public manufacturerId: number;
+
+  @Column()
+  @CreateDateColumn()
+  public createdAt: Date;
+
+  @Column()
+  @UpdateDateColumn()
+  public updatedAt: Date;
 }
