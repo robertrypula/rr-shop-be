@@ -17,6 +17,10 @@ export class SupplyService {
       throw `Could not find supply for given supplyId`;
     }
 
+    if (supply.isUnavailable) {
+      throw `Cannot attach orderItem to unavailable supply`;
+    }
+
     if (orderItemId) {
       orderItem = await this.orderItemRepositoryService.getAdminOrderItem(orderItemId);
       if (!orderItem) {

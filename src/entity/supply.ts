@@ -26,7 +26,7 @@ export class Supply {
   public productId: number;
 
   @Column('boolean', { default: false }) // use to mark which product was destroyed, lost or best before date expired
-  public isUnavailable: boolean; // do NOT use together with 'order' field
+  public isUnavailable: boolean; // do NOT use together with 'orderItem' field
 
   @ManyToOne(type => OrderItem) // use ONLY to mark which best before dates product are gone
   public orderItem: OrderItem; // do NOT use together with 'isUnavailable' field or Quantity calculation

@@ -1,5 +1,10 @@
 export interface AdminSupplyWriteRequestBody {
-  test: string; // TODO implement
+  bestBefore: string;
+  isUnavailable: boolean;
+  notes: string;
+  priceUnitGross: number;
+  productId: number;
+  vat: number;
 }
 
 export interface AdminSupplyOrderItemIdWriteRequestBody {
