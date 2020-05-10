@@ -20,9 +20,18 @@ export class Image {
   @ManyToOne(type => Category)
   public category: Category;
 
+  @Column({ nullable: true })
+  public categoryId: number;
+
   @ManyToOne(type => Product)
   public product: Product;
 
+  @Column({ nullable: true })
+  public productId: number;
+
   @ManyToOne(type => Manufacturer)
   public manufacturer: Manufacturer;
+
+  @Column({ nullable: true })
+  public manufacturerId: number;
 }

@@ -11,12 +11,8 @@ export class AdminCategoryService {
 
   public async create(body: AdminCategoryWriteRequestBody): Promise<Category> {
     const category: Category = new Category();
-    const newParentCategory: Category = body.parentId
-      ? await this.adminCategoryRepositoryService.getAdminFullCategoryWithParent(body.parentId)
-      : null;
 
-    this.fillCategory(category, body);
-    category.parent = newParentCategory;
+    await this.fillCategory(category, body);
 
     return await this.adminCategoryRepositoryService.save(category);
   }
@@ -30,23 +26,22 @@ export class AdminCategoryService {
   }
 
   public async patch(id: number, body: AdminCategoryWriteRequestBody): Promise<void> {
-    const category: Category = await this.adminCategoryRepositoryService.getAdminFullCategoryWithParent(id);
-    const newParentCategory: Category = body.parentId
-      ? await this.adminCategoryRepositoryService.getAdminFullCategoryWithParent(body.parentId)
-      : null;
+    const category: Category = await this.adminCategoryRepositoryService.getAdminCategoryWithNoRelations(id);
 
-    this.fillCategory(category, body);
-    category.parent = newParentCategory;
-
+    await this.fillCategory(category, body);
     await this.adminCategoryRepositoryService.save(category);
   }
 
-  protected fillCategory(category: Category, body: AdminCategoryWriteRequestBody): void {
+  protected async fillCategory(category: Category, body: AdminCategoryWriteRequestBody): Promise<void> {
     category.name = removeMultipleWhitespaceCharacters(body.name).trim();
     category.slug = getSlugFromPolishString(category.name);
     category.content = body.content ? body.content.replace(/\r/g, '').trim() : null;
     category.isHidden = body.isHidden;
     category.isNotClickable = body.isNotClickable;
     category.isWithoutProducts = body.isWithoutProducts;
+
+    category.parent = body.parentId
+      ? await this.adminCategoryRepositoryService.getAdminCategoryWithNoRelations(body.parentId)
+      : null;
   }
 }
