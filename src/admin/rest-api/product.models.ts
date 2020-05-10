@@ -1,4 +1,4 @@
-export interface AdminProductPatch {
+export interface AdminProductWriteRequestBody {
   name: string;
   description: string;
   priceUnit: number;

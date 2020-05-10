@@ -34,21 +34,6 @@ export class ProductService {
 
   // --------------------------------------------
 
-  public async getAdminProduct(id: number): Promise<Product> {
-    return await this.productRepositoryService.getAdminProduct(id);
-  }
-
-  public async getAdminProducts(): Promise<Product[]> {
-    const products: Product[] = await this.productRepositoryService.getAdminProducts();
-
-    await this.attachOrderItemsStubs(products, null);
-    await this.attachSuppliesStubs(products, null);
-
-    return this.triggerCalculations(products, false);
-  }
-
-  // --------------------------------------------
-
   public async getProductsByFetchType(productsRatingMap: ProductsRatingMap, fetchType: FetchType): Promise<Product[]> {
     const productIds: number[] = productsRatingMap ? getProductIdsFromProductsRatingMap(productsRatingMap) : null;
     let products: Product[];
