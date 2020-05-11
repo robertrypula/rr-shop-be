@@ -6,14 +6,17 @@ import {
   cleanSingleLineAllowSingleSpaceTextBeforeStoringInDb
 } from '../../../utils/transformation.utils';
 import { AdminProductWriteRequestBody } from '../../rest-api/product.models';
+import { AdminCategoryRepositoryService } from '../category/admin-category-repository.service';
 import { AdminDistributorRepositoryService } from '../distributor/admin-distributor-repository.service';
 import { AdminManufacturerRepositoryService } from '../manufacturer/admin-manufacturer-repository.service';
 import { AdminProductRepositoryService } from './admin-product-repository.service';
+import { Category } from '../../../entity/category';
 
 // TODO check why Prettier can't format longer lines
 // tslint:disable:max-line-length
 export class AdminProductService {
   public constructor(
+    protected adminCategoryRepositoryService: AdminCategoryRepositoryService = new AdminCategoryRepositoryService(),
     protected adminDistributorRepositoryService: AdminDistributorRepositoryService = new AdminDistributorRepositoryService(),
     protected adminManufacturerRepositoryService: AdminManufacturerRepositoryService = new AdminManufacturerRepositoryService(),
     protected adminProductRepositoryService: AdminProductRepositoryService = new AdminProductRepositoryService(),
@@ -75,8 +78,9 @@ export class AdminProductService {
       throw `Wrong format in cash register field`;
     }
 
-    /*
-      categoryIds: product.categoryIds || [],
-     */
+    product.categories =
+      body.categoryIds && body.categoryIds.length
+        ? await this.adminCategoryRepositoryService.getAdminCategoriesWithNoRelations(body.categoryIds)
+        : [];
   }
 }
