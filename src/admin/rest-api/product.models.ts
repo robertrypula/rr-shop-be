@@ -1,7 +1,13 @@
 export interface AdminProductWriteRequestBody {
-  name: string;
+  categoryIds: number[];
   description: string;
-  priceUnit: number;
-  notes: string;
+  distributorId: number;
   isHidden: boolean;
+  manufacturerId: number;
+  name: string;
+  nameCashRegister: string;
+  notes: string;
+  priceUnit: number;
+  priceUnitBeforePromotion: number;
+  tags: string;
 }
