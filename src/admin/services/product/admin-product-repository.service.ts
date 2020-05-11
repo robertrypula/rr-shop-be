@@ -6,6 +6,7 @@ export class AdminProductRepositoryService {
   public constructor(protected repository: Repository<Product> = getRepository(Product)) {}
 
   public async getAdminProduct(id: number): Promise<Product> {
+    // TODO simplify query
     const selectQueryBuilder: SelectQueryBuilder<Product> = this.repository
       .createQueryBuilder('product')
       .select([
@@ -37,11 +38,11 @@ export class AdminProductRepositoryService {
       .createQueryBuilder('product')
       .select([
         ...['id', 'externalId', 'name', 'nameCashRegister', 'priceUnit', 'isHidden', 'type'].map(c => `product.${c}`),
-        'manufacturer.name'
+        ...['id', 'name'].map(c => `distributor.${c}`),
+        ...['id', 'name'].map(c => `manufacturer.${c}`)
       ])
-      // .leftJoin('product.distributor', 'distributor')
+      .leftJoin('product.distributor', 'distributor')
       .leftJoin('product.manufacturer', 'manufacturer')
-      // .where('product.type = :type', { type: Type.Product })
       .orderBy('product.externalId', 'ASC');
 
     return await selectQueryBuilder.getMany();

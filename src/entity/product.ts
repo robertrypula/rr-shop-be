@@ -108,8 +108,14 @@ export class Product {
   @ManyToOne(type => Distributor, { cascade: ['insert'] })
   public distributor: Distributor;
 
+  @Column()
+  public distributorId: number;
+
   @ManyToOne(type => Manufacturer, { cascade: ['insert'] })
   public manufacturer: Manufacturer;
+
+  @Column()
+  public manufacturerId: number;
 
   @ManyToMany(type => Category, category => category.products)
   @JoinTable()
