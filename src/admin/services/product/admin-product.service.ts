@@ -1,3 +1,4 @@
+import { Category } from '../../../entity/category';
 import { Product } from '../../../entity/product';
 import { ProductService } from '../../../services/product/product.service';
 import { getCashRegisterName, getSlugFromPolishString } from '../../../utils/name.utils';
@@ -10,7 +11,6 @@ import { AdminCategoryRepositoryService } from '../category/admin-category-repos
 import { AdminDistributorRepositoryService } from '../distributor/admin-distributor-repository.service';
 import { AdminManufacturerRepositoryService } from '../manufacturer/admin-manufacturer-repository.service';
 import { AdminProductRepositoryService } from './admin-product-repository.service';
-import { Category } from '../../../entity/category';
 
 // TODO check why Prettier can't format longer lines
 // tslint:disable:max-line-length
