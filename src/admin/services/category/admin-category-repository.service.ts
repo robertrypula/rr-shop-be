@@ -30,6 +30,15 @@ export class AdminCategoryRepositoryService {
     return await selectQueryBuilder.getMany();
   }
 
+  public async getAdminCategoriesWithNoRelations(categoryIds: number[]): Promise<Category[]> {
+    const selectQueryBuilder: SelectQueryBuilder<Category> = this.repository
+      .createQueryBuilder('category')
+      .select(['category'])
+      .where('category.id IN (:...categoryIds)', { categoryIds });
+
+    return await selectQueryBuilder.getMany();
+  }
+
   public async getAdminCategoryWithNoRelations(id: number): Promise<Category> {
     const selectQueryBuilder: SelectQueryBuilder<Category> = this.repository
       .createQueryBuilder('category')

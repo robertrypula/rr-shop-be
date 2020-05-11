@@ -35,7 +35,7 @@ export class Product {
   @PrimaryGeneratedColumn()
   public id: number;
 
-  @Column({ nullable: true, default: null })
+  @Column({ nullable: true, default: null }) // TODO make it mandatory
   public externalId: number;
 
   @Index({ unique: true })
@@ -108,8 +108,14 @@ export class Product {
   @ManyToOne(type => Distributor, { cascade: ['insert'] })
   public distributor: Distributor;
 
+  @Column({ nullable: true })
+  public distributorId: number;
+
   @ManyToOne(type => Manufacturer, { cascade: ['insert'] })
   public manufacturer: Manufacturer;
+
+  @Column({ nullable: true })
+  public manufacturerId: number;
 
   @ManyToMany(type => Category, category => category.products)
   @JoinTable()
