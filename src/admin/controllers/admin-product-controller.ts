@@ -7,6 +7,20 @@ import { AdminProductService } from '../services/product/admin-product.service';
 export class AdminProductController {
   public constructor(protected adminProductService: AdminProductService = new AdminProductService()) {}
 
+  public async create(req: Request, res: Response): Promise<void> {
+    const body: AdminProductWriteRequestBody = req.body;
+    let product: Product;
+
+    try {
+      product = await this.adminProductService.create(body);
+    } catch (error) {
+      res.status(500).send({ errorMessage: `${error}` });
+      return;
+    }
+
+    res.status(200).send(product);
+  }
+
   public async getProducts(req: Request, res: Response): Promise<void> {
     res.send(await this.adminProductService.getAdminProducts());
   }

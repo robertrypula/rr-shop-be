@@ -12,3 +12,4 @@ const execute = (action: keyof AdminProductController) => (req: Request, res: Re
 adminProductRouter.get('/', execute('getProducts'));
 adminProductRouter.get('/:id([0-9]+)', execute('getProduct'));
 adminProductRouter.patch('/:id([0-9]+)', jsonBodyParser, execute('patchProduct'));
+adminProductRouter.post('/', jsonBodyParser, execute('create'));

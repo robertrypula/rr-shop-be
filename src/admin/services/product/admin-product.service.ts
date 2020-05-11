@@ -24,8 +24,11 @@ export class AdminProductService {
     const product: Product = new Product();
 
     await this.fill(product, body);
+    await this.adminProductRepositoryService.save(product);
+    product.externalId = product.id; // TODO potential issues when it will get out of sync
+    await this.adminProductRepositoryService.save(product);
 
-    return await this.adminProductRepositoryService.save(product);
+    return product;
   }
 
   public async getAdminProduct(id: number): Promise<Product> {
