@@ -13,6 +13,8 @@ import { ProductQueryResult, ProductQueryResultDbMock } from '../models/product.
       p.type = 'Product'
  */
 
+// tslint:disable:object-literal-sort-keys
+
 const productQueryResultDbMocks: ProductQueryResultDbMock[] = [
   [1, 'Owoc aronii 50g', 'Flos', null],
   [2, 'Korzeń arcydzięgla 50g', 'Flos', null],
@@ -171,7 +173,7 @@ const productQueryResultDbMocks: ProductQueryResultDbMock[] = [
   [155, 'Pieprz cayenne 60g', 'Dary Natury', null],
   [156, 'Gałka muszkatołowa 30g', 'Dary Natury', null],
   [157, 'Ekologiczny syrop z owoców dzikiej róży 270ml', 'Dary Natury', null],
-  [158, 'Ekologiczny syrop z pączków sosny 270ml', 'Dary Natury', null],
+  [158, 'Ekologiczny syrop z pączków sosny 270ml', 'Dary Natury', 'wojtek lubi'],
   [159, 'Ekologiczny syrop z pigwowca 270ml', 'Dary Natury', null],
   [160, 'Ekologiczny syrop z głogu 270ml', 'Dary Natury', null],
   [161, 'Ekologiczny sok z kiszonej kapusty 3l', 'Dary Natury', null],
@@ -301,11 +303,6 @@ const productQueryResultDbMocks: ProductQueryResultDbMock[] = [
   [285, 'Senfratin forte do zaparzania w saszetkach 30x2g', 'Boni Fratres', null],
   [286, 'Slimfratin forte do zaparzania w saszetkach 30x2g', 'Boni Fratres', null],
   [287, 'Herbatka uodparniająca 100g', 'Boni Fratres', null],
-  [288, 'Odbiór osobisty', '', null],
-  [289, 'Paczkomat InPost', '', null],
-  [290, 'Kurier InPost', '', null],
-  [291, 'Przelew bankowy', '', null],
-  [292, 'Płatność elektroniczna PayU', '', null],
   [293, 'Witamina D3 2000 j.m. 120 kapsułek', 'MedicaLine', null],
   [294, 'Witamina D3 4000 j.m. Forte 120 kapsułek', 'MedicaLine', null],
   [295, 'Witamina K2 MK-7 100 µg z Natto + D3 60 kapsułek', 'MedicaLine', null],
@@ -355,8 +352,9 @@ export const createProductQueryResults = (): ProductQueryResult[] => {
   return productQueryResultDbMocks.map(
     (productQueryResultDbMock: ProductQueryResultDbMock): ProductQueryResult => ({
       id: productQueryResultDbMock[0],
+      name: productQueryResultDbMock[1],
       manufacturerName: productQueryResultDbMock[2],
-      name: productQueryResultDbMock[1]
+      tags: productQueryResultDbMock[3]
     })
   );
 };

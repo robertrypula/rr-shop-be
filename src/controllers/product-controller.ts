@@ -3,7 +3,9 @@ import { getRepository, Repository, SelectQueryBuilder } from 'typeorm';
 
 import { Product } from '../entity/product';
 import { Supply } from '../entity/supply';
-import { FetchType, ParameterBag, Type } from '../models/product.models';
+import { getProductsRatingMapFromProductIds } from '../mappers/product.mappers';
+import { FetchType, ParameterBag, ProductsRatingMap, Type } from '../models/product.models';
+import { LogSearchService } from '../services/log-search/log-search.service';
 import { ProductService } from '../services/product/product.service';
 import { getCashRegisterName, getCashRegisterWindow1250Encoding } from '../utils/name.utils';
 import { getFormattedDate } from '../utils/transformation.utils';
@@ -70,7 +72,8 @@ const getCashRegisterVat = (product: Product): string => {
 export class ProductController {
   public constructor(
     protected repository: Repository<Product> = getRepository(Product),
-    protected productService: ProductService = new ProductService()
+    protected productService: ProductService = new ProductService(),
+    protected logSearchService: LogSearchService = new LogSearchService()
   ) {}
 
   public async getCashRegisterCsv(req: Request, res: Response): Promise<void> {
@@ -106,21 +109,25 @@ export class ProductController {
 
   public async getProducts(req: Request, res: Response): Promise<void> {
     const parameterBag: ParameterBag = this.getParameterBag(req);
-    let productIds: number[] = null;
+    let products: Product[];
+    let productsRatingMap: ProductsRatingMap = null;
 
     try {
       if (parameterBag.categoryIds) {
-        productIds = await this.productService.getProductsIdsByCategoryIds(parameterBag.categoryIds);
+        productsRatingMap = await this.productService.getProductsRatingMapByCategoryIds(parameterBag.categoryIds);
       } else if (parameterBag.productIds) {
-        productIds = parameterBag.productIds;
+        productsRatingMap = getProductsRatingMapFromProductIds(parameterBag.productIds);
       } else if (parameterBag.query || parameterBag.query === '') {
-        productIds = await this.productService.getProductsIdsByQuery(parameterBag.query);
+        productsRatingMap = await this.productService.getProductsRatingMapByQuery(parameterBag.query);
+        await this.logSearchService.logSearch(req.ip, parameterBag.query, productsRatingMap);
       }
 
-      res.send(await this.productService.getProductsByFetchType(productIds, parameterBag.fetchType));
+      products = await this.productService.getProductsByFetchType(productsRatingMap, parameterBag.fetchType);
     } catch (error) {
       res.status(500).send({ errorMessage: `${error}` });
     }
+
+    res.send(products);
   }
 
   public async getProduct(req: Request, res: Response): Promise<void> {
@@ -128,7 +135,7 @@ export class ProductController {
 
     try {
       const product: Product[] = await this.productService.getProductsByFetchType(
-        [parameterBag.productId],
+        getProductsRatingMapFromProductIds([parameterBag.productId]),
         parameterBag.fetchType
       );
 

@@ -1,5 +1,26 @@
 import { ValidationError } from 'class-validator';
 
+import { getSlugFromPolishString } from './name.utils';
+
+export const cleanMultiLineTextBeforeStoringInDb = (text: string): string => {
+  return (
+    `${text}`
+      .replace(/\r/g, '')
+      .replace(/\t/g, '')
+      .trim() + '\n'
+  );
+};
+
+export const cleanSingleLineAllowSingleSpaceTextBeforeStoringInDb = (text: string): string => {
+  return removeNewlinesCharacters(removeMultipleWhitespaceCharacters(text))
+    .replace(/\t/g, '')
+    .trim();
+};
+
+export const cleanSingleLineNoWhiteSpacesTextBeforeStoringInDb = (text: string): string => {
+  return getSlugFromPolishString(text);
+};
+
 export const extractConstraints = (validationErrors: ValidationError[], errors: string[]): void => {
   validationErrors.forEach((validationError: ValidationError): void => {
     validationError.constraints &&
@@ -115,7 +136,7 @@ export const parsePrice = (value: string): number => {
   return parseFloat(`${value}`.replace(/,/g, '.'));
 };
 
-export const removeDuplicates = (array: string[]): string[] => {
+export const removeStringDuplicates = (array: string[]): string[] => {
   const map: { [key: string]: string } = {};
 
   array.forEach((item: string): void => {
@@ -123,6 +144,12 @@ export const removeDuplicates = (array: string[]): string[] => {
   });
 
   return Object.keys(map);
+};
+
+export const removeNumberDuplicates = (array: number[]): number[] => {
+  return removeStringDuplicates(array.map((value: number): string => `${value}`)).map(
+    (value: string): number => +value
+  );
 };
 
 export const removeMultipleWhitespaceCharacters = (value: string): string => {

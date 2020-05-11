@@ -18,7 +18,13 @@ import { Category } from './category';
 import { decimalPriceConfig } from './decimal-config';
 import { Distributor } from './distributor';
 import { Image } from './image';
-import { BARCODE_LENGTH, PKWIU_LENGTH, PRODUCT_CASH_REGISTER_NAME_LENGTH, PRODUCT_NAME_LENGTH } from './length-config';
+import {
+  BARCODE_LENGTH,
+  GENERIC_TAGS_LENGTH,
+  PKWIU_LENGTH,
+  PRODUCT_CASH_REGISTER_NAME_LENGTH,
+  PRODUCT_NAME_LENGTH
+} from './length-config';
 import { Manufacturer } from './manufacturer';
 import { OrderItem } from './order-item';
 import { stringConfig } from './string-config';
@@ -29,16 +35,15 @@ export class Product {
   @PrimaryGeneratedColumn()
   public id: number;
 
-  @Column({ nullable: true, default: null })
+  @Column({ nullable: true, default: null }) // TODO make it mandatory
   public externalId: number;
 
   @Index({ unique: true })
   @Column('varchar', { length: PRODUCT_NAME_LENGTH, ...stringConfig })
   public name: string;
 
-  // TODO enable in next phase
-  // @Column('varchar', { length: GENERIC_TAGS_LENGTH, nullable: true, default: null, ...stringConfig })
-  // public tags: string;
+  @Column('varchar', { length: GENERIC_TAGS_LENGTH, nullable: true, default: null, ...stringConfig })
+  public tags: string;
 
   @Index({ unique: true })
   @Column('varchar', { length: PRODUCT_CASH_REGISTER_NAME_LENGTH, nullable: true, default: null, ...stringConfig })
@@ -75,6 +80,8 @@ export class Product {
 
   public quantity: number;
 
+  public rating: number;
+
   @Column('boolean', { default: false })
   public isHidden: boolean;
 
@@ -101,8 +108,14 @@ export class Product {
   @ManyToOne(type => Distributor, { cascade: ['insert'] })
   public distributor: Distributor;
 
+  @Column({ nullable: true })
+  public distributorId: number;
+
   @ManyToOne(type => Manufacturer, { cascade: ['insert'] })
   public manufacturer: Manufacturer;
+
+  @Column({ nullable: true })
+  public manufacturerId: number;
 
   @ManyToMany(type => Category, category => category.products)
   @JoinTable()

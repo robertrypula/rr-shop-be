@@ -44,6 +44,7 @@ export interface ProductQueryResult {
   name: string;
   manufacturerName: string;
   rating?: number;
+  tags?: string;
 }
 
 export type ProductQueryResultDbMock = [number, string, string, string];
@@ -54,4 +55,8 @@ export interface ProductQueryTestVectorItem {
     total: number;
     firstFewResults: string[];
   };
+}
+
+export interface ProductsRatingMap {
+  [id: string]: number;
 }

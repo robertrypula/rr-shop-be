@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 import { Category } from './category';
 import { GENERIC_LENGTH } from './length-config';
@@ -20,9 +20,26 @@ export class Image {
   @ManyToOne(type => Category)
   public category: Category;
 
+  @Column({ nullable: true })
+  public categoryId: number;
+
   @ManyToOne(type => Product)
   public product: Product;
 
+  @Column({ nullable: true })
+  public productId: number;
+
   @ManyToOne(type => Manufacturer)
   public manufacturer: Manufacturer;
+
+  @Column({ nullable: true })
+  public manufacturerId: number;
+
+  @Column()
+  @CreateDateColumn()
+  public createdAt: Date;
+
+  @Column()
+  @UpdateDateColumn()
+  public updatedAt: Date;
 }

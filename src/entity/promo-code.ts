@@ -1,4 +1,4 @@
-import { Column, Entity, Index, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, Index, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 import { decimalPercentageConfig } from './decimal-config';
 import { PROMO_CODE_LENGTH } from './length-config';
@@ -22,6 +22,14 @@ export class PromoCode {
 
   @OneToMany(type => Order, (order: Order) => order.promoCode)
   public order: Order[];
+
+  @Column()
+  @CreateDateColumn()
+  public createdAt: Date;
+
+  @Column()
+  @UpdateDateColumn()
+  public updatedAt: Date;
 
   public getDiscountMultiplier(): number {
     return (100 - this.percentageDiscount) / 100;
