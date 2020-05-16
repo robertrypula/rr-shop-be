@@ -60,9 +60,13 @@ export class AdminProductService {
     product.slug = product.name ? getSlugFromPolishString(product.name) : null;
     product.nameCashRegister = body.nameCashRegister ? body.nameCashRegister : getCashRegisterName(product.name);
     product.description = body.description ? cleanMultiLineTextBeforeStoringInDb(body.description) : null;
+    product.descriptionDelivery = body.descriptionDelivery
+      ? cleanMultiLineTextBeforeStoringInDb(body.descriptionDelivery)
+      : null;
     product.priceUnit = body.priceUnit;
     product.priceUnitBeforePromotion = body.priceUnitBeforePromotion ? body.priceUnitBeforePromotion : null;
     product.notes = body.notes ? cleanMultiLineTextBeforeStoringInDb(body.notes) : null;
+    product.isDeliveryOnlyOwn = body.isDeliveryOnlyOwn;
     product.isHidden = body.isHidden;
     product.tags = body.tags;
 

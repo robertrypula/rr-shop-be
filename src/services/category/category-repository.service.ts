@@ -9,9 +9,21 @@ export class CategoryRepositoryService {
     return await this.repository
       .createQueryBuilder('category')
       .select(
-        ['id', 'name', 'slug', 'content', 'isNotClickable', 'isHiddenListOfProducts', 'structuralNode', 'parentId'].map(
-          c => `category.${c}`
-        )
+        [
+          'id',
+          'name',
+          'slug',
+          'content',
+          'contentShort',
+          'isNotClickable',
+          'isHiddenListOfProducts',
+          'isVisibleListOfCategories',
+          'linkId',
+          'linkText',
+          'linkOpenInNewTab',
+          'structuralNode',
+          'parentId'
+        ].map(c => `category.${c}`)
       )
       .where('category.isHidden is not true')
       .getMany();

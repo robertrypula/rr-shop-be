@@ -8,6 +8,8 @@ export enum StructuralNode {
   Footer = 'Footer',
   FooterMap = 'FooterMap',
   Header = 'Header',
+  MainPageCategories = 'MainPageCategories',
+  MainPageSlider = 'MainPageSlider',
   News = 'News',
   PageTemplates = 'PageTemplates',
   Payment = 'Payment',

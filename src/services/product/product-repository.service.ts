@@ -52,9 +52,18 @@ export class ProductRepositoryService {
     const queryBuilder: SelectQueryBuilder<Product> = this.repository
       .createQueryBuilder('product')
       .select([
-        ...['id', 'name', 'priceUnit', 'slug', 'description', 'type', 'deliveryType', 'paymentType'].map(
-          c => `product.${c}`
-        ),
+        ...[
+          'id',
+          'name',
+          'priceUnit',
+          'slug',
+          'description',
+          'descriptionDelivery',
+          'isDeliveryOnlyOwn',
+          'type',
+          'deliveryType',
+          'paymentType'
+        ].map(c => `product.${c}`),
         ...['id', 'filename', 'sortOrder'].map(c => `image.${c}`),
         ...['name'].map(c => `manufacturer.${c}`),
         ...['id', 'filename', 'sortOrder'].map(c => `manufacturerImage.${c}`)
