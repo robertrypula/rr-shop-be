@@ -11,7 +11,7 @@ import {
 
 import { StructuralNode } from '../models/category.models';
 import { Image } from './image';
-import { GENERIC_LENGTH } from './length-config';
+import { CATEGORY_LINK_TEXT_LENGTH, GENERIC_LENGTH } from './length-config';
 import { Product } from './product';
 import { stringConfig } from './string-config';
 
@@ -29,11 +29,17 @@ export class Category {
   @Column('mediumtext', { nullable: true, default: null, ...stringConfig })
   public content: string;
 
+  @Column('mediumtext', { nullable: true, default: null, ...stringConfig })
+  public contentShort: string;
+
   @Column({ nullable: true, default: null })
   public isNotClickable: boolean;
 
   @Column({ nullable: true, default: null })
-  public isWithoutProducts: boolean;
+  public isHiddenListOfProducts: boolean;
+
+  @Column({ nullable: true, default: null })
+  public isVisibleListOfCategories: boolean;
 
   @Column({ nullable: true, default: null })
   public isHidden: boolean;
@@ -52,6 +58,21 @@ export class Category {
 
   @ManyToOne(type => Category)
   public parent: Category;
+
+  @OneToMany(type => Category, (category: Category) => category.link)
+  public linkedBy: Category[];
+
+  @Column({ nullable: true })
+  public linkId: number;
+
+  @ManyToOne(type => Category)
+  public link: Category;
+
+  @Column('varchar', { length: CATEGORY_LINK_TEXT_LENGTH, nullable: true, default: null, ...stringConfig })
+  public linkText: string;
+
+  @Column({ nullable: true, default: null })
+  public linkOpenInNewTab: boolean;
 
   @OneToMany(type => Image, (image: Image) => image.category, { cascade: ['insert'] })
   public images: Image[];

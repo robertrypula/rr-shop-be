@@ -8,6 +8,8 @@ export const PARCEL_NUMBER_LENGTH = 40;
 
 export const PROMO_CODE_LENGTH = 12;
 
+export const CATEGORY_LINK_TEXT_LENGTH = 256;
+
 export const GENERIC_URL_LENGTH = 2048;
 export const GENERIC_TAGS_LENGTH = 256;
 

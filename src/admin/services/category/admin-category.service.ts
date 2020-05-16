@@ -41,7 +41,7 @@ export class AdminCategoryService {
     category.content = body.content ? cleanMultiLineTextBeforeStoringInDb(body.content) : null;
     category.isHidden = body.isHidden;
     category.isNotClickable = body.isNotClickable;
-    category.isWithoutProducts = body.isWithoutProducts;
+    category.isHiddenListOfProducts = body.isHiddenListOfProducts;
 
     category.parent = body.parentId
       ? await this.adminCategoryRepositoryService.getAdminCategoryWithNoRelations(body.parentId)

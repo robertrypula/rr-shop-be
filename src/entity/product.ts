@@ -56,6 +56,9 @@ export class Product {
   @Column({ type: 'mediumtext', ...stringConfig })
   public description: string;
 
+  @Column('mediumtext', { nullable: true, default: null, ...stringConfig })
+  public descriptionDelivery: string;
+
   @Column({ default: 0 })
   public sortOrder: number;
 
@@ -84,6 +87,9 @@ export class Product {
 
   @Column('boolean', { default: false })
   public isHidden: boolean;
+
+  @Column({ nullable: true, default: null })
+  public isDeliveryOnlyOwn: boolean;
 
   @Column('enum', { enum: DeliveryType, nullable: true, default: undefined, ...stringConfig })
   public deliveryType: DeliveryType;

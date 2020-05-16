@@ -9,7 +9,7 @@ export class CategoryRepositoryService {
     return await this.repository
       .createQueryBuilder('category')
       .select(
-        ['id', 'name', 'slug', 'content', 'isNotClickable', 'isWithoutProducts', 'structuralNode', 'parentId'].map(
+        ['id', 'name', 'slug', 'content', 'isNotClickable', 'isHiddenListOfProducts', 'structuralNode', 'parentId'].map(
           c => `category.${c}`
         )
       )
