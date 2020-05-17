@@ -110,7 +110,7 @@ export class Product {
   public supplies: Supply[];
 
   // https://github.com/typeorm/typeorm/issues/3507
-  // @RelationId functionality is complex.. It's subject of rework in next versions of typeorm
+  // "@RelationId functionality is complex.. It's subject of rework in next versions of typeorm"
   // @RelationId((product: Product) => product.supplies)
   // public suppliesIds: number[];
 

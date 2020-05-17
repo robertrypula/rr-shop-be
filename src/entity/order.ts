@@ -10,7 +10,7 @@ import {
 } from 'typeorm';
 
 import { Status } from '../models/order.models';
-import { Type } from '../models/product.models';
+import { DeliveryType, Type } from '../models/product.models';
 import { getNormalizedPrice } from '../utils/transformation.utils';
 import { Email } from './email';
 import {
@@ -102,6 +102,26 @@ export class Order {
   @Column()
   @UpdateDateColumn()
   public updatedAt: Date;
+
+  public isDeliveryTypeBlockRuleValid(): boolean {
+    const deliveryOrderItem: OrderItem = this.getDeliveryOrderItem();
+    const productOrderItems: OrderItem[] = this.getOrderItemsByType([Type.Product]);
+    const numberOfProductsBlockedCourier: number = productOrderItems.reduce(
+      (accumulator: number, current: OrderItem): number =>
+        accumulator + (current.product && current.product.isDeliveryBlockedCourier ? 1 : 0),
+      0
+    );
+    const numberOfProductsBlockedParcelLocker: number = productOrderItems.reduce(
+      (accumulator: number, current: OrderItem): number =>
+        accumulator + (current.product && current.product.isDeliveryBlockedParcelLocker ? 1 : 0),
+      0
+    );
+
+    return !(
+      (deliveryOrderItem.deliveryType === DeliveryType.InPostCourier && numberOfProductsBlockedCourier > 0) ||
+      (deliveryOrderItem.deliveryType === DeliveryType.InPostParcelLocker && numberOfProductsBlockedParcelLocker > 0)
+    );
+  }
 
   public isTypeAndLengthOfOrderItemValid(): boolean {
     return (
