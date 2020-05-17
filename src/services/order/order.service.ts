@@ -47,7 +47,7 @@ export class OrderService {
     await this.handlePayment(order, orderCreateRequestDto, ip);
     await this.handleEmail(order);
 
-    return await this.orderRepositoryService.save(order); // TypeORM already wraps cascade insert with transaction
+    return await this.orderRepositoryService.save(order); // TypeOrm already wraps cascade inserts with transaction
   }
 
   public async getOrder(uuid: string): Promise<Order> {
@@ -199,6 +199,10 @@ export class OrderService {
 
     if (!order.isTypeAndLengthOfOrderItemValid()) {
       throw 'Order should have one Payment, one Delivery and at least one Product';
+    }
+
+    if (!order.isDeliveryTypeBlockRuleValid()) {
+      throw 'Order contains items that could not be delivered by given delivery type';
     }
 
     deliveryOrderItem = order.getDeliveryOrderItem();

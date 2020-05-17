@@ -56,6 +56,9 @@ export class Product {
   @Column({ type: 'mediumtext', ...stringConfig })
   public description: string;
 
+  @Column('mediumtext', { nullable: true, default: null, ...stringConfig })
+  public descriptionDelivery: string;
+
   @Column({ default: 0 })
   public sortOrder: number;
 
@@ -85,6 +88,12 @@ export class Product {
   @Column('boolean', { default: false })
   public isHidden: boolean;
 
+  @Column({ nullable: true, default: null })
+  public isDeliveryBlockedCourier: boolean;
+
+  @Column({ nullable: true, default: null })
+  public isDeliveryBlockedParcelLocker: boolean;
+
   @Column('enum', { enum: DeliveryType, nullable: true, default: undefined, ...stringConfig })
   public deliveryType: DeliveryType;
 
@@ -101,7 +110,7 @@ export class Product {
   public supplies: Supply[];
 
   // https://github.com/typeorm/typeorm/issues/3507
-  // @RelationId functionality is complex.. It's subject of rework in next versions of typeorm
+  // "@RelationId functionality is complex.. It's subject of rework in next versions of typeorm"
   // @RelationId((product: Product) => product.supplies)
   // public suppliesIds: number[];
 
@@ -159,7 +168,7 @@ export class Product {
       this.orderItems = undefined;
     }
 
-    this.quantity = this.type === Type.Product ? suppliesQuantity - orderItemsQuantity : -12345; // TODO remove magic n.
+    this.quantity = this.type === Type.Product ? suppliesQuantity - orderItemsQuantity : -999; // TODO remove magic n.
   }
 
   public getSuppliesCountAttachedToGivenOrderItemId(orderItemId: number): number {

@@ -25,7 +25,7 @@ export class CreateCategories1572803593529 implements MigrationInterface {
 
       category.structuralNode = categoryTsvRow.structuralNode;
       category.isNotClickable = categoryTsvRow.isNotClickable === true ? true : undefined;
-      category.isWithoutProducts = categoryTsvRow.isWithoutProducts === true ? true : undefined;
+      category.isHiddenListOfProducts = categoryTsvRow.isHiddenListOfProducts === true ? true : undefined;
       category.isHidden = categoryTsvRow.isHidden === true ? true : undefined;
       category.name = name;
       category.slug = getSlugFromPolishString(name);
@@ -56,7 +56,7 @@ export class CreateCategories1572803593529 implements MigrationInterface {
       categoryTsvRows.push({
         structuralNode: rowData[0] === '' ? null : (rowData[0] as StructuralNode),
         isNotClickable: rowData[1] === '1',
-        isWithoutProducts: rowData[2] === '1',
+        isHiddenListOfProducts: rowData[2] === '1',
         isHidden: rowData[3] === '1',
         contentFilename: rowData[4],
         tree: this.getTree(5, rowData)

@@ -39,12 +39,20 @@ export class AdminCategoryService {
     category.name = body.name ? cleanSingleLineAllowSingleSpaceTextBeforeStoringInDb(body.name) : null;
     category.slug = category.name ? getSlugFromPolishString(category.name) : null;
     category.content = body.content ? cleanMultiLineTextBeforeStoringInDb(body.content) : null;
+    category.contentShort = body.content ? cleanMultiLineTextBeforeStoringInDb(body.contentShort) : null;
     category.isHidden = body.isHidden;
     category.isNotClickable = body.isNotClickable;
-    category.isWithoutProducts = body.isWithoutProducts;
+    category.isHiddenListOfProducts = body.isHiddenListOfProducts;
+    category.isVisibleListOfCategories = body.isVisibleListOfCategories;
+
+    category.linkText = body.linkText;
+    category.linkOpenInNewTab = body.linkOpenInNewTab;
 
     category.parent = body.parentId
       ? await this.adminCategoryRepositoryService.getAdminCategoryWithNoRelations(body.parentId)
+      : null;
+    category.link = body.linkId
+      ? await this.adminCategoryRepositoryService.getAdminCategoryWithNoRelations(body.linkId)
       : null;
   }
 }
