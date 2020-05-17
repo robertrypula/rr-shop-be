@@ -89,7 +89,10 @@ export class Product {
   public isHidden: boolean;
 
   @Column({ nullable: true, default: null })
-  public isDeliveryOnlyOwn: boolean;
+  public isDeliveryBlockedCourier: boolean;
+
+  @Column({ nullable: true, default: null })
+  public isDeliveryBlockedParcelLocker: boolean;
 
   @Column('enum', { enum: DeliveryType, nullable: true, default: undefined, ...stringConfig })
   public deliveryType: DeliveryType;

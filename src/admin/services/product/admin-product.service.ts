@@ -1,4 +1,3 @@
-import { Category } from '../../../entity/category';
 import { Product } from '../../../entity/product';
 import { ProductService } from '../../../services/product/product.service';
 import { getCashRegisterName, getSlugFromPolishString } from '../../../utils/name.utils';
@@ -66,7 +65,8 @@ export class AdminProductService {
     product.priceUnit = body.priceUnit;
     product.priceUnitBeforePromotion = body.priceUnitBeforePromotion ? body.priceUnitBeforePromotion : null;
     product.notes = body.notes ? cleanMultiLineTextBeforeStoringInDb(body.notes) : null;
-    product.isDeliveryOnlyOwn = body.isDeliveryOnlyOwn;
+    product.isDeliveryBlockedCourier = body.isDeliveryBlockedCourier;
+    product.isDeliveryBlockedParcelLocker = body.isDeliveryBlockedParcelLocker;
     product.isHidden = body.isHidden;
     product.tags = body.tags;
 

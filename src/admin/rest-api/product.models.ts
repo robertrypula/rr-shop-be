@@ -3,7 +3,8 @@ export interface AdminProductWriteRequestBody {
   description: string;
   descriptionDelivery: string;
   distributorId: number;
-  isDeliveryOnlyOwn: boolean;
+  isDeliveryBlockedCourier: boolean;
+  isDeliveryBlockedParcelLocker: boolean;
   isHidden: boolean;
   manufacturerId: number;
   name: string;

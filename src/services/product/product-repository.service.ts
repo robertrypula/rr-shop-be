@@ -59,7 +59,8 @@ export class ProductRepositoryService {
           'slug',
           'description',
           'descriptionDelivery',
-          'isDeliveryOnlyOwn',
+          'isDeliveryBlockedCourier',
+          'isDeliveryBlockedParcelLocker',
           'type',
           'deliveryType',
           'paymentType'
