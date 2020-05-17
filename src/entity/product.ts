@@ -168,7 +168,7 @@ export class Product {
       this.orderItems = undefined;
     }
 
-    this.quantity = this.type === Type.Product ? suppliesQuantity - orderItemsQuantity : -12345; // TODO remove magic n.
+    this.quantity = this.type === Type.Product ? suppliesQuantity - orderItemsQuantity : -999; // TODO remove magic n.
   }
 
   public getSuppliesCountAttachedToGivenOrderItemId(orderItemId: number): number {

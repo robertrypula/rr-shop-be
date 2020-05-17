@@ -37,7 +37,18 @@ export class AdminProductRepositoryService {
     const selectQueryBuilder: SelectQueryBuilder<Product> = this.repository
       .createQueryBuilder('product')
       .select([
-        ...['id', 'externalId', 'name', 'nameCashRegister', 'priceUnit', 'isHidden', 'type'].map(c => `product.${c}`),
+        ...[
+          'id',
+          'externalId',
+          'name',
+          'nameCashRegister',
+          'priceUnit',
+          'isHidden',
+          'type',
+          'descriptionDelivery',
+          'isDeliveryBlockedCourier',
+          'isDeliveryBlockedParcelLocker'
+        ].map(c => `product.${c}`),
         ...['id', 'name'].map(c => `distributor.${c}`),
         ...['id', 'name'].map(c => `manufacturer.${c}`)
       ])
