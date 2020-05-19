@@ -15,6 +15,7 @@ export class CategoryRepositoryService {
           'slug',
           'content',
           'contentShort',
+          'sortOrder',
           'isNotClickable',
           'isHiddenListOfProducts',
           'isVisibleListOfCategories',

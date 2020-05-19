@@ -10,4 +10,5 @@ export interface AdminCategoryWriteRequestBody {
   linkText: string;
   name: string;
   parentId: number;
+  sortOrder: number;
 }

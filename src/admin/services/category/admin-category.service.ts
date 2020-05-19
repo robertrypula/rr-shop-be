@@ -44,6 +44,7 @@ export class AdminCategoryService {
     category.isNotClickable = body.isNotClickable;
     category.isHiddenListOfProducts = body.isHiddenListOfProducts;
     category.isVisibleListOfCategories = body.isVisibleListOfCategories;
+    category.sortOrder = body.sortOrder;
 
     category.linkText = body.linkText;
     category.linkOpenInNewTab = body.linkOpenInNewTab;

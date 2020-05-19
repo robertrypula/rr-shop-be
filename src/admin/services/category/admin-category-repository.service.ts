@@ -19,7 +19,7 @@ export class AdminCategoryRepositoryService {
     const selectQueryBuilder: SelectQueryBuilder<Category> = this.repository
       .createQueryBuilder('category')
       .select([
-        ...['id', 'name', 'structuralNode', 'isNotClickable', 'isHiddenListOfProducts', 'isHidden'].map(
+        ...['id', 'name', 'structuralNode', 'sortOrder', 'isNotClickable', 'isHiddenListOfProducts', 'isHidden'].map(
           c => `category.${c}`
         ),
         ...['id', 'name'].map(c => `parent.${c}`)
