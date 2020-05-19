@@ -71,6 +71,7 @@ export class Category {
   @Column('varchar', { length: CATEGORY_LINK_TEXT_LENGTH, nullable: true, default: null, ...stringConfig })
   public linkText: string;
 
+  // TODO remove 'linkOpenInNewTab' column in next chance
   @Column({ nullable: true, default: null })
   public linkOpenInNewTab: boolean;
 
