@@ -8,8 +8,8 @@ export class CategoryRepositoryService {
   public async getCategories(): Promise<Category[]> {
     return await this.repository
       .createQueryBuilder('category')
-      .select(
-        [
+      .select([
+        ...[
           'id',
           'name',
           'slug',
@@ -24,8 +24,10 @@ export class CategoryRepositoryService {
           'linkOpenInNewTab',
           'structuralNode',
           'parentId'
-        ].map(c => `category.${c}`)
-      )
+        ].map(c => `category.${c}`),
+        ...['id', 'filename', 'sortOrder'].map(c => `image.${c}`)
+      ])
+      .leftJoin('category.images', 'image')
       .where('category.isHidden is not true')
       .getMany();
   }
