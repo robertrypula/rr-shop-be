@@ -114,19 +114,19 @@ export class OrderCreateRequestDto {
   public surname: string;
 
   @Expose()
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   @MaxLength(GENERIC_FORM_LENGTH)
   public address: string;
 
   @Expose()
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   @MaxLength(ZIP_CODE_LENGTH)
   public zipCode: string;
 
   @Expose()
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   @MaxLength(GENERIC_FORM_LENGTH)
   public city: string;
