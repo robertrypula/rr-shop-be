@@ -33,6 +33,9 @@ export class OrderItem {
   @Column('decimal', { ...decimalPriceConfig })
   public priceUnitOriginal: number;
 
+  @Column('decimal', { ...decimalPriceConfig, nullable: true, default: null })
+  public priceUnitBeforePromotionOriginal: number;
+
   @Column('decimal', { ...decimalPriceConfig })
   public priceUnitSelling: number;
 

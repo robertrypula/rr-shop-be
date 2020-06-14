@@ -149,6 +149,10 @@ export class OrderService {
       orderItem.priceUnitOriginal = foundProduct.priceUnit;
       orderItem.priceUnitSelling = orderItem.getCalculatedPriceUnitSelling();
 
+      if (foundProduct.isUnitPriceReductionActive()) {
+        orderItem.priceUnitBeforePromotionOriginal = foundProduct.priceUnitBeforePromotion;
+      }
+
       orderItem.product = foundProduct;
 
       orderItem.order = undefined; // leave relations to TypeOrm...

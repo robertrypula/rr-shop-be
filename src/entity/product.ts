@@ -181,4 +181,12 @@ export class Product {
       0
     );
   }
+
+  public isUnitPriceReductionActive(): boolean {
+    // NOTE:
+    // - when priceUnitBeforePromotion is > 0 it's treated as promo price
+    // - when priceUnitBeforePromotion is < 0 it's treated as outlet price
+
+    return this.priceUnitBeforePromotion !== null && Math.abs(this.priceUnitBeforePromotion) !== this.priceUnit;
+  }
 }
