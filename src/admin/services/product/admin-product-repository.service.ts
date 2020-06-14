@@ -43,6 +43,7 @@ export class AdminProductRepositoryService {
           'name',
           'nameCashRegister',
           'priceUnit',
+          'priceUnitBeforePromotion',
           'isHidden',
           'type',
           'descriptionDelivery',
