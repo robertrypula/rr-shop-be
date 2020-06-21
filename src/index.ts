@@ -5,7 +5,7 @@ import * as express from 'express';
 import * as helmet from 'helmet';
 import { Connection, createConnection } from 'typeorm';
 
-import { getSecretConfig } from './config';
+import { CORS, getSecretConfig } from './config';
 import { entities } from './entity';
 import { migrations } from './migration';
 import { SecretConfig } from './models/models';
@@ -47,7 +47,7 @@ createConnection({
   .then(async (connection: Connection) => {
     const app = express();
 
-    app.use(cors());
+    app.use(cors({ ...CORS }));
     app.use(helmet());
 
     app.use('/', routes);
