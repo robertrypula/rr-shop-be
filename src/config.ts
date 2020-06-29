@@ -23,7 +23,7 @@ export const PRODUCT_SEARCH_ON2_PERFORMANCE_LIMIT = 64;
 export const PRODUCT_SEARCH_WORD_MIN_CHARACTER = 3;
 export const PRODUCT_SEARCH_WORD_RATING_THRESHOLD = 0.7;
 
-export const ORDER_PAGE_URL = (applicationBaseUrl: string, uuid: string) => `${applicationBaseUrl}/#order/${uuid}`;
+export const ORDER_PAGE_URL = (applicationBaseUrl: string, uuid: string) => `${applicationBaseUrl}/order/${uuid}`;
 
 export const getSecretConfig = (): SecretConfig => {
   try {
