@@ -9,7 +9,6 @@ import { LogSearchService } from '../services/log-search/log-search.service';
 import { ProductService } from '../services/product/product.service';
 import { getCashRegisterName, getCashRegisterWindow1250Encoding } from '../utils/name.utils';
 import { getFormattedDate } from '../utils/transformation.utils';
-import { getUniqueValues } from '../utils/utils';
 
 /*
   Where in:
@@ -32,19 +31,24 @@ const getCashRegisterCsvRow = (product: Product): string => {
   ].join(';');
 };
 
+const sortBySupplyUpdatedAt = (a: Supply, b: Supply): number =>
+  a.updatedAt === b.updatedAt ? 0 : a.updatedAt < b.updatedAt ? 1 : -1;
+
 const getCashRegisterVat = (product: Product): string => {
   if (product.type !== Type.Product) {
     return 'A';
   }
 
   if (product.supplies && product.supplies.length > 0) {
+    /*
+    const vats: string[] = product.supplies.map((supply: Supply): string => `${Math.round(supply.vat)}%`);
     const vats: string[] = product.supplies.map((supply: Supply): string => `${Math.round(supply.vat)}%`);
     const uniqueVats: string[] = getUniqueValues(vats);
 
     if (uniqueVats.length !== 1) {
       throw `Multiple VAT issue (${uniqueVats.join(', ')}) found at product ${product.externalId}`;
     }
-    /*
+
     console.log(
       product.externalId,
       uniqueVats.length !== 1 ? 'YES!!!!' : '       ',
@@ -55,6 +59,8 @@ const getCashRegisterVat = (product: Product): string => {
       '------'
     );
     */
+
+    product.supplies.sort(sortBySupplyUpdatedAt);
 
     switch (Math.round(product.supplies[0].vat)) {
       case 23:
@@ -86,7 +92,7 @@ export class ProductController {
         .createQueryBuilder('product')
         .select([
           ...['id', 'externalId', 'nameCashRegister', 'priceUnit', 'type'].map(c => `product.${c}`),
-          ...['id', 'vat'].map(c => `supplies.${c}`)
+          ...['id', 'vat', 'updatedAt'].map(c => `supplies.${c}`)
         ])
         .leftJoin('product.supplies', 'supplies');
       const products: Product[] = await queryBuilder.getMany();
