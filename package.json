@@ -61,7 +61,7 @@
     "nodemailer": "^6.4.4",
     "reflect-metadata": "^0.1.13",
     "request-promise-native": "^1.0.8",
-    "typeorm": "^0.2.20",
+    "typeorm": "^0.2.25",
     "uuid": "^7.0.2"
   }
 }
